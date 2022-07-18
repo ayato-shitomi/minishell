@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 09:20:54 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/18 10:12:33 by mhida            ###   ########.fr       */
+/*   Updated: 2022/07/18 10:16:04 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int	lexical_analysis(char *command, t_info *info)
 	i = 0;
 	while (command[i])
 	{
-		if (is_quote(command[i], info) == 0)
+		if (is_quote(command[i], info) == 1)
 		{
 			//ダブルクォート、シングルクォートがある場合の処理
 		}
-		else if (is_space(command[i], info) == 0)
+		else if (is_space(command[i], info) == 1)
 		{
 			//トークン間に空白がある場合、もしくは入力値が空白のみの場合?の処理
 		}
