@@ -50,6 +50,7 @@ int	main(void)
 	char	*command;
 	t_info	info;
 
+	header();
 	init_info(&info);
 	init_sig(); //signal系関数をセット
 	while (1)

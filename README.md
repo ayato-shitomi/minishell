@@ -1,10 +1,26 @@
 # Minishell
 
-## 仕様可能な関数
+## 概要
+
+このプロジェクトでは、Shellの再実装を行います。この課題はすべてCで書かれます。Unixのシグナルやプロセスの扱い方、Cのメモリ管理等の技術を身につけました。
+
+## 使い方
+
+## 技術的解説
+
+### 仕様可能な関数
+
+これらの関数のみの仕様が許可されます。
+
+> readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history, printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit, getcwd, chdir, stat, lstat, fstat, unlink, execve, dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
+
+### 入力の扱い方
+
 
 ## 参考資料
 
-<a src="./scale.md">レビュースケールはこちら</a>
+<a src="./subject/subject.pdf">サブジェクトはこちら</a>
+<a src="./subject/scale.md">レビュースケールはこちら</a>
 
 ## MTG議事録
 
@@ -15,7 +31,7 @@ https://rio-1.hatenablog.com/entry/2021/10/05/182916
 
 ブランチ戦略については、明日話す。
 
-### 7/18 ~~9:00~~~ 11:00~
+### 7/18 11:00~
 
 大まかな流れを確認した。
 スケールを持ってきた。
