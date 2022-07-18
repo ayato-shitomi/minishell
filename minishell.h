@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 09:21:11 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/18 09:23:18 by mhida            ###   ########.fr       */
+/*   Updated: 2022/07/18 10:05:01 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void	ft_pwd(void);
 int		parse_command(char *command, t_info *info);
 int		is_quote(char c, t_info *info);
 int		is_space(char c, t_info *info);
+int		expansion(char *command, t_info *info);
+int		execute_command(char *command, t_info *info);
 
 #endif
