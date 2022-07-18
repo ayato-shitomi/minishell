@@ -7,17 +7,17 @@ static void	put_hello_message(void)
 
 static void	put_header(void)
 {
-	if (SHELLNAME == "Fresh")
+	if (ft_strncmp(SHELLNAME, "Fresh", ft_strlen(SHELLNAME)) == 0)
 	{
 		printf("\n");
-		printf(" /########                            /##      ");
-		printf("| ##_____/                           | ##      ");
-		printf("| ##     /######   /######   /#######| ####### ");
-		printf("| ##### /##__  ## /##__  ## /##_____/| ##__  ##");
-		printf("| ##__/| ##  \\__/| ########|  ###### | ##  \\ ##");
-		printf("| ##   | ##      | ##_____/ \\____  ##| ##  | ##");
-		printf("| ##   | ##      |  ####### /#######/| ##  | ##");
-		printf("|__/   |__/       \\_______/|_______/ |__/  |__/");
+		printf(" /########                            /##      \n");
+		printf("| ##_____/                           | ##      \n");
+		printf("| ##     /######   /######   /#######| ####### \n");
+		printf("| ##### /##__  ## /##__  ## /##_____/| ##__  ##\n");
+		printf("| ##__/| ##  \\__/| ########|  ###### | ##  \\ ##\n");
+		printf("| ##   | ##      | ##_____/ \\____  ##| ##  | ##\n");
+		printf("| ##   | ##      |  ####### /#######/| ##  | ##\n");
+		printf("|__/   |__/       \\_______/|_______/ |__/  |__/\n");
 		printf("\n");
 	}
 }
@@ -25,7 +25,7 @@ static void	put_header(void)
 static void put_info(void)
 {
 	char	*url;
-	
+
 	url = "https://github.com/ayato-shitomi/minishell";
 	printf("\n");
 	printf("Our GitHub repository is here.\n");
@@ -36,9 +36,9 @@ static void put_info(void)
 /*
 Welcome to Fresh, the awsome interactive shell!
 
- /########                            /##      
-| ##_____/                           | ##      
-| ##     /######   /######   /#######| ####### 
+ /########                            /##
+| ##_____/                           | ##
+| ##     /######   /######   /#######| #######
 | ##### /##__  ## /##__  ## /##_____/| ##__  ##
 | ##__/| ##  \__/| ########|  ###### | ##  \ ##
 | ##   | ##      | ##_____/ \____  ##| ##  | ##
