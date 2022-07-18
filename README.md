@@ -20,7 +20,9 @@
 ## 参考資料
 
 <a src="./subject/subject.pdf">サブジェクトはこちら</a>
+https://github.com/ayato-shitomi/minishell/blob/master/subject/subject.pdf
 <a src="./subject/scale.md">レビュースケールはこちら</a>
+https://github.com/ayato-shitomi/minishell/blob/master/subject/scale.md
 
 ## MTG議事録
 
