@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 09:20:54 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/18 09:20:57 by mhida            ###   ########.fr       */
+/*   Updated: 2022/07/18 10:12:33 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static int	lexical_analysis(char *command, t_info *info)
 int	parse_command(char *command, t_info *info)
 {
 	if (lexical_analysis(command, info) == ERROR)
-		exit(ERROR);
+		return (ERROR);
 	if (syntax_analysis(command, info) == ERROR)
-		exit(ERROR);
+		return (ERROR);
 	return (SUCCESS);
 }
