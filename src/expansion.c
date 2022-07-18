@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 09:22:44 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/18 10:14:59 by mhida            ###   ########.fr       */
+/*   Created: 2022/07/18 09:57:55 by mhida             #+#    #+#             */
+/*   Updated: 2022/07/18 10:05:15 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-int	is_quote(char c, t_info *info)
+int	expansion(char *command, t_info *info)
 {
-	if (c == '\"' || c == '\'')
-	{
-		info->is_in_quote++;
-		return (1);
-	}
-	return (0);
-}
-
-int	is_space(char c, t_info *info)
-{
-	if (c == ' ')
-	{
-		info->is_in_space++;
-		return (1);
-	}
-	return (0);
+	//変数展開用関数
+	if (!command && !info) //コンパイル時のunused対策
+		return (ERROR);
+	return (SUCCESS);
 }

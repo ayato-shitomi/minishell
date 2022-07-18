@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_builtin.c                                    :+:      :+:    :+:   */
+/*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 09:21:41 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/18 09:22:25 by mhida            ###   ########.fr       */
+/*   Created: 2022/07/18 09:22:44 by mhida             #+#    #+#             */
+/*   Updated: 2022/07/18 10:14:59 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-// void	check_builtin(char *command)
-// {
-// 	if (ft_strncmp(command, "pwd", 3) == 0 && ft_strlen(command) == 3)
-// 		ft_pwd();
-// }
+int	is_quote(char c, t_info *info)
+{
+	if (c == '\"' || c == '\'')
+	{
+		info->is_in_quote++;
+		return (1);
+	}
+	return (0);
+}
+
+int	is_space(char c, t_info *info)
+{
+	if (c == ' ')
+	{
+		info->is_in_space++;
+		return (1);
+	}
+	return (0);
+}

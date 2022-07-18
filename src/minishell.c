@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 static void	sig_handler(int signum)
 {
@@ -54,12 +54,13 @@ int	main(void)
 	init_sig(); //signal系関数をセット
 	while (1)
 	{
-		command = readline("minishell>> ");
+		command = readline(PROMPT);
 		if (command && ft_strlen(command) > 0)
 		{
 			if (parse_command(command, &info) == ERROR)
 				exit(ERROR);
-			add_history(info.parsed_command);
+			//add_history(info.parsed_command);
+			add_history(command);
 		}
 		// printf("line = %s\n", info.parsed_command);
 		free(command);

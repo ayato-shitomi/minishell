@@ -29,8 +29,10 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+
 # define SUCCESS 0
 # define ERROR 1
+# define PROMPT "fresh >> "
 
 typedef struct s_info
 {

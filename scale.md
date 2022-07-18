@@ -1,7 +1,5 @@
 # Scale
-
 ## Mandatory Part
-
 ### Compile
 - Use `make -n` to see if compilation use `-Wall -Wextra -Werror`.
 If not, select the "invalid compilation" flag.
