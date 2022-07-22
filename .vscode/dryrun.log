@@ -1,0 +1,13 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ubuntu/42Tokyo/Lv3/minishell'
+make: Leaving directory '/home/ubuntu/42Tokyo/Lv3/minishell'
+ 
+make: *** No rule to make target 'minishell.o', needed by 'minishell'.
+make: *** No rule to make target 'utils.o', needed by 'minishell'.
+make: *** No rule to make target 'ft_pwd.o', needed by 'minishell'.
+make: *** No rule to make target 'parse_command.o', needed by 'minishell'.
+make: *** No rule to make target 'minishell_utils.o', needed by 'minishell'.
+make: *** No rule to make target 'execute_command.o', needed by 'minishell'.
+make: *** No rule to make target 'expansion.o', needed by 'minishell'.
+make: *** No rule to make target 'header.o', needed by 'minishell'.
+
