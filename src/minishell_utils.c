@@ -6,28 +6,26 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 09:22:44 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/18 10:14:59 by mhida            ###   ########.fr       */
+/*   Updated: 2022/07/22 12:06:12 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	is_quote(char c, t_info *info)
+void	init_quote_flag(t_info *info)
 {
-	if (c == '\"' || c == '\'')
-	{
-		info->is_in_quote++;
-		return (1);
-	}
-	return (0);
+	info->is_in_dquote = 0;
+	info->is_in_squote = 0;
 }
 
-int	is_space(char c, t_info *info)
+void	quote_check(char c, t_info *info) //旧is_quote
 {
-	if (c == ' ')
-	{
-		info->is_in_space++;
-		return (1);
-	}
-	return (0);
+	if (c == '\"' && info->is_in_dquote == 0)
+		info->is_in_dquote = 1;
+	else if (c == '\"' && info->is_in_dquote == 1)
+		info->is_in_dquote = 0;
+	else if (c == '\'' && info->is_in_squote == 0)
+		info->is_in_squote = 1;
+	else if (c == '\'' && info->is_in_squote == 1)
+		info->is_in_squote = 0;
 }
