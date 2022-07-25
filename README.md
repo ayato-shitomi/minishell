@@ -183,3 +183,5 @@ echo USERNAME:"Mr $USER".>test
 
 割り込み時の処理については、質問したので回答待ち。
 `sigaction()`と`signal()`についても質問した。
+
+### 7/28 13:00~
