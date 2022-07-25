@@ -68,7 +68,14 @@ typedef struct s_info
 
 //↓ info.token_typeのリスト ↓
 
-// 0 → EXPANDABLE  1 → EXPANDABLE_QUOTED  2 → NOT_EXPANDABLE  3 → PIPE  4 → REDIRECT
+/*
+	0 → EXPANDABLE			展開可能、もしくは文字列
+	1 → EXPANDABLE_QUOTED	ダブルクオートに囲われている展開可能
+	2 → NOT_EXPANDABLE		展開不可能、シングルクオートに囲われてる
+	3 → PIPE				パイプ
+	4 → REDIRECT			リダイレクト
+	5 → ENVIRONMENT_VAL		環境変数
+*/
 
 /////////////////////////////////////////////////////
 //   PROTOTYPES

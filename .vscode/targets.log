@@ -1,5 +1,5 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'minishell.o', needed by 'minishell'.  Stop.
+make: *** No rule to make target 'src/minishell.o', needed by 'minishell'.  Stop.
 
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
@@ -8,7 +8,7 @@ make: *** No rule to make target 'minishell.o', needed by 'minishell'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 19 08:16:39 2022
+# Make data base, printed on Wed Jul 20 13:26:32 2022
 
 # Variables
 
@@ -53,11 +53,11 @@ _ = /usr/bin/dbus-update-activation-environment
 # makefile (from 'Makefile', line 23)
 CFLAGS = -Wall -Wextra -Werror
 # environment
-JOURNAL_STREAM = 8:34613
+JOURNAL_STREAM = 8:38333
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
-STARSHIP_SESSION_KEY = 6680428214060251
+STARSHIP_SESSION_KEY = 2475096197968392
 # automatic
 @F = $(notdir $@)
 # environment
@@ -75,9 +75,9 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from 'Makefile', line 20)
 OBJS = $(SRCS:.c=.o)
 # environment
-MANAGERPID = 1940
+MANAGERPID = 1938
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-23aea7cb-d5e0-47ed-9d57-bf50360e1758.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-3769d6f9-ee3d-49e8-b950-d445e0fca7d5.sock
 # environment
 LC_NAME = ja_JP.UTF-8
 # environment
@@ -91,7 +91,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/ubuntuv:@/tmp/.ICE-unix/2628,unix/ubuntuv:/tmp/.ICE-unix/2628
+SESSION_MANAGER = local/ubuntuv:@/tmp/.ICE-unix/2626,unix/ubuntuv:/tmp/.ICE-unix/2626
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 1)
@@ -103,7 +103,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = e9cdae9d53c043588b3edd878ffbefff
+INVOCATION_ID = e2e6facd301d4d3b91e5de59147b71b8
 # makefile (from 'Makefile', line 24)
 LDFLAGS = -lreadline -lhistory -L $(shell brew --prefix readline)/lib
 # default
@@ -113,7 +113,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3881
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4494
 # automatic
 %F = $(notdir $%)
 # environment
@@ -125,7 +125,7 @@ PWD = /home/ubuntu/42Tokyo/Lv3/minishell
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2317
+SSH_AGENT_PID = 2341
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -157,7 +157,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 15)
-SRCS = minishell.c utils.c ft_pwd.c parse_command.c minishell_utils.c execute_command.c expansion.c header.c
+SRCS = src/minishell.c src/utils.c src/ft_pwd.c src/parse_command.c src/minishell_utils.c src/execute_command.c src/expansion.c src/header.c
 # environment
 SHLVL = 1
 # makefile (from 'Makefile', line 22)
@@ -237,7 +237,7 @@ LC_ADDRESS = ja_JP.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3881
+VSCODE_PID = 4494
 # environment
 STARSHIP_SHELL = fish
 # variable set hash-table stats:
@@ -249,27 +249,15 @@ STARSHIP_SHELL = fish
 
 # Directories
 
-# . (device 2053, inode 3169459): 9 files, no impossibilities.
+# . (device 2053, inode 3169459): 10 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
 # Files
-
-# Not a target:
-expansion.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-minishell_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 all: minishell
 #  Phony target (prerequisite of .PHONY).
@@ -278,14 +266,13 @@ all: minishell
 #  File does not exist.
 #  File has not been updated.
 
-# Not a target:
-execute_command.o:
+.PHONY: all clean fclean re
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
-.PHONY: all clean fclean re
+# Not a target:
+src/parse_command.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -293,22 +280,23 @@ execute_command.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 13:07:31.680591597
+#  Last modified 2022-07-19 08:17:29.934870739
 #  File has been updated.
+ 
 #  Successfully updated.
 
-minishell: minishell.o utils.o ft_pwd.o parse_command.o minishell_utils.o execute_command.o expansion.o header.o
+# Not a target:
+src/minishell_utils.o:
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Modification time never checked.
+#  File has not been updated.
+
+minishell: src/minishell.o src/utils.o src/ft_pwd.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/expansion.o src/header.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-19 08:17:29.934870739
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 27):
 	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $(NAME)
-
-# Not a target:
-minishell.o:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has not been updated.
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
@@ -319,19 +307,13 @@ fclean: clean
 	rm -rf $(NAME)
 
 # Not a target:
-header.o:
+src/utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
 .DEFAULT:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-ft_pwd.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -351,13 +333,31 @@ clean:
 	rm -rf $(OBJS)
 
 # Not a target:
-utils.o:
+src/header.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
-parse_command.o:
+src/minishell.o:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+src/expansion.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/execute_command.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/ft_pwd.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -370,12 +370,12 @@ parse_command.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 248 B / avg = 9 B
-# current buf: size = 8162 B / used = 248 B / count = 27 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 280 B / avg = 10 B
+# current buf: size = 8162 B / used = 280 B / count = 27 / avg = 10 B
 
-# strcache performance: lookups = 46 / hit rate = 41%
+# strcache performance: lookups = 47 / hit rate = 42%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=1/46=2%
-# Finished Make data base on Tue Jul 19 08:16:39 2022
+# Load=27/8192=0%, Rehash=0, Collisions=1/47=2%
+# Finished Make data base on Wed Jul 20 13:26:32 2022
 
  
