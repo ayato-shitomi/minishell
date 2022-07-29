@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   remove_space.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 21:26:56 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/22 12:06:08 by mhida            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/minishell.h"
 
 static void	space_check_and_set_char(char *command, t_info *info, \
-	size_t i, size_t *j) //旧is_space
+	size_t i, size_t *j)
 {
 	if (info->is_in_dquote == 1 || info->is_in_squote == 1)
 	{
