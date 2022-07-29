@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 09:20:28 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/22 13:36:51 by mhida            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/minishell.h"
 
 static void	sig_handler(int signum)
@@ -38,12 +26,10 @@ static void	init_sig(void)
 
 static void	init_info(t_info *info)
 {
-	info->sentence_cnt = 0;
 	info->token_cnt = 0;
 	info->is_in_dquote = 0;
 	info->is_in_squote = 0;
 	info->space_cnt = 0;
-	// info->token_len = 0;
 }
 
 int	main(void)
@@ -61,14 +47,11 @@ int	main(void)
 		{
 			if (parse_command(command, &info) == ERROR)
 				exit(ERROR);
-			//add_history(info.parsed_command);
 			add_history(command);
 		}
-		// printf("parsed = %s\n", info.parsed_command);
 		free(command);
-		free(info.parsed_command);
-		free(info->token_type);
-		ft_free_split_command(info->split_command);
+		ft_free_token_lst(&info);
+		// ft_free_split_command(info.split_command);
 		init_info(&info);
 	}
 	return (SUCCESS);

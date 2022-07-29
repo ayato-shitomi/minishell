@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 09:21:03 by mhida             #+#    #+#             */
-/*   Updated: 2022/07/21 23:40:28 by mhida            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/minishell.h"
 
 size_t	ft_strlen(const char *str)
@@ -71,4 +59,24 @@ void	*ft_calloc(size_t n, size_t size)
 		return (heap);
 	}
 	return (NULL);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	src_len;
+
+	if (!dst || !src)
+		return (0);
+	src_len = ft_strlen((char *)src);
+	i = 0;
+	if (size == 0)
+		return (src_len);
+	while (i < size - 1 && src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (src_len);
 }

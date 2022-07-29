@@ -1,0 +1,32 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/user/42/lv3/minishell_pra'
+gcc -Wall -Wextra -Werror   -c -o src/minishell.o src/minishell.c
+ 
+gcc -Wall -Wextra -Werror   -c -o src/utils.o src/utils.c
+gcc -Wall -Wextra -Werror   -c -o src/ft_pwd.o src/ft_pwd.c
+ 
+gcc -Wall -Wextra -Werror   -c -o src/parse_command.o src/parse_command.c
+gcc -Wall -Wextra -Werror   -c -o src/minishell_utils.o src/minishell_utils.c
+gcc -Wall -Wextra -Werror   -c -o src/execute_command.o src/execute_command.c
+gcc -Wall -Wextra -Werror   -c -o src/expansion.o src/expansion.c
+ 
+gcc -Wall -Wextra -Werror   -c -o src/header.o src/header.c
+ 
+gcc -Wall -Wextra -Werror   -c -o src/ft_split_ms.o src/ft_split_ms.c
+ 
+gcc -Wall -Wextra -Werror   -c -o src/remove_space.o src/remove_space.c
+ 
+gcc -Wall -Wextra -Werror   -c -o src/lexical_analysis.o src/lexical_analysis.c
+gcc -Wall -Wextra -Werror   -c -o src/lexical_analysis_2.o src/lexical_analysis_2.c
+gcc -Wall -Wextra -Werror   -c -o src/syntax_analysis.o src/syntax_analysis.c
+gcc -Wall -Wextra -Werror   -c -o src/ft_free.o src/ft_free.c
+gcc -Wall -Wextra -Werror   -c -o src/ft_lst.o src/ft_lst.c
+gcc -Wall -Wextra -Werror   -c -o src/ft_lst_2.o src/ft_lst_2.c
+gcc -Wall -Wextra -Werror   -c -o src/split_token_for_dquote.o src/split_token_for_dquote.c
+gcc -Wall -Wextra -Werror   -c -o src/split_token_for_squote.o src/split_token_for_squote.c
+gcc -Wall -Wextra -Werror   -c -o src/split_token_for_pipe.o src/split_token_for_pipe.c
+gcc -Wall -Wextra -Werror   -c -o src/split_token_for_redirect.o src/split_token_for_redirect.c
+ 
+gcc src/minishell.o src/utils.o src/ft_pwd.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/expansion.o src/header.o src/ft_split_ms.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/ft_free.o src/ft_lst.o src/ft_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o -Wall -Wextra -Werror -lreadline -lhistory -L /usr/local/opt/readline/lib -o minishell
+make: Leaving directory `/Users/user/42/lv3/minishell_pra'
+ 
