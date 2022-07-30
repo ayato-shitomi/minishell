@@ -41,8 +41,8 @@
 # define REDIRECT_RIGHT_TWO 7
 # define ENVIRONMENT_VAR 8
 # define CMD_LST 10
-# define IO_LST 11
-# define ENV_LST 12
+# define REDIRECT_LST 11
+# define VAR_LST 12
 
 // ここから構文解析用
 
@@ -56,13 +56,13 @@ typedef struct s_lst
 	struct s_lst	*next;
 }	t_lst; // 片方向線形リスト
 
-typedef struct s_execdata_lst
+typedef struct s_sentence_lst
 {
 	t_lst					*cmd_lst;
-	t_lst					*io_lst;
-	t_lst					*env_lst;
-	struct s_execdata_lst	*next;
-}	t_execdata_lst; // 片方向線形リスト (通常通り「lst」と名付け)
+	t_lst					*redirect_lst;
+	t_lst					*var_lst;
+	struct s_sentence_lst	*next;
+}	t_sentence_lst; // 片方向線形リスト (通常通り「lst」と名付け)
 
 // ここまで構文解析用
 
