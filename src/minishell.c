@@ -30,6 +30,9 @@ static void	init_info(t_info *info)
 	info->is_in_dquote = 0;
 	info->is_in_squote = 0;
 	info->space_cnt = 0;
+	info->token_lst = NULL;
+	info->parsed_command = NULL;
+	info->split_command = NULL;
 }
 
 int	main(void)
@@ -39,7 +42,7 @@ int	main(void)
 
 	header();
 	init_info(&info);
-	init_sig(); //signal系関数をセット
+	init_sig(); // signal系関数をセット
 	while (1)
 	{
 		command = readline(PROMPT);
@@ -51,7 +54,6 @@ int	main(void)
 		}
 		free(command);
 		ft_free_token_lst(&info);
-		// ft_free_split_command(info.split_command);
 		init_info(&info);
 	}
 	return (SUCCESS);

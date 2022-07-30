@@ -6,7 +6,8 @@ SRCS	=	src/minishell.c src/utils.c src/ft_pwd.c src/parse_command.c \
 			src/lexical_analysis_2.c src/syntax_analysis.c src/ft_free.c \
 			src/ft_lst.c src/ft_lst_2.c src/split_token_for_dquote.c \
 			src/split_token_for_squote.c src/split_token_for_pipe.c \
-			src/split_token_for_redirect.c 
+			src/split_token_for_redirect.c src/set_token_type.c \
+
 
 # src/check_builtin.c
 

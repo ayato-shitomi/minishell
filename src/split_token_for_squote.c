@@ -1,19 +1,10 @@
 #include "../includes/minishell.h"
 
-static void	insert_split_token_for_squote(t_info *info, size_t *i)
+static void	set_token_for_squote(t_info *info, char *token, size_t len, \
+	size_t *i)
 {
-	size_t		j;
-	size_t		len;
-	t_token_lst	*lst_tmp;
-	char		*token;
+	size_t	j;
 
-	if (info->token_lst->type == NOT_EXPANDABLE)
-		len = ft_strlen(info->token_lst->token + *i + 1);
-	else
-		len = ft_strlen(info->token_lst->token + *i);
-	token = (char *)ft_calloc(len + 1, sizeof(char));
-	if (!token)
-		exit(ERROR);
 	j = 0;
 	while (j < len)
 	{
@@ -24,41 +15,63 @@ static void	insert_split_token_for_squote(t_info *info, size_t *i)
 		j++;
 	}
 	token[j] = '\0';
+}
+
+static size_t	get_len_for_squote(t_info *info, size_t *i)
+{
+	if (info->token_lst->type == NOT_EXPANDABLE)
+		return (ft_strlen(info->token_lst->token + *i + 1));
+	else
+		return (ft_strlen(info->token_lst->token + *i));
+}
+
+static void	insert_split_token_for_squote(t_info *info, size_t *i)
+{
+	size_t		len;
+	t_token_lst	*lst_tmp;
+	char		*token;
+
+	len = get_len_for_squote(info, i);
+	token = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!token)
+		exit(ERROR);
+	set_token_for_squote(info, token, len, i);
 	lst_tmp = ft_lstnew_ms(token);
 	ft_lstinsert_ms(info, lst_tmp, i, NOT_EXPANDABLE);
 	set_token_type(token, info->token_lst->next);
 }
 
-int	split_token_for_squote(t_info *info, size_t *i)
+static void	case_squote_first(t_info *info, size_t *i)
 {
 	size_t	j;
-	size_t	i_start;
 
-	i_start = *i;
 	j = 0;
-	if (info->token_lst->type == NOT_EXPANDABLE) // tokenの1文字目が「'」のケース
+	while (info->token_lst->token[*i])
 	{
-		while (info->token_lst->token[*i])
+		if (*i != 0 && info->token_lst->token[*i] == '\'')
 		{
-			if (*i != i_start && info->token_lst->token[*i] == '\'')
+			if (!(info->token_lst->token[*i + 1])) // tokenの最後の文字が「'」のケース
 			{
-				if (!(info->token_lst->token[*i + 1])) // tokenの最後の文字が「'」のケース
+				while (j < (*i - 1))
 				{
-					while (j < (*i - 1))
-					{
-						info->token_lst->token[j] = \
-							info->token_lst->token[j + 1];
-						j++;
-					}
-					info->token_lst->token[j] = '\0';
-					return (1);
+					info->token_lst->token[j] = \
+						info->token_lst->token[j + 1];
+					j++;
 				}
-				insert_split_token_for_squote(info, i); // tokenの最後の文字が「'」ではないケース
-				return (1);
+				info->token_lst->token[j] = '\0';
+				return ;
 			}
-			*i += 1;
+			insert_split_token_for_squote(info, i); // tokenの最後の文字が「'」ではないケース
+			return ;
 		}
+		*i += 1;
 	}
+}
+
+int	split_token_for_squote(t_info *info, size_t *i)
+{
+	if (info->token_lst->type == NOT_EXPANDABLE) // tokenの1文字目が「'」のケース
+		case_squote_first(info, i);
 	else // tokenの2文字目以降が「'」のケース
 		insert_split_token_for_squote(info, i);
 	return (1);

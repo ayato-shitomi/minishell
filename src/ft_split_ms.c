@@ -47,7 +47,7 @@ static long	ft_alloc_1(char **split, char *tmp, long long *index, size_t *len)
 	size_t	i;
 
 	i = 0;
-	split[*index] = (char *)malloc(sizeof(char) * (*len) + 1);
+	split[*index] = (char *)ft_calloc((*len) + 1, sizeof(char));
 	*split[*index] = 0;
 	if (split[*index] == NULL)
 	{
@@ -74,9 +74,9 @@ char	**ft_split_ms(char const *s, t_info *info)
 
 	if (!s)
 		return (NULL);
-	split = (char **)malloc(sizeof(char *) * (get_cnt((char *)s, info) + 1));
+	split = (char **)ft_calloc((get_cnt((char *)s, info) + 1), sizeof(char *));
 	if (!ft_alloc_2(&*split, &index))
-		return (NULL);
+		exit (ERROR);
 	while (*s)
 	{
 		if (*s != ' ')
@@ -86,7 +86,7 @@ char	**ft_split_ms(char const *s, t_info *info)
 			index = ft_alloc_1(&(*split), tmp, &index, &len);
 		}
 		if (index == -42)
-			return (NULL);
+			exit (ERROR);
 		if (*s != '\0')
 			s++;
 	}

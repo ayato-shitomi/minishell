@@ -59,8 +59,6 @@ typedef struct s_info
 	size_t			space_cnt;
 	t_token_lst		*token_lst;
 	char			*parsed_command;
-	char			*tmp_command;
-	int				*token_type;
 	char			**split_command;
 }	t_info;
 
@@ -88,6 +86,8 @@ char			**ft_split_ms(char const *s, t_info *info);
 // minishell_utils.c
 void			init_quote_flag(t_info *info);
 void			quote_check(char c, t_info *info);
+
+// set_token_type.c
 void			set_token_type(char *token, t_token_lst *token_lst);
 
 // remove_space.c

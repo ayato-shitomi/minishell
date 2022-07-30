@@ -1,5 +1,13 @@
 #include "../includes/minishell.h"
 
+static void	create_lstnew(t_info *info, size_t *i)
+{
+	info->token_lst = ft_lstnew_ms(info->split_command[*i]);
+	info->token_lst->lst_first_flag = 1;
+	info->token_lst->lst_last_flag = 1;
+	set_token_type(info->split_command[*i], info->token_lst);
+}
+
 int	lexical_analysis(t_info *info)
 {
 	//字句解析用関数
@@ -11,10 +19,7 @@ int	lexical_analysis(t_info *info)
 		exit(ERROR);
 	free(info->parsed_command);
 	i = 0;
-	info->token_lst = ft_lstnew_ms(info->split_command[i]);
-	info->token_lst->lst_first_flag = 1;
-	info->token_lst->lst_last_flag = 1;
-	set_token_type(info->split_command[i], info->token_lst);
+	create_lstnew(info, &i);
 	i++;
 	while (info->split_command[i])
 	{

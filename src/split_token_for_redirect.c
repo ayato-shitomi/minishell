@@ -1,23 +1,25 @@
 #include "../includes/minishell.h"
 
-static void	insert_split_token_for_redirect(t_info *info, size_t *i)
+static void	check_lst_type_and_lstinsert(t_info *info, t_token_lst *lst_tmp, \
+	size_t *i)
 {
-	size_t		j;
-	size_t		len;
-	t_token_lst	*lst_tmp;
-	char		*token;
-
-	if (info->token_lst->type == REDIRECT_LEFT_ONE || \
-		info->token_lst->type == REDIRECT_RIGHT_ONE)
-		len = ft_strlen(info->token_lst->token + *i + 1);
-	else if (info->token_lst->type == REDIRECT_LEFT_TWO || \
-		info->token_lst->type == REDIRECT_RIGHT_TWO)
-		len = ft_strlen(info->token_lst->token + *i + 2);
+	if (info->token_lst->type == REDIRECT_LEFT_ONE)
+		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_LEFT_ONE);
+	else if (info->token_lst->type == REDIRECT_RIGHT_ONE)
+		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_RIGHT_ONE);
+	else if (info->token_lst->type == REDIRECT_LEFT_TWO)
+		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_LEFT_TWO);
+	else if (info->token_lst->type == REDIRECT_RIGHT_TWO)
+		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_RIGHT_TWO);
 	else
-		len = ft_strlen(info->token_lst->token + *i);
-	token = (char *)ft_calloc(len + 1, sizeof(char));
-	if (!token)
-		exit(ERROR);
+		ft_lstinsert_ms(info, lst_tmp, i, 42);
+}
+
+static void	set_token_for_redirect(t_info *info, char *token, size_t *i, \
+	size_t len)
+{
+	size_t	j;
+
 	j = 0;
 	while (j < len)
 	{
@@ -32,17 +34,33 @@ static void	insert_split_token_for_redirect(t_info *info, size_t *i)
 		j++;
 	}
 	token[j] = '\0';
-	lst_tmp = ft_lstnew_ms(token);
-	if (info->token_lst->type == REDIRECT_LEFT_ONE)
-		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_LEFT_ONE);
-	else if (info->token_lst->type == REDIRECT_RIGHT_ONE)
-		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_RIGHT_ONE);
-	else if (info->token_lst->type == REDIRECT_LEFT_TWO)
-		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_LEFT_TWO);
-	else if (info->token_lst->type == REDIRECT_RIGHT_TWO)
-		ft_lstinsert_ms(info, lst_tmp, i, REDIRECT_RIGHT_TWO);
+}
+
+static size_t	get_len_for_redirect(t_info *info, size_t *i)
+{
+	if (info->token_lst->type == REDIRECT_LEFT_ONE || \
+		info->token_lst->type == REDIRECT_RIGHT_ONE)
+		return (ft_strlen(info->token_lst->token + *i + 1));
+	else if (info->token_lst->type == REDIRECT_LEFT_TWO || \
+		info->token_lst->type == REDIRECT_RIGHT_TWO)
+		return (ft_strlen(info->token_lst->token + *i + 2));
 	else
-		ft_lstinsert_ms(info, lst_tmp, i, 42);
+		return (ft_strlen(info->token_lst->token + *i));
+}
+
+static void	insert_split_token_for_redirect(t_info *info, size_t *i)
+{
+	size_t		len;
+	t_token_lst	*lst_tmp;
+	char		*token;
+
+	len = get_len_for_redirect(info, i);
+	token = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!token)
+		exit(ERROR);
+	set_token_for_redirect(info, token, i, len);
+	lst_tmp = ft_lstnew_ms(token);
+	check_lst_type_and_lstinsert(info, lst_tmp, i);
 	set_token_type(token, info->token_lst->next);
 }
 
