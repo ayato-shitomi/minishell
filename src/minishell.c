@@ -26,13 +26,13 @@ static void	init_sig(void)
 
 static void	init_info(t_info *info)
 {
-	info->token_cnt = 0;
 	info->is_in_dquote = 0;
 	info->is_in_squote = 0;
 	info->space_cnt = 0;
-	info->token_lst = NULL;
+	info->token_dl_lst = NULL;
 	info->parsed_command = NULL;
 	info->split_command = NULL;
+	info->execdata_lst = NULL;
 }
 
 int	main(void)
@@ -53,7 +53,7 @@ int	main(void)
 			add_history(command);
 		}
 		free(command);
-		ft_free_token_lst(&info);
+		ft_free_token_dl_lst(&info);
 		init_info(&info);
 	}
 	return (SUCCESS);

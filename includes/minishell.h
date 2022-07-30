@@ -40,26 +40,53 @@
 # define REDIRECT_LEFT_TWO 6
 # define REDIRECT_RIGHT_TWO 7
 # define ENVIRONMENT_VAR 8
+# define CMD_LST 10
+# define IO_LST 11
+# define ENV_LST 12
 
-typedef struct s_token_lst
+// ここから構文解析用
+
+typedef struct s_lst
 {
-	struct s_token_lst	*prev;
-	struct s_token_lst	*next;
-	char				*token;
-	int					type;
-	int					lst_first_flag;
-	int					lst_last_flag;
-}	t_token_lst;
+	char			*str;
+	char			*key; // 「lst_type == ENV_LST」の場合セット、環境変数のkey値
+	char			*value; // 「lst_type == ENV_LST」の場合セット、環境変数のvalue値
+	int				token_type; // ← 「EXPANDABLE 0」「ENVIRONMENT_VAR 8」etc...
+	int				lst_type; // ← 「CMD_LST 10」「ENV_LST 12」etc...
+	struct s_lst	*next;
+}	t_lst; // 片方向線形リスト
+
+typedef struct s_execdata_lst
+{
+	t_lst					*cmd_lst;
+	t_lst					*io_lst;
+	t_lst					*env_lst;
+	struct s_execdata_lst	*next;
+}	t_execdata_lst; // 片方向線形リスト (通常通り「lst」と名付け)
+
+// ここまで構文解析用
+
+typedef struct s_token_dl_lst
+{
+	struct s_token_dl_lst	*prev;
+	struct s_token_dl_lst	*next;
+	char					*token;
+	int						type;
+	int						dl_lst_first_flag;
+	int						dl_lst_last_flag;
+}	t_token_dl_lst; // 双方向循環リスト (双方向リストの英訳「doubly-linked list」より、「dl_lst」と定義)
 
 typedef struct s_info
 {
-	size_t			token_cnt;
 	size_t			is_in_dquote;
 	size_t			is_in_squote;
 	size_t			space_cnt;
-	t_token_lst		*token_lst;
+	t_token_dl_lst	*token_dl_lst;
 	char			*parsed_command;
 	char			**split_command;
+	// ここから構文解析用
+	t_execdata_lst	*execdata_lst;
+	// ここまで構文解析用
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -88,7 +115,7 @@ void			init_quote_flag(t_info *info);
 void			quote_check(char c, t_info *info);
 
 // set_token_type.c
-void			set_token_type(char *token, t_token_lst *token_lst);
+void			set_token_type(char *token, t_token_dl_lst *token_dl_lst);
 
 // remove_space.c
 int				remove_space(char *command, t_info *info);
@@ -124,18 +151,18 @@ int				execute_command(t_info *info);
 void			header(void);
 
 // ft_free.c
+void			ft_free_token_dl_lst(t_info *info);
 // void			ft_free_split_command(char **split_command);
-void			ft_free_token_lst(t_info *info);
 
-// ft_lst.c
-t_token_lst		*ft_lstnew_ms(void *token);
-void			ft_lstadd_back_ms(t_token_lst **lst, t_token_lst *new);
-t_token_lst		*ft_lstfirst_ms(t_token_lst *lst);
-t_token_lst		*ft_lstlast_ms(t_token_lst *lst);
-size_t			ft_lstsize_ms(t_token_lst *lst);
+// ft_dl_lst.c
+t_token_dl_lst	*ft_dl_lstnew(void *token);
+void			ft_dl_lstadd_back(t_token_dl_lst **dl_lst, t_token_dl_lst *new);
+t_token_dl_lst	*ft_dl_lstfirst(t_token_dl_lst *dl_lst);
+t_token_dl_lst	*ft_dl_lstlast(t_token_dl_lst *dl_lst);
+size_t			ft_dl_lstsize(t_token_dl_lst *dl_lst);
 
-// ft_lst_2.c
-void			ft_lstinsert_ms(t_info *info, t_token_lst *lst, \
+// ft_dl_lst_2.c
+void			ft_dl_lstinsert(t_info *info, t_token_dl_lst *dl_lst, \
 	size_t *i, int type);
 
 #endif

@@ -22,6 +22,7 @@
 > - クォーテーションが来たら、クォーテーションが来るまで読み込む。それのタイプを`EXPANDABLE_QUOTED`に設定する
 > - リダイレクトが来たら、それのタイプを`REDIRECT`に設定する
 > - `$`が来たら`"`もしくは` `が来るまでを配列に入れる。それのタイプを`ENVIRONMENT_VAL`に設定する
+('$'は字句解析時にはチェックせず、変数展開時にチェックする方針に変更)
 これらを配列に格納する。
 
 タイプ分けに関しては以下がヘッダーファイル（`includes/minishell.h`）に定義されています。
@@ -32,8 +33,11 @@
 |1|EXPANDABLE_QUOTED|ダブルクオートに囲われている展開可能|
 |2|NOT_EXPANDABLE|展開不可能、シングルクオートに囲われてる|
 |3|PIPE|パイプ|
-|4|REDIRECT|リダイレクト|
-|5|ENVIRONMENT_VAL|環境変数|
+|4|REDIRECT_LEFT_ONE|リダイレクト「<」|
+|5|REDIRECT_RIGHT_ONE|リダイレクト「>」|
+|6|REDIRECT_LEFT_TWO|リダイレクト「<<」|
+|7|REDIRECT_RIGHT_TWO|リダイレクト「>>」|
+|8|ENVIRONMENT_VAL|環境変数|
 
 例えば以下のように扱います。
 
@@ -57,7 +61,7 @@ echo USERNAME:"Mr $USER".>test
 |1|USERNAME:|EXPANDABLE|
 |2|Mr $USER|EXPANDABLE_QUOTED|
 |3|.|EXPANDABLE|
-|4|>|REDIRECT|
+|4|>|REDIRECT_RIGHT_ONE|
 |5|test|EXPANDABLE|
 
 ### ToDo テストケース
@@ -169,13 +173,14 @@ echo USERNAME:"Mr $USER".>test
 - クォーテーションが来たら、クォーテーションが来るまで読み込む。それのタイプを`EXPANDABLE_QUOTED`に設定する
 - リダイレクトが来たら、それのタイプを`REDIRECT`に設定する
 - `$`が来たら`"`もしくは` `が来るまでを配列に入れる。それのタイプを`ENVIRONMENT_VAL`にする
+('$'は字句解析時にはチェックせず、変数展開時にチェックする方針に変更)
 
 ```
 [0]	echo		EXPANDABLE
 [1]	USERNAME:	EXPANDABLE
 [2]	Mr $USER	EXPANDABLE_QUOTED
 [3]	.			EXPANDABLE
-[4]	>			REDIRECT
+[4]	>			REDIRECT_RIGHT_ONE
 [5]	test		EXPANDABLE
 ```
 

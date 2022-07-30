@@ -1,29 +1,29 @@
 #include "../includes/minishell.h"
 
-void	ft_free_token_lst(t_info *info)
+void	ft_free_token_dl_lst(t_info *info)
 {
 	size_t	i;
-	size_t	lstsize;
+	size_t	dl_lstsize;
 
-	if (!(info->token_lst))
+	if (!(info->token_dl_lst))
 		return ;
 	i = 0;
-	lstsize = ft_lstsize_ms(info->token_lst);
+	dl_lstsize = ft_dl_lstsize(info->token_dl_lst);
 	while (1)
 	{
-		free(info->token_lst->token);
-		info->token_lst = info->token_lst->next;
-		if (info->token_lst->lst_first_flag == 1)
+		free(info->token_dl_lst->token);
+		info->token_dl_lst = info->token_dl_lst->next;
+		if (info->token_dl_lst->dl_lst_first_flag == 1)
 		{
-			while (i++ < lstsize)
+			while (i++ < dl_lstsize)
 			{
-				if (info->token_lst->lst_last_flag == 1)
+				if (info->token_dl_lst->dl_lst_last_flag == 1)
 				{
-					free(info->token_lst);
+					free(info->token_dl_lst);
 					return ;
 				}
-				info->token_lst = info->token_lst->next;
-				free(info->token_lst->prev);
+				info->token_dl_lst = info->token_dl_lst->next;
+				free(info->token_dl_lst->prev);
 			}
 		}
 	}
