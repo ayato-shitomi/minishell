@@ -38,7 +38,7 @@ static void	insert_split_token_for_pipe(t_info *info, size_t *i)
 	set_token_for_pipe(info, token, len, i);
 	dl_lst_tmp = ft_dl_lstnew(token);
 	ft_dl_lstinsert(info, dl_lst_tmp, i, PIPE);
-	set_token_type(token, info->token_dl_lst->next);
+	set_token_type_dl(token, info->token_dl_lst->next);
 }
 
 int	split_token_for_pipe(t_info *info, size_t *i)

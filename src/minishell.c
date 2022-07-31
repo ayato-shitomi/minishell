@@ -32,7 +32,7 @@ static void	init_info(t_info *info)
 	info->token_dl_lst = NULL;
 	info->parsed_command = NULL;
 	info->split_command = NULL;
-	info->execdata_lst = NULL;
+	info->sentence_lst = NULL;
 }
 
 int	main(void)

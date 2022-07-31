@@ -61,7 +61,7 @@ static void	insert_split_token_for_redirect(t_info *info, size_t *i)
 	set_token_for_redirect(info, token, i, len);
 	dl_lst_tmp = ft_dl_lstnew(token);
 	check_dl_lst_type_and_dl_lstinsert(info, dl_lst_tmp, i);
-	set_token_type(token, info->token_dl_lst->next);
+	set_token_type_dl(token, info->token_dl_lst->next);
 }
 
 int	split_token_for_redirect(t_info *info, size_t *i)

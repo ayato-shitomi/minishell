@@ -5,7 +5,7 @@ static void	create_dl_lstnew(t_info *info, size_t *i)
 	info->token_dl_lst = ft_dl_lstnew(info->split_command[*i]);
 	info->token_dl_lst->dl_lst_first_flag = 1;
 	info->token_dl_lst->dl_lst_last_flag = 1;
-	set_token_type(info->split_command[*i], info->token_dl_lst);
+	set_token_type_dl(info->split_command[*i], info->token_dl_lst);
 }
 
 int	lexical_analysis(t_info *info)
@@ -25,7 +25,7 @@ int	lexical_analysis(t_info *info)
 	{
 		dl_lst_tmp = ft_dl_lstnew(info->split_command[i]);
 		ft_dl_lstadd_back(&(info->token_dl_lst), dl_lst_tmp);
-		set_token_type(info->split_command[i], \
+		set_token_type_dl(info->split_command[i], \
 			ft_dl_lstlast(info->token_dl_lst));
 		i++;
 	}

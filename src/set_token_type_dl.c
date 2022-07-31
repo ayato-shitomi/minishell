@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-static void	set_token_type_4(char *token, t_token_dl_lst *token_dl_lst)
+static void	set_token_type_dl_4(char *token, t_token_dl_lst *token_dl_lst)
 {
 	if (ft_strncmp(token, "\"", 1) == 0)
 		token_dl_lst->type = EXPANDABLE_QUOTED;
@@ -10,7 +10,7 @@ static void	set_token_type_4(char *token, t_token_dl_lst *token_dl_lst)
 		token_dl_lst->type = EXPANDABLE;
 }
 
-static void	set_token_type_3(char *token, t_token_dl_lst *token_dl_lst, \
+static void	set_token_type_dl_3(char *token, t_token_dl_lst *token_dl_lst, \
 	size_t len)
 {
 	if (len >= 2)
@@ -24,7 +24,7 @@ static void	set_token_type_3(char *token, t_token_dl_lst *token_dl_lst, \
 		token_dl_lst->type = REDIRECT_RIGHT_ONE;
 }
 
-static void	set_token_type_2(char *token, t_token_dl_lst *token_dl_lst, \
+static void	set_token_type_dl_2(char *token, t_token_dl_lst *token_dl_lst, \
 	size_t len)
 {
 	if (len >= 2)
@@ -38,7 +38,7 @@ static void	set_token_type_2(char *token, t_token_dl_lst *token_dl_lst, \
 		token_dl_lst->type = REDIRECT_LEFT_ONE;
 }
 
-void	set_token_type(char *token, t_token_dl_lst *token_dl_lst)
+void	set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst)
 {
 	size_t	len;
 
@@ -46,9 +46,9 @@ void	set_token_type(char *token, t_token_dl_lst *token_dl_lst)
 	if (ft_strncmp(token, "|", 1) == 0)
 		token_dl_lst->type = PIPE;
 	else if (ft_strncmp(token, "<", 1) == 0)
-		set_token_type_2(token, token_dl_lst, len);
+		set_token_type_dl_2(token, token_dl_lst, len);
 	else if (ft_strncmp(token, ">", 1) == 0)
-		set_token_type_3(token, token_dl_lst, len);
+		set_token_type_dl_3(token, token_dl_lst, len);
 	else
-		set_token_type_4(token, token_dl_lst);
+		set_token_type_dl_4(token, token_dl_lst);
 }

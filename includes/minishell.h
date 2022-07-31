@@ -42,7 +42,7 @@
 # define ENVIRONMENT_VAR 8
 # define CMD_LST 10
 # define REDIRECT_LST 11
-# define VAR_LST 12
+# define ENV_VAR_LST 12
 
 // ここから構文解析用
 
@@ -60,7 +60,7 @@ typedef struct s_sentence_lst
 {
 	t_lst					*cmd_lst;
 	t_lst					*redirect_lst;
-	t_lst					*var_lst;
+	t_lst					*env_var_lst;
 	struct s_sentence_lst	*next;
 }	t_sentence_lst; // 片方向線形リスト (通常通り「lst」と名付け)
 
@@ -84,9 +84,7 @@ typedef struct s_info
 	t_token_dl_lst	*token_dl_lst;
 	char			*parsed_command;
 	char			**split_command;
-	// ここから構文解析用
-	t_execdata_lst	*execdata_lst;
-	// ここまで構文解析用
+	t_sentence_lst	*sentence_lst;
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -114,8 +112,8 @@ char			**ft_split_ms(char const *s, t_info *info);
 void			init_quote_flag(t_info *info);
 void			quote_check(char c, t_info *info);
 
-// set_token_type.c
-void			set_token_type(char *token, t_token_dl_lst *token_dl_lst);
+// set_token_type_dl.c
+void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
 
 // remove_space.c
 int				remove_space(char *command, t_info *info);
@@ -141,9 +139,6 @@ int				split_token_for_redirect(t_info *info, size_t *i);
 // syntax_analysis.c
 int				syntax_analysis(t_info *info);
 
-// expansion.c
-int				expansion(t_info *info);
-
 // execute_command.c
 int				execute_command(t_info *info);
 
@@ -164,5 +159,16 @@ size_t			ft_dl_lstsize(t_token_dl_lst *dl_lst);
 // ft_dl_lst_2.c
 void			ft_dl_lstinsert(t_info *info, t_token_dl_lst *dl_lst, \
 	size_t *i, int type);
+
+// ft_sentence_lst.c
+t_sentence_lst	*ft_sentence_lstnew(void);
+void			ft_sentence_lstadd_back(t_sentence_lst **sentence_lst, \
+	t_sentence_lst *new);
+t_sentence_lst	*ft_sentence_lstlast(t_sentence_lst *sentence_lst);
+
+// ft_lst.c
+t_lst			*ft_lstnew(void *content);
+void			ft_lstadd_back(t_lst **lst, t_lst *new);
+t_lst			*ft_lstlast(t_lst *lst);
 
 #endif
