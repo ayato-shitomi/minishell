@@ -111,6 +111,7 @@ char			**ft_split_ms(char const *s, t_info *info);
 // minishell_utils.c
 void			init_quote_flag(t_info *info);
 void			quote_check(char c, t_info *info);
+void			set_lst_info(t_info *info, t_lst *lst, int flag);
 
 // set_token_type_dl.c
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
@@ -138,6 +139,12 @@ int				split_token_for_redirect(t_info *info, size_t *i);
 
 // syntax_analysis.c
 int				syntax_analysis(t_info *info);
+
+// set_lst_of_sentence_lst.c
+void			set_lst_of_sentence_lst(t_info *info);
+
+// check_env_var_and_set_env_var_info.c
+void			check_env_var_and_set_env_var_info(t_info *info, t_lst *lst);
 
 // execute_command.c
 int				execute_command(t_info *info);

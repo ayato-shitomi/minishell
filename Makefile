@@ -7,7 +7,8 @@ SRCS	=	src/minishell.c src/utils.c src/ft_pwd.c src/parse_command.c \
 			src/ft_dl_lst.c src/ft_dl_lst_2.c src/split_token_for_dquote.c \
 			src/split_token_for_squote.c src/split_token_for_pipe.c \
 			src/split_token_for_redirect.c src/set_token_type_dl.c \
-			src/ft_sentence_lst.c src/ft_lst.c
+			src/ft_sentence_lst.c src/ft_lst.c src/set_lst_of_sentence_lst.c \
+			src/check_env_var_and_set_env_var_info.c 
 
 # src/check_builtin.c
 
