@@ -96,6 +96,7 @@ int	expand_the_expandable_in_cmd_lst(t_info *info)
 	{
 		set_p_1_in_cmd_lst(info, &str_env_value_p);
 		set_p_2_in_cmd_lst(info, &str_front_p, &str_back_p, str_p);
+		free(info->sentence_lst->cmd_lst->str);
 		info->sentence_lst->cmd_lst->str = \
 			ft_strjoin_three(str_front_p, str_env_value_p, str_back_p);
 		if (info->sentence_lst->env_var_lst->next)

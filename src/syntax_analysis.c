@@ -25,11 +25,10 @@ static void	create_sentence_lst(t_info *info)
 	}
 }
 
-int	syntax_analysis(t_info *info)
+void	syntax_analysis(t_info *info)
 {
 	//構文解析用関数
 	create_sentence_lst(info);
 	set_lst_of_sentence_lst(info);
 	expand_env_var(info);
-	return (SUCCESS);
 }

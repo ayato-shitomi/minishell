@@ -25,8 +25,7 @@ int	parse_command(char *command, t_info *info)
 			break ;
 	}
 	// ここまでデバッグ用
-	if (syntax_analysis(info) == ERROR)
-		return (ERROR);
+	syntax_analysis(info);
 	// ここからデバッグ用
 	sentence_lst_tmp = info->sentence_lst;
 	while (info->sentence_lst)

@@ -144,7 +144,7 @@ int				split_token_for_pipe(t_info *info, size_t *i);
 int				split_token_for_redirect(t_info *info, size_t *i);
 
 // syntax_analysis.c
-int				syntax_analysis(t_info *info);
+void			syntax_analysis(t_info *info);
 
 // set_lst_of_sentence_lst.c
 void			set_lst_of_sentence_lst(t_info *info);

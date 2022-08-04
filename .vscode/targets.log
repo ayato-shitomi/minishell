@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Wed Aug  3 17:36:54 2022
+# Make data base, printed on Thu Aug  4 14:54:43 2022
 
 # Variables
 
@@ -167,7 +168,7 @@ VSCODE_PID = 345
 # Not a target:
 src/ft_free.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:01
+#  Last modified 2022-08-04 14:53:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -176,7 +177,7 @@ src/ft_free.o:
 # Not a target:
 src/ft_dl_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:02
+#  Last modified 2022-08-04 14:53:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -187,14 +188,15 @@ all: minishell
 #  Command-line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/lexical_analysis_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:01
+#  Last modified 2022-08-04 14:53:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -208,15 +210,16 @@ src/lexical_analysis_2.o:
 # Not a target:
 src/expand_the_expandable_in_redirect_lst.o:
 #  Implicit rule search has been done.
-#  File does not exist.
-#  File has not been updated.
+#  Last modified 2022-08-04 14:53:31
+#  File has been updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/syntax_analysis.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:01
+#  Last modified 2022-08-04 14:53:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -225,7 +228,7 @@ src/syntax_analysis.o:
 # Not a target:
 src/parse_command.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:00
+#  Last modified 2022-08-04 14:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -234,7 +237,7 @@ src/parse_command.o:
 # Not a target:
 src/ft_sentence_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:03
+#  Last modified 2022-08-04 14:53:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -249,7 +252,7 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 17:36:47
+#  Last modified 2022-08-04 14:54:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -258,7 +261,7 @@ Makefile:
 # Not a target:
 src/ft_split_ms.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:00
+#  Last modified 2022-08-04 14:53:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -267,7 +270,7 @@ src/ft_split_ms.o:
 # Not a target:
 src/split_token_for_dquote.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:02
+#  Last modified 2022-08-04 14:53:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -275,20 +278,18 @@ src/split_token_for_dquote.o:
 
 # Not a target:
 src/set_token_type_dl.o:
- 
-make: *** No rule to make target `src/expand_the_expandable_in_redirect_lst.o', needed by `minishell'.  Stop.
-
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:03
+#  Last modified 2022-08-04 14:53:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+ 
 src/minishell_utils.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:00
+#  Last modified 2022-08-04 14:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -296,8 +297,9 @@ src/minishell_utils.o:
 
 minishell: src/minishell.o src/utils.o src/utils_2.o src/ft_pwd.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split_ms.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-03 16:57:04
-#  File has not been updated.
+#  Last modified 2022-08-04 14:53:31
+#  File has been updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 24):
@@ -307,7 +309,7 @@ minishell: src/minishell.o src/utils.o src/utils_2.o src/ft_pwd.o src/parse_comm
 # Not a target:
 src/split_token_for_pipe.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:02
+#  Last modified 2022-08-04 14:53:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -316,7 +318,7 @@ src/split_token_for_pipe.o:
 # Not a target:
 src/ft_dl_lst_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:02
+#  Last modified 2022-08-04 14:53:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -334,7 +336,7 @@ fclean: clean
 # Not a target:
 src/check_env_var_and_set_env_var_info.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:03
+#  Last modified 2022-08-04 14:53:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -343,7 +345,7 @@ src/check_env_var_and_set_env_var_info.o:
 # Not a target:
 src/split_token_for_redirect.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:03
+#  Last modified 2022-08-04 14:53:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -352,7 +354,7 @@ src/split_token_for_redirect.o:
 # Not a target:
 src/utils.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:56:59
+#  Last modified 2022-08-04 14:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -367,7 +369,7 @@ src/utils.o:
 # Not a target:
 src/expand_env_var.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:04
+#  Last modified 2022-08-04 14:53:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -376,7 +378,7 @@ src/expand_env_var.o:
 # Not a target:
 src/ft_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:03
+#  Last modified 2022-08-04 14:53:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -385,7 +387,7 @@ src/ft_lst.o:
 # Not a target:
 src/split_token_for_squote.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:02
+#  Last modified 2022-08-04 14:53:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -409,7 +411,7 @@ clean:
 # Not a target:
 src/header.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:00
+#  Last modified 2022-08-04 14:53:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -418,7 +420,7 @@ src/header.o:
 # Not a target:
 src/remove_space.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:01
+#  Last modified 2022-08-04 14:53:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -427,7 +429,7 @@ src/remove_space.o:
 # Not a target:
 src/lexical_analysis.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:01
+#  Last modified 2022-08-04 14:53:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -436,7 +438,7 @@ src/lexical_analysis.o:
 # Not a target:
 src/expand_the_expandable_in_cmd_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:04
+#  Last modified 2022-08-04 14:53:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -445,7 +447,7 @@ src/expand_the_expandable_in_cmd_lst.o:
 # Not a target:
 src/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:56:59
+#  Last modified 2022-08-04 14:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -454,7 +456,7 @@ src/minishell.o:
 # Not a target:
 src/set_lst_of_sentence_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:03
+#  Last modified 2022-08-04 14:53:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -463,16 +465,17 @@ src/set_lst_of_sentence_lst.o:
 # Not a target:
 src/execute_command.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:57:00
+#  Last modified 2022-08-04 14:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+ 
 
 # Not a target:
 src/ft_pwd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:56:59
+#  Last modified 2022-08-04 14:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -481,7 +484,7 @@ src/ft_pwd.o:
 # Not a target:
 src/utils_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-03 16:56:59
+#  Last modified 2022-08-04 14:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -500,6 +503,6 @@ src/utils_2.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug  3 17:36:54 2022
+# Finished Make data base on Thu Aug  4 14:54:43 2022
 
  
