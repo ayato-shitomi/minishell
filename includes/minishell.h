@@ -171,7 +171,7 @@ void			header(void);
 void			ft_free_token_dl_lst(t_info *info);
 void			ft_free_p(char *str_env_value_p, char *str_front_p, \
 	char *str_back_p);
-// void			ft_free_split_command(char **split_command);
+void			ft_free_sentence_lst(t_info *info);
 
 // ft_dl_lst.c
 t_token_dl_lst	*ft_dl_lstnew(void *token);

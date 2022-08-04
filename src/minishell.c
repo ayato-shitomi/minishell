@@ -54,6 +54,7 @@ int	main(void)
 		}
 		free(command);
 		ft_free_token_dl_lst(&info);
+		ft_free_sentence_lst(&info);
 		init_info(&info);
 	}
 	return (SUCCESS);

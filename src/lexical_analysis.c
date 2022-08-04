@@ -29,5 +29,6 @@ void	lexical_analysis(t_info *info)
 			ft_dl_lstlast(info->token_dl_lst));
 		i++;
 	}
+	free(info->split_command);
 	lexical_analysis_2(info);
 }
