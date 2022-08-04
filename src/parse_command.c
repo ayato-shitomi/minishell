@@ -2,13 +2,17 @@
 
 int	parse_command(char *command, t_info *info)
 {
+	// ここからデバッグ用変数
+	t_sentence_lst	*sentence_lst_tmp;
+	t_lst	*cmd_lst_tmp;
+	t_lst	*redirect_lst_tmp;
+	t_lst	*env_var_lst_tmp;
+	// ここまでデバッグ用変数
+
 	if (!command)
 		return (SUCCESS);
-	if (remove_space(command, info) == ERROR)
-		return (ERROR);
-	// printf("space_removed = %s\n", info->parsed_command);
-	if (lexical_analysis(info) == ERROR)
-		return (ERROR);
+	remove_space(command, info);
+	lexical_analysis(info);
 	// ここからデバッグ用
 	while (1)
 	{
@@ -24,8 +28,10 @@ int	parse_command(char *command, t_info *info)
 	if (syntax_analysis(info) == ERROR)
 		return (ERROR);
 	// ここからデバッグ用
+	sentence_lst_tmp = info->sentence_lst;
 	while (info->sentence_lst)
 	{
+		cmd_lst_tmp = info->sentence_lst->cmd_lst;
 		while (info->sentence_lst->cmd_lst)
 		{
 			printf("cmd_lst->str = %s\n", info->sentence_lst->cmd_lst->str);
@@ -35,6 +41,8 @@ int	parse_command(char *command, t_info *info)
 			printf("cmd_lst->lst_type = %d\n", info->sentence_lst->cmd_lst->lst_type);
 			info->sentence_lst->cmd_lst = info->sentence_lst->cmd_lst->next;
 		}
+		info->sentence_lst->cmd_lst = cmd_lst_tmp;
+		redirect_lst_tmp = info->sentence_lst->redirect_lst;
 		while (info->sentence_lst->redirect_lst)
 		{
 			printf("redirect_lst->str = %s\n", info->sentence_lst->redirect_lst->str);
@@ -44,6 +52,8 @@ int	parse_command(char *command, t_info *info)
 			printf("redirect_lst->lst_type = %d\n", info->sentence_lst->redirect_lst->lst_type);
 			info->sentence_lst->redirect_lst = info->sentence_lst->redirect_lst->next;
 		}
+		info->sentence_lst->redirect_lst = redirect_lst_tmp;
+		env_var_lst_tmp = info->sentence_lst->env_var_lst;
 		while (info->sentence_lst->env_var_lst)
 		{
 			printf("env_var_lst->str = %s\n", info->sentence_lst->env_var_lst->str);
@@ -53,11 +63,11 @@ int	parse_command(char *command, t_info *info)
 			printf("env_var_lst->lst_type = %d\n", info->sentence_lst->env_var_lst->lst_type);
 			info->sentence_lst->env_var_lst = info->sentence_lst->env_var_lst->next;
 		}
+		info->sentence_lst->env_var_lst = env_var_lst_tmp;
 		info->sentence_lst = info->sentence_lst->next;
 	}
+	info->sentence_lst = sentence_lst_tmp;
 	// ここまでデバッグ用
-	// if (expansion(info) == ERROR)
-	// 	return (ERROR);
 	// if (execute_command(info) == ERROR)
 	// 	return (ERROR);
 	return (SUCCESS);

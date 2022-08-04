@@ -101,6 +101,12 @@ int				ft_strncmp(const char *dst, const char *src, size_t n);
 void			*ft_calloc(size_t n, size_t size);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 
+// utils_2.c
+char			*ft_strnstr(const char *haystack, const char *needle, \
+	size_t len);
+char			*ft_strjoin_three(char const *s1, char const *s2, \
+	char const *s3);
+
 // ft_pwd.c
 void			ft_pwd(void);
 
@@ -117,10 +123,10 @@ void			set_lst_info(t_info *info, t_lst *lst, int flag);
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
 
 // remove_space.c
-int				remove_space(char *command, t_info *info);
+void			remove_space(char *command, t_info *info);
 
 // lexical_analysis.c
-int				lexical_analysis(t_info *info);
+void			lexical_analysis(t_info *info);
 
 // lexical_analysis_2.c
 void			lexical_analysis_2(t_info *info);
@@ -146,6 +152,15 @@ void			set_lst_of_sentence_lst(t_info *info);
 // check_env_var_and_set_env_var_info.c
 void			check_env_var_and_set_env_var_info(t_info *info, t_lst *lst);
 
+// expand_env_var.c
+void			expand_env_var(t_info *info);
+
+// expand_the_expandable_in_cmd_lst.c
+int				expand_the_expandable_in_cmd_lst(t_info *info);
+
+// expand_the_expandable_in_redirect_lst.c
+int				expand_the_expandable_in_redirect_lst(t_info *info);
+
 // execute_command.c
 int				execute_command(t_info *info);
 
@@ -154,6 +169,8 @@ void			header(void);
 
 // ft_free.c
 void			ft_free_token_dl_lst(t_info *info);
+void			ft_free_p(char *str_env_value_p, char *str_front_p, \
+	char *str_back_p);
 // void			ft_free_split_command(char **split_command);
 
 // ft_dl_lst.c
