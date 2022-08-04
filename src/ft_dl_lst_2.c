@@ -6,6 +6,8 @@ static void	set_dl_lst_p(t_info *info, t_token_dl_lst *dl_lst, \
 	dl_lst->prev = info->token_dl_lst;
 	dl_lst->next = dl_lst_tmp;
 	dl_lst_tmp->prev = dl_lst;
+	// free(info->token_dl_lst->next->token); //
+	// free(info->token_dl_lst->next); //
 	info->token_dl_lst->next = dl_lst;
 }
 

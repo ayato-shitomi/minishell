@@ -27,7 +27,7 @@ static void	space_check_and_set_char(char *command, t_info *info, \
 	}
 }
 
-int	remove_space(char *command, t_info *info)
+void	remove_space(char *command, t_info *info)
 {
 	size_t	i;
 	size_t	j;
@@ -38,7 +38,7 @@ int	remove_space(char *command, t_info *info)
 	len = ft_strlen(command);
 	info->parsed_command = ft_calloc(len + 1, sizeof(char));
 	if (!info->parsed_command)
-		return (ERROR);
+		exit(ERROR);
 	while (command[i])
 	{
 		quote_check(command[i], info);
@@ -46,5 +46,4 @@ int	remove_space(char *command, t_info *info)
 		i++;
 	}
 	init_quote_flag(info);
-	return (SUCCESS);
 }

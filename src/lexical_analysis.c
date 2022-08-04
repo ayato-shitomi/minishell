@@ -8,7 +8,7 @@ static void	create_dl_lstnew(t_info *info, size_t *i)
 	set_token_type_dl(info->split_command[*i], info->token_dl_lst);
 }
 
-int	lexical_analysis(t_info *info)
+void	lexical_analysis(t_info *info)
 {
 	//字句解析用関数
 	size_t			i;
@@ -30,5 +30,4 @@ int	lexical_analysis(t_info *info)
 		i++;
 	}
 	lexical_analysis_2(info);
-	return (SUCCESS);
 }

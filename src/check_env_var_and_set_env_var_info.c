@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-static void	set_key_and_value(t_lst *lst, t_lst *env_var_lst, size_t len, \
+static void	set_key_value_str(t_lst *lst, t_lst *env_var_lst, size_t len, \
 	size_t *i)
 {
 	size_t	j;
@@ -12,8 +12,20 @@ static void	set_key_and_value(t_lst *lst, t_lst *env_var_lst, size_t len, \
 		*i += 1;
 		j++;
 	}
+	*i -= 1;
 	env_var_lst->key[j] = '\0';
 	env_var_lst->value = getenv(env_var_lst->key);
+	env_var_lst->str = (char *)ft_calloc(len + 2, sizeof(char));
+	if (!(env_var_lst->str))
+		exit(ERROR);
+	env_var_lst->str[0] = '$';
+	j = 1;
+	while (j < len + 1)
+	{
+		env_var_lst->str[j] = env_var_lst->key[j - 1];
+		j++;
+	}
+	env_var_lst->str[j] = '\0';
 }
 
 static void	set_env_var_info(t_info *info, t_lst *lst, size_t *i)
@@ -23,21 +35,21 @@ static void	set_env_var_info(t_info *info, t_lst *lst, size_t *i)
 	t_lst	*env_var_lst;
 
 	len = 0;
-	env_var_lst = ft_lstnew(NULL);
-	set_lst_info(info, env_var_lst, ENV_VAR_LST);
 	*i += 1;
 	i_tmp = *i;
 	while (lst->str[*i] != '\"' && lst->str[*i] != ' ' && \
-		lst->str[*i] != '?' && lst->str[*i] != '\0')
+		lst->str[*i] != '\0' && lst->str[*i] != '$')
 	{
 		len++;
 		*i += 1;
 	}
 	*i = i_tmp;
+	env_var_lst = ft_lstnew(NULL);
+	set_lst_info(info, env_var_lst, ENV_VAR_LST);
 	env_var_lst->key = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!(env_var_lst->key))
 		exit(ERROR);
-	set_key_and_value(lst, env_var_lst, len, i);
+	set_key_value_str(lst, env_var_lst, len, i);
 	ft_lstadd_back(&(info->sentence_lst->env_var_lst), env_var_lst);
 }
 
@@ -53,7 +65,13 @@ void	check_env_var_and_set_env_var_info(t_info *info, t_lst *lst)
 		while (lst->str[i])
 		{
 			if (lst->str[i] == '$')
-				set_env_var_info(info, lst, &i);
+			{
+				if (lst->str[i + 1])
+				{
+					if (lst->str[i + 1] != '?')
+						set_env_var_info(info, lst, &i);
+				}
+			}
 			i++;
 		}
 	}
