@@ -1,26 +1,42 @@
 #include "../includes/minishell.h"
 
-static void	sig_handler(int signum)
+static void	exit_ctrl_d(void)
+{
+	printf("exit\n");
+	exit(SUCCESS);
+}
+
+static void	sig_int_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		printf("\n");
-		rl_on_new_line();
+		write(STDOUT_FILENO, "\n", 1);
 		rl_replace_line("", 0);
+		rl_on_new_line();
 		rl_redisplay();
 	}
-	exit(ERROR);
 }
 
 static void	init_sig(void)
 {
-	struct sigaction	sa;
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
 
-	if (sigemptyset(&sa.sa_mask) == -1)
+	if (sigemptyset(&sa_int.sa_mask) == -1)
 		exit(ERROR);
-	sa.sa_handler = sig_handler;
-	sa.sa_flags = 0;
-	if (sigaction(SIGINT, &sa, NULL) == -1)
+	if (sigemptyset(&sa_quit.sa_mask) == -1)
+		exit(ERROR);
+	sa_int.sa_flags = 0;
+	sa_quit.sa_flags = 0;
+	if (sigaddset(&sa_int.sa_mask, SIGINT) == -1)
+		exit(ERROR);
+	if (sigaddset(&sa_quit.sa_mask, SIGQUIT) == -1)
+		exit(ERROR);
+	sa_int.sa_handler = sig_int_handler;
+	sa_quit.sa_handler = SIG_IGN;
+	if (sigaction(SIGINT, &sa_int, NULL) == -1)
+		exit(ERROR);
+	if (sigaction(SIGQUIT, &sa_quit, NULL) == -1)
 		exit(ERROR);
 }
 
@@ -52,6 +68,8 @@ int	main(void)
 				exit(ERROR);
 			add_history(command);
 		}
+		if (!command)
+			exit_ctrl_d();
 		free(command);
 		ft_free_token_dl_lst(&info);
 		ft_free_sentence_lst(&info);

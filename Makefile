@@ -22,6 +22,7 @@ LDFLAGS	=	-lreadline -lhistory -L $(shell brew --prefix readline)/lib
 
 $(NAME):	$(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $(NAME)
+	@echo "set echo-control-characters off" > ~/.inputrc
 
 all: $(NAME)
 
