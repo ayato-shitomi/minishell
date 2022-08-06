@@ -74,6 +74,7 @@ typedef struct s_token_dl_lst
 	int						type;
 	int						dl_lst_first_flag;
 	int						dl_lst_last_flag;
+	int						is_concatenated_with_next;
 }	t_token_dl_lst; // 双方向循環リスト (双方向リストの英訳「doubly-linked list」より、「dl_lst」と定義)
 
 typedef struct s_info
@@ -106,13 +107,14 @@ char			*ft_strnstr(const char *haystack, const char *needle, \
 	size_t len);
 char			*ft_strjoin_three(char const *s1, char const *s2, \
 	char const *s3);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 // ft_pwd.c
 void			ft_pwd(void);
 
 // parse_command.c
 int				parse_command(char *command, t_info *info);
-char			**ft_split_ms(char const *s, t_info *info);
+char			**ft_split_ms(char const *s);
 
 // minishell_utils.c
 void			init_quote_flag(t_info *info);
@@ -183,6 +185,7 @@ size_t			ft_dl_lstsize(t_token_dl_lst *dl_lst);
 // ft_dl_lst_2.c
 void			ft_dl_lstinsert(t_info *info, t_token_dl_lst *dl_lst, \
 	size_t *i, int type);
+void			ft_dl_lstcat(t_info *info);
 
 // ft_sentence_lst.c
 t_sentence_lst	*ft_sentence_lstnew(void);

@@ -59,9 +59,12 @@ static char	*get_str_p_in_redirect_lst(t_info *info, char *str_p, int flag)
 {
 	if (flag == 0)
 	{
-		str_p = ft_strnstr(info->sentence_lst->redirect_lst->str, \
-			info->sentence_lst->env_var_lst->str, \
-			ft_strlen(info->sentence_lst->redirect_lst->str));
+		if (info->sentence_lst->env_var_lst)
+		{
+			str_p = ft_strnstr(info->sentence_lst->redirect_lst->str, \
+				info->sentence_lst->env_var_lst->str, \
+				ft_strlen(info->sentence_lst->redirect_lst->str));
+		}
 	}
 	else if (flag == 1)
 	{

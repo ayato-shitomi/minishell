@@ -31,6 +31,24 @@ static char	*ft_strcpy(char *dst, char *src)
 	return (dst);
 }
 
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*heap;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen((char *)s1);
+	s2_len = ft_strlen((char *)s2);
+	heap = (char *)ft_calloc(s1_len + s2_len + 1, sizeof(char));
+	if (!heap)
+		exit(ERROR);
+	heap = ft_strcpy(heap, (char *)s1);
+	heap = ft_strcat(heap, (char *)s2);
+	return (heap);
+}
+
 char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3)
 {
 	char	*heap;

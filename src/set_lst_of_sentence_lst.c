@@ -2,8 +2,10 @@
 
 static int	set_lst_case_branch(t_info *info, int flag)
 {
-	t_lst	*lst;
+	t_lst			*lst;
 
+	while (info->token_dl_lst->is_concatenated_with_next)
+		ft_dl_lstcat(info);
 	lst = ft_lstnew(info->token_dl_lst->token);
 	set_lst_info(info, lst, flag);
 	check_env_var_and_set_env_var_info(info, lst);

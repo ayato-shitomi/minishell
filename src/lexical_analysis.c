@@ -14,10 +14,16 @@ void	lexical_analysis(t_info *info)
 	size_t			i;
 	t_token_dl_lst	*dl_lst_tmp;
 
-	info->split_command = ft_split_ms(info->parsed_command, info);
+	info->split_command = ft_split_ms(info->parsed_command);
 	if (!(info->split_command))
 		exit(ERROR);
 	free(info->parsed_command);
+	// i = 0;
+	// while (info->split_command[i])
+	// {
+	// 	printf("split_command[%zu] = %s\n", i, info->split_command[i]);
+	// 	i++;
+	// }
 	i = 0;
 	create_dl_lstnew(info, &i);
 	i++;

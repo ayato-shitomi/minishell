@@ -39,6 +39,7 @@ static void	insert_split_token_for_dquote(t_info *info, size_t *i)
 	dl_lst_tmp = ft_dl_lstnew(token);
 	ft_dl_lstinsert(info, dl_lst_tmp, i, EXPANDABLE_QUOTED);
 	set_token_type_dl(token, info->token_dl_lst->next);
+	info->token_dl_lst->is_concatenated_with_next = 1;
 }
 
 static void	case_dquote_first(t_info *info, size_t *i)
@@ -61,7 +62,7 @@ static void	case_dquote_first(t_info *info, size_t *i)
 				info->token_dl_lst->token[j] = '\0';
 				return ;
 			}
-			insert_split_token_for_dquote(info, i); // tokenの最後の文字が「"」ではないケース
+			insert_split_token_for_dquote(info, i); // tokenの最後の文字が「"」ではないケース case①
 			return ;
 		}
 		*i += 1;
@@ -72,7 +73,7 @@ int	split_token_for_dquote(t_info *info, size_t *i)
 {
 	if (info->token_dl_lst->type == EXPANDABLE_QUOTED) // tokenの1文字目が「"」のケース
 		case_dquote_first(info, i);
-	else // tokenの2文字目以降が「"」のケース
+	else // tokenの2文字目以降が「"」のケース case②、③
 		insert_split_token_for_dquote(info, i);
 	return (1);
 }
