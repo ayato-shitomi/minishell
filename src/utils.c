@@ -61,22 +61,15 @@ void	*ft_calloc(size_t n, size_t size)
 	return (NULL);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strdup(const char *src)
 {
-	size_t	i;
-	size_t	src_len;
+	char	*heap;
 
-	if (!dst || !src)
-		return (0);
-	src_len = ft_strlen((char *)src);
-	i = 0;
-	if (size == 0)
-		return (src_len);
-	while (i < size - 1 && src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (src_len);
+	if (!src)
+		return (NULL);
+	heap = (char *)ft_calloc(ft_strlen((char *)src) + 1, sizeof(char));
+	if (!heap)
+		exit(ERROR);
+	heap = ft_strcpy(heap, (char *)src);
+	return (heap);
 }

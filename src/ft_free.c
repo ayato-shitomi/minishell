@@ -44,14 +44,17 @@ void	ft_free_sentence_lst(t_info *info)
 	}
 }
 
-void	ft_free_p(char *str_env_value_p, char *str_front_p, char *str_back_p)
+void	ft_free_p(char *str_env_value_p, char *str_front_p, char *str_back_p, \
+	char *str_p)
 {
 	str_env_value_p = NULL;
 	str_front_p = NULL;
 	str_back_p = NULL;
+	str_p = NULL;
 	free(str_env_value_p);
 	free(str_front_p);
 	free(str_back_p);
+	free(str_p);
 }
 
 void	ft_free_token_dl_lst(t_info *info)

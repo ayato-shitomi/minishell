@@ -17,7 +17,7 @@ static char	*ft_strcat(char *dst, char *src)
 	return (dst);
 }
 
-static char	*ft_strcpy(char *dst, char *src)
+char	*ft_strcpy(char *dst, char *src)
 {
 	size_t	i;
 

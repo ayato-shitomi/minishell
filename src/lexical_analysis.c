@@ -18,12 +18,6 @@ void	lexical_analysis(t_info *info)
 	if (!(info->split_command))
 		exit(ERROR);
 	free(info->parsed_command);
-	// i = 0;
-	// while (info->split_command[i])
-	// {
-	// 	printf("split_command[%zu] = %s\n", i, info->split_command[i]);
-	// 	i++;
-	// }
 	i = 0;
 	create_dl_lstnew(info, &i);
 	i++;

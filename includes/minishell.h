@@ -100,7 +100,7 @@ void	check_builtin(char *command);
 size_t			ft_strlen(const char *str);
 int				ft_strncmp(const char *dst, const char *src, size_t n);
 void			*ft_calloc(size_t n, size_t size);
-size_t			ft_strlcpy(char *dst, const char *src, size_t size);
+char			*ft_strdup(const char *src);
 
 // utils_2.c
 char			*ft_strnstr(const char *haystack, const char *needle, \
@@ -108,6 +108,7 @@ char			*ft_strnstr(const char *haystack, const char *needle, \
 char			*ft_strjoin_three(char const *s1, char const *s2, \
 	char const *s3);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strcpy(char *dst, char *src);
 
 // ft_pwd.c
 void			ft_pwd(void);
@@ -166,13 +167,16 @@ int				expand_the_expandable_in_redirect_lst(t_info *info);
 // execute_command.c
 int				execute_command(t_info *info);
 
+// set_fd_by_redirect_lst.c
+void			set_fd_by_redirect_lst(t_info *info, char **cmd);
+
 // header.c
 void			header(void);
 
 // ft_free.c
 void			ft_free_token_dl_lst(t_info *info);
 void			ft_free_p(char *str_env_value_p, char *str_front_p, \
-	char *str_back_p);
+	char *str_back_p, char *str_p);
 void			ft_free_sentence_lst(t_info *info);
 
 // ft_dl_lst.c
@@ -197,5 +201,6 @@ t_sentence_lst	*ft_sentence_lstlast(t_sentence_lst *sentence_lst);
 t_lst			*ft_lstnew(void *content);
 void			ft_lstadd_back(t_lst **lst, t_lst *new);
 t_lst			*ft_lstlast(t_lst *lst);
+size_t			ft_lstsize(t_lst *lst);
 
 #endif

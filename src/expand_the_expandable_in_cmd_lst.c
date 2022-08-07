@@ -57,22 +57,30 @@ static void	set_p_1_in_cmd_lst(t_info *info, char **str_env_value_p)
 
 static char	*get_str_p_in_cmd_lst(t_info *info, char *str_p, int flag)
 {
+	char	*str_p_dup;
+	char	*str_p_tmp;
+
+	str_p_dup = NULL;
 	if (flag == 0)
 	{
 		if (info->sentence_lst->env_var_lst)
 		{
-			str_p = ft_strnstr(info->sentence_lst->cmd_lst->str, \
+			str_p_tmp = ft_strnstr(info->sentence_lst->cmd_lst->str, \
 				info->sentence_lst->env_var_lst->str, \
 				ft_strlen(info->sentence_lst->cmd_lst->str));
+			str_p_dup = ft_strdup(str_p_tmp);
 		}
 	}
 	else if (flag == 1)
 	{
-		str_p = ft_strnstr(str_p + \
+		str_p_tmp = ft_strnstr(str_p + \
 			ft_strlen(info->sentence_lst->env_var_lst->key) + 1, \
-			info->sentence_lst->env_var_lst->next->str, ft_strlen(str_p));
+			info->sentence_lst->env_var_lst->next->str, ft_strlen(str_p + \
+				ft_strlen(info->sentence_lst->env_var_lst->key) + 1));
+		str_p_dup = ft_strdup(str_p_tmp);
+		free(str_p);
 	}
-	return (str_p);
+	return (str_p_dup);
 }
 
 static char	*change_p_in_cmd_lst(t_info *info, char *str_p)
@@ -103,10 +111,10 @@ int	expand_the_expandable_in_cmd_lst(t_info *info)
 			str_p = change_p_in_cmd_lst(info, str_p);
 		else
 		{
-			ft_free_p(str_env_value_p, str_front_p, str_back_p);
+			ft_free_p(str_env_value_p, str_front_p, str_back_p, str_p);
 			return (1);
 		}
-		ft_free_p(str_env_value_p, str_front_p, str_back_p);
+		ft_free_p(str_env_value_p, str_front_p, str_back_p, str_p);
 	}
 	return (0);
 }
