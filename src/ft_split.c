@@ -1,22 +1,22 @@
 #include "../includes/minishell.h"
 
-static size_t	get_cnt(char *str)
+static size_t	get_cnt(char *str, char c)
 {
 	size_t	split_len;
 
 	split_len = 0;
 	while (*str)
 	{
-		if ((*str == ' ') && (str[1] != ' '))
+		if ((*str == c) && (str[1] != c))
 			split_len++;
 		str++;
 	}
 	return (split_len + 1);
 }
 
-static char	*ft_tmp_len(char *s, size_t *len, char *tmp)
+static char	*ft_tmp_len(char *s, size_t *len, char *tmp, char c)
 {
-	while ((*s != '\0') && (*s != ' '))
+	while ((*s != '\0') && (*s != c))
 		s++;
 	*len = (size_t)(s - tmp);
 	return (s);
@@ -55,7 +55,7 @@ static long	ft_alloc_1(char **split, char *tmp, long long *index, size_t *len)
 	return (*index + 1);
 }
 
-char	**ft_split_ms(char const *s)
+char	**ft_split(char const *s, char c)
 {
 	char		**split;
 	char		*tmp;
@@ -64,15 +64,15 @@ char	**ft_split_ms(char const *s)
 
 	if (!s)
 		return (NULL);
-	split = (char **)ft_calloc((get_cnt((char *)s) + 1), sizeof(char *));
+	split = (char **)ft_calloc((get_cnt((char *)s, c) + 1), sizeof(char *));
 	if (!ft_alloc_2(&*split, &index))
 		exit (ERROR);
 	while (*s)
 	{
-		if (*s != ' ')
+		if (*s != c)
 		{
 			tmp = (char *)s;
-			s = ft_tmp_len((char *)s, &len, tmp);
+			s = ft_tmp_len((char *)s, &len, tmp, c);
 			index = ft_alloc_1(&(*split), tmp, &index, &len);
 		}
 		if (index == -42)

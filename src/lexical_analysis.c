@@ -14,7 +14,7 @@ void	lexical_analysis(t_info *info)
 	size_t			i;
 	t_token_dl_lst	*dl_lst_tmp;
 
-	info->split_command = ft_split_ms(info->parsed_command);
+	info->split_command = ft_split(info->parsed_command, ' ');
 	if (!(info->split_command))
 		exit(ERROR);
 	free(info->parsed_command);

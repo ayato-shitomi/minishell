@@ -115,7 +115,7 @@ void			ft_pwd(void);
 
 // parse_command.c
 int				parse_command(char *command, t_info *info);
-char			**ft_split_ms(char const *s);
+char			**ft_split(char const *s, char c);
 
 // minishell_utils.c
 void			init_quote_flag(t_info *info);

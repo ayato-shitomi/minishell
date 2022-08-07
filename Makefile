@@ -2,7 +2,7 @@ NAME = minishell
 
 SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/ft_pwd.c \
 			src/parse_command.c src/minishell_utils.c src/execute_command.c \
-			src/header.c src/ft_split_ms.c src/remove_space.c \
+			src/header.c src/ft_split.c src/remove_space.c \
 			src/lexical_analysis.c src/lexical_analysis_2.c \
 			src/syntax_analysis.c src/ft_free.c \
 			src/ft_dl_lst.c src/ft_dl_lst_2.c src/split_token_for_dquote.c \
