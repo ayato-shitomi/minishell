@@ -110,6 +110,9 @@ char			*ft_strjoin_three(char const *s1, char const *s2, \
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strcpy(char *dst, char *src);
 
+// utils_3.c
+void			ft_putendl_fd(char *s, int fd);
+
 // ft_pwd.c
 void			ft_pwd(void);
 
@@ -155,6 +158,9 @@ void			set_lst_of_sentence_lst(t_info *info);
 // check_env_var_and_set_env_var_info.c
 void			check_env_var_and_set_env_var_info(t_info *info, t_lst *lst);
 
+// check_syntax_error.c
+int				check_syntax_error(t_info *info);
+
 // expand_env_var.c
 void			expand_env_var(t_info *info);
 
@@ -167,8 +173,12 @@ int				expand_the_expandable_in_redirect_lst(t_info *info);
 // execute_command.c
 int				execute_command(t_info *info);
 
+// do_pipes.c
+int				do_pipes(t_sentence_lst *sentence_lst, size_t i, \
+	size_t cmd_cnt);
+
 // set_fd_by_redirect_lst.c
-void			set_fd_by_redirect_lst(t_info *info, char **cmd);
+int				set_fd_by_redirect_lst(t_sentence_lst *sentence_lst);
 
 // header.c
 void			header(void);
@@ -178,6 +188,7 @@ void			ft_free_token_dl_lst(t_info *info);
 void			ft_free_p(char *str_env_value_p, char *str_front_p, \
 	char *str_back_p, char *str_p);
 void			ft_free_sentence_lst(t_info *info);
+void			ft_free_cmd(char **cmd);
 
 // ft_dl_lst.c
 t_token_dl_lst	*ft_dl_lstnew(void *token);
@@ -196,6 +207,7 @@ t_sentence_lst	*ft_sentence_lstnew(void);
 void			ft_sentence_lstadd_back(t_sentence_lst **sentence_lst, \
 	t_sentence_lst *new);
 t_sentence_lst	*ft_sentence_lstlast(t_sentence_lst *sentence_lst);
+size_t			ft_sentence_lstsize(t_sentence_lst *sentence_lst);
 
 // ft_lst.c
 t_lst			*ft_lstnew(void *content);

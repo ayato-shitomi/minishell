@@ -1,5 +1,21 @@
 #include "../includes/minishell.h"
 
+size_t	ft_sentence_lstsize(t_sentence_lst *sentence_lst)
+{
+	size_t	i;
+
+	i = 0;
+	if (!sentence_lst)
+		return (0);
+	while (sentence_lst->next)
+	{
+		sentence_lst = sentence_lst->next;
+		i++;
+	}
+	i++;
+	return (i);
+}
+
 t_sentence_lst	*ft_sentence_lstlast(t_sentence_lst *sentence_lst)
 {
 	if (!sentence_lst)

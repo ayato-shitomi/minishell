@@ -1,5 +1,17 @@
 #include "../includes/minishell.h"
 
+void	ft_free_cmd(char **cmd)
+{
+	size_t	i;
+
+	i = 0;
+	if (!cmd)
+		return ;
+	while (cmd[i])
+		free(cmd[i++]);
+	free(cmd);
+}
+
 static void	ft_free_sentence_lst_case_branch(t_info *info, int flag)
 {
 	t_lst			*lst_tmp;

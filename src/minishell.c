@@ -62,14 +62,14 @@ int	main(void)
 	while (1)
 	{
 		command = readline(PROMPT);
-		if (command && ft_strlen(command) > 0)
+		if (!command)
+			exit_ctrl_d();
+		else if (ft_strlen(command) > 0)
 		{
 			if (parse_command(command, &info) == ERROR)
 				exit(ERROR);
 			add_history(command);
 		}
-		if (!command)
-			exit_ctrl_d();
 		free(command);
 		ft_free_token_dl_lst(&info);
 		ft_free_sentence_lst(&info);
