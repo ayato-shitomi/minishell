@@ -73,6 +73,5 @@ int	parse_command(char *command, t_info *info)
 	// ここまでデバッグ用
 	if (execute_command(info) == ERROR)
 		return (ERROR);
-	printf("check_end\n");
 	return (SUCCESS);
 }

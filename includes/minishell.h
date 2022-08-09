@@ -43,6 +43,7 @@
 # define CMD_LST 10
 # define REDIRECT_LST 11
 # define ENV_VAR_LST 12
+# define BUFFER_SIZE 1
 
 // ここから構文解析用
 
@@ -214,5 +215,12 @@ t_lst			*ft_lstnew(void *content);
 void			ft_lstadd_back(t_lst **lst, t_lst *new);
 t_lst			*ft_lstlast(t_lst *lst);
 size_t			ft_lstsize(t_lst *lst);
+
+// get_next_line.c
+int				get_next_line(int fd, char **line);
+
+// get_next_line_utils.c
+size_t			ft_strchr_i(const char *str, int chr, int *flag);
+char			*ft_bufcat(char *tmp, char *buf, size_t buf_i);
 
 #endif

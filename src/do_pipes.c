@@ -77,6 +77,8 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt)
 		cmd_path = get_cmd_path(env_path, cmd);
 		if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
 			return (ERROR);
+		write(2, "check", 5);
+		write(2, "\n", 1);
 		execve(cmd_path, cmd, environ);
 	}
 	else
@@ -112,6 +114,8 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt)
 			close(pipe_fd[1]);
 			dup2(pipe_fd[0], 0);
 			close(pipe_fd[0]);
+			if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
+				return (ERROR);
 			execve(cmd_path, cmd, environ);
 		}
 	}
