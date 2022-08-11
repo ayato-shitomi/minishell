@@ -21,7 +21,11 @@ OBJS	=	$(SRCS:.c=.o)
 
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-LDFLAGS	=	-lreadline -lhistory -L $(shell brew --prefix readline)/lib
+LDFLAGS	=	-lreadline -lhistory -L $(shell brew --prefix readline)/lib -I .brew/opt/readline/include
+
+CFLAGS +=  -I$(shell brew --prefix readline)/include
+
+LDFLAGS += -L$(shell brew --prefix readline)/lib -lreadline
 
 $(NAME):	$(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $(NAME)
