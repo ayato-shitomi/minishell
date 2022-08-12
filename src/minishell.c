@@ -51,6 +51,7 @@ static void	init_info(t_info *info)
 	info->sentence_lst = NULL;
 }
 
+
 int	main(void)
 {
 	char	*command;
