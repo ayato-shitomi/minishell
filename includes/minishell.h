@@ -116,7 +116,7 @@ char			*ft_strcpy(char *dst, char *src);
 void			ft_putendl_fd(char *s, int fd);
 
 // ft_pwd.c
-void			ft_pwd(void);
+//void			ft_pwd(void);
 
 // parse_command.c
 int				parse_command(char *command, t_info *info);
