@@ -69,6 +69,6 @@ t_token_dl_lst	*ft_dl_lstnew(void *token)
 	new_elem->next = new_elem;
 	new_elem->dl_lst_first_flag = 0;
 	new_elem->dl_lst_last_flag = 0;
-	new_elem->is_concatenated_with_next = 0;
+	new_elem->is_cat_with_next = 0;
 	return (new_elem);
 }

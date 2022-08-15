@@ -2,64 +2,26 @@
 
 static int	set_fd_case_file(t_sentence_lst *sentence_lst, int prev_token_type)
 {
-	int	fd_in;
-	int	fd_out;
-
-	if (!sentence_lst)
-		return (ERROR);
-	if (prev_token_type == REDIRECT_LEFT_ONE) // case 「<」
+	if (prev_token_type == REDIRECT_LEFT_ONE)
 	{
-		if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
-		{
-			if (access(sentence_lst->redirect_lst->str, R_OK) == -1)
-				return (ERROR);
-		}
-		else
-		{
-			printf("エラー処理書く\n");
+		if (set_fd_case_red_left_one(sentence_lst) == ERROR)
 			return (ERROR);
-		}
-		fd_in = open(sentence_lst->redirect_lst->str, O_RDONLY);
-		if (fd_in == -1)
-			return (ERROR);
-		dup2(fd_in, 0);
-		close(fd_in);
 	}
-	else if (prev_token_type == REDIRECT_RIGHT_ONE) // case 「>」
+	else if (prev_token_type == REDIRECT_RIGHT_ONE)
 	{
-		if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
-		{
-			if (access(sentence_lst->redirect_lst->str, W_OK) == -1)
-				return (ERROR);
-		}
-		if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
-			unlink(sentence_lst->redirect_lst->str);
-		fd_out = open(sentence_lst->redirect_lst->str, O_WRONLY | O_CREAT, \
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-		if (fd_out == -1)
+		if (set_fd_case_red_right_one(sentence_lst) == ERROR)
 			return (ERROR);
-		dup2(fd_out, 1);
-		close(fd_out);
 	}
-	else if (prev_token_type == REDIRECT_LEFT_TWO) // case 「<<」
+	else if (prev_token_type == REDIRECT_LEFT_TWO)
 	{
 		if (heredoc(sentence_lst) == ERROR)
 			return (ERROR);
 		return (SUCCESS);
 	}
-	else if (prev_token_type == REDIRECT_RIGHT_TWO) // case 「>>」
+	else if (prev_token_type == REDIRECT_RIGHT_TWO)
 	{
-		if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
-		{
-			if (access(sentence_lst->redirect_lst->str, W_OK) == -1)
-				return (ERROR);
-		}
-		fd_out = open(sentence_lst->redirect_lst->str, O_WRONLY | O_APPEND | O_CREAT, \
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-		if (fd_out == -1)
+		if (set_fd_case_red_right_two(sentence_lst) == ERROR)
 			return (ERROR);
-		dup2(fd_out, 1);
-		close(fd_out);
 	}
 	return (SUCCESS);
 }

@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `src/minishell.o', needed by `minishell'.  Stop.
 
 
-# Make data base, printed on Mon Aug 15 19:44:03 2022
+# Make data base, printed on Mon Aug 15 23:59:38 2022
 
 # Variables
 
@@ -32,7 +32,7 @@ SHELL = /bin/sh
 VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"e6c586e25df759b7fd1d7a26b78d86d4.ja","_translationsConfigFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/tcf.json","_cacheRoot":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja","_resolvedLanguagePackCoreLocation":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/da76f93349a72022ca4670c1b84860304616aaa2","_corruptedFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 27)
+# makefile (from `Makefile', line 28)
 CFLAGS = -Wall -Wextra -Werror -I$(shell brew --prefix readline)/include
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
@@ -46,7 +46,7 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/
 LaunchInstanceID = 5488DC9F-2438-4D9F-A6E6-80C18106ADD8
 # environment
 ELECTRON_RUN_AS_NODE = 1
-# makefile (from `Makefile', line 29)
+# makefile (from `Makefile', line 30)
 LDFLAGS = -lreadline -lhistory -L $(shell brew --prefix readline)/lib -I .brew/opt/readline/include -L$(shell brew --prefix readline)/lib -lreadline
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
@@ -56,7 +56,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.1XY6PaOwaL/Listeners
 %F = $(notdir $%)
 # environment
 DISPLAY = /private/tmp/com.apple.launchd.y2s1QQtkvR/org.xquartz:0
-# makefile (from `Makefile', line 21)
+# makefile (from `Makefile', line 22)
 OBJS = $(SRCS:.c=.o)
 # environment
 PWD = /Users/user/42/lv3/minishell_pra
@@ -85,10 +85,10 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # makefile (from `Makefile', line 3)
-SRCS = src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/parse_command.c src/minishell_utils.c src/execute_command.c src/header.c src/ft_split.c src/remove_space.c src/lexical_analysis.c src/lexical_analysis_2.c src/syntax_analysis.c src/check_syntax_error.c src/ft_free.c src/ft_dl_lst.c src/ft_dl_lst_2.c src/split_token_for_dquote.c src/split_token_for_squote.c src/split_token_for_pipe.c src/split_token_for_redirect.c src/set_token_type_dl.c src/ft_sentence_lst.c src/ft_lst.c src/set_lst_of_sentence_lst.c src/check_env_var_and_set_env_var_info.c src/expand_env_var.c src/expand_the_expandable_in_cmd_lst.c src/expand_the_expandable_in_redirect_lst.c src/do_pipes.c src/do_pipes_2.c src/set_fd_by_redirect_lst.c src/get_next_line.c src/get_next_line_utils.c src/heredoc.c src/set_pipe_fd.c
+SRCS = src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/parse_command.c src/minishell_utils.c src/execute_command.c src/header.c src/ft_split.c src/remove_space.c src/lexical_analysis.c src/lexical_analysis_2.c src/syntax_analysis.c src/check_syntax_error.c src/ft_free.c src/ft_dl_lst.c src/ft_dl_lst_2.c src/split_token_for_dquote.c src/split_token_for_squote.c src/split_token_for_pipe.c src/split_token_for_redirect.c src/set_token_type_dl.c src/ft_sentence_lst.c src/ft_lst.c src/set_lst_of_sentence_lst.c src/check_env_var_and_set_env_var_info.c src/expand_env_var.c src/expand_the_expandable_in_cmd_lst.c src/expand_the_expandable_in_redirect_lst.c src/do_pipes.c src/do_pipes_2.c src/set_fd_by_redirect_lst.c src/get_next_line.c src/get_next_line_utils.c src/heredoc.c src/set_pipe_fd.c src/set_fd_by_redirect_lst_2.c src/heredoc_2.c 
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 23)
+# makefile (from `Makefile', line 24)
 CC = gcc
 # default
 MAKE_VERSION := 3.81
@@ -157,9 +157,9 @@ VSCODE_PID = 343
 
 # Directories
 
-# . (device 16777220, inode 12184808): 10 files, no impossibilities.
+# . (device 16777220, inode 12184808): 12 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 12 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -230,6 +230,12 @@ src/set_pipe_fd.o:
 #  File has not been updated.
 
 # Not a target:
+src/heredoc_2.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/parse_command.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -250,7 +256,7 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-15 19:43:55
+#  Last modified 2022-08-15 23:59:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -276,6 +282,7 @@ src/split_token_for_dquote.o:
 
 # Not a target:
 src/set_fd_by_redirect_lst.o:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -283,7 +290,6 @@ src/set_fd_by_redirect_lst.o:
 # Not a target:
 src/set_token_type_dl.o:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -293,13 +299,13 @@ src/minishell_utils.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o
+minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-08-15 22:40:04
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 32):
+#  commands to execute (from `Makefile', line 33):
 	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $(NAME)
 	@echo "set echo-control-characters off" > ~/.inputrc
 	
@@ -327,7 +333,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 41):
+#  commands to execute (from `Makefile', line 42):
 	rm -rf $(NAME)
 	
 
@@ -390,12 +396,18 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 38):
+#  commands to execute (from `Makefile', line 39):
 	rm -rf $(OBJS)
 	
 
 # Not a target:
 src/header.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/set_fd_by_redirect_lst_2.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -457,7 +469,7 @@ src/utils_2.o:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=45/1024=4%, Rehash=0, Collisions=0/102=0%
+# Load=47/1024=5%, Rehash=0, Collisions=0/106=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -469,6 +481,6 @@ src/utils_2.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Aug 15 19:44:03 2022
+# Finished Make data base on Mon Aug 15 23:59:38 2022
 
  

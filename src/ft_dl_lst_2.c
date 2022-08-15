@@ -75,8 +75,8 @@ void	ft_dl_lstcat(t_info *info)
 	free(info->token_dl_lst->token);
 	free(info->token_dl_lst->next->token);
 	info->token_dl_lst->token = token_tmp;
-	info->token_dl_lst->is_concatenated_with_next = \
-		info->token_dl_lst->next->is_concatenated_with_next;
+	info->token_dl_lst->is_cat_with_next = \
+		info->token_dl_lst->next->is_cat_with_next;
 	dl_lst_tmp = info->token_dl_lst->next;
 	info->token_dl_lst->next = info->token_dl_lst->next->next;
 	info->token_dl_lst->next->prev = info->token_dl_lst;

@@ -27,7 +27,6 @@
 //   DEFINES AND STRUCT
 /////////////////////////////////////////////////////
 
-
 # define SUCCESS 0
 # define ERROR 1
 # define PROMPT "fresh >> "
@@ -76,7 +75,7 @@ typedef struct s_token_dl_lst
 	int						type;
 	int						dl_lst_first_flag;
 	int						dl_lst_last_flag;
-	int						is_concatenated_with_next;
+	int						is_cat_with_next;
 }	t_token_dl_lst; // 双方向循環リスト (双方向リストの英訳「doubly-linked list」より、「dl_lst」と定義)
 
 typedef struct s_info
@@ -180,16 +179,30 @@ int				execute_command(t_info *info);
 // do_pipes.c
 int				do_pipes(t_sentence_lst *sentence_lst, size_t i, \
 	size_t cmd_cnt, char **environ);
+int				set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, \
+	char **environ);
 
 // do_pipes_2.c
-void	set_sentence_lst_and_pipe_fd(t_sentence_lst *sentence_lst, \
+t_sentence_lst	*set_sentence_lst_and_pipe_fd(t_sentence_lst *sentence_lst, \
 	size_t cmd_cnt, int pipe_fd[2], size_t i);
+int				set_pipe_and_fork(int pipe_fd[2], pid_t *pid);
+int				check_first_sentence(t_sentence_lst *sentence_lst, size_t i, \
+	size_t cmd_cnt, char **environ);
 
 // set_fd_by_redirect_lst.c
 int				set_fd_by_redirect_lst(t_sentence_lst *sentence_lst);
 
+// set_fd_by_redirect_lst_2.c
+int				set_fd_case_red_left_one(t_sentence_lst *sentence_lst);
+int				set_fd_case_red_right_one(t_sentence_lst *sentence_lst);
+int				set_fd_case_red_right_two(t_sentence_lst *sentence_lst);
+
 // heredoc.c
 int				heredoc(t_sentence_lst *sentence_lst);
+
+// heredoc_2.c
+int				heredoc_parent_process(t_sentence_lst *sentence_lst, \
+	int heredoc_pipe_fd[2], int continue_flag);
 
 // set_pipe_fd.c
 void			set_pipe_fd_0(int pipe_fd[2]);

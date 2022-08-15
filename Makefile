@@ -14,7 +14,8 @@ SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c \
 			src/expand_the_expandable_in_redirect_lst.c src/do_pipes.c \
 			src/do_pipes_2.c src/set_fd_by_redirect_lst.c \
 			src/get_next_line.c src/get_next_line_utils.c \
-			src/heredoc.c src/set_pipe_fd.c
+			src/heredoc.c src/set_pipe_fd.c src/set_fd_by_redirect_lst_2.c \
+			src/heredoc_2.c 
 
 # src/check_builtin.c
 

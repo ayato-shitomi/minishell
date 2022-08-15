@@ -22,7 +22,7 @@ int	parse_command(char *command, t_info *info)
 	// 	printf("type = %d\n", info->token_dl_lst->type);
 	// 	printf("first_flag = %d\n", info->token_dl_lst->dl_lst_first_flag);
 	// 	printf("last_flag = %d\n", info->token_dl_lst->dl_lst_last_flag);
-	// 	printf("is_concatenated_with_next = %d\n", info->token_dl_lst->is_concatenated_with_next);
+	// 	printf("is_cat_with_next = %d\n", info->token_dl_lst->is_cat_with_next);
 	// 	info->token_dl_lst = info->token_dl_lst->next;
 	// 	if (info->token_dl_lst->dl_lst_first_flag == 1)
 	// 		break ;

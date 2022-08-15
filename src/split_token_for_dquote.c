@@ -39,7 +39,7 @@ static void	insert_split_token_for_dquote(t_info *info, size_t *i)
 	dl_lst_tmp = ft_dl_lstnew(token);
 	ft_dl_lstinsert(info, dl_lst_tmp, i, EXPANDABLE_QUOTED);
 	set_token_type_dl(token, info->token_dl_lst->next);
-	info->token_dl_lst->is_concatenated_with_next = 1;
+	info->token_dl_lst->is_cat_with_next = 1;
 }
 
 static void	case_dquote_first(t_info *info, size_t *i)

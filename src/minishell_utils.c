@@ -5,7 +5,7 @@ int	fork_and_error_check(pid_t *pid)
 	*pid = fork();
 	if (*pid < 0)
 	{
-		perror("bash");
+		perror(SHELLNAME);
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -15,7 +15,7 @@ int	pipe_and_error_check(int pipe_fd[2])
 {
 	if (pipe(pipe_fd) == -1)
 	{
-		perror("bash");
+		perror(SHELLNAME);
 		return (ERROR);
 	}
 	return (SUCCESS);
