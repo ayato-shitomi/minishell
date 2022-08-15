@@ -60,16 +60,17 @@ static char	**get_env_path(void)
 	return (env_path);
 }
 
-static int	set_cmd_and_exec(t_sentence_lst *sentence_lst, char ***cmd, \
-	char **cmd_path, char **environ)
+static int	set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, char **environ)
 {
 	char		**env_path;
+	char		**cmd;
+	char		*cmd_path;
 
 	env_path = get_env_path();
 	if (!env_path)
 		return (ERROR);
-	*cmd = set_cmd_in_cmd_lst(sentence_lst);
-	*cmd_path = get_cmd_path(env_path, *cmd);
+	cmd = set_cmd_in_cmd_lst(sentence_lst);
+	cmd_path = get_cmd_path(env_path, cmd);
 	if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
 		return (ERROR);
 	execve(cmd_path, cmd, environ);
@@ -81,11 +82,9 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 {
 	pid_t		pid;
 	int			pipe_fd[2];
-	char		**cmd;
-	char		*cmd_path;
 
 	if (i == cmd_cnt - 1)
-		if (set_cmd_and_exec(sentence_lst, &cmd, &cmd_path, environ) == ERROR)
+		if (set_cmd_fd_and_exec(sentence_lst, environ) == ERROR)
 			return (ERROR);
 	else
 	{
@@ -102,7 +101,7 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 		else
 		{
 			set_sentence_lst_and_pipe_fd(sentence_lst, cmd_cnt, pipe_fd, i);
-			if (set_cmd_and_exec(sentence_lst, &cmd, &cmd_path, environ) == ERROR)
+			if (set_cmd_fd_and_exec(sentence_lst, environ) == ERROR)
 				return (ERROR);
 		}
 	}
