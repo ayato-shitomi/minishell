@@ -181,6 +181,10 @@ int				execute_command(t_info *info);
 int				do_pipes(t_sentence_lst *sentence_lst, size_t i, \
 	size_t cmd_cnt, char **environ);
 
+// do_pipes_2.c
+void	set_sentence_lst_and_pipe_fd(t_sentence_lst *sentence_lst, \
+	size_t cmd_cnt, int pipe_fd[2], size_t i);
+
 // set_fd_by_redirect_lst.c
 int				set_fd_by_redirect_lst(t_sentence_lst *sentence_lst);
 

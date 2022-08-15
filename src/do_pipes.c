@@ -48,16 +48,6 @@ static char	**set_cmd_in_cmd_lst(t_sentence_lst *sentence_lst)
 	return (cmd);
 }
 
-static int	set_cmd_and_fd(t_sentence_lst *sentence_lst, char **env_path, \
-	char ***cmd, char **cmd_path)
-{
-	*cmd = set_cmd_in_cmd_lst(sentence_lst);
-	*cmd_path = get_cmd_path(env_path, *cmd);
-	if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
-		return (ERROR);
-	return (SUCCESS);
-}
-
 static char	**get_env_path(void)
 {
 	char		*env_path_value_tmp;
@@ -70,6 +60,22 @@ static char	**get_env_path(void)
 	return (env_path);
 }
 
+static int	set_cmd_and_exec(t_sentence_lst *sentence_lst, char ***cmd, \
+	char **cmd_path, char **environ)
+{
+	char		**env_path;
+
+	env_path = get_env_path();
+	if (!env_path)
+		return (ERROR);
+	*cmd = set_cmd_in_cmd_lst(sentence_lst);
+	*cmd_path = get_cmd_path(env_path, *cmd);
+	if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
+		return (ERROR);
+	execve(cmd_path, cmd, environ);
+	return (SUCCESS);
+}
+
 int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 	char **environ)
 {
@@ -77,16 +83,10 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 	int			pipe_fd[2];
 	char		**cmd;
 	char		*cmd_path;
-	char		**env_path;
 
-	env_path = get_env_path();
-	if (!env_path)
-		return (ERROR);
 	if (i == cmd_cnt - 1)
-	{
-		set_cmd_and_fd(sentence_lst, env_path, &cmd, &cmd_path);
-		execve(cmd_path, cmd, environ);
-	}
+		if (set_cmd_and_exec(sentence_lst, &cmd, &cmd_path, environ) == ERROR)
+			return (ERROR);
 	else
 	{
 		if (pipe_and_error_check(pipe_fd) == ERROR)
@@ -101,12 +101,9 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 		}
 		else
 		{
-			while (i++ < cmd_cnt - 1)
-				sentence_lst = sentence_lst->next;
-			set_pipe_fd_2(sentence_lst, pipe_fd);
-			if (set_cmd_and_fd(sentence_lst, env_path, &cmd, &cmd_path) == ERROR)
+			set_sentence_lst_and_pipe_fd(sentence_lst, cmd_cnt, pipe_fd, i);
+			if (set_cmd_and_exec(sentence_lst, &cmd, &cmd_path, environ) == ERROR)
 				return (ERROR);
-			execve(cmd_path, cmd, environ);
 		}
 	}
 	return (SUCCESS);
