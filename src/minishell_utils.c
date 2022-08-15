@@ -11,7 +11,7 @@ int	fork_and_error_check(pid_t *pid)
 	return (SUCCESS);
 }
 
-int	pipe_and_check_error(int pipe_fd[2])
+int	pipe_and_error_check(int pipe_fd[2])
 {
 	if (pipe(pipe_fd) == -1)
 	{
