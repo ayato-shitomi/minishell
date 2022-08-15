@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/ft_pwd.c \
+SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/buildin_pwd.c \
 			src/parse_command.c src/minishell_utils.c src/execute_command.c \
 			src/header.c src/ft_split.c src/remove_space.c \
 			src/lexical_analysis.c src/lexical_analysis_2.c \

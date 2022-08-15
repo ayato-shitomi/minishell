@@ -51,6 +51,18 @@ static void	init_info(t_info *info)
 	info->sentence_lst = NULL;
 }
 
+/*
+void	print_exit_status(void)
+{
+	char	*exit_status;
+
+	exit_status = getenv('?');
+	if (exit_status != NULL) {
+		printf("%s", exit_status);
+	}
+	return ;
+}
+*/
 
 int	main(void)
 {
