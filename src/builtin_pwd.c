@@ -6,10 +6,10 @@ int	ft_pwd(void)
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		return (1);
+		exit (1);
 	printf("%s\n", cwd);
 	free(cwd);
-	return (0);
+	exit (0);
 }
 
 /*

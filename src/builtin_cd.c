@@ -4,18 +4,16 @@ int	ft_cd(char *dir)
 {
 	int	n;
 
-	if (!dir)
-	{
-		printf("%s\n", getenv("HOME"));
+	if (dir == NULL)
 		n = chdir(getenv("HOME"));
-	}
 	else
 		n = chdir(dir);
 	if (n != 0)
-		return (1);
-	return (0);
+		exit(1);
+	exit(0);
 }
 
+/*
 int	main(void)
 {
 	char	*path = "/Users/ashitomi/Library";
@@ -39,7 +37,8 @@ int	main(void)
 	getcwd(path_name, 200);
 	printf("before \t: %s\n", path_name);
 	n = ft_cd(NULL);
+	getcwd(path_name, 200);
 	printf("after %d\t: %s\n", n, path_name);
 	return (0);
 }
-
+*/
