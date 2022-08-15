@@ -12,6 +12,8 @@ int	parse_command(char *command, t_info *info)
 	if (!command)
 		return (SUCCESS);
 	remove_space(command, info);
+	if (ft_strlen(info->parsed_command) == 0)
+		return (SUCCESS);
 	lexical_analysis(info);
 	// ここからデバッグ用
 	// while (1)

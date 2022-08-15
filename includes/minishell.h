@@ -125,6 +125,8 @@ char			**ft_split(char const *s, char c);
 void			init_quote_flag(t_info *info);
 void			quote_check(char c, t_info *info);
 void			set_lst_info(t_info *info, t_lst *lst, int flag);
+int				pipe_and_check_error(int pipe_fd[2]);
+int				fork_and_error_check(pid_t *pid);
 
 // set_token_type_dl.c
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
@@ -176,10 +178,18 @@ int				execute_command(t_info *info);
 
 // do_pipes.c
 int				do_pipes(t_sentence_lst *sentence_lst, size_t i, \
-	size_t cmd_cnt);
+	size_t cmd_cnt, char **environ);
 
 // set_fd_by_redirect_lst.c
 int				set_fd_by_redirect_lst(t_sentence_lst *sentence_lst);
+
+// heredoc.c
+int				heredoc(t_sentence_lst *sentence_lst);
+
+// set_pipe_fd.c
+void			set_pipe_fd_0(int pipe_fd[2]);
+void			set_pipe_fd_1(int pipe_fd[2]);
+void			set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]);
 
 // header.c
 void			header(void);

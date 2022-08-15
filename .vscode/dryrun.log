@@ -1,46 +1,73 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/user/42/lv3/minishell_pra'
-gcc -Wall -Wextra -Werror   -c -o src/minishell.o src/minishell.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/minishell.o src/minishell.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/utils.o src/utils.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/utils_2.o src/utils_2.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/utils_3.o src/utils_3.c
  
-gcc -Wall -Wextra -Werror   -c -o src/utils.o src/utils.c
-gcc -Wall -Wextra -Werror   -c -o src/utils_2.o src/utils_2.c
-gcc -Wall -Wextra -Werror   -c -o src/utils_3.o src/utils_3.c
-gcc -Wall -Wextra -Werror   -c -o src/ft_pwd.o src/ft_pwd.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_pwd.o src/ft_pwd.c
  
-gcc -Wall -Wextra -Werror   -c -o src/parse_command.o src/parse_command.c
-gcc -Wall -Wextra -Werror   -c -o src/minishell_utils.o src/minishell_utils.c
-gcc -Wall -Wextra -Werror   -c -o src/execute_command.o src/execute_command.c
-gcc -Wall -Wextra -Werror   -c -o src/header.o src/header.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/parse_command.o src/parse_command.c
  
-gcc -Wall -Wextra -Werror   -c -o src/ft_split.o src/ft_split.c
-gcc -Wall -Wextra -Werror   -c -o src/remove_space.o src/remove_space.c
-gcc -Wall -Wextra -Werror   -c -o src/lexical_analysis.o src/lexical_analysis.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/minishell_utils.o src/minishell_utils.c
  
-gcc -Wall -Wextra -Werror   -c -o src/lexical_analysis_2.o src/lexical_analysis_2.c
-gcc -Wall -Wextra -Werror   -c -o src/syntax_analysis.o src/syntax_analysis.c
-gcc -Wall -Wextra -Werror   -c -o src/check_syntax_error.o src/check_syntax_error.c
-gcc -Wall -Wextra -Werror   -c -o src/ft_free.o src/ft_free.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/execute_command.o src/execute_command.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/header.o src/header.c
  
-gcc -Wall -Wextra -Werror   -c -o src/ft_dl_lst.o src/ft_dl_lst.c
-gcc -Wall -Wextra -Werror   -c -o src/ft_dl_lst_2.o src/ft_dl_lst_2.c
-gcc -Wall -Wextra -Werror   -c -o src/split_token_for_dquote.o src/split_token_for_dquote.c
-gcc -Wall -Wextra -Werror   -c -o src/split_token_for_squote.o src/split_token_for_squote.c
-gcc -Wall -Wextra -Werror   -c -o src/split_token_for_pipe.o src/split_token_for_pipe.c
-gcc -Wall -Wextra -Werror   -c -o src/split_token_for_redirect.o src/split_token_for_redirect.c
-gcc -Wall -Wextra -Werror   -c -o src/set_token_type_dl.o src/set_token_type_dl.c
-gcc -Wall -Wextra -Werror   -c -o src/ft_sentence_lst.o src/ft_sentence_lst.c
-gcc -Wall -Wextra -Werror   -c -o src/ft_lst.o src/ft_lst.c
-gcc -Wall -Wextra -Werror   -c -o src/set_lst_of_sentence_lst.o src/set_lst_of_sentence_lst.c
-gcc -Wall -Wextra -Werror   -c -o src/check_env_var_and_set_env_var_info.o src/check_env_var_and_set_env_var_info.c
-gcc -Wall -Wextra -Werror   -c -o src/expand_env_var.o src/expand_env_var.c
-gcc -Wall -Wextra -Werror   -c -o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_cmd_lst.c
-gcc -Wall -Wextra -Werror   -c -o src/expand_the_expandable_in_redirect_lst.o src/expand_the_expandable_in_redirect_lst.c
-gcc -Wall -Wextra -Werror   -c -o src/do_pipes.o src/do_pipes.c
-gcc -Wall -Wextra -Werror   -c -o src/set_fd_by_redirect_lst.o src/set_fd_by_redirect_lst.c
-gcc -Wall -Wextra -Werror   -c -o src/get_next_line.o src/get_next_line.c
-gcc -Wall -Wextra -Werror   -c -o src/get_next_line_utils.o src/get_next_line_utils.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_split.o src/ft_split.c
  
-gcc src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/ft_pwd.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o -Wall -Wextra -Werror -lreadline -lhistory -L /usr/local/opt/readline/lib -o minishell
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/remove_space.o src/remove_space.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/lexical_analysis.o src/lexical_analysis.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/lexical_analysis_2.o src/lexical_analysis_2.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/syntax_analysis.o src/syntax_analysis.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/check_syntax_error.o src/check_syntax_error.c
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_free.o src/ft_free.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_dl_lst.o src/ft_dl_lst.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_dl_lst_2.o src/ft_dl_lst_2.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/split_token_for_dquote.o src/split_token_for_dquote.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/split_token_for_squote.o src/split_token_for_squote.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/split_token_for_pipe.o src/split_token_for_pipe.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/split_token_for_redirect.o src/split_token_for_redirect.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/set_token_type_dl.o src/set_token_type_dl.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_sentence_lst.o src/ft_sentence_lst.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_lst.o src/ft_lst.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/set_lst_of_sentence_lst.o src/set_lst_of_sentence_lst.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/check_env_var_and_set_env_var_info.o src/check_env_var_and_set_env_var_info.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/expand_env_var.o src/expand_env_var.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_cmd_lst.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/expand_the_expandable_in_redirect_lst.o src/expand_the_expandable_in_redirect_lst.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/do_pipes.o src/do_pipes.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/set_fd_by_redirect_lst.o src/set_fd_by_redirect_lst.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/get_next_line.o src/get_next_line.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/get_next_line_utils.o src/get_next_line_utils.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/heredoc.o src/heredoc.c
+ 
+gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/set_pipe_fd.o src/set_pipe_fd.c
+ 
+gcc src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/ft_pwd.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o -Wall -Wextra -Werror -I/usr/local/opt/readline/include -lreadline -lhistory -L /usr/local/opt/readline/lib -I .brew/opt/readline/include -L/usr/local/opt/readline/lib -lreadline -o minishell
 echo "set echo-control-characters off" > ~/.inputrc
 make: Leaving directory `/Users/user/42/lv3/minishell_pra'
  

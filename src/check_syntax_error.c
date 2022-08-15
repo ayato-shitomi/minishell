@@ -65,7 +65,6 @@ static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
 		sentence_lst->redirect_lst = sentence_lst->redirect_lst->next;
 	}
 	sentence_lst->redirect_lst = redirect_lst_tmp;
-	printf("success\n");
 	return (SUCCESS);
 }
 

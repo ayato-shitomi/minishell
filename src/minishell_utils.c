@@ -1,5 +1,26 @@
 #include "../includes/minishell.h"
 
+int	fork_and_error_check(pid_t *pid)
+{
+	*pid = fork();
+	if (*pid < 0)
+	{
+		perror("bash");
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+int	pipe_and_check_error(int pipe_fd[2])
+{
+	if (pipe(pipe_fd) == -1)
+	{
+		perror("bash");
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
 void	set_lst_info(t_info *info, t_lst *lst, int flag)
 {
 	if (flag == REDIRECT_LST)

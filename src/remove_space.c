@@ -20,6 +20,8 @@ static void	space_check_and_set_char(char *command, t_info *info, \
 	{
 		info->space_cnt++;
 	}
+	if (*j == 0 && info->space_cnt >= 1)
+		return ;
 	if (info->space_cnt == 1)
 	{
 		info->parsed_command[*j] = command[i];

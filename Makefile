@@ -13,7 +13,8 @@ SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/ft_pwd.c \
 			src/expand_the_expandable_in_cmd_lst.c \
 			src/expand_the_expandable_in_redirect_lst.c src/do_pipes.c \
 			src/set_fd_by_redirect_lst.c \
-			src/get_next_line.c src/get_next_line_utils.c 
+			src/get_next_line.c src/get_next_line_utils.c \
+			src/heredoc.c src/set_pipe_fd.c
 
 # src/check_builtin.c
 
@@ -21,7 +22,11 @@ OBJS	=	$(SRCS:.c=.o)
 
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-LDFLAGS	=	-lreadline -lhistory -L $(shell brew --prefix readline)/lib
+LDFLAGS	=	-lreadline -lhistory -L $(shell brew --prefix readline)/lib -I .brew/opt/readline/include
+
+CFLAGS +=  -I$(shell brew --prefix readline)/include
+
+LDFLAGS += -L$(shell brew --prefix readline)/lib -lreadline
 
 $(NAME):	$(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $(NAME)

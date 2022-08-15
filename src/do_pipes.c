@@ -6,26 +6,17 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	char	*cmd_path;
 
 	i = 0;
-	// info->is_first++;
 	while (env_path[i])
 	{
 		if (cmd[0][0] == '/')
-		{
 			cmd_path = cmd[0];
-			// info->is_no_free = 1;
-		}
 		else
 			cmd_path = ft_strjoin_three(env_path[i++], "/", cmd[0]);
 		if (access(cmd_path, F_OK) == 0 && cmd[0][0] != '\0')
 			return (cmd_path);
 		free(cmd_path);
 	}
-	// ft_putstr_fd("command not found: ", 2);
-	// ft_putstr_fd(cmd[0], 2);
-	// write(2, "\n", 1);
-	// if (info->is_first == 0)
-	// 	check_cmd_2(env_paths, info);
-	exit(1);
+	return (NULL);
 }
 
 static char	**set_cmd_in_cmd_lst(t_sentence_lst *sentence_lst)
@@ -57,64 +48,63 @@ static char	**set_cmd_in_cmd_lst(t_sentence_lst *sentence_lst)
 	return (cmd);
 }
 
-int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt)
+static int	set_cmd_and_fd(t_sentence_lst *sentence_lst, char **env_path, \
+	char ***cmd, char **cmd_path)
 {
-	pid_t		pid;
-	int			pipe_fd[2];
-	char		**cmd;
-	char		**env_path;
+	*cmd = set_cmd_in_cmd_lst(sentence_lst);
+	*cmd_path = get_cmd_path(env_path, *cmd);
+	if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
+		return (ERROR);
+	return (SUCCESS);
+}
+
+static char	**get_env_path(void)
+{
 	char		*env_path_value_tmp;
 	char		*env_path_value;
-	char		*cmd_path;
-	extern char	**environ;
+	char		**env_path;
 
 	env_path_value_tmp = getenv("PATH");
 	env_path_value = ft_strdup(env_path_value_tmp);
 	env_path = ft_split(env_path_value, ':');
+	return (env_path);
+}
+
+int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
+	char **environ)
+{
+	pid_t		pid;
+	int			pipe_fd[2];
+	char		**cmd;
+	char		*cmd_path;
+	char		**env_path;
+
+	env_path = get_env_path();
+	if (!env_path)
+		return (ERROR);
 	if (i == cmd_cnt - 1)
 	{
-		cmd = set_cmd_in_cmd_lst(sentence_lst);
-		cmd_path = get_cmd_path(env_path, cmd);
-		if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
-			return (ERROR);
-		write(2, "check", 5);
-		write(2, "\n", 1);
+		set_cmd_and_fd(sentence_lst, env_path, &cmd, &cmd_path);
 		execve(cmd_path, cmd, environ);
 	}
 	else
 	{
-		if (pipe(pipe_fd) == -1)
-		{
-			perror("bash");
+		if (pipe_and_error_check(pipe_fd) == ERROR)
 			return (ERROR);
-		}
-		pid = fork();
-		if (pid < 0)
-		{
-			perror("bash");
+		if (fork_and_error_check(&pid) == ERROR)
 			return (ERROR);
-		}
 		else if (pid == 0)
 		{
-			close(pipe_fd[0]);
-			dup2(pipe_fd[1], 1);
-			close(pipe_fd[1]);
-			if (do_pipes(sentence_lst, i + 1, cmd_cnt) == ERROR)
+			set_pipe_fd_1(pipe_fd);
+			if (do_pipes(sentence_lst, i + 1, cmd_cnt, environ) == ERROR)
 				return (ERROR);
 		}
 		else
 		{
-			while (i < cmd_cnt - 1)
-			{
+			while (i++ < cmd_cnt - 1)
 				sentence_lst = sentence_lst->next;
-				i++;
-			}
-			cmd = set_cmd_in_cmd_lst(sentence_lst);
-			cmd_path = get_cmd_path(env_path, cmd);
-			close(pipe_fd[1]);
-			dup2(pipe_fd[0], 0);
-			close(pipe_fd[0]);
-			if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
+			set_pipe_fd_2(sentence_lst, pipe_fd);
+			if (set_cmd_and_fd(sentence_lst, env_path, &cmd, &cmd_path) == ERROR)
 				return (ERROR);
 			execve(cmd_path, cmd, environ);
 		}
