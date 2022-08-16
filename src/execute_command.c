@@ -21,7 +21,7 @@ int	execute_command(t_info *info)
 	if (WEXITSTATUS(status) == 0)
 		printf("\x1b[32m[+]\x1b[0m ");
 	else
-		printf("\x1b[31m[-]\x1b[0m ");
+		printf("\x1b[31m[%d]\x1b[0m ", (WEXITSTATUS(status)));
 	info->sentence_lst = sentence_lst_tmp;
 	return (SUCCESS);
 }
