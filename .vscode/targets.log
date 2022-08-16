@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `src/minishell.o', needed by `minishell'.  Stop.
 
-
-# Make data base, printed on Mon Aug 15 23:59:38 2022
+# Make data base, printed on Tue Aug 16 19:30:54 2022
 
 # Variables
 
@@ -29,7 +26,7 @@ CURDIR := /Users/user/42/lv3/minishell_pra
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"e6c586e25df759b7fd1d7a26b78d86d4.ja","_translationsConfigFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/tcf.json","_cacheRoot":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja","_resolvedLanguagePackCoreLocation":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/da76f93349a72022ca4670c1b84860304616aaa2","_corruptedFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"e6c586e25df759b7fd1d7a26b78d86d4.ja","_translationsConfigFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/tcf.json","_cacheRoot":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja","_resolvedLanguagePackCoreLocation":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 28)
@@ -43,19 +40,17 @@ VSCODE_CWD = /
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/usr/bin
 # environment
-LaunchInstanceID = 5488DC9F-2438-4D9F-A6E6-80C18106ADD8
-# environment
 ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 30)
 LDFLAGS = -lreadline -lhistory -L $(shell brew --prefix readline)/lib -I .brew/opt/readline/include -L$(shell brew --prefix readline)/lib -lreadline
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.1XY6PaOwaL/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.U2PtCBVowT/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = /private/tmp/com.apple.launchd.y2s1QQtkvR/org.xquartz:0
+DISPLAY = /private/tmp/com.apple.launchd.cKk4xuiWs8/org.xquartz:0
 # makefile (from `Makefile', line 22)
 OBJS = $(SRCS:.c=.o)
 # environment
@@ -69,11 +64,11 @@ HOME = /Users/user
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/user/Library/Application Support/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
+VSCODE_CODE_CACHE_PATH = /Users/user/Library/Application Support/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
 # environment
 LOGNAME = user
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -85,7 +80,7 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # makefile (from `Makefile', line 3)
-SRCS = src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/parse_command.c src/minishell_utils.c src/execute_command.c src/header.c src/ft_split.c src/remove_space.c src/lexical_analysis.c src/lexical_analysis_2.c src/syntax_analysis.c src/check_syntax_error.c src/ft_free.c src/ft_dl_lst.c src/ft_dl_lst_2.c src/split_token_for_dquote.c src/split_token_for_squote.c src/split_token_for_pipe.c src/split_token_for_redirect.c src/set_token_type_dl.c src/ft_sentence_lst.c src/ft_lst.c src/set_lst_of_sentence_lst.c src/check_env_var_and_set_env_var_info.c src/expand_env_var.c src/expand_the_expandable_in_cmd_lst.c src/expand_the_expandable_in_redirect_lst.c src/do_pipes.c src/do_pipes_2.c src/set_fd_by_redirect_lst.c src/get_next_line.c src/get_next_line_utils.c src/heredoc.c src/set_pipe_fd.c src/set_fd_by_redirect_lst_2.c src/heredoc_2.c 
+SRCS = src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/parse_command.c src/minishell_utils.c src/execute_command.c src/header.c src/ft_split.c src/remove_space.c src/lexical_analysis.c src/lexical_analysis_2.c src/syntax_analysis.c src/check_syntax_error.c src/ft_free.c src/ft_dl_lst.c src/ft_dl_lst_2.c src/split_token_for_dquote.c src/split_token_for_squote.c src/split_token_for_pipe.c src/split_token_for_redirect.c src/set_token_type_dl.c src/ft_sentence_lst.c src/ft_lst.c src/set_lst_of_sentence_lst.c src/check_env_var_and_set_env_var_info.c src/expand_env_var.c src/expand_the_expandable_in_cmd_lst.c src/expand_the_expandable_in_redirect_lst.c src/do_pipes.c src/do_pipes_2.c src/set_fd_by_redirect_lst.c src/get_next_line.c src/get_next_line_utils.c src/heredoc.c src/set_pipe_fd.c src/set_fd_by_redirect_lst_2.c src/heredoc_2.c src/ft_error.c 
 # environment
 SHLVL = 1
 # makefile (from `Makefile', line 24)
@@ -109,7 +104,7 @@ TMPDIR = /var/folders/7q/fm1zhvf52j92wrrxgwypxssh0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/user/Library/Application Support/Code/1.70.0-main.sock
+VSCODE_IPC_HOOK = /Users/user/Library/Application Support/Code/1.70.1-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -119,7 +114,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.12792606.12792612
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.13105751.13105757
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -134,8 +129,6 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186a6
 # automatic
 ^F = $(notdir $^)
 # default
@@ -147,9 +140,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 343
+VSCODE_PID = 1973
 # variable set hash-table stats:
-# Load=67/1024=7%, Rehash=0, Collisions=5/99=5%
+# Load=65/1024=6%, Rehash=0, Collisions=5/97=5%
 
 # Pattern-specific Variable Values
 
@@ -157,9 +150,9 @@ VSCODE_PID = 343
 
 # Directories
 
-# . (device 16777220, inode 12184808): 12 files, no impossibilities.
+# . (device 16777220, inode 12184808): 11 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -169,9 +162,12 @@ VSCODE_PID = 343
 
 # Not a target:
 src/ft_free.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/do_pipes_2.o:
@@ -181,9 +177,12 @@ src/do_pipes_2.o:
 
 # Not a target:
 src/ft_dl_lst.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 all: minishell
 #  Phony target (prerequisite of .PHONY).
@@ -202,9 +201,12 @@ src/get_next_line.o:
 
 # Not a target:
 src/lexical_analysis_2.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:51
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 .PHONY: all clean fclean re
 #  Implicit rule search has not been done.
@@ -219,9 +221,12 @@ src/expand_the_expandable_in_redirect_lst.o:
 
 # Not a target:
 src/syntax_analysis.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/set_pipe_fd.o:
@@ -237,15 +242,21 @@ src/heredoc_2.o:
 
 # Not a target:
 src/parse_command.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/ft_sentence_lst.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:54
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .SUFFIXES:
@@ -253,10 +264,13 @@ src/ft_sentence_lst.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
+make: *** No rule to make target `src/ft_lst.o', needed by `minishell'.  Stop.
+
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-15 23:59:28
+#  Last modified 2022-08-16 19:30:47
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -264,44 +278,58 @@ Makefile:
 
 # Not a target:
 src/check_syntax_error.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/utils_3.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:49
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/split_token_for_dquote.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/set_fd_by_redirect_lst.o:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
 src/set_token_type_dl.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:54
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/minishell_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o
+minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o src/ft_error.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-15 22:40:04
+#  File does not exist.
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -311,22 +339,37 @@ minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/parse_com
 	
 
 # Not a target:
-src/split_token_for_pipe.o:
+src/ft_error.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+# Not a target:
+src/split_token_for_pipe.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/ft_split.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/ft_dl_lst_2.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
@@ -345,15 +388,21 @@ src/check_env_var_and_set_env_var_info.o:
 
 # Not a target:
 src/split_token_for_redirect.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:49
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .DEFAULT:
@@ -369,15 +418,20 @@ src/expand_env_var.o:
 
 # Not a target:
 src/ft_lst.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
+#  Implicit rule search has been done.
+#  File does not exist.
 #  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/split_token_for_squote.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -402,9 +456,12 @@ clean:
 
 # Not a target:
 src/header.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/set_fd_by_redirect_lst_2.o:
@@ -414,15 +471,21 @@ src/set_fd_by_redirect_lst_2.o:
 
 # Not a target:
 src/remove_space.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:51
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/lexical_analysis.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:51
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/get_next_line_utils.o:
@@ -439,8 +502,9 @@ src/expand_the_expandable_in_cmd_lst.o:
 # Not a target:
 src/minishell.o:
 #  Implicit rule search has been done.
-#  File does not exist.
-#  File has not been updated.
+#  Last modified 2022-08-16 19:30:49
+#  File has been updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -458,29 +522,36 @@ src/heredoc.o:
 
 # Not a target:
 src/execute_command.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/utils_2.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-08-16 19:30:49
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=47/1024=5%, Rehash=0, Collisions=0/106=0%
+# Load=48/1024=5%, Rehash=0, Collisions=2/108=2%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
+ 
 # # of strings in strcache: 1
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Aug 15 23:59:38 2022
+# Finished Make data base on Tue Aug 16 19:30:54 2022
 
  

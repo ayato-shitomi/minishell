@@ -44,6 +44,8 @@
 # define REDIRECT_LST 11
 # define ENV_VAR_LST 12
 # define BUFFER_SIZE 1
+# define CMD_NOT_FOUND "command not found"
+# define E_STATUS_CNF 127
 
 // ここから構文解析用
 
@@ -112,7 +114,12 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strcpy(char *dst, char *src);
 
 // utils_3.c
+void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
+
+// ft_error.c
+void			error_and_exit(char *error_str_1, char *error_str_2, \
+	int exit_status);
 
 // ft_pwd.c
 //void			ft_pwd(void);
@@ -180,7 +187,7 @@ int				execute_command(t_info *info);
 int				do_pipes(t_sentence_lst *sentence_lst, size_t i, \
 	size_t cmd_cnt, char **environ);
 int				set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, \
-	char **environ);
+	char **environ, pid_t pid);
 
 // do_pipes_2.c
 t_sentence_lst	*set_sentence_lst_and_pipe_fd(t_sentence_lst *sentence_lst, \
@@ -188,6 +195,7 @@ t_sentence_lst	*set_sentence_lst_and_pipe_fd(t_sentence_lst *sentence_lst, \
 int				set_pipe_and_fork(int pipe_fd[2], pid_t *pid);
 int				check_first_sentence(t_sentence_lst *sentence_lst, size_t i, \
 	size_t cmd_cnt, char **environ);
+void			set_sig_in_child_process(void);
 
 // set_fd_by_redirect_lst.c
 int				set_fd_by_redirect_lst(t_sentence_lst *sentence_lst);

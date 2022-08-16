@@ -70,10 +70,10 @@ int	main(void)
 	t_info	info;
 
 	header();
-	init_info(&info);
-	init_sig(); // signal系関数をセット
 	while (1)
 	{
+		init_info(&info);
+		init_sig();
 		command = readline(PROMPT);
 		if (!command)
 			exit_ctrl_d();
@@ -86,7 +86,6 @@ int	main(void)
 		free(command);
 		ft_free_token_dl_lst(&info);
 		ft_free_sentence_lst(&info);
-		init_info(&info);
 	}
 	return (SUCCESS);
 }

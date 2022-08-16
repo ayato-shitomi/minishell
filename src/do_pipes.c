@@ -8,7 +8,7 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	i = 0;
 	while (env_path[i])
 	{
-		if (cmd[0][0] == '/')
+		if (cmd[0][0] == '/' || (cmd[0][0] == '.' && cmd[0][1] == '/'))
 			cmd_path = cmd[0];
 		else
 			cmd_path = ft_strjoin_three(env_path[i++], "/", cmd[0]);
@@ -60,17 +60,27 @@ static char	**get_env_path(void)
 	return (env_path);
 }
 
-int	set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, char **environ)
+int	set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, char **environ, pid_t pid)
 {
 	char		**env_path;
 	char		**cmd;
 	char		*cmd_path;
+	pid_t		w_pid;
+	int			status;
 
 	env_path = get_env_path();
 	if (!env_path)
 		return (ERROR);
 	cmd = set_cmd_in_cmd_lst(sentence_lst);
 	cmd_path = get_cmd_path(env_path, cmd);
+	if (!cmd_path)
+		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
+	if (pid > 0)
+	{
+		w_pid = waitpid(pid, &status, WUNTRACED);
+		if (WEXITSTATUS(status) != 0)
+			exit(ERROR);
+	}
 	if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
 		return (ERROR);
 	execve(cmd_path, cmd, environ);
@@ -83,6 +93,7 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 	pid_t		pid;
 	int			pipe_fd[2];
 
+	set_sig_in_child_process();
 	if (check_first_sentence(sentence_lst, i, cmd_cnt, environ) == ERROR)
 		return (ERROR);
 	else
@@ -99,7 +110,7 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 		{
 			sentence_lst = set_sentence_lst_and_pipe_fd(sentence_lst, \
 				cmd_cnt, pipe_fd, i);
-			if (set_cmd_fd_and_exec(sentence_lst, environ) == ERROR)
+			if (set_cmd_fd_and_exec(sentence_lst, environ, pid) == ERROR)
 				return (ERROR);
 		}
 	}
