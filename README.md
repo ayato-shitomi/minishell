@@ -14,6 +14,19 @@
 
 > readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history, printf, malloc, free, write, access, open, read, close, fork, wait, waitpid, wait3, wait4, signal, sigaction, sigemptyset, sigaddset, kill, exit, getcwd, chdir, stat, lstat, fstat, unlink, execve, dup, dup2, pipe, opendir, readdir, closedir, strerror, perror, isatty, ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 
+### 組み込み関数
+
+|関数|ステータス|メモ|
+|---|---|---|
+|echo|||
+|exit|Done|複数の引数はエラーメッセージを出し何もしない<br>マイナス値などにも対応<br>|
+|env|||
+|export|||
+|unset|||
+|cd|Done|`cd`のみ呼ばれた場合は`cd ~`と同じ挙動<br>パスがなければ`1`を返す|
+|pwd|Done||
+
+
 ### 入力の扱い方
 
 入力された文字列は最初にスペース区切りで配列に格納されます。
