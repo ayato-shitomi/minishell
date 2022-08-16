@@ -116,6 +116,7 @@ char			*ft_strcpy(char *dst, char *src);
 // utils_3.c
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
+int				ft_atoi(const char *str);
 
 // ft_error.c
 void			error_and_exit(char *error_str_1, char *error_str_2, \

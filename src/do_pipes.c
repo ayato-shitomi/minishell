@@ -95,7 +95,7 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 
 	set_sig_in_child_process();
 	if (check_first_sentence(sentence_lst, i, cmd_cnt, environ) == ERROR)
-		return (ERROR);
+		exit(ERROR);
 	else
 	{
 		if (set_pipe_and_fork(pipe_fd, &pid) == ERROR)
@@ -104,14 +104,14 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 		{
 			set_pipe_fd_1(pipe_fd);
 			if (do_pipes(sentence_lst, i + 1, cmd_cnt, environ) == ERROR)
-				return (ERROR);
+				exit(ERROR);
 		}
 		else
 		{
 			sentence_lst = set_sentence_lst_and_pipe_fd(sentence_lst, \
 				cmd_cnt, pipe_fd, i);
 			if (set_cmd_fd_and_exec(sentence_lst, environ, pid) == ERROR)
-				return (ERROR);
+				exit(ERROR);
 		}
 	}
 	return (SUCCESS);
