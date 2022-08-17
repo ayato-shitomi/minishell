@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `src/minishell.o', needed by `minishell'.  Stop.
 
 
-# Make data base, printed on Wed Aug 17 19:27:27 2022
+# Make data base, printed on Wed Aug 17 20:16:02 2022
 
 # Variables
 
@@ -73,7 +73,7 @@ VSCODE_CODE_CACHE_PATH = /Users/user/Library/Application Support/Code/CachedData
 # environment
 LOGNAME = user
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -157,9 +157,9 @@ VSCODE_PID = 339
 
 # Directories
 
-# . (device 16777220, inode 12184808): 11 files, no impossibilities.
+# . (device 16777220, inode 12184808): 9 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 9 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -256,7 +256,7 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 19:27:20
+#  Last modified 2022-08-17 19:55:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -301,7 +301,7 @@ src/minishell_utils.o:
 
 minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o src/ft_error.o src/set_sig_in_each_process.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-17 19:23:10
+#  File does not exist.
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -444,7 +444,6 @@ src/get_next_line_utils.o:
 
 # Not a target:
 src/expand_the_expandable_in_cmd_lst.o:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -464,6 +463,7 @@ src/set_lst_of_sentence_lst.o:
 #  File has not been updated.
 
 # Not a target:
+ 
 src/heredoc.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -494,6 +494,6 @@ src/utils_2.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug 17 19:27:27 2022
+# Finished Make data base on Wed Aug 17 20:16:02 2022
 
  

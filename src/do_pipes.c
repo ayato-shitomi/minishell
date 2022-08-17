@@ -8,7 +8,7 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	i = 0;
 	while (env_path[i])
 	{
-		if (cmd[0][0] == '/' || (cmd[0][0] == '.' && cmd[0][1] == '/'))
+		if (cmd[0][0] == '/' || cmd[0][0] == '.')
 			cmd_path = cmd[0];
 		else
 			cmd_path = ft_strjoin_three(env_path[i++], "/", cmd[0]);
