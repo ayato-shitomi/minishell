@@ -55,8 +55,8 @@ static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag)
 	return (SUCCESS);
 }
 
-int	heredoc_parent_process(t_sentence_lst *sentence_lst, \
-	int heredoc_pipe_fd[2], int continue_flag)
+int	heredoc_parent_process(t_info *info, int heredoc_pipe_fd[2], \
+	int continue_flag)
 {
 	int		flag;
 	int		tmp_fd;
@@ -70,9 +70,9 @@ int	heredoc_parent_process(t_sentence_lst *sentence_lst, \
 		flag = get_next_line(0, &line);
 		if (flag_check(flag) == ERROR)
 			return (ERROR);
-		cat_line = set_cat_line(sentence_lst, cat_line, line);
-		if (ft_strncmp(line, sentence_lst->redirect_lst->str, \
-			ft_strlen(sentence_lst->redirect_lst->str)) == 0)
+		cat_line = set_cat_line(info->sentence_lst, cat_line, line);
+		if (ft_strncmp(line, info->sentence_lst->redirect_lst->str, \
+			ft_strlen(info->sentence_lst->redirect_lst->str)) == 0)
 		{
 			if (continue_flag == 0)
 				set_pipe_fd_and_write(heredoc_pipe_fd, tmp_fd, \

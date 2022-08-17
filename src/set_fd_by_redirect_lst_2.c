@@ -1,18 +1,18 @@
 #include "../includes/minishell.h"
 
-int	set_fd_case_red_right_two(t_sentence_lst *sentence_lst)
+int	set_fd_case_red_right_two(t_info *info)
 {
 	int	fd_out;
 
-	if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
+	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 	{
-		if (access(sentence_lst->redirect_lst->str, W_OK) == -1)
+		if (access(info->sentence_lst->redirect_lst->str, W_OK) == -1)
 		{
 			perror(SHELLNAME);
 			return (ERROR);
 		}
 	}
-	fd_out = open(sentence_lst->redirect_lst->str, \
+	fd_out = open(info->sentence_lst->redirect_lst->str, \
 		O_WRONLY | O_APPEND | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out == -1)
 	{
@@ -24,21 +24,21 @@ int	set_fd_case_red_right_two(t_sentence_lst *sentence_lst)
 	return (SUCCESS);
 }
 
-int	set_fd_case_red_right_one(t_sentence_lst *sentence_lst)
+int	set_fd_case_red_right_one(t_info *info)
 {
 	int	fd_out;
 
-	if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
+	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 	{
-		if (access(sentence_lst->redirect_lst->str, W_OK) == -1)
+		if (access(info->sentence_lst->redirect_lst->str, W_OK) == -1)
 		{
 			perror(SHELLNAME);
 			return (ERROR);
 		}
 	}
-	if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
-		unlink(sentence_lst->redirect_lst->str);
-	fd_out = open(sentence_lst->redirect_lst->str, O_WRONLY | O_CREAT, \
+	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
+		unlink(info->sentence_lst->redirect_lst->str);
+	fd_out = open(info->sentence_lst->redirect_lst->str, O_WRONLY | O_CREAT, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out == -1)
 	{
@@ -50,13 +50,13 @@ int	set_fd_case_red_right_one(t_sentence_lst *sentence_lst)
 	return (SUCCESS);
 }
 
-int	set_fd_case_red_left_one(t_sentence_lst *sentence_lst)
+int	set_fd_case_red_left_one(t_info *info)
 {
 	int	fd_in;
 
-	if (access(sentence_lst->redirect_lst->str, F_OK) == 0)
+	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 	{
-		if (access(sentence_lst->redirect_lst->str, R_OK) == -1)
+		if (access(info->sentence_lst->redirect_lst->str, R_OK) == -1)
 		{
 			perror(SHELLNAME);
 			return (ERROR);
@@ -67,7 +67,7 @@ int	set_fd_case_red_left_one(t_sentence_lst *sentence_lst)
 		perror(SHELLNAME);
 		return (ERROR);
 	}
-	fd_in = open(sentence_lst->redirect_lst->str, O_RDONLY);
+	fd_in = open(info->sentence_lst->redirect_lst->str, O_RDONLY);
 	if (fd_in == -1)
 	{
 		perror(SHELLNAME);

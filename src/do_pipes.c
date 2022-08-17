@@ -19,7 +19,7 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	return (NULL);
 }
 
-static char	**set_cmd_in_cmd_lst(t_sentence_lst *sentence_lst)
+static char	**set_cmd_in_cmd_lst(t_info *info)
 {
 	size_t	i;
 	size_t	cmd_lst_cnt;
@@ -27,24 +27,24 @@ static char	**set_cmd_in_cmd_lst(t_sentence_lst *sentence_lst)
 	t_lst	*cmd_lst_tmp;
 	char	**cmd;
 
-	cmd_lst_tmp = sentence_lst->cmd_lst;
-	cmd_lst_cnt = ft_lstsize(sentence_lst->cmd_lst);
+	cmd_lst_tmp = info->sentence_lst->cmd_lst;
+	cmd_lst_cnt = ft_lstsize(info->sentence_lst->cmd_lst);
 	cmd = (char **)ft_calloc(cmd_lst_cnt + 1, sizeof(char *));
 	if (!cmd)
 		exit(ERROR);
 	i = 0;
 	while (i < cmd_lst_cnt)
 	{
-		len = ft_strlen(sentence_lst->cmd_lst->str);
+		len = ft_strlen(info->sentence_lst->cmd_lst->str);
 		cmd[i] = (char *)ft_calloc(len + 1, sizeof(char));
 		if (!cmd[i])
 			exit(ERROR);
-		ft_strcpy(cmd[i], sentence_lst->cmd_lst->str);
-		sentence_lst->cmd_lst = sentence_lst->cmd_lst->next;
+		ft_strcpy(cmd[i], info->sentence_lst->cmd_lst->str);
+		info->sentence_lst->cmd_lst = info->sentence_lst->cmd_lst->next;
 		i++;
 	}
 	cmd[i] = NULL;
-	sentence_lst->cmd_lst = cmd_lst_tmp;
+	info->sentence_lst->cmd_lst = cmd_lst_tmp;
 	return (cmd);
 }
 
@@ -60,7 +60,7 @@ static char	**get_env_path(void)
 	return (env_path);
 }
 
-int	set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, char **environ, pid_t pid)
+int	set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid)
 {
 	char		**env_path;
 	char		**cmd;
@@ -71,7 +71,7 @@ int	set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, char **environ, pid_t pid)
 	env_path = get_env_path();
 	if (!env_path)
 		return (ERROR);
-	cmd = set_cmd_in_cmd_lst(sentence_lst);
+	cmd = set_cmd_in_cmd_lst(info);
 	cmd_path = get_cmd_path(env_path, cmd);
 	if (!cmd_path)
 		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
@@ -81,20 +81,18 @@ int	set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, char **environ, pid_t pid)
 		if (WEXITSTATUS(status) != 0)
 			exit(ERROR);
 	}
-	if (set_fd_by_redirect_lst(sentence_lst) == ERROR)
+	if (set_fd_by_redirect_lst(info) == ERROR)
 		return (ERROR);
 	execve(cmd_path, cmd, environ);
-	return (SUCCESS);
+	return (ERROR);
 }
 
-int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
-	char **environ)
+int	do_pipes(t_info *info, size_t i, size_t cmd_cnt, char **environ)
 {
 	pid_t		pid;
 	int			pipe_fd[2];
 
-	set_sig_in_child_process();
-	if (check_first_sentence(sentence_lst, i, cmd_cnt, environ) == ERROR)
+	if (check_first_sentence(info, i, cmd_cnt, environ) == ERROR)
 		exit(ERROR);
 	else
 	{
@@ -103,14 +101,13 @@ int	do_pipes(t_sentence_lst *sentence_lst, size_t i, size_t cmd_cnt, \
 		else if (pid == 0)
 		{
 			set_pipe_fd_1(pipe_fd);
-			if (do_pipes(sentence_lst, i + 1, cmd_cnt, environ) == ERROR)
+			if (do_pipes(info, i + 1, cmd_cnt, environ) == ERROR)
 				exit(ERROR);
 		}
 		else
 		{
-			sentence_lst = set_sentence_lst_and_pipe_fd(sentence_lst, \
-				cmd_cnt, pipe_fd, i);
-			if (set_cmd_fd_and_exec(sentence_lst, environ, pid) == ERROR)
+			set_sentence_lst_and_pipe_fd(info, cmd_cnt, pipe_fd, i);
+			if (set_cmd_fd_and_exec(info, environ, pid) == ERROR)
 				exit(ERROR);
 		}
 	}

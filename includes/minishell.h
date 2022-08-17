@@ -82,13 +82,15 @@ typedef struct s_token_dl_lst
 
 typedef struct s_info
 {
-	size_t			is_in_dquote;
-	size_t			is_in_squote;
-	size_t			space_cnt;
-	t_token_dl_lst	*token_dl_lst;
-	char			*parsed_command;
-	char			**split_command;
-	t_sentence_lst	*sentence_lst;
+	size_t				is_in_dquote;
+	size_t				is_in_squote;
+	size_t				space_cnt;
+	t_token_dl_lst		*token_dl_lst;
+	char				*parsed_command;
+	char				**split_command;
+	t_sentence_lst		*sentence_lst;
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -185,32 +187,35 @@ int				expand_the_expandable_in_redirect_lst(t_info *info);
 int				execute_command(t_info *info);
 
 // do_pipes.c
-int				do_pipes(t_sentence_lst *sentence_lst, size_t i, \
+int				do_pipes(t_info *info, size_t i, \
 	size_t cmd_cnt, char **environ);
-int				set_cmd_fd_and_exec(t_sentence_lst *sentence_lst, \
-	char **environ, pid_t pid);
+int				set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid);
 
 // do_pipes_2.c
-t_sentence_lst	*set_sentence_lst_and_pipe_fd(t_sentence_lst *sentence_lst, \
+void			set_sentence_lst_and_pipe_fd(t_info *info, \
 	size_t cmd_cnt, int pipe_fd[2], size_t i);
 int				set_pipe_and_fork(int pipe_fd[2], pid_t *pid);
-int				check_first_sentence(t_sentence_lst *sentence_lst, size_t i, \
+int				check_first_sentence(t_info *info, size_t i, \
 	size_t cmd_cnt, char **environ);
-void			set_sig_in_child_process(void);
+
+// set_sig_in_each_process.c
+void			init_sig(t_info *info);
+void			set_sig_in_child_process(t_info *info);
+void			set_sig_in_parent_process(t_info *info);
 
 // set_fd_by_redirect_lst.c
-int				set_fd_by_redirect_lst(t_sentence_lst *sentence_lst);
+int				set_fd_by_redirect_lst(t_info *info);
 
 // set_fd_by_redirect_lst_2.c
-int				set_fd_case_red_left_one(t_sentence_lst *sentence_lst);
-int				set_fd_case_red_right_one(t_sentence_lst *sentence_lst);
-int				set_fd_case_red_right_two(t_sentence_lst *sentence_lst);
+int				set_fd_case_red_left_one(t_info *info);
+int				set_fd_case_red_right_one(t_info *info);
+int				set_fd_case_red_right_two(t_info *info);
 
 // heredoc.c
-int				heredoc(t_sentence_lst *sentence_lst);
+int				heredoc(t_info *info);
 
 // heredoc_2.c
-int				heredoc_parent_process(t_sentence_lst *sentence_lst, \
+int				heredoc_parent_process(t_info *info, \
 	int heredoc_pipe_fd[2], int continue_flag);
 
 // set_pipe_fd.c
