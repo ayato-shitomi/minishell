@@ -1,12 +1,5 @@
 #include "../includes/minishell.h"
 
-static void	printf_exit_status(int status)
-{
-	if (WEXITSTATUS(status) == 0)
-		printf("\x1b[32m[+]\x1b[0m ");
-	else
-		printf("\x1b[31m[%d]\x1b[0m ", (WEXITSTATUS(status)));
-}
 
 int	execute_command(t_info *info)
 {
@@ -15,6 +8,7 @@ int	execute_command(t_info *info)
 	pid_t			pid;
 	pid_t			w_pid;
 	extern char		**environ;
+	int				n;
 
 	sentence_lst_tmp = info->sentence_lst;
 	if (fork_and_error_check(&pid) == ERROR)
@@ -30,8 +24,12 @@ int	execute_command(t_info *info)
 	{
 		set_sig_in_parent_process(info);
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		printf_exit_status(status);
 	}
+	n = WEXITSTATUS(status);
+	if (n != 0)
+		printf("\x1b[31m[%d]\x1b[0m ", n);
+	else
+		printf("\x1b[32m[%d]\x1b[0m ", n);
 	info->sentence_lst = sentence_lst_tmp;
 	return (SUCCESS);
 }
