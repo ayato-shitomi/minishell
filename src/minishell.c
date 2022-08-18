@@ -6,6 +6,12 @@ static void	exit_ctrl_d(void)
 	exit(SUCCESS);
 }
 
+static void	remove_file(void)
+{
+	if (access("tmp.txt", F_OK) == 0)
+		unlink("tmp.txt");
+}
+
 static void	init_info(t_info *info)
 {
 	info->is_in_dquote = 0;
@@ -52,8 +58,7 @@ int	main(void)
 		free(command);
 		ft_free_token_dl_lst(&info);
 		ft_free_sentence_lst(&info);
-		if (access("tmp.txt", F_OK) == 0)
-			unlink("tmp.txt");
+		remove_file();
 	}
 	return (SUCCESS);
 }
