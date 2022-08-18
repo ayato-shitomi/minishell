@@ -46,6 +46,8 @@
 # define BUFFER_SIZE 1
 # define CMD_NOT_FOUND "command not found"
 # define E_STATUS_CNF 127
+# define PERM_DENIED "Permission denied"
+# define NO_FILE "No such file or directory"
 
 // ここから構文解析用
 

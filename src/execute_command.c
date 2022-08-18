@@ -24,7 +24,7 @@ int	execute_command(t_info *info)
 		set_sig_in_child_process(info);
 		if (do_pipes(info, 0, \
 			ft_sentence_lstsize(info->sentence_lst), environ) == ERROR)
-			return (ERROR);
+			exit(ERROR);
 	}
 	else
 	{

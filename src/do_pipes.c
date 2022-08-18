@@ -70,7 +70,7 @@ int	set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid)
 
 	env_path = get_env_path();
 	if (!env_path)
-		return (ERROR);
+		exit(ERROR);
 	cmd = set_cmd_in_cmd_lst(info);
 	cmd_path = get_cmd_path(env_path, cmd);
 	if (!cmd_path)
@@ -78,8 +78,8 @@ int	set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid)
 	if (pid > 0)
 	{
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		if (WEXITSTATUS(status) != 0)
-			exit(ERROR);
+		// if (WEXITSTATUS(status) != 0)
+		// 	exit(WEXITSTATUS(status));
 	}
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		return (ERROR);

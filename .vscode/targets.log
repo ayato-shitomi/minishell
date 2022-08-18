@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `src/minishell.o', needed by `minishell'.  Stop.
 
 
-# Make data base, printed on Wed Aug 17 20:16:02 2022
+# Make data base, printed on Thu Aug 18 07:40:38 2022
 
 # Variables
 
@@ -29,7 +29,7 @@ CURDIR := /Users/user/42/lv3/minishell_pra
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"e6c586e25df759b7fd1d7a26b78d86d4.ja","_translationsConfigFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/tcf.json","_cacheRoot":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja","_resolvedLanguagePackCoreLocation":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/Users/user/Library/Application Support/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"0eea3b1222777374459e015adf6fd29b.ja","_translationsConfigFile":"/Users/user/Library/Application Support/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/tcf.json","_cacheRoot":"/Users/user/Library/Application Support/Code/clp/0eea3b1222777374459e015adf6fd29b.ja","_resolvedLanguagePackCoreLocation":"/Users/user/Library/Application Support/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/Users/user/Library/Application Support/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 29)
@@ -43,7 +43,7 @@ VSCODE_CWD = /
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/usr/bin
 # environment
-LaunchInstanceID = 3596C6E8-425E-4622-84C6-45BDACCDAAE1
+LaunchInstanceID = A8A844F2-732B-4E68-AC96-134D90B696D5
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 31)
@@ -51,11 +51,11 @@ LDFLAGS = -lreadline -lhistory -L $(shell brew --prefix readline)/lib -I .brew/o
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GJN8IBHxY7/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.3bV3TAs0VZ/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = /private/tmp/com.apple.launchd.sy4FfX8Aup/org.xquartz:0
+DISPLAY = /private/tmp/com.apple.launchd.Ytt6eEfjr4/org.xquartz:0
 # makefile (from `Makefile', line 23)
 OBJS = $(SRCS:.c=.o)
 # environment
@@ -73,7 +73,7 @@ VSCODE_CODE_CACHE_PATH = /Users/user/Library/Application Support/Code/CachedData
 # environment
 LOGNAME = user
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -140,6 +140,7 @@ SECURITYSESSIONID = 186a6
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
+ 
 # default
 .INCLUDE_DIRS = /usr/local/include
 # environment
@@ -157,9 +158,9 @@ VSCODE_PID = 339
 
 # Directories
 
-# . (device 16777220, inode 12184808): 9 files, no impossibilities.
+# . (device 16777220, inode 12184808): 13 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -256,6 +257,7 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-08-17 19:55:06
 #  File has been updated.
 #  Successfully updated.
@@ -281,7 +283,6 @@ src/split_token_for_dquote.o:
 #  File has not been updated.
 
 # Not a target:
- 
 src/set_fd_by_redirect_lst.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -301,7 +302,7 @@ src/minishell_utils.o:
 
 minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o src/ft_error.o src/set_sig_in_each_process.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-08-18 07:29:44
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -463,7 +464,6 @@ src/set_lst_of_sentence_lst.o:
 #  File has not been updated.
 
 # Not a target:
- 
 src/heredoc.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -494,6 +494,6 @@ src/utils_2.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug 17 20:16:02 2022
+# Finished Make data base on Thu Aug 18 07:40:38 2022
 
  

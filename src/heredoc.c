@@ -4,8 +4,13 @@ static void	set_continue_flag(t_sentence_lst *sentence_lst, int *continue_flag)
 {
 	*continue_flag = 0;
 	if (sentence_lst->redirect_lst->next)
-		if (sentence_lst->redirect_lst->next->str)
+	{
+		if (sentence_lst->redirect_lst->next->token_type == \
+				REDIRECT_LEFT_TWO || \
+			sentence_lst->redirect_lst->next->token_type == \
+				REDIRECT_LEFT_ONE)
 			*continue_flag = 1;
+	}
 }
 
 int	heredoc(t_info *info)
@@ -26,8 +31,10 @@ int	heredoc(t_info *info)
 			exit(SUCCESS);
 	}
 	else
+	{
 		if (heredoc_parent_process(info, heredoc_pipe_fd, \
 			continue_flag) == ERROR)
 			return (ERROR);
+	}
 	return (SUCCESS);
 }

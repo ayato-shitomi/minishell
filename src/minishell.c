@@ -52,6 +52,8 @@ int	main(void)
 		free(command);
 		ft_free_token_dl_lst(&info);
 		ft_free_sentence_lst(&info);
+		if (access("tmp.txt", F_OK) == 0)
+			unlink("tmp.txt");
 	}
 	return (SUCCESS);
 }

@@ -1,12 +1,19 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/user/42/lv3/minishell_pra'
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/minishell.o src/minishell.c
+ 
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/utils.o src/utils.c
+ 
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/utils_2.o src/utils_2.c
+ 
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/utils_3.o src/utils_3.c
+ 
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/parse_command.o src/parse_command.c
+ 
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/minishell_utils.o src/minishell_utils.c
+ 
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/execute_command.o src/execute_command.c
+ 
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/header.o src/header.c
  
 gcc -Wall -Wextra -Werror -I/usr/local/opt/readline/include   -c -o src/ft_split.o src/ft_split.c

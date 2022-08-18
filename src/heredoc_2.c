@@ -8,7 +8,11 @@ static void	set_pipe_fd_and_write(int heredoc_pipe_fd[2], int tmp_fd, \
 	close(heredoc_pipe_fd[1]);
 	write(tmp_fd, cat_line, ft_strlen(cat_line));
 	close(tmp_fd);
-	unlink("tmp.txt");
+	if (unlink("tmp.txt") == -1)
+	{
+		perror(SHELLNAME);
+		exit(ERROR);
+	}
 	free(line);
 	free(cat_line);
 	exit(SUCCESS);

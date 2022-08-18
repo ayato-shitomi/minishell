@@ -57,21 +57,16 @@ int	set_fd_case_red_left_one(t_info *info)
 	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 	{
 		if (access(info->sentence_lst->redirect_lst->str, R_OK) == -1)
-		{
-			perror(SHELLNAME);
-			return (ERROR);
-		}
+			error_and_exit(info->sentence_lst->redirect_lst->str, \
+				PERM_DENIED, ERROR);
 	}
 	else
-	{
-		perror(SHELLNAME);
-		return (ERROR);
-	}
+		error_and_exit(info->sentence_lst->redirect_lst->str, NO_FILE, ERROR);
 	fd_in = open(info->sentence_lst->redirect_lst->str, O_RDONLY);
 	if (fd_in == -1)
 	{
 		perror(SHELLNAME);
-		return (ERROR);
+		exit(ERROR);
 	}
 	dup2(fd_in, 0);
 	close(fd_in);
