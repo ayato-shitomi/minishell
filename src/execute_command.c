@@ -14,7 +14,6 @@ int	execute_command(t_info *info)
 	t_sentence_lst	*sentence_lst_tmp;
 	pid_t			pid;
 	pid_t			w_pid;
-	extern char		**environ;
 
 	sentence_lst_tmp = info->sentence_lst;
 	if (fork_and_error_check(&pid) == ERROR)
@@ -23,7 +22,7 @@ int	execute_command(t_info *info)
 	{
 		set_sig_in_child_process(info);
 		if (do_pipes(info, 0, \
-			ft_sentence_lstsize(info->sentence_lst), environ) == ERROR)
+			ft_sentence_lstsize(info->sentence_lst), info->envp) == ERROR)
 			exit(ERROR);
 	}
 	else

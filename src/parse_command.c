@@ -8,7 +8,6 @@ int	parse_command(char *command, t_info *info)
 	// t_lst	*redirect_lst_tmp;
 	// t_lst	*env_var_lst_tmp;
 	// ここまでデバッグ用変数
-
 	if (!command)
 		return (SUCCESS);
 	remove_space(command, info);

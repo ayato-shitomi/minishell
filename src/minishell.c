@@ -1,5 +1,7 @@
 #include "../includes/minishell.h"
 
+t_builtin_info	g_builtin_info;
+
 static void	exit_ctrl_d(void)
 {
 	printf("exit\n");
@@ -12,7 +14,7 @@ static void	remove_file(void)
 		unlink("tmp.txt");
 }
 
-static void	init_info(t_info *info)
+static void	init_info(t_info *info, char **envp)
 {
 	info->is_in_dquote = 0;
 	info->is_in_squote = 0;
@@ -21,18 +23,22 @@ static void	init_info(t_info *info)
 	info->parsed_command = NULL;
 	info->split_command = NULL;
 	info->sentence_lst = NULL;
+	info->envp = envp;
 }
 
-
-int	main(void)
+int	main(int ac, char **argv, char **envp)
 {
 	char	*command;
 	t_info	info;
 
+	if (ac != 1 || !argv)
+		return (ERROR);
 	header();
+	g_builtin_info.dest_dir = NULL;
+	printf("g = %s\n", g_builtin_info.dest_dir);
 	while (1)
 	{
-		init_info(&info);
+		init_info(&info, envp);
 		init_sig(&info);
 		command = readline(PROMPT);
 		if (!command)

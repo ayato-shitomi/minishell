@@ -4,13 +4,17 @@ int	ft_cd(char *dir)
 {
 	int	n;
 
+	write(2, "check\n", 6);
 	if (dir == NULL)
 		n = chdir(getenv("HOME"));
 	else
+	{
 		n = chdir(dir);
+		ft_pwd();
+	}
 	if (n != 0)
-		exit(1);
-	exit(0);
+		exit(ERROR);
+	exit(SUCCESS);
 }
 
 /*

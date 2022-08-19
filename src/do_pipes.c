@@ -60,7 +60,7 @@ static char	**get_env_path(void)
 	return (env_path);
 }
 
-int	set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid)
+int	set_cmd_fd_and_exec(t_info *info, char **envp, pid_t pid)
 {
 	char		**env_path;
 	char		**cmd;
@@ -72,7 +72,7 @@ int	set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid)
 	if (!env_path)
 		exit(ERROR);
 	cmd = set_cmd_in_cmd_lst(info);
-	cmd_path = get_cmd_path(env_path, cmd);
+	cmd_path = get_cmd_path(env_path, cmd); // ビルトインの場合cmd_pathを取得しないように変更する!
 	if (!cmd_path)
 		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
 	if (pid > 0)
@@ -83,16 +83,17 @@ int	set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid)
 	}
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		return (ERROR);
-	execve(cmd_path, cmd, environ);
+	check_builtin(cmd);
+	execve(cmd_path, cmd, envp);
 	return (ERROR);
 }
 
-int	do_pipes(t_info *info, size_t i, size_t cmd_cnt, char **environ)
+int	do_pipes(t_info *info, size_t i, size_t cmd_cnt, char **envp)
 {
 	pid_t		pid;
 	int			pipe_fd[2];
 
-	if (check_first_sentence(info, i, cmd_cnt, environ) == ERROR)
+	if (check_first_sentence(info, i, cmd_cnt, envp) == ERROR)
 		exit(ERROR);
 	else
 	{
@@ -101,13 +102,13 @@ int	do_pipes(t_info *info, size_t i, size_t cmd_cnt, char **environ)
 		else if (pid == 0)
 		{
 			set_pipe_fd_1(pipe_fd);
-			if (do_pipes(info, i + 1, cmd_cnt, environ) == ERROR)
+			if (do_pipes(info, i + 1, cmd_cnt, envp) == ERROR)
 				exit(ERROR);
 		}
 		else
 		{
 			set_sentence_lst_and_pipe_fd(info, cmd_cnt, pipe_fd, i);
-			if (set_cmd_fd_and_exec(info, environ, pid) == ERROR)
+			if (set_cmd_fd_and_exec(info, envp, pid) == ERROR)
 				exit(ERROR);
 		}
 	}

@@ -49,6 +49,13 @@
 # define PERM_DENIED "Permission denied"
 # define NO_FILE "No such file or directory"
 
+typedef struct s_builtin_info
+{
+	char	*dest_dir;
+}	t_builtin_info;
+
+extern t_builtin_info	g_builtin_info;
+
 // ここから構文解析用
 
 typedef struct s_lst
@@ -93,15 +100,25 @@ typedef struct s_info
 	t_sentence_lst		*sentence_lst;
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
+	char				**envp;
 }	t_info;
 
 /////////////////////////////////////////////////////
 //   PROTOTYPES
 /////////////////////////////////////////////////////
 
-/*
-void	check_builtin(char *command);
-*/
+// check_builtin.c
+void			check_builtin(char **cmd);
+
+// builtin_cd.c
+int				ft_cd(char *dir);
+
+// builtin_pwd.c
+int				ft_pwd(void);
+
+// builtin_exit.c
+void			ft_exit(size_t ac, char **cmd);
+// void			ft_exit(int argc, char *argv[]);
 
 // utils.c
 size_t			ft_strlen(const char *str);
@@ -125,9 +142,6 @@ int				ft_atoi(const char *str);
 // ft_error.c
 void			error_and_exit(char *error_str_1, char *error_str_2, \
 	int exit_status);
-
-// ft_pwd.c
-//void			ft_pwd(void);
 
 // parse_command.c
 int				parse_command(char *command, t_info *info);
@@ -190,15 +204,15 @@ int				execute_command(t_info *info);
 
 // do_pipes.c
 int				do_pipes(t_info *info, size_t i, \
-	size_t cmd_cnt, char **environ);
-int				set_cmd_fd_and_exec(t_info *info, char **environ, pid_t pid);
+	size_t cmd_cnt, char **envp);
+int				set_cmd_fd_and_exec(t_info *info, char **envp, pid_t pid);
 
 // do_pipes_2.c
 void			set_sentence_lst_and_pipe_fd(t_info *info, \
 	size_t cmd_cnt, int pipe_fd[2], size_t i);
 int				set_pipe_and_fork(int pipe_fd[2], pid_t *pid);
 int				check_first_sentence(t_info *info, size_t i, \
-	size_t cmd_cnt, char **environ);
+	size_t cmd_cnt, char **envp);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);

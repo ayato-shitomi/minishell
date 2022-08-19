@@ -18,11 +18,11 @@ void	set_sentence_lst_and_pipe_fd(t_info *info, \
 }
 
 int	check_first_sentence(t_info *info, size_t i, \
-	size_t cmd_cnt, char **environ)
+	size_t cmd_cnt, char **envp)
 {
 	if (i == cmd_cnt - 1)
 	{
-		if (set_cmd_fd_and_exec(info, environ, 0) == ERROR)
+		if (set_cmd_fd_and_exec(info, envp, 0) == ERROR)
 			return (ERROR);
 	}
 	return (SUCCESS);
