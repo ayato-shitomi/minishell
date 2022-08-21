@@ -14,7 +14,7 @@ static void	remove_file(void)
 		unlink("tmp.txt");
 }
 
-static void	init_info(t_info *info, char **envp)
+static void	init_info(t_info *info)
 {
 	info->is_in_dquote = 0;
 	info->is_in_squote = 0;
@@ -23,7 +23,6 @@ static void	init_info(t_info *info, char **envp)
 	info->parsed_command = NULL;
 	info->split_command = NULL;
 	info->sentence_lst = NULL;
-	info->envp = envp;
 }
 
 int	main(int ac, char **argv, char **envp)
@@ -34,11 +33,15 @@ int	main(int ac, char **argv, char **envp)
 	if (ac != 1 || !argv)
 		return (ERROR);
 	header();
-	g_builtin_info.dest_dir = NULL;
-	printf("g = %s\n", g_builtin_info.dest_dir);
+	info.envp = envp;
+	// g_builtin_info.biip = &g_builtin_info;
+	g_builtin_info.cwd = getcwd(NULL, 0);
+	// g_builtin_info.biip->cwd = getcwd(NULL, 0);
 	while (1)
 	{
-		init_info(&info, envp);
+		printf("g_cwd = %s\n", g_builtin_info.cwd);
+		// printf("g_biip_cwd = %s\n", g_builtin_info.biip->cwd);
+		init_info(&info);
 		init_sig(&info);
 		command = readline(PROMPT);
 		if (!command)

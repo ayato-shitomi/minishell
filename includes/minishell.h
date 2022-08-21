@@ -51,7 +51,8 @@
 
 typedef struct s_builtin_info
 {
-	char	*dest_dir;
+	char					*cwd;
+	// struct s_builtin_info	*biip;
 }	t_builtin_info;
 
 extern t_builtin_info	g_builtin_info;

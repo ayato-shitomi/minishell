@@ -2,13 +2,13 @@
 
 int	ft_pwd(void)
 {
-	char	*cwd;
+	// char	*cwd;
 
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		exit (1);
-	printf("%s\n", cwd);
-	free(cwd);
+	// g_builtin_info.cwd = getcwd(NULL, 0);
+	// if (!cwd)
+	// 	exit (1);
+	printf("pwd = %s\n", g_builtin_info.cwd);
+	// free(cwd);
 	exit (0);
 }
 
