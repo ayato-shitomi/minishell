@@ -16,6 +16,7 @@ int	execute_command(t_info *info)
 	pid_t			w_pid;
 
 	sentence_lst_tmp = info->sentence_lst;
+	
 	if (fork_and_error_check(&pid) == ERROR)
 		return (ERROR);
 	else if (pid == 0)

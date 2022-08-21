@@ -3,13 +3,18 @@
 int	ft_pwd(void)
 {
 	// char	*cwd;
+	// size_t	i;
 
-	// g_builtin_info.cwd = getcwd(NULL, 0);
+	// while (envp[i])
+	// {
+	// 	if (envp[i])
+	// 	i++;
+	// }
 	// if (!cwd)
-	// 	exit (1);
-	printf("pwd = %s\n", g_builtin_info.cwd);
+	// 	return (ERROR);
+	// printf("pwd = %s\n", cwd);
 	// free(cwd);
-	exit (0);
+	return (SUCCESS);
 }
 
 /*
