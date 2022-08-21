@@ -60,7 +60,7 @@ static char	**get_env_path(void)
 	return (env_path);
 }
 
-int	set_cmd_fd_and_exec(t_info *info, char **envp, pid_t pid)
+int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 {
 	char		**env_path;
 	char		**cmd;
@@ -84,16 +84,16 @@ int	set_cmd_fd_and_exec(t_info *info, char **envp, pid_t pid)
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		return (ERROR);
 	check_builtin(cmd);
-	execve(cmd_path, cmd, envp);
+	execve(cmd_path, cmd, info->envp);
 	return (ERROR);
 }
 
-int	do_pipes(t_info *info, size_t i, size_t cmd_cnt, char **envp)
+int	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
 {
 	pid_t		pid;
 	int			pipe_fd[2];
 
-	if (check_first_sentence(info, i, cmd_cnt, envp) == ERROR)
+	if (check_first_sentence(info, i, cmd_cnt) == ERROR)
 		exit(ERROR);
 	else
 	{
@@ -102,13 +102,13 @@ int	do_pipes(t_info *info, size_t i, size_t cmd_cnt, char **envp)
 		else if (pid == 0)
 		{
 			set_pipe_fd_1(pipe_fd);
-			if (do_pipes(info, i + 1, cmd_cnt, envp) == ERROR)
+			if (do_pipes(info, i + 1, cmd_cnt) == ERROR)
 				exit(ERROR);
 		}
 		else
 		{
 			set_sentence_lst_and_pipe_fd(info, cmd_cnt, pipe_fd, i);
-			if (set_cmd_fd_and_exec(info, envp, pid) == ERROR)
+			if (set_cmd_fd_and_exec(info, pid) == ERROR)
 				exit(ERROR);
 		}
 	}

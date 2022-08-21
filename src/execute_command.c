@@ -16,14 +16,13 @@ int	execute_command(t_info *info)
 	pid_t			w_pid;
 
 	sentence_lst_tmp = info->sentence_lst;
-	
 	if (fork_and_error_check(&pid) == ERROR)
 		return (ERROR);
 	else if (pid == 0)
 	{
 		set_sig_in_child_process(info);
 		if (do_pipes(info, 0, \
-			ft_sentence_lstsize(info->sentence_lst), info->envp) == ERROR)
+			ft_sentence_lstsize(info->sentence_lst)) == ERROR)
 			exit(ERROR);
 	}
 	else

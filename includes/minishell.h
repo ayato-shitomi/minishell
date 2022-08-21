@@ -198,15 +198,15 @@ int				execute_command(t_info *info);
 
 // do_pipes.c
 int				do_pipes(t_info *info, size_t i, \
-	size_t cmd_cnt, char **envp);
-int				set_cmd_fd_and_exec(t_info *info, char **envp, pid_t pid);
+	size_t cmd_cnt);
+int				set_cmd_fd_and_exec(t_info *info, pid_t pid);
 
 // do_pipes_2.c
 void			set_sentence_lst_and_pipe_fd(t_info *info, \
 	size_t cmd_cnt, int pipe_fd[2], size_t i);
 int				set_pipe_and_fork(int pipe_fd[2], pid_t *pid);
 int				check_first_sentence(t_info *info, size_t i, \
-	size_t cmd_cnt, char **envp);
+	size_t cmd_cnt);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);
