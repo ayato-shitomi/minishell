@@ -3,10 +3,8 @@
 int	ft_cd(char *dir)
 {
 	int		n;
-	char	*cwd_tmp;
+	char	*cwd;
 
-	write(2, "check\n", 6);
-	cwd_tmp = NULL;
 	if (dir == NULL)
 	{
 		n = chdir(getenv("HOME"));
@@ -16,15 +14,13 @@ int	ft_cd(char *dir)
 		n = chdir(dir);
 		if (n == 0)
 		{
-			g_builtin_info.cwd = ft_strjoin_three(g_builtin_info.cwd, "/", dir);
+			cwd = ft_strjoin_three(cwd, "/", dir);
 		}
-		printf("after_cwd = %s\n", g_builtin_info.cwd);
-		// printf("after_biip_cwd = %s\n", g_builtin_info.biip->cwd);
 		ft_pwd();
 	}
 	if (n != 0)
-		exit(ERROR);
-	exit(SUCCESS);
+		return (ERROR);
+	return (SUCCESS);
 }
 
 /*

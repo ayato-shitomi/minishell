@@ -50,14 +50,6 @@
 # define PERM_DENIED "Permission denied"
 # define NO_FILE "No such file or directory"
 
-typedef struct s_builtin_info
-{
-	char					*cwd;
-	// struct s_builtin_info	*biip;
-}	t_builtin_info;
-
-extern t_builtin_info	g_builtin_info;
-
 // ここから構文解析用
 
 typedef struct s_lst
@@ -250,6 +242,9 @@ void			ft_free_p(char *str_env_value_p, char *str_front_p, \
 	char *str_back_p, char *str_p);
 void			ft_free_sentence_lst(t_info *info);
 void			ft_free_cmd(char **cmd);
+
+// ft_free_2.c
+void			free_envp(t_info *info);
 
 // ft_dl_lst.c
 t_token_dl_lst	*ft_dl_lstnew(void *token);

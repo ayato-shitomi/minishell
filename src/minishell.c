@@ -1,7 +1,5 @@
 #include "../includes/minishell.h"
 
-t_builtin_info	g_builtin_info;
-
 static void	exit_ctrl_d(void)
 {
 	printf("exit\n");
@@ -12,6 +10,27 @@ static void	remove_file(void)
 {
 	if (access("tmp.txt", F_OK) == 0)
 		unlink("tmp.txt");
+}
+
+static void	init_envp(t_info *info)
+{
+	extern char	**environ;
+	size_t		env_cnt;
+	size_t		i;
+
+	env_cnt = 0;
+	while (environ[env_cnt])
+		env_cnt++;
+	info->envp = (char **)ft_calloc(env_cnt + 1, sizeof(char *));
+	if (!info->envp)
+		exit(ERROR);
+	i = 0;
+	while (environ[i])
+	{
+		info->envp[i] = ft_strdup(environ[i]);
+		i++;
+	}
+	info->envp[i] = NULL;
 }
 
 static void	init_info(t_info *info)
@@ -25,22 +44,15 @@ static void	init_info(t_info *info)
 	info->sentence_lst = NULL;
 }
 
-int	main(int ac, char **argv, char **envp)
+int	main(void)
 {
 	char	*command;
 	t_info	info;
 
-	if (ac != 1 || !argv)
-		return (ERROR);
 	header();
-	info.envp = envp;
-	// g_builtin_info.biip = &g_builtin_info;
-	g_builtin_info.cwd = getcwd(NULL, 0);
-	// g_builtin_info.biip->cwd = getcwd(NULL, 0);
+	init_envp(&info);
 	while (1)
 	{
-		printf("g_cwd = %s\n", g_builtin_info.cwd);
-		// printf("g_biip_cwd = %s\n", g_builtin_info.biip->cwd);
 		init_info(&info);
 		init_sig(&info);
 		command = readline(PROMPT);
@@ -57,5 +69,6 @@ int	main(int ac, char **argv, char **envp)
 		ft_free_sentence_lst(&info);
 		remove_file();
 	}
+	free_envp(&info);
 	return (SUCCESS);
 }
