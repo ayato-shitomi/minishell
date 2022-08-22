@@ -16,6 +16,13 @@ int	execute_command(t_info *info)
 	pid_t			w_pid;
 
 	sentence_lst_tmp = info->sentence_lst;
+	if (check_builtin(&info->sentence_lst->cmd_lst->str) && \
+		!(info->sentence_lst->next) && info->sentence_lst->cmd_lst)
+	{
+		status = exec_builtin_without_pipe(info); // sig_handlerセットする？？
+		put_exitstatus(WEXITSTATUS(status));
+		return (SUCCESS);
+	}
 	if (fork_and_error_check(&pid) == ERROR)
 		return (ERROR);
 	else if (pid == 0)

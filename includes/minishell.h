@@ -50,6 +50,14 @@
 # define PERM_DENIED "Permission denied"
 # define NO_FILE "No such file or directory"
 
+typedef struct s_env_var_lst
+{
+	struct s_env_var_lst	*prev;
+	struct s_env_var_lst	*next;
+	char					*key;
+	char					*value;
+}	t_env_var_lst; // 双方向線形リスト 環境変数用
+
 // ここから構文解析用
 
 typedef struct s_lst
@@ -94,7 +102,7 @@ typedef struct s_info
 	t_sentence_lst		*sentence_lst;
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
-	char				**envp;
+	t_env_var_lst		*env_var_lst;
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -102,16 +110,24 @@ typedef struct s_info
 /////////////////////////////////////////////////////
 
 // check_builtin.c
-void			check_builtin(char **cmd);
+int				check_builtin(char **cmd);
+int				exec_builtin(t_info *info, char **cmd);
+int				exec_builtin_without_pipe(t_info *info);
 
 // builtin_cd.c
-int				ft_cd(char *dir);
+int				ft_cd(t_info *info);
+
+// builtin_cd_2.c
+int				ft_cd_case_dot1(t_info *info);
+int				ft_cd_case_dot2(t_info *info);
+int				ft_cd_case_relative_path(t_info *info, char *dest_dir);
+int				ft_cd_case_absolute_path(t_info *info);
 
 // builtin_pwd.c
-int				ft_pwd(void);
+int				ft_pwd(t_info *info);
 
 // builtin_exit.c
-void			ft_exit(size_t ac, char **cmd);
+int				ft_exit(size_t ac, char **cmd, t_lst *cmd_lst);
 // void			ft_exit(int argc, char *argv[]);
 
 // utils.c
@@ -129,6 +145,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strcpy(char *dst, char *src);
 
 // utils_3.c
+char			*ft_strchr(const char *str, int chr);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 int				ft_atoi(const char *str);
@@ -136,6 +153,7 @@ int				ft_atoi(const char *str);
 // ft_error.c
 void			error_and_exit(char *error_str_1, char *error_str_2, \
 	int exit_status);
+int				error_and_return(char *cmd, char *arg, char *err_msg);
 
 // parse_command.c
 int				parse_command(char *command, t_info *info);
@@ -207,6 +225,7 @@ void			set_sentence_lst_and_pipe_fd(t_info *info, \
 int				set_pipe_and_fork(int pipe_fd[2], pid_t *pid);
 int				check_first_sentence(t_info *info, size_t i, \
 	size_t cmd_cnt);
+char			**get_envp_in_array(t_info *info);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);
@@ -244,7 +263,7 @@ void			ft_free_sentence_lst(t_info *info);
 void			ft_free_cmd(char **cmd);
 
 // ft_free_2.c
-void			free_envp(t_info *info);
+void			free_env_var_lst(t_info *info);
 
 // ft_dl_lst.c
 t_token_dl_lst	*ft_dl_lstnew(void *token);
@@ -270,6 +289,16 @@ t_lst			*ft_lstnew(void *content);
 void			ft_lstadd_back(t_lst **lst, t_lst *new);
 t_lst			*ft_lstlast(t_lst *lst);
 size_t			ft_lstsize(t_lst *lst);
+
+// ft_env_var_lst.c
+void			init_env_var_lst(t_info *info);
+t_env_var_lst	*ft_env_var_lstnew(char *key, char *value);
+void			ft_env_var_lstadd_back(t_env_var_lst **env_var_lst, \
+	t_env_var_lst *new);
+t_env_var_lst	*ft_env_var_lstlast(t_env_var_lst *env_var_lst);
+
+// ft_env_var_lst_2.c
+size_t			ft_env_var_lstsize(t_env_var_lst *env_var_lst);
 
 // get_next_line.c
 int				get_next_line(int fd, char **line);

@@ -1,11 +1,17 @@
 #include "../includes/minishell.h"
 
-void	free_envp(t_info *info)
+void	free_env_var_lst(t_info *info)
 {
-	size_t	i;
+	t_env_var_lst	*env_var_lst_tmp;
 
-	i = 0;
-	while (info->envp[i])
-		free(info->envp[i++]);
-	free(info->envp);
+	while (info->env_var_lst)
+	{
+		env_var_lst_tmp = info->env_var_lst;
+		if (info->env_var_lst->key)
+			free(info->env_var_lst->key);
+		if (info->env_var_lst->value)
+			free(info->env_var_lst->value);
+		info->env_var_lst = info->env_var_lst->next;
+		free(env_var_lst_tmp);
+	}
 }

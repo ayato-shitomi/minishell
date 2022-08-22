@@ -13,15 +13,28 @@ static int	make_status(char *str)
 }
 
 // void	ft_exit(int argc, char *argv[])
-void	ft_exit(size_t ac, char **cmd)
+int	ft_exit(size_t ac, char **cmd, t_lst *cmd_lst)
 {
 	int	status;
 
-	printf("exit\n");
-	if (ac >= 3)
-		printf("fresh: exit: too many arguments\n");
-	if (!cmd[1])
-		exit(0);
-	status = make_status(cmd[2]);
-	exit(status);
+	status = ERROR;
+	if (cmd)
+	{
+		printf("exit\n");
+		if (ac >= 3)
+			printf("fresh: exit: too many arguments\n");
+		if (!cmd[1])
+			return (0);
+		status = make_status(cmd[1]);
+	}
+	else if (cmd_lst)
+	{
+		printf("exit\n");
+		if (ac >= 3)
+			printf("fresh: exit: too many arguments\n");
+		if (!cmd_lst->next->str)
+			return (0);
+		status = make_status(cmd_lst->next->str);
+	}
+	return (status);
 }

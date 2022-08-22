@@ -67,6 +67,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	char		*cmd_path;
 	pid_t		w_pid;
 	int			status;
+	char		**envp;
 
 	env_path = get_env_path();
 	if (!env_path)
@@ -83,8 +84,13 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	}
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		return (ERROR);
-	check_builtin(cmd);
-	execve(cmd_path, cmd, info->envp);
+	if (check_builtin(cmd))
+	{
+		status = exec_builtin(info, cmd);
+		exit(status);
+	}
+	envp = get_envp_in_array(info);
+	execve(cmd_path, cmd, envp);
 	return (ERROR);
 }
 

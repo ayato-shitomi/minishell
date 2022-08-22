@@ -52,3 +52,21 @@ void	ft_putendl_fd(char *s, int fd)
 	ft_putstr_fd(s, fd);
 	write(fd, "\n", 1);
 }
+
+char	*ft_strchr(const char *str, int chr)
+{
+	char	*result;
+	size_t	i;
+
+	i = 0;
+	result = (char *)str;
+	while (result[i] != '\0')
+	{
+		if (result[i] == (char)chr)
+			return (&result[i]);
+		i++;
+	}
+	if (chr == '\0')
+		return (&result[i]);
+	return (NULL);
+}

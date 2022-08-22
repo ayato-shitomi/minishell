@@ -12,27 +12,6 @@ static void	remove_file(void)
 		unlink("tmp.txt");
 }
 
-static void	init_envp(t_info *info)
-{
-	extern char	**environ;
-	size_t		env_cnt;
-	size_t		i;
-
-	env_cnt = 0;
-	while (environ[env_cnt])
-		env_cnt++;
-	info->envp = (char **)ft_calloc(env_cnt + 1, sizeof(char *));
-	if (!info->envp)
-		exit(ERROR);
-	i = 0;
-	while (environ[i])
-	{
-		info->envp[i] = ft_strdup(environ[i]);
-		i++;
-	}
-	info->envp[i] = NULL;
-}
-
 static void	init_info(t_info *info)
 {
 	info->is_in_dquote = 0;
@@ -50,7 +29,7 @@ int	main(void)
 	t_info	info;
 
 	header();
-	init_envp(&info);
+	init_env_var_lst(&info);
 	while (1)
 	{
 		init_info(&info);
@@ -69,6 +48,6 @@ int	main(void)
 		ft_free_sentence_lst(&info);
 		remove_file();
 	}
-	free_envp(&info);
+	free_env_var_lst(&info);
 	return (SUCCESS);
 }

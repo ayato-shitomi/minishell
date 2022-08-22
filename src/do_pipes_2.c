@@ -1,5 +1,28 @@
 #include "../includes/minishell.h"
 
+char	**get_envp_in_array(t_info *info)
+{
+	char			**envp;
+	t_env_var_lst	*env_var_lst_tmp;
+	size_t			i;
+
+	env_var_lst_tmp = info->env_var_lst;
+	envp = (char **)ft_calloc(ft_env_var_lstsize(info->env_var_lst), \
+		sizeof(char *));
+	if (!envp)
+		exit(ERROR);
+	i = 0;
+	while (info->env_var_lst)
+	{
+		envp[i] = ft_strjoin_three(info->env_var_lst->key, "=", \
+			info->env_var_lst->value);
+		info->env_var_lst = info->env_var_lst->next;
+		i++;
+	}
+	info->env_var_lst = env_var_lst_tmp;
+	return (envp);
+}
+
 int	set_pipe_and_fork(int pipe_fd[2], pid_t *pid)
 {
 	if (pipe_and_error_check(pipe_fd) == ERROR)
