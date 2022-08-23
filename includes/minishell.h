@@ -118,10 +118,20 @@ int				exec_builtin_without_pipe(t_info *info);
 int				ft_cd(t_info *info);
 
 // builtin_cd_2.c
-int				ft_cd_case_dot1(t_info *info);
-int				ft_cd_case_dot2(t_info *info);
-int				ft_cd_case_relative_path(t_info *info, char *dest_dir);
-int				ft_cd_case_absolute_path(t_info *info);
+char			*get_env_value(t_info *info, char *key);
+void			set_env_value(t_info *info, char *env_key, \
+	char *env_value_for_set);
+int				ft_cd_case_absolute_path(t_info *info, char *dest_dir);
+int				ft_cd_case_multiple_relative_paths(t_info *info, \
+	char *dest_dir, size_t delimiter_cnt_for_tilde);
+
+// builtin_cd_3.c
+void			ft_cd_case_branch(t_info *info, char *dest_dir, \
+	size_t delimiter_cnt_for_tilde);
+void			ft_cd_case_tilde(t_info *info);
+void			ft_cd_case_dot1(t_info *info);
+void			ft_cd_case_dot2(t_info *info);
+void			ft_cd_case_each_relative_path(t_info *info, char *dest_dir);
 
 // builtin_pwd.c
 int				ft_pwd(t_info *info);

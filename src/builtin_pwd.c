@@ -11,6 +11,7 @@ int	ft_pwd(t_info *info)
 			ft_strlen(info->env_var_lst->key)) == 0)
 		{
 			printf("%s\n", info->env_var_lst->value);
+			info->env_var_lst = env_var_lst_tmp;
 			return (SUCCESS);
 		}
 		info->env_var_lst = info->env_var_lst->next;

@@ -18,7 +18,8 @@ SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c \
 			src/heredoc_2.c src/ft_error.c src/set_sig_in_each_process.c \
 			src/check_builtin.c src/builtin_cd.c src/builtin_pwd.c \
 			src/builtin_exit.c src/ft_free_2.c src/builtin_cd_2.c \
-			src/ft_env_var_lst.c src/ft_env_var_lst_2.c 
+			src/ft_env_var_lst.c src/ft_env_var_lst_2.c src/builtin_cd_3.c \
+			
 
 OBJS	=	$(SRCS:.c=.o)
 
