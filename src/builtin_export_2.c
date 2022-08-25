@@ -1,11 +1,21 @@
 #include "../includes/minishell.h"
 
-void	ft_print_env(char *key, char *value)
+void	ft_print_env(char *key, char *value, int is_export)
 {
-	if (value)
-		printf("declare -x %s=\"%s\"\n", key, value);
+	if (is_export)
+	{
+		if (value)
+			printf("declare -x %s=\"%s\"\n", key, value);
+		else
+			printf("declare -x %s\n", key);
+	}
 	else
-		printf("declare -x %s\n", key);
+	{
+		if (value)
+			printf("%s=%s\n", key, value);
+		else
+			printf("%s\n", key);
+	}
 }
 
 static int	set_i_for_insert(t_info *info, char *key, char *value, size_t *i)

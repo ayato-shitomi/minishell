@@ -143,14 +143,14 @@ int				ft_export(t_info *info);
 // builtin_export_2.c
 int				ft_export_case_have_arg(t_info *info);
 void			ft_set_env(t_info *info, char *value);
-// void			set_env_case_no_equal(t_info *info);
-// void			set_env_case_have_equal_and_no_value(t_info *info);
-// void			set_env_case_have_equal_and_value(t_info *info, char *value);
-void			ft_print_env(char *key, char *value);
+void			ft_print_env(char *key, char *value, int is_export);
 
 // builtin_exit.c
 int				ft_exit(size_t ac, char **cmd, t_lst *cmd_lst);
 // void			ft_exit(int argc, char *argv[]);
+
+// builtin_env.c
+int				ft_env(t_info *info);
 
 // utils.c
 size_t			ft_strlen(const char *str);

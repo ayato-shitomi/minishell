@@ -20,7 +20,7 @@ SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/utils_4.c \
 			src/builtin_exit.c src/ft_free_2.c src/builtin_cd_2.c \
 			src/ft_env_var_lst.c src/ft_env_var_lst_2.c src/builtin_cd_3.c \
 			src/builtin_export.c src/builtin_export_2.c src/validate.c \
-
+			src/builtin_env.c 
 
 OBJS	=	$(SRCS:.c=.o)
 

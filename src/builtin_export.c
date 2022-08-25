@@ -73,7 +73,7 @@ static int	ft_export_case_no_arg(t_info *info)
 	printf("len = %zu\n", env_var_len); // デバッグ用
 	smallest_key = get_smallest_key(info);
 	smallest_value = get_env_value(info, smallest_key);
-	ft_print_env(smallest_key, smallest_value);
+	ft_print_env(smallest_key, smallest_value, 1);
 	env_var_len--;
 	while (env_var_len--)
 	{
@@ -83,7 +83,7 @@ static int	ft_export_case_no_arg(t_info *info)
 			base_key_in_the_rest);
 		smallest_key = base_key_in_the_rest;
 		smallest_value = get_env_value(info, smallest_key);
-		ft_print_env(smallest_key, smallest_value);
+		ft_print_env(smallest_key, smallest_value, 1);
 	}
 	return (SUCCESS);
 }

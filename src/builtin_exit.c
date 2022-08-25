@@ -42,5 +42,4 @@ int	ft_exit(size_t ac, char **cmd, t_lst *cmd_lst)
 		}
 	}
 	exit(status);
-	// return (status);
 }
