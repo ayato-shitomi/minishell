@@ -101,7 +101,7 @@ char	*get_env_value(t_info *info, char *env_key)
 	{
 		if (ft_strncmp(info->env_var_lst->key, env_key, \
 			ft_strlen(info->env_var_lst->key)) == 0)
-			env_value = ft_strdup(info->env_var_lst->value);
+			env_value = info->env_var_lst->value;
 		info->env_var_lst = info->env_var_lst->next;
 	}
 	info->env_var_lst = env_var_lst_tmp;

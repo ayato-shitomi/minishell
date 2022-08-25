@@ -49,6 +49,7 @@
 # define E_STATUS_CNF 127
 # define PERM_DENIED "Permission denied"
 # define NO_FILE "No such file or directory"
+# define NOT_VI "not a valid identifier"
 
 typedef struct s_env_var_lst
 {
@@ -110,7 +111,7 @@ typedef struct s_info
 /////////////////////////////////////////////////////
 
 // check_builtin.c
-int				check_builtin(char **cmd);
+int				check_builtin(char **cmd, int is_in_pipe);
 int				exec_builtin(t_info *info, char **cmd);
 int				exec_builtin_without_pipe(t_info *info);
 
@@ -136,6 +137,17 @@ void			ft_cd_case_each_relative_path(t_info *info, char *dest_dir);
 // builtin_pwd.c
 int				ft_pwd(t_info *info);
 
+// builtin_export.c
+int				ft_export(t_info *info);
+
+// builtin_export_2.c
+int				ft_export_case_have_arg(t_info *info);
+void			ft_set_env(t_info *info, char *value);
+// void			set_env_case_no_equal(t_info *info);
+// void			set_env_case_have_equal_and_no_value(t_info *info);
+// void			set_env_case_have_equal_and_value(t_info *info, char *value);
+void			ft_print_env(char *key, char *value);
+
 // builtin_exit.c
 int				ft_exit(size_t ac, char **cmd, t_lst *cmd_lst);
 // void			ft_exit(int argc, char *argv[]);
@@ -159,6 +171,9 @@ char			*ft_strchr(const char *str, int chr);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 int				ft_atoi(const char *str);
+
+// utils_4.c
+int				ft_isalnum(int n);
 
 // ft_error.c
 void			error_and_exit(char *error_str_1, char *error_str_2, \
@@ -275,6 +290,9 @@ void			ft_free_cmd(char **cmd);
 // ft_free_2.c
 void			free_env_var_lst(t_info *info);
 
+// validate.c
+int				validate_arg_at_ft_export(t_info *info);
+
 // ft_dl_lst.c
 t_token_dl_lst	*ft_dl_lstnew(void *token);
 void			ft_dl_lstadd_back(t_token_dl_lst **dl_lst, t_token_dl_lst *new);
@@ -309,6 +327,8 @@ t_env_var_lst	*ft_env_var_lstlast(t_env_var_lst *env_var_lst);
 
 // ft_env_var_lst_2.c
 size_t			ft_env_var_lstsize(t_env_var_lst *env_var_lst);
+void			ft_env_var_lstinsert(t_info *info, t_env_var_lst *new, \
+	t_env_var_lst *env_var_lst_tmp, size_t i);
 
 // get_next_line.c
 int				get_next_line(int fd, char **line);

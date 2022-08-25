@@ -84,7 +84,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	}
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		return (ERROR);
-	if (check_builtin(cmd))
+	if (check_builtin(cmd, 1))
 	{
 		status = exec_builtin(info, cmd);
 		exit(status);

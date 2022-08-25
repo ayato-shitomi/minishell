@@ -39,6 +39,8 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 		status = ft_pwd(info);
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "exit\0", 5) == 0)
 		status = ft_exit(ac, NULL, info->sentence_lst->cmd_lst);
+	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "export\0", 7) == 0)
+		status = ft_export(info);
 	return (status);
 }
 
@@ -55,14 +57,27 @@ int	exec_builtin(t_info *info, char **cmd)
 		status = ft_pwd(info);
 	else if (ft_strncmp(cmd[0], "exit\0", 5) == 0)
 		status = ft_exit(ac, cmd, NULL);
+	else if (ft_strncmp(cmd[0], "export\0", 7) == 0)
+		status = ft_export(info);
 	return (status);
 }
 
-int	check_builtin(char **cmd)
+int	check_builtin(char **cmd, int is_in_pipe)
 {
-	if ((ft_strncmp(cmd[0], "cd\0", 3) == 0) || \
+	if (is_in_pipe)
+	{
+		if ((ft_strncmp(cmd[0], "cd\0", 3) == 0) || \
 		(ft_strncmp(cmd[0], "pwd\0", 4) == 0) || \
-		(ft_strncmp(cmd[0], "exit\0", 5) == 0))
-		return (1);
+		(ft_strncmp(cmd[0], "export\0", 7) == 0))
+			return (1);
+	}
+	else
+	{
+		if ((ft_strncmp(cmd[0], "cd\0", 3) == 0) || \
+		(ft_strncmp(cmd[0], "pwd\0", 4) == 0) || \
+		(ft_strncmp(cmd[0], "exit\0", 5) == 0) || \
+		(ft_strncmp(cmd[0], "export\0", 7) == 0))
+			return (1);
+	}
 	return (0);
 }
