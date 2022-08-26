@@ -1,5 +1,31 @@
 #include "../includes/minishell.h"
 
+void	init_and_set_fd_for_restore(t_info *info, int n)
+{
+	if (info->fd_in_restore_flag)
+	{
+		dup2(info->fd_for_restore, 0);
+		close(info->fd_for_restore);
+		info->fd_in_restore_flag = 0;
+	}
+	else if (info->fd_out_restore_flag)
+	{
+		dup2(info->fd_for_restore, 1);
+		close(info->fd_for_restore);
+		info->fd_out_restore_flag = 0;
+	}
+	if (n == 0)
+	{
+		info->fd_for_restore = dup(n);
+		info->fd_in_restore_flag = 1;
+	}
+	else if (n == 1)
+	{
+		info->fd_for_restore = dup(n);
+		info->fd_out_restore_flag = 1;
+	}
+}
+
 int	set_fd_case_red_right_two(t_info *info)
 {
 	int	fd_out;
@@ -19,6 +45,7 @@ int	set_fd_case_red_right_two(t_info *info)
 		perror(SHELLNAME);
 		return (ERROR);
 	}
+	init_and_set_fd_for_restore(info, 1);
 	dup2(fd_out, 1);
 	close(fd_out);
 	return (SUCCESS);
@@ -45,6 +72,7 @@ int	set_fd_case_red_right_one(t_info *info)
 		perror(SHELLNAME);
 		return (ERROR);
 	}
+	init_and_set_fd_for_restore(info, 1);
 	dup2(fd_out, 1);
 	close(fd_out);
 	return (SUCCESS);
@@ -68,6 +96,7 @@ int	set_fd_case_red_left_one(t_info *info)
 		perror(SHELLNAME);
 		exit(ERROR);
 	}
+	init_and_set_fd_for_restore(info, 0);
 	dup2(fd_in, 0);
 	close(fd_in);
 	return (SUCCESS);

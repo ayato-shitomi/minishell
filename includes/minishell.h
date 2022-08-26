@@ -104,6 +104,9 @@ typedef struct s_info
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
 	t_env_var_lst		*env_var_lst;
+	int					fd_for_restore;
+	int					fd_in_restore_flag;
+	int					fd_out_restore_flag;
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -144,6 +147,9 @@ int				ft_export(t_info *info);
 int				ft_export_case_have_arg(t_info *info);
 void			ft_set_env(t_info *info, char *value);
 void			ft_print_env(char *key, char *value, int is_export);
+
+// builtin_echo.c
+int				ft_echo(char *str, bool flag_n);
 
 // builtin_exit.c
 int				ft_exit(size_t ac, char **cmd, t_lst *cmd_lst);
@@ -261,6 +267,7 @@ void			set_sig_in_parent_process(t_info *info);
 int				set_fd_by_redirect_lst(t_info *info);
 
 // set_fd_by_redirect_lst_2.c
+void			init_and_set_fd_for_restore(t_info *info, int n);
 int				set_fd_case_red_left_one(t_info *info);
 int				set_fd_case_red_right_one(t_info *info);
 int				set_fd_case_red_right_two(t_info *info);

@@ -21,6 +21,8 @@ static void	init_info(t_info *info)
 	info->parsed_command = NULL;
 	info->split_command = NULL;
 	info->sentence_lst = NULL;
+	info->fd_in_restore_flag = 0;
+	info->fd_out_restore_flag = 0;
 }
 
 int	main(void)

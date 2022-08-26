@@ -31,7 +31,7 @@ static char	ft_put_esc(char c)
 static void echo(char *str)
 {
 	int n;
-	char	*c;
+	// char	*c;
 
 	n = 0;
 	while (str[n])

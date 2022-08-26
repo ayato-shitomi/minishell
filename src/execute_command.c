@@ -1,11 +1,38 @@
 #include "../includes/minishell.h"
 
+static void	init_and_close_fd_for_restore(t_info *info)
+{
+	if (info->fd_in_restore_flag)
+	{
+		dup2(info->fd_for_restore, 0);
+		close(info->fd_for_restore);
+		info->fd_in_restore_flag = 0;
+	}
+	else if (info->fd_out_restore_flag)
+	{
+		dup2(info->fd_for_restore, 1);
+		close(info->fd_for_restore);
+		info->fd_out_restore_flag = 0;
+	}
+}
+
 void	put_exitstatus(int n)
 {
 	if (n != 0)
 		printf("\x1b[31m[%d]\x1b[0m ", n);
 	else
 		printf("\x1b[32m[%d]\x1b[0m ", n);
+}
+
+static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
+{
+	int	status;
+
+	set_fd_by_redirect_lst(info);
+	status = exec_builtin_without_pipe(info); // sig_handler セットする？
+	init_and_close_fd_for_restore(info);
+	put_exitstatus(WEXITSTATUS(status));
+	return (status);
 }
 
 int	execute_command(t_info *info)
@@ -19,8 +46,7 @@ int	execute_command(t_info *info)
 	if (check_builtin(&info->sentence_lst->cmd_lst->str, 0) && \
 		!(info->sentence_lst->next) && info->sentence_lst->cmd_lst)
 	{
-		status = exec_builtin_without_pipe(info); // sig_handlerセットする？？
-		put_exitstatus(WEXITSTATUS(status));
+		status = set_fd_and_exec_builtin_without_pipe(info);
 		return (SUCCESS);
 	}
 	if (fork_and_error_check(&pid) == ERROR)
