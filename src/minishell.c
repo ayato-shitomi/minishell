@@ -45,10 +45,10 @@ int	main(void)
 				exit(ERROR);
 			add_history(command);
 		}
+		remove_file();
 		free(command);
 		ft_free_token_dl_lst(&info);
 		ft_free_sentence_lst(&info);
-		remove_file();
 	}
 	free_env_var_lst(&info);
 	return (SUCCESS);

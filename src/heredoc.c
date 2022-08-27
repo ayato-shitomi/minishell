@@ -22,11 +22,11 @@ int	heredoc(t_info *info)
 	set_continue_flag(info->sentence_lst, &continue_flag);
 	if (pipe_and_error_check(heredoc_pipe_fd) == ERROR)
 		return (ERROR);
-	// init_and_set_fd_for_restore(info, 0);
 	if (fork_and_error_check(&heredoc_pid) == ERROR)
 		return (ERROR);
 	else if (heredoc_pid == 0)
 	{
+		init_and_set_fd_for_restore(info, 0);
 		set_pipe_fd_0(heredoc_pipe_fd);
 		if (continue_flag == 1)
 			exit(SUCCESS);

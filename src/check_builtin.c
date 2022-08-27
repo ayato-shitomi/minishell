@@ -76,26 +76,14 @@ int	exec_builtin(t_info *info, char **cmd)
 	return (status);
 }
 
-int	check_builtin(char **cmd, int is_in_pipe)
+int	check_builtin(char **cmd)
 {
-	if (is_in_pipe)
-	{
-		if ((ft_strncmp(cmd[0], "cd\0", 3) == 0) || \
-		(ft_strncmp(cmd[0], "pwd\0", 4) == 0) || \
-		(ft_strncmp(cmd[0], "pwd\0", 4) == 0) || \
-		(ft_strncmp(cmd[0], "echo\0", 5) == 0) || \
-		(ft_strncmp(cmd[0], "export\0", 7) == 0))
-			return (1);
-	}
-	else
-	{
-		if ((ft_strncmp(cmd[0], "cd\0", 3) == 0) || \
-		(ft_strncmp(cmd[0], "pwd\0", 4) == 0) || \
-		(ft_strncmp(cmd[0], "env\0", 4) == 0) || \
-		(ft_strncmp(cmd[0], "echo\0", 5) == 0) || \
-		(ft_strncmp(cmd[0], "exit\0", 5) == 0) || \
-		(ft_strncmp(cmd[0], "export\0", 7) == 0))
-			return (1);
-	}
+	if ((ft_strncmp(cmd[0], "cd\0", 3) == 0) || \
+	(ft_strncmp(cmd[0], "pwd\0", 4) == 0) || \
+	(ft_strncmp(cmd[0], "env\0", 4) == 0) || \
+	(ft_strncmp(cmd[0], "echo\0", 5) == 0) || \
+	(ft_strncmp(cmd[0], "exit\0", 5) == 0) || \
+	(ft_strncmp(cmd[0], "export\0", 7) == 0))
+		return (1);
 	return (0);
 }

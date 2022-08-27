@@ -1,20 +1,20 @@
 #include "../includes/minishell.h"
 
-static void	init_and_close_fd_for_restore(t_info *info)
-{
-	if (info->fd_in_restore_flag)
-	{
-		dup2(info->fd_for_restore, 0);
-		close(info->fd_for_restore);
-		info->fd_in_restore_flag = 0;
-	}
-	else if (info->fd_out_restore_flag)
-	{
-		dup2(info->fd_for_restore, 1);
-		close(info->fd_for_restore);
-		info->fd_out_restore_flag = 0;
-	}
-}
+// static void	init_and_close_fd_for_restore(t_info *info)
+// {
+// 	if (info->fd_in_restore_flag)
+// 	{
+// 		dup2(info->fd_for_restore, 0);
+// 		close(info->fd_for_restore);
+// 		info->fd_in_restore_flag = 0;
+// 	}
+// 	else if (info->fd_out_restore_flag)
+// 	{
+// 		dup2(info->fd_for_restore, 1);
+// 		close(info->fd_for_restore);
+// 		info->fd_out_restore_flag = 0;
+// 	}
+// }
 
 void	put_exitstatus(int n)
 {
@@ -29,8 +29,11 @@ static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 	int	status;
 
 	set_fd_by_redirect_lst(info);
+	sleep(10);
 	status = exec_builtin_without_pipe(info); // sig_handler セットする？
-	init_and_close_fd_for_restore(info);
+	init_and_set_fd_for_restore(info, 2);
+	// init_and_close_fd_for_restore(info);
+	write(2, "check\n", 6);
 	put_exitstatus(WEXITSTATUS(status));
 	return (status);
 }
@@ -43,7 +46,7 @@ int	execute_command(t_info *info)
 	pid_t			w_pid;
 
 	sentence_lst_tmp = info->sentence_lst;
-	if (check_builtin(&info->sentence_lst->cmd_lst->str, 0) && \
+	if (check_builtin(&info->sentence_lst->cmd_lst->str) && \
 		!(info->sentence_lst->next) && info->sentence_lst->cmd_lst)
 	{
 		status = set_fd_and_exec_builtin_without_pipe(info);

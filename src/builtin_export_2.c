@@ -13,8 +13,6 @@ void	ft_print_env(char *key, char *value, int is_export)
 	{
 		if (value)
 			printf("%s=%s\n", key, value);
-		else
-			printf("%s\n", key);
 	}
 }
 

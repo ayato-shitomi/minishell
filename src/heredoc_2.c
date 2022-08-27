@@ -71,9 +71,13 @@ int	heredoc_parent_process(t_info *info, int heredoc_pipe_fd[2], \
 		return (ERROR);
 	while (flag == 1)
 	{
+		write(2, "check_2\n", 8);
+		// init_and_set_fd_for_restore(info, 0);
 		flag = get_next_line(0, &line);
+		// init_and_set_fd_for_restore(info, 2);
 		if (flag_check(flag) == ERROR)
 			return (ERROR);
+		write(2, "check_3\n", 8);
 		cat_line = set_cat_line(info->sentence_lst, cat_line, line);
 		if (ft_strncmp(line, info->sentence_lst->redirect_lst->str, \
 			ft_strlen(info->sentence_lst->redirect_lst->str)) == 0)

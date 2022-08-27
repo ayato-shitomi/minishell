@@ -114,7 +114,7 @@ typedef struct s_info
 /////////////////////////////////////////////////////
 
 // check_builtin.c
-int				check_builtin(char **cmd, int is_in_pipe);
+int				check_builtin(char **cmd);
 int				exec_builtin(t_info *info, char **cmd);
 int				exec_builtin_without_pipe(t_info *info);
 
