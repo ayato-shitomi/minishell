@@ -41,7 +41,8 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 		status = ft_env(info);
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "echo\0", 5) == 0)
 	{
-		status = ft_echo(info->sentence_lst->cmd_lst->next->str, false); //
+		status = ft_echo(info);
+		// status = ft_echo(info->sentence_lst->cmd_lst->next->str, false); //
 	}
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "exit\0", 5) == 0)
 		status = ft_exit(ac, NULL, info->sentence_lst->cmd_lst);
@@ -68,7 +69,9 @@ int	exec_builtin(t_info *info, char **cmd)
 	{
 		// if (ft_strncmp(cmd[1], "-n", ft_strlen(cmd[1])) == 0)
 		// 	status = ft_echo(cmd[0], );
-		status = ft_echo(cmd[1], false); //
+		// status = ft_echo(cmd[1], false); //
+		// tatus = ft_echo(cmd[1]);
+		printf(" >> DO NOTHING << \n");
 	}
 	else if (ft_strncmp(cmd[0], "exit\0", 5) == 0)
 		status = ft_exit(ac, cmd, NULL);
