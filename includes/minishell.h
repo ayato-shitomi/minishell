@@ -149,7 +149,8 @@ void			ft_set_env(t_info *info, char *value);
 void			ft_print_env(char *key, char *value, int is_export);
 
 // builtin_echo.c
-int				ft_echo(char *str, bool flag_n);
+//int				ft_echo(char *str, bool flag_n);
+int					ft_echo(t_info *info);
 
 // builtin_exit.c
 int				ft_exit(size_t ac, char **cmd, t_lst *cmd_lst);
