@@ -48,6 +48,8 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 		status = ft_exit(ac, NULL, info->sentence_lst->cmd_lst);
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "export\0", 7) == 0)
 		status = ft_export(info);
+	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "unset\0", 6) == 0)
+		status = ft_unset(info);
 	return (status);
 }
 
