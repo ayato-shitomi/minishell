@@ -47,6 +47,7 @@
 # define BUFFER_SIZE 1
 # define CMD_NOT_FOUND "command not found"
 # define E_STATUS_CNF 127
+# define E_STATUS_SYN_ERR 258
 # define PERM_DENIED "Permission denied"
 # define NO_FILE "No such file or directory"
 # define NOT_VI "not a valid identifier"
@@ -107,6 +108,8 @@ typedef struct s_info
 	int					fd_for_restore;
 	int					fd_in_restore_flag;
 	int					fd_out_restore_flag;
+	int					red_left_after_right_flag;
+	int					exit_status;
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -275,6 +278,8 @@ int				set_fd_case_red_right_two(t_info *info);
 
 // heredoc.c
 int				heredoc(t_info *info);
+void			set_continue_flag(t_sentence_lst *sentence_lst, \
+	int *continue_flag);
 
 // heredoc_2.c
 int				heredoc_parent_process(t_info *info, \

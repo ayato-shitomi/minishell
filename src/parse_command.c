@@ -29,7 +29,10 @@ int	parse_command(char *command, t_info *info)
 	// ここまでデバッグ用
 	syntax_analysis(info);
 	if (check_syntax_error(info) == ERROR)
+	{
+		info->exit_status = E_STATUS_SYN_ERR;
 		return (ERROR);
+	}
 	expand_env_var(info);
 	// ここからデバッグ用
 	// sentence_lst_tmp = info->sentence_lst;
