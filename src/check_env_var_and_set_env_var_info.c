@@ -34,6 +34,7 @@ static void	set_env_var_info(t_info *info, t_lst *lst, size_t *i)
 	size_t	len;
 	t_lst	*env_var_lst;
 
+	printf("lst_str = %s\n", lst->str);
 	len = 0;
 	*i += 1;
 	i_tmp = *i;
@@ -70,6 +71,8 @@ void	check_env_var_and_set_env_var_info(t_info *info, t_lst *lst)
 				{
 					if (lst->str[i + 1] != '?')
 						set_env_var_info(info, lst, &i);
+					// else
+					// 	set_exit_status(info, lst, &i);
 				}
 			}
 			i++;

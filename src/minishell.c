@@ -23,6 +23,7 @@ static void	init_info(t_info *info)
 	info->sentence_lst = NULL;
 	info->fd_in_restore_flag = 0;
 	info->fd_out_restore_flag = 0;
+	info->red_left_after_right_flag = 0;
 }
 
 int	main(void)
@@ -31,9 +32,11 @@ int	main(void)
 	t_info	info;
 
 	header();
+	info.exit_status = 0;
 	init_env_var_lst(&info);
 	while (1)
 	{
+		printf("e_status = %d\n", info.exit_status);
 		init_info(&info);
 		init_sig(&info);
 		command = readline(PROMPT);
@@ -41,14 +44,14 @@ int	main(void)
 			exit_ctrl_d();
 		else if (ft_strlen(command) > 0)
 		{
-			if (parse_command(command, &info) == ERROR)
-				exit(ERROR);
+			parse_command(command, &info);
+				// exit(ERROR);
 			add_history(command);
 		}
+		remove_file();
 		free(command);
 		ft_free_token_dl_lst(&info);
 		ft_free_sentence_lst(&info);
-		remove_file();
 	}
 	free_env_var_lst(&info);
 	return (SUCCESS);

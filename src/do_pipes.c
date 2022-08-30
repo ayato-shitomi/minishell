@@ -5,6 +5,11 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	size_t	i;
 	char	*cmd_path;
 
+	if (check_builtin(cmd))
+	{
+		cmd_path = ft_strdup(cmd[0]);
+		return (cmd_path);
+	}
 	i = 0;
 	while (env_path[i])
 	{
@@ -73,7 +78,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	if (!env_path)
 		exit(ERROR);
 	cmd = set_cmd_in_cmd_lst(info);
-	cmd_path = get_cmd_path(env_path, cmd); // ビルトインの場合cmd_pathを取得しないように変更する!
+	cmd_path = get_cmd_path(env_path, cmd);
 	if (!cmd_path)
 		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
 	if (pid > 0)
@@ -84,7 +89,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	}
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		return (ERROR);
-	if (check_builtin(cmd, 1))
+	if (check_builtin(cmd))
 	{
 		status = exec_builtin(info, cmd);
 		exit(status);
