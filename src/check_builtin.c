@@ -49,7 +49,9 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "export\0", 7) == 0)
 		status = ft_export(info);
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "unset\0", 6) == 0)
+	{
 		status = ft_unset(info);
+	}
 	return (status);
 }
 
@@ -79,6 +81,8 @@ int	exec_builtin(t_info *info, char **cmd)
 		status = ft_exit(ac, cmd, NULL);
 	else if (ft_strncmp(cmd[0], "export\0", 7) == 0)
 		status = ft_export(info);
+	else if (ft_strncmp(cmd[0], "unset\0", 6) == 0)
+		status = ft_unset(info);
 	return (status);
 }
 

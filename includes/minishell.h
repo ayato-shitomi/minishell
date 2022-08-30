@@ -140,6 +140,10 @@ void			ft_cd_case_each_relative_path(t_info *info, char *dest_dir);
 // builtin_pwd.c
 int				ft_pwd(t_info *info);
 
+// builtin_unset.c
+
+int				ft_unset(t_info *info);
+
 // builtin_export.c
 int				ft_export(t_info *info);
 
