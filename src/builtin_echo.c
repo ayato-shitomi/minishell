@@ -94,7 +94,7 @@ int	ft_echo(t_info *info)
 	}
 	while (p)
 	{
-		// printf("TOKEN > %d\n", p->token_type);
+		//printf("\nTOKEN > %d\n", p->token_type);
 		echo(p->str);
 		p = p->next;
 		if (p)
