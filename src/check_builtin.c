@@ -46,6 +46,8 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 	}
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "exit\0", 5) == 0)
 		status = ft_exit(ac, NULL, info->sentence_lst->cmd_lst);
+	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "unset\0", 6) == 0)
+		status = ft_unset(info);
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "export\0", 7) == 0)
 		status = ft_export(info);
 	// else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "unset\0", 6) == 0)
@@ -77,6 +79,8 @@ int	exec_builtin(t_info *info, char **cmd)
 	}
 	else if (ft_strncmp(cmd[0], "exit\0", 5) == 0)
 		status = ft_exit(ac, cmd, NULL);
+	else if (ft_strncmp(cmd[0], "unset\0", 6) == 0)
+		status = ft_unset(info);
 	else if (ft_strncmp(cmd[0], "export\0", 7) == 0)
 		status = ft_export(info);
 	return (status);
@@ -89,6 +93,7 @@ int	check_builtin(char **cmd)
 	(ft_strncmp(cmd[0], "env\0", 4) == 0) || \
 	(ft_strncmp(cmd[0], "echo\0", 5) == 0) || \
 	(ft_strncmp(cmd[0], "exit\0", 5) == 0) || \
+	(ft_strncmp(cmd[0], "unset\0", 6) == 0) || \
 	(ft_strncmp(cmd[0], "export\0", 7) == 0))
 		return (1);
 	return (0);
