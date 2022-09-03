@@ -36,7 +36,7 @@ int	main(void)
 	init_env_var_lst(&info);
 	while (1)
 	{
-		printf("e_status = %d\n", info.exit_status);
+		//printf("e_status = %d\n", info.exit_status);
 		init_info(&info);
 		init_sig(&info);
 		command = readline(PROMPT);

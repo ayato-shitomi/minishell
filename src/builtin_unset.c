@@ -1,5 +1,6 @@
 #include "../includes/minishell.h"
 
+/*
 static void	show_env(t_env_var_lst *a)
 {
 	t_env_var_lst	*nxt;
@@ -14,6 +15,7 @@ static void	show_env(t_env_var_lst *a)
 	printf("============================================\n");
 	return ;
 }
+*/
 
 static int	ft_is_same(char *s1, char *s2)
 {
@@ -34,8 +36,17 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 		if (ft_is_same(nxt->key, key) == 0)
 		{
 			printf(" %s \t %s\n", nxt->key, nxt->value);
+			if (nxt->next != NULL)
+			{
+				nxt->key = nxt->next->key;
+				nxt->value = nxt->next->value;
+				nxt->next = nxt->next->next;
+			}
+			else
+				nxt = NULL;
 		}
-		nxt = nxt->next;
+		else
+			nxt = nxt->next;
 	}
 	return ;
 }
@@ -45,13 +56,12 @@ int	ft_unset(t_info *info)
 
 	char	*key;
 
+	if (!info->sentence_lst->cmd_lst->next)
+		return (0);
 	key = info->sentence_lst->cmd_lst->next->str;
 	//printf("DBG > %s\n", key);
-
-	show_env(info->env_var_lst);
-
+	//show_env(info->env_var_lst);
 	delete_env(info->env_var_lst, key);
-
-	show_env(info->env_var_lst);
+	//show_env(info->env_var_lst);
 	return (0);
 }
