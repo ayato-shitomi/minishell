@@ -361,3 +361,48 @@ BashでExportが動かない、Zshでコマンドが受け渡せていない
 #### 残りタスク
 
 残りタスクを洗い出すために、DiscordのToDoにどんどん書き込むことにします。
+
+
+### 9/5 13:00~
+
+#### unset
+
+- デバッグ用のSTDOUTを削除する。
+- メモリーリークしてると思うから治す
+
+#### BashとZsh
+
+- 一応解決した
+
+#### リーク関係
+
+`-fsanitize=address`で処理すれば、リーク箇所がわかりやすい。
+
+BashでExportはサニタイザーなくても落ちるから、対応すべき。
+```
+==6362==Hint: address points to the zero page.
+    #0 0x10c3a80f0 in ft_strncmp (minishell:x86_64+0x1000010f0)
+    #1 0x10c3c7b80 in get_env_value (minishell:x86_64+0x100020b80)
+    #2 0x10c3ca102 in ft_export_case_no_arg (minishell:x86_64+0x100023102)
+    #3 0x10c3c9f90 in ft_export (minishell:x86_64+0x100022f90)
+    #4 0x10c3c5b78 in exec_builtin_without_pipe (minishell:x86_64+0x10001eb78)
+    #5 0x10c3ab1b9 in set_fd_and_exec_builtin_without_pipe (minishell:x86_64+0x1000041b9)
+    #6 0x10c3aad7f in execute_command (minishell:x86_64+0x100003d7f)
+    #7 0x10c3aa1c5 in parse_command (minishell:x86_64+0x1000031c5)
+    #8 0x10c3a7b91 in main (minishell:x86_64+0x100000b91)
+    #9 0x7fff644783d4 in start (libdyld.dylib:x86_64+0x163d4)
+```
+
+#### 対応済み
+
+- 終了ステータス
+- 構文解析
+- export
+- echo, unset
+
+#### 次の作業
+
+- テスター作成
+- export対応
+
+### 9/9 15:00~
