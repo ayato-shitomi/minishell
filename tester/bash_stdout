@@ -1,0 +1,14 @@
+total 168
+drwxr-xr-x   13 ashitomi  2020    416 Sep  5 22:06 .
+drwx------   17 ashitomi  2020    544 Sep  5 22:49 ..
+drwxr-xr-x   15 ashitomi  2020    480 Sep  5 21:06 .git
+drwxr-xr-x    6 ashitomi  2020    192 Sep  5 13:03 .vscode
+-rwxr-xr-x    1 ashitomi  2020   1933 Sep  5 13:16 Makefile
+-rwxr-xr-x    1 ashitomi  2020  11101 Sep  5 13:24 README.md
+-rw-r--r--    1 ashitomi  2020      6 Sep  5 22:04 bash_stdout
+drwxr-xr-x    3 ashitomi  2020     96 Sep  5 13:03 includes
+-rwxr-xr-x    1 ashitomi  2020  60872 Sep  5 21:25 minishell
+-rw-r--r--    1 ashitomi  2020      1 Sep  5 22:25 result.log
+drwxr-xr-x  118 ashitomi  2020   3776 Sep  5 21:25 src
+drwxr-xr-x    4 ashitomi  2020    128 Aug 18 14:53 subject
+drwxr-xr-x    9 ashitomi  2020    288 Sep  5 22:57 tester
