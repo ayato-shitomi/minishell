@@ -19,7 +19,7 @@ static int	ft_cd_case_null(t_info *info)
 		set_env_value(info, "PWD", home_value);
 	}
 	else
-		error_and_return("cd", home_value, strerror(errno));
+		n = error_and_return("cd", home_value, strerror(errno));
 	return (n);
 }
 

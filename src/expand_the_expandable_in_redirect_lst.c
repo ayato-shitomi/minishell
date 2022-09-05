@@ -35,8 +35,8 @@ static void	set_p_1_in_redirect_lst(t_info *info, char **str_env_value_p)
 	size_t	j;
 	size_t	env_var_value_len;
 
-	info->sentence_lst->env_var_lst->value = \
-			getenv(info->sentence_lst->env_var_lst->key);
+	// info->sentence_lst->env_var_lst->value = \
+	// 		getenv(info->sentence_lst->env_var_lst->key);
 	if (info->sentence_lst->env_var_lst->value)
 		env_var_value_len = ft_strlen(info->sentence_lst->env_var_lst->value);
 	else

@@ -7,7 +7,7 @@ char	**get_envp_in_array(t_info *info)
 	size_t			i;
 
 	env_var_lst_tmp = info->env_var_lst;
-	envp = (char **)ft_calloc(ft_env_var_lstsize(info->env_var_lst), \
+	envp = (char **)ft_calloc(ft_env_var_lstsize(info->env_var_lst) + 1, \
 		sizeof(char *));
 	if (!envp)
 		exit(ERROR);
@@ -19,6 +19,7 @@ char	**get_envp_in_array(t_info *info)
 		info->env_var_lst = info->env_var_lst->next;
 		i++;
 	}
+	envp[i] = NULL;
 	info->env_var_lst = env_var_lst_tmp;
 	return (envp);
 }

@@ -40,20 +40,13 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "env\0", 4) == 0)
 		status = ft_env(info);
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "echo\0", 5) == 0)
-	{
 		status = ft_echo(info);
-		// status = ft_echo(info->sentence_lst->cmd_lst->next->str, false); //
-	}
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "exit\0", 5) == 0)
 		status = ft_exit(ac, NULL, info->sentence_lst->cmd_lst);
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "unset\0", 6) == 0)
-	{
 		status = ft_unset(info);
-	}
 	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "export\0", 7) == 0)
 		status = ft_export(info);
-	// else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "unset\0", 6) == 0)
-	// 	status = ft_unset(info);
 	return (status);
 }
 

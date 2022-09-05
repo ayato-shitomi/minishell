@@ -37,7 +37,7 @@ int	ft_cd_case_multiple_relative_paths(t_info *info, char *dest_dir, \
 			delimiter_cnt_for_tilde);
 	}
 	else
-		error_and_return("cd", dest_dir, strerror(errno));
+		n = error_and_return("cd", dest_dir, strerror(errno));
 	info->env_var_lst = env_var_lst_tmp;
 	return (n);
 }
@@ -65,7 +65,7 @@ int	ft_cd_case_absolute_path(t_info *info, char *dest_dir)
 		set_env_value(info, "PWD", dest_dir);
 	}
 	else
-		error_and_return("cd", dest_dir, strerror(errno));
+		n = error_and_return("cd", dest_dir, strerror(errno));
 	info->env_var_lst = env_var_lst_tmp;
 	return (n);
 }

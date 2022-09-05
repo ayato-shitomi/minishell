@@ -1,25 +1,5 @@
 #include "../includes/minishell.h"
 
-static int	check_syntax_error_2(t_sentence_lst *sentence_lst)
-{
-	char	*err_message;
-	char	*err_str;
-
-	if (!sentence_lst->cmd_lst && !sentence_lst->redirect_lst && \
-		sentence_lst->next)
-	{
-		err_str = ft_strjoin_three("`", "|", "\'");
-		err_message = \
-		ft_strjoin("bash: syntax error near unexpected token ", \
-		err_str);
-		free(err_str);
-		ft_putendl_fd(err_message, STDERR_FILENO);
-		free(err_message);
-		return (ERROR);
-	}
-	return (SUCCESS);
-}
-
 static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
 {
 	char	*err_message;
@@ -65,6 +45,26 @@ static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
 		sentence_lst->redirect_lst = sentence_lst->redirect_lst->next;
 	}
 	sentence_lst->redirect_lst = redirect_lst_tmp;
+	return (SUCCESS);
+}
+
+static int	check_syntax_error_2(t_sentence_lst *sentence_lst)
+{
+	char	*err_message;
+	char	*err_str;
+
+	if (!sentence_lst->cmd_lst && !sentence_lst->redirect_lst && \
+		sentence_lst->next)
+	{
+		err_str = ft_strjoin_three("`", "|", "\'");
+		err_message = \
+		ft_strjoin("bash: syntax error near unexpected token ", \
+		err_str);
+		free(err_str);
+		ft_putendl_fd(err_message, STDERR_FILENO);
+		free(err_message);
+		return (ERROR);
+	}
 	return (SUCCESS);
 }
 

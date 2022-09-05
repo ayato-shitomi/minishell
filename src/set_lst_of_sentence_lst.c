@@ -3,12 +3,44 @@
 static int	set_lst_case_branch(t_info *info, int flag)
 {
 	t_lst			*lst;
+	int				continue_flag;
+	int				flag_quote_after_env;
+	int				env_set_flag;
 
-	while (info->token_dl_lst->is_cat_with_next)
-		ft_dl_lstcat(info);
-	lst = ft_lstnew(info->token_dl_lst->token);
-	set_lst_info(info, lst, flag);
-	check_env_var_and_set_env_var_info(info, lst);
+	continue_flag = 1;
+	flag_quote_after_env = 0;
+	lst = NULL;
+	while (continue_flag)
+	{
+		continue_flag = 0;
+		env_set_flag = 1;
+		while (info->token_dl_lst->is_cat_with_next)
+		{
+			if ((info->token_dl_lst->next->type == EXPANDABLE_QUOTED || info->token_dl_lst->next->type == NOT_EXPANDABLE) \
+				&& (ft_strchr(info->token_dl_lst->token, '$') && info->token_dl_lst->type != NOT_EXPANDABLE) && flag_quote_after_env == 0)
+			{
+				continue_flag = 1;
+				flag_quote_after_env = 1;
+				break ;
+			}
+			else
+			{
+				ft_dl_lstcat(info);
+				if (flag_quote_after_env)
+				{
+					flag_quote_after_env = 0;
+					env_set_flag = 0;
+					break ;
+				}
+			}
+		}
+		if (lst)
+			free(lst);
+		lst = ft_lstnew(info->token_dl_lst->token);
+		set_lst_info(info, lst, flag);
+		if (env_set_flag)
+			check_env_var_and_set_env_var_info(info, lst);
+	}
 	if (flag == REDIRECT_LST)
 		ft_lstadd_back(&(info->sentence_lst->redirect_lst), lst);
 	else if (flag == CMD_LST)

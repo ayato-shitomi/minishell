@@ -35,8 +35,11 @@ static void	set_p_1_in_cmd_lst(t_info *info, char **str_env_value_p)
 	size_t	j;
 	size_t	env_var_value_len;
 
-	info->sentence_lst->env_var_lst->value = \
-			getenv(info->sentence_lst->env_var_lst->key);
+	// if (ft_strncmp(info->sentence_lst->env_var_lst->str, "$?", 2) == 0)
+	// 	info->sentence_lst->env_var_lst->value = ft_strdup();
+	// else
+	// 	info->sentence_lst->env_var_lst->value = \
+	// 		getenv(info->sentence_lst->env_var_lst->key);
 	if (info->sentence_lst->env_var_lst->value)
 		env_var_value_len = ft_strlen(info->sentence_lst->env_var_lst->value);
 	else

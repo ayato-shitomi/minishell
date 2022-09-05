@@ -23,7 +23,8 @@ static int	set_i_for_insert(t_info *info, char *key, char *value, size_t *i)
 	env_var_lst_tmp = info->env_var_lst;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(key, info->env_var_lst->key, ft_strlen(key)) == 0)
+		// if (ft_strncmp(key, info->env_var_lst->key, ft_strlen(key)) == 0)
+		if (ft_strncmp(info->env_var_lst->key, key, ft_strlen(info->env_var_lst->key)) == 0)
 		{
 			if (info->env_var_lst->value)
 				free(info->env_var_lst->value);
@@ -31,7 +32,8 @@ static int	set_i_for_insert(t_info *info, char *key, char *value, size_t *i)
 			info->env_var_lst = env_var_lst_tmp;
 			return (1);
 		}
-		else if (ft_strncmp(key, info->env_var_lst->key, ft_strlen(key)) > 0)
+		// else if (ft_strncmp(key, info->env_var_lst->key, ft_strlen(key)) > 0)
+		else if (ft_strncmp(info->env_var_lst->key, key, ft_strlen(info->env_var_lst->key)) > 0)
 			*i += 1;
 		info->env_var_lst = info->env_var_lst->next;
 	}
@@ -74,6 +76,7 @@ void	ft_set_env(t_info *info, char *value)
 	}
 	env_lst_new = ft_env_var_lstnew(key, value);
 	ft_env_var_lstinsert(info, env_lst_new, env_var_lst_tmp, i);
+	// info->env_var_lst = env_var_lst_tmp;
 }
 
 int	ft_export_case_have_arg(t_info *info)

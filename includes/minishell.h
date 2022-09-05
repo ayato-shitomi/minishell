@@ -188,6 +188,7 @@ int				ft_atoi(const char *str);
 
 // utils_4.c
 int				ft_isalnum(int n);
+char			*ft_itoa(int n);
 
 // ft_error.c
 void			error_and_exit(char *error_str_1, char *error_str_2, \
@@ -196,7 +197,12 @@ int				error_and_return(char *cmd, char *arg, char *err_msg);
 
 // parse_command.c
 int				parse_command(char *command, t_info *info);
+
+// ft_split.c
 char			**ft_split(char const *s, char c);
+
+// ft_split_lex.c
+char			**ft_split_lex(char const *s, char c);
 
 // minishell_utils.c
 void			init_quote_flag(t_info *info);
@@ -204,6 +210,9 @@ void			quote_check(char c, t_info *info);
 void			set_lst_info(t_info *info, t_lst *lst, int flag);
 int				pipe_and_error_check(int pipe_fd[2]);
 int				fork_and_error_check(pid_t *pid);
+
+// minishell_utils_2.c
+int				set_exit_status(t_info *info, int exit_status);
 
 // set_token_type_dl.c
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);

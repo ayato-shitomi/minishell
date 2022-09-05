@@ -33,8 +33,9 @@ static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 	set_fd_by_redirect_lst(info);
 	status = exec_builtin_without_pipe(info);
 	init_and_set_fd_for_restore(info, 2);
+	set_exit_status(info, status);
 	// init_and_close_fd_for_restore(info);
-	put_exitstatus(info, WEXITSTATUS(status));
+	put_exitstatus(info, status);
 	return (status);
 }
 
@@ -53,7 +54,7 @@ int	execute_command(t_info *info)
 		return (SUCCESS);
 	}
 	if (fork_and_error_check(&pid) == ERROR)
-		return (ERROR);
+		return (set_exit_status(info, ERROR));
 	else if (pid == 0)
 	{
 		set_sig_in_child_process(info);
@@ -65,6 +66,7 @@ int	execute_command(t_info *info)
 	{
 		set_sig_in_parent_process(info);
 		w_pid = waitpid(pid, &status, WUNTRACED);
+		set_exit_status(info, WEXITSTATUS(status));
 	}
 	put_exitstatus(info, WEXITSTATUS(status));
 	info->sentence_lst = sentence_lst_tmp;

@@ -10,11 +10,10 @@ static void	create_dl_lstnew(t_info *info, size_t *i)
 
 void	lexical_analysis(t_info *info)
 {
-	//字句解析用関数
 	size_t			i;
 	t_token_dl_lst	*dl_lst_tmp;
 
-	info->split_command = ft_split(info->parsed_command, ' ');
+	info->split_command = ft_split_lex(info->parsed_command, ' ');
 	if (!(info->split_command))
 		exit(ERROR);
 	free(info->parsed_command);
