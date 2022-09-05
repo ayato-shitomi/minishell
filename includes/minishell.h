@@ -154,10 +154,15 @@ int				ft_export(t_info *info);
 int				ft_export_case_have_arg(t_info *info);
 void			ft_set_env(t_info *info, char *value);
 void			ft_print_env(char *key, char *value, int is_export);
+int				set_i_for_insert(t_info *info, char *key, char *value, \
+	size_t *i);
+
+// builtin_export_3.c
+void			set_oldpwd(t_info *info);
 
 // builtin_echo.c
-//int				ft_echo(char *str, bool flag_n);
-int					ft_echo(t_info *info);
+//int			ft_echo(char *str, bool flag_n);
+int				ft_echo(t_info *info);
 
 // builtin_exit.c
 int				ft_exit(size_t ac, char **cmd, t_lst *cmd_lst);

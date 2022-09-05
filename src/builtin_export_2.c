@@ -16,7 +16,7 @@ void	ft_print_env(char *key, char *value, int is_export)
 	}
 }
 
-static int	set_i_for_insert(t_info *info, char *key, char *value, size_t *i)
+int	set_i_for_insert(t_info *info, char *key, char *value, size_t *i)
 {
 	t_env_var_lst	*env_var_lst_tmp;
 
