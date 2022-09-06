@@ -52,7 +52,8 @@ static char	*get_smallest_key(t_info *info)
 	while (info->env_var_lst)
 	{
 		if (ft_strncmp(info->env_var_lst->key, smallest_key, \
-			ft_strlen(info->env_var_lst->key)) < 0)
+			ft_strlen(smallest_key)) < 0)
+			// ft_strlen(info->env_var_lst->key)) < 0)
 			smallest_key = info->env_var_lst->key;
 		info->env_var_lst = info->env_var_lst->next;
 	}
