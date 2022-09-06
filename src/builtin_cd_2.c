@@ -8,8 +8,9 @@ static void	ft_cd_case_multiple_relative_paths_2(t_info *info, char *dest_dir, \
 	env_var_lst_tmp = info->env_var_lst;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(info->env_var_lst->key, "PWD", \
-			ft_strlen(info->env_var_lst->key)) == 0)
+		// if (ft_strncmp(info->env_var_lst->key, "PWD", \
+		// 	ft_strlen(info->env_var_lst->key)) == 0)
+		if (ft_strcmp(info->env_var_lst->key, "PWD") == 0)
 		{
 			info->env_var_lst = env_var_lst_tmp;
 			ft_cd_case_branch(info, dest_dir, delimiter_cnt_for_tilde);
@@ -77,8 +78,9 @@ void	set_env_value(t_info *info, char *env_key, char *env_value_for_set)
 	env_var_lst_tmp = info->env_var_lst;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(info->env_var_lst->key, env_key, \
-			ft_strlen(info->env_var_lst->key)) == 0)
+		// if (ft_strncmp(info->env_var_lst->key, env_key, \
+		// 	ft_strlen(info->env_var_lst->key)) == 0)
+		if (ft_strcmp(info->env_var_lst->key, env_key) == 0)
 		{
 			if (info->env_var_lst->value)
 				free(info->env_var_lst->value);
@@ -99,8 +101,9 @@ char	*get_env_value(t_info *info, char *env_key)
 	env_value = NULL;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(info->env_var_lst->key, env_key, \
-			ft_strlen(info->env_var_lst->key)) == 0)
+		// if (ft_strncmp(info->env_var_lst->key, env_key, \
+		// 	ft_strlen(info->env_var_lst->key)) == 0)
+		if (ft_strcmp(info->env_var_lst->key, env_key) == 0)
 			env_value = info->env_var_lst->value;
 		info->env_var_lst = info->env_var_lst->next;
 	}

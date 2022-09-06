@@ -7,8 +7,7 @@ int	ft_pwd(t_info *info)
 	env_var_lst_tmp = info->env_var_lst;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(info->env_var_lst->key, "PWD", \
-			ft_strlen(info->env_var_lst->key)) == 0)
+		if (ft_strcmp(info->env_var_lst->key, "PWD") == 0)
 		{
 			if (info->env_var_lst->value)
 				printf("%s\n", info->env_var_lst->value);

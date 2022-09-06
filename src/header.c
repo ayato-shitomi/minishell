@@ -7,7 +7,7 @@ static void	put_hello_message(void)
 
 static void	put_header(void)
 {
-	if (ft_strncmp(SHELLNAME, "Fresh", ft_strlen(SHELLNAME)) == 0)
+	if (ft_strcmp(SHELLNAME, "Fresh") == 0)
 	{
 		printf("\n");
 		printf(" /########                            /##      \n");

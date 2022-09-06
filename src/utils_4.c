@@ -53,12 +53,37 @@ char	*ft_itoa(int n)
 	return (heap);
 }
 
-
 int	ft_isalnum(int n)
 {
 	if ((n >= '0' && n <= '9')
 		|| (n >= 'A' && n <= 'Z')
 		|| (n >= 'a' && n <= 'z'))
 		return (1);
+	return (0);
+}
+
+int	ft_strcmp(const char *dst, const char *src)
+{
+	unsigned char	*dst2;
+	unsigned char	*src2;
+	size_t			i;
+
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	if (!dst2 && !src2)
+		return (0);
+	else if (dst2 && !src2)
+		return (1);
+	else if (!dst2 && src2)
+		return (-1);
+	i = 0;
+	while (dst2[i] && src2[i])
+	{
+		if (dst2[i] != src2[i])
+			return (dst2[i] - src2[i]);
+		i++;
+	}
+	if (dst2[i] != src2[i])
+		return (dst2[i] - src2[i]);
 	return (0);
 }

@@ -36,7 +36,7 @@ static char	*check_start_with_tilde(t_info *info, char *dest_dir, \
 	home_value = NULL;
 	dest_dir_tmp = dest_dir;
 	split_dest_dir = ft_split(dest_dir, '/');
-	if (ft_strncmp(split_dest_dir[0], "~", ft_strlen(split_dest_dir[0])) == 0)
+	if (ft_strcmp(split_dest_dir[0], "~") == 0)
 	{
 		home_value = get_env_value(info, "HOME");
 		i = 0;

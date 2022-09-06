@@ -33,19 +33,19 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 
 	status = SUCCESS;
 	ac = get_ac_2(info);
-	if (ft_strncmp(info->sentence_lst->cmd_lst->str, "cd\0", 3) == 0)
+	if (ft_strcmp(info->sentence_lst->cmd_lst->str, "cd") == 0)
 		status = ft_cd(info);
-	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "pwd\0", 4) == 0)
+	else if (ft_strcmp(info->sentence_lst->cmd_lst->str, "pwd") == 0)
 		status = ft_pwd(info);
-	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "env\0", 4) == 0)
+	else if (ft_strcmp(info->sentence_lst->cmd_lst->str, "env") == 0)
 		status = ft_env(info);
-	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "echo\0", 5) == 0)
+	else if (ft_strcmp(info->sentence_lst->cmd_lst->str, "echo") == 0)
 		status = ft_echo(info);
-	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "exit\0", 5) == 0)
+	else if (ft_strcmp(info->sentence_lst->cmd_lst->str, "exit") == 0)
 		status = ft_exit(ac, NULL, info->sentence_lst->cmd_lst);
-	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "unset\0", 6) == 0)
+	else if (ft_strcmp(info->sentence_lst->cmd_lst->str, "unset") == 0)
 		status = ft_unset(info);
-	else if (ft_strncmp(info->sentence_lst->cmd_lst->str, "export\0", 7) == 0)
+	else if (ft_strcmp(info->sentence_lst->cmd_lst->str, "export") == 0)
 		status = ft_export(info);
 	return (status);
 }
@@ -58,13 +58,13 @@ int	exec_builtin(t_info *info, char **cmd)
 
 	status = SUCCESS;
 	ac = get_ac(cmd);
-	if (ft_strncmp(cmd[0], "cd\0", 3) == 0)
+	if (ft_strcmp(cmd[0], "cd") == 0)
 		status = ft_cd(info);
-	else if (ft_strncmp(cmd[0], "pwd\0", 4) == 0)
+	else if (ft_strcmp(cmd[0], "pwd") == 0)
 		status = ft_pwd(info);
-	else if (ft_strncmp(cmd[0], "env\0", 4) == 0)
+	else if (ft_strcmp(cmd[0], "env") == 0)
 		status = ft_env(info);
-	else if (ft_strncmp(cmd[0], "echo\0", 5) == 0)
+	else if (ft_strcmp(cmd[0], "echo") == 0)
 	{
 		// if (ft_strncmp(cmd[1], "-n", ft_strlen(cmd[1])) == 0)
 		// 	status = ft_echo(cmd[0], );
@@ -72,26 +72,26 @@ int	exec_builtin(t_info *info, char **cmd)
 		// tatus = ft_echo(cmd[1]);
 		printf(" >> DO NOTHING << \n");
 	}
-	else if (ft_strncmp(cmd[0], "exit\0", 5) == 0)
+	else if (ft_strcmp(cmd[0], "exit") == 0)
 		status = ft_exit(ac, cmd, NULL);
-	else if (ft_strncmp(cmd[0], "unset\0", 6) == 0)
+	else if (ft_strcmp(cmd[0], "unset") == 0)
 		status = ft_unset(info);
-	else if (ft_strncmp(cmd[0], "export\0", 7) == 0)
+	else if (ft_strcmp(cmd[0], "export") == 0)
 		status = ft_export(info);
-	else if (ft_strncmp(cmd[0], "unset\0", 6) == 0)
+	else if (ft_strcmp(cmd[0], "unset") == 0)
 		status = ft_unset(info);
 	return (status);
 }
 
 int	check_builtin(char **cmd)
 {
-	if ((ft_strncmp(cmd[0], "cd\0", 3) == 0) || \
-	(ft_strncmp(cmd[0], "pwd\0", 4) == 0) || \
-	(ft_strncmp(cmd[0], "env\0", 4) == 0) || \
-	(ft_strncmp(cmd[0], "echo\0", 5) == 0) || \
-	(ft_strncmp(cmd[0], "exit\0", 5) == 0) || \
-	(ft_strncmp(cmd[0], "unset\0", 6) == 0) || \
-	(ft_strncmp(cmd[0], "export\0", 7) == 0))
+	if ((ft_strcmp(cmd[0], "cd") == 0) || \
+	(ft_strcmp(cmd[0], "pwd") == 0) || \
+	(ft_strcmp(cmd[0], "env") == 0) || \
+	(ft_strcmp(cmd[0], "echo") == 0) || \
+	(ft_strcmp(cmd[0], "exit") == 0) || \
+	(ft_strcmp(cmd[0], "unset") == 0) || \
+	(ft_strcmp(cmd[0], "export") == 0))
 		return (1);
 	return (0);
 }

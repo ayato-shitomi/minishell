@@ -194,6 +194,7 @@ int				ft_atoi(const char *str);
 // utils_4.c
 int				ft_isalnum(int n);
 char			*ft_itoa(int n);
+int				ft_strcmp(const char *dst, const char *src);
 
 // ft_error.c
 void			error_and_exit(char *error_str_1, char *error_str_2, \
@@ -268,8 +269,7 @@ int				expand_the_expandable_in_redirect_lst(t_info *info);
 int				execute_command(t_info *info);
 
 // do_pipes.c
-int				do_pipes(t_info *info, size_t i, \
-	size_t cmd_cnt);
+void			do_pipes(t_info *info, size_t i, size_t cmd_cnt);
 int				set_cmd_fd_and_exec(t_info *info, pid_t pid);
 
 // do_pipes_2.c

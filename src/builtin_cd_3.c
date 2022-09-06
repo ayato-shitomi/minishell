@@ -48,23 +48,21 @@ void	ft_cd_case_branch(t_info *info, char *dest_dir, \
 {
 	char	**split_dest_dir;
 	size_t	i;
-	size_t	len;
 
 	split_dest_dir = ft_split(dest_dir, '/');
 	i = 0;
 	while (split_dest_dir[i])
 	{
-		len = ft_strlen(split_dest_dir[i]);
 		if (i == 0 && ft_strncmp(dest_dir, "/", 1) == 0)
 		{
 			ft_cd_case_tilde(info);
 			i += delimiter_cnt_for_tilde - 1;
 		}
-		else if ((ft_strncmp(split_dest_dir[i], ".", len) == 0) || \
-			(ft_strncmp(split_dest_dir[i], "./", len) == 0))
+		else if ((ft_strcmp(split_dest_dir[i], ".") == 0) || \
+			(ft_strcmp(split_dest_dir[i], "./") == 0))
 			ft_cd_case_dot1(info);
-		else if ((ft_strncmp(split_dest_dir[i], "..", len) == 0) || \
-			(ft_strncmp(split_dest_dir[i], "../", len) == 0))
+		else if ((ft_strcmp(split_dest_dir[i], "..") == 0) || \
+			(ft_strcmp(split_dest_dir[i], "../") == 0))
 			ft_cd_case_dot2(info);
 		else
 			ft_cd_case_each_relative_path(info, split_dest_dir[i]);

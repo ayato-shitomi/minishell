@@ -32,7 +32,7 @@ void	set_oldpwd(t_info *info)
 	oldpwd_flag = 0;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(info->env_var_lst->key, "OLDPWD\0", 7) == 0)
+		if (ft_strcmp(info->env_var_lst->key, "OLDPWD") == 0)
 		{
 			oldpwd_flag = 1;
 			break ;

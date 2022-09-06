@@ -4,7 +4,7 @@ static int	make_status(char *str)
 {
 	int	n;
 
-	if (!(ft_strncmp(str, "-9223372036854775809", 20)))
+	if (!(ft_strcmp(str, "-9223372036854775809")))
 		return (255);
 	n = ft_atoi((const char *)str);
 	if (n == 0)

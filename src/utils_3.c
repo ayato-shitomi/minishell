@@ -6,7 +6,7 @@ int	ft_atoi(const char *str)
 	long	num;
 	int		pm;
 
-	if (!(ft_strncmp(str, "-9223372036854775809", 20)))
+	if (!(ft_strcmp(str, "-9223372036854775809")))
 		return (0);
 	i = 0;
 	num = 0;

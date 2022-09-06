@@ -58,9 +58,7 @@ int	execute_command(t_info *info)
 	else if (pid == 0)
 	{
 		set_sig_in_child_process(info);
-		if (do_pipes(info, 0, \
-			ft_sentence_lstsize(info->sentence_lst)) == ERROR)
-			exit(ERROR);
+		do_pipes(info, 0, ft_sentence_lstsize(info->sentence_lst));
 	}
 	else
 	{

@@ -8,10 +8,8 @@ static char	*get_base_key_in_the_rest(t_info *info, char *smallest_key, \
 	env_var_lst_tmp = info->env_var_lst;
 	while (info->env_var_lst)
 	{
-		if ((ft_strncmp(info->env_var_lst->key, smallest_key, \
-			ft_strlen(info->env_var_lst->key)) > 0) && \
-			(ft_strncmp(info->env_var_lst->key, base_key_in_the_rest, \
-			ft_strlen(info->env_var_lst->key)) <= 0))
+		if ((ft_strcmp(info->env_var_lst->key, smallest_key) > 0) && \
+			(ft_strcmp(info->env_var_lst->key, base_key_in_the_rest) <= 0))
 			base_key_in_the_rest = info->env_var_lst->key;
 		info->env_var_lst = info->env_var_lst->next;
 	}
@@ -29,8 +27,7 @@ static char	*get_base_key_in_the_rest_first(t_info *info, \
 	base_key_in_the_rest = NULL;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(info->env_var_lst->key, smallest_key, \
-			ft_strlen(info->env_var_lst->key)) > 0)
+		if (ft_strcmp(info->env_var_lst->key, smallest_key) > 0)
 		{
 			base_key_in_the_rest = info->env_var_lst->key;
 			break ;
@@ -51,9 +48,7 @@ static char	*get_smallest_key(t_info *info)
 	info->env_var_lst = info->env_var_lst->next;
 	while (info->env_var_lst)
 	{
-		if (ft_strncmp(info->env_var_lst->key, smallest_key, \
-			ft_strlen(smallest_key)) < 0)
-			// ft_strlen(info->env_var_lst->key)) < 0)
+		if (ft_strcmp(info->env_var_lst->key, smallest_key) < 0)
 			smallest_key = info->env_var_lst->key;
 		info->env_var_lst = info->env_var_lst->next;
 	}

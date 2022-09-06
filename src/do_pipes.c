@@ -99,7 +99,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	return (ERROR);
 }
 
-int	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
+void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
 {
 	pid_t		pid;
 	int			pipe_fd[2];
@@ -109,12 +109,11 @@ int	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
 	else
 	{
 		if (set_pipe_and_fork(pipe_fd, &pid) == ERROR)
-			return (ERROR);
+			exit(ERROR);
 		else if (pid == 0)
 		{
 			set_pipe_fd_1(pipe_fd);
-			if (do_pipes(info, i + 1, cmd_cnt) == ERROR)
-				exit(ERROR);
+			do_pipes(info, i + 1, cmd_cnt);
 		}
 		else
 		{
@@ -123,5 +122,4 @@ int	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
 				exit(ERROR);
 		}
 	}
-	return (SUCCESS);
 }

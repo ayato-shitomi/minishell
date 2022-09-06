@@ -24,7 +24,7 @@ int	set_i_for_insert(t_info *info, char *key, char *value, size_t *i)
 	while (info->env_var_lst)
 	{
 		// if (ft_strncmp(key, info->env_var_lst->key, ft_strlen(key)) == 0)
-		if (ft_strncmp(info->env_var_lst->key, key, ft_strlen(info->env_var_lst->key)) == 0)
+		if (ft_strcmp(info->env_var_lst->key, key) == 0)
 		{
 			if (info->env_var_lst->value)
 				free(info->env_var_lst->value);
@@ -33,7 +33,7 @@ int	set_i_for_insert(t_info *info, char *key, char *value, size_t *i)
 			return (1);
 		}
 		// else if (ft_strncmp(key, info->env_var_lst->key, ft_strlen(key)) > 0)
-		else if (ft_strncmp(info->env_var_lst->key, key, ft_strlen(info->env_var_lst->key)) > 0)
+		else if (ft_strcmp(info->env_var_lst->key, key) > 0)
 			*i += 1;
 		info->env_var_lst = info->env_var_lst->next;
 	}

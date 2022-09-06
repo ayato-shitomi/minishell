@@ -24,8 +24,7 @@ static char	*set_cat_line(t_sentence_lst *sentence_lst, \
 	char	*cat_line_tmp;
 
 	cat_line_tmp = cat_line;
-	if (ft_strncmp(line, sentence_lst->redirect_lst->str, \
-		ft_strlen(sentence_lst->redirect_lst->str)) != 0)
+	if (ft_strcmp(line, sentence_lst->redirect_lst->str) != 0)
 	{
 		cat_line = ft_strjoin_three(cat_line, line, "\n");
 		free(cat_line_tmp);
@@ -75,8 +74,7 @@ int	heredoc_parent_process(t_info *info, int heredoc_pipe_fd[2], \
 		if (flag_check(flag) == ERROR)
 			return (ERROR);
 		cat_line = set_cat_line(info->sentence_lst, cat_line, line);
-		if (ft_strncmp(line, info->sentence_lst->redirect_lst->str, \
-			ft_strlen(info->sentence_lst->redirect_lst->str)) == 0)
+		if (ft_strcmp(line, info->sentence_lst->redirect_lst->str) == 0)
 		{
 			if (continue_flag == 0)
 				set_pipe_fd_and_write(heredoc_pipe_fd, tmp_fd, \
