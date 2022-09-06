@@ -30,7 +30,12 @@ static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 	int	status;
 
 	set_sig_in_child_process(info);
-	set_fd_by_redirect_lst(info);
+	if (set_fd_by_redirect_lst(info) == ERROR)
+	{
+		set_exit_status(info, ERROR);
+		put_exitstatus(info, ERROR);
+		return (ERROR);
+	}
 	status = exec_builtin_without_pipe(info);
 	init_and_set_fd_for_restore(info, 2);
 	set_exit_status(info, status);

@@ -289,7 +289,7 @@ void			set_sig_in_parent_process(t_info *info);
 int				set_fd_by_redirect_lst(t_info *info);
 
 // set_fd_by_redirect_lst_2.c
-void			init_and_set_fd_for_restore(t_info *info, int n);
+int				init_and_set_fd_for_restore(t_info *info, int n);
 int				set_fd_case_red_left_one(t_info *info);
 int				set_fd_case_red_right_one(t_info *info);
 int				set_fd_case_red_right_two(t_info *info);
@@ -300,13 +300,13 @@ void			set_continue_flag(t_sentence_lst *sentence_lst, \
 	int *continue_flag);
 
 // heredoc_2.c
-int				heredoc_parent_process(t_info *info, \
+int				heredoc_child_process(t_info *info, \
 	int heredoc_pipe_fd[2], int continue_flag);
 
 // set_pipe_fd.c
-void			set_pipe_fd_0(int pipe_fd[2]);
-void			set_pipe_fd_1(int pipe_fd[2]);
-void			set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]);
+int				set_pipe_fd_0(int pipe_fd[2]);
+int				set_pipe_fd_1(int pipe_fd[2]);
+int				set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]);
 
 // header.c
 void			header(void);

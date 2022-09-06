@@ -1,33 +1,80 @@
 #include "../includes/minishell.h"
 
-void	set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2])
+int	set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2])
 {
 	if (!sentence_lst->redirect_lst)
 	{
-		dup2(pipe_fd[0], 0);
-		close(pipe_fd[0]);
+		if (dup2(pipe_fd[0], 0) == -1)
+		{
+			perror(SHELLNAME);
+			return (ERROR);
+		}
+		if (close(pipe_fd[0]) == -1)
+		{
+			perror(SHELLNAME);
+			return (ERROR);
+		}
 	}
 	else
 	{
 		if (sentence_lst->redirect_lst->token_type != REDIRECT_LEFT_TWO)
 		{
-			dup2(pipe_fd[0], 0);
-			close(pipe_fd[0]);
+			if (dup2(pipe_fd[0], 0) == -1)
+			{
+				perror(SHELLNAME);
+				return (ERROR);
+			}
+			if (close(pipe_fd[0]) == -1)
+			{
+				perror(SHELLNAME);
+				return (ERROR);
+			}
 		}
 	}
-	close(pipe_fd[1]);
+	if (close(pipe_fd[1]) == -1)
+	{
+		perror(SHELLNAME);
+		return (ERROR);
+	}
+	return (SUCCESS);
 }
 
-void	set_pipe_fd_1(int pipe_fd[2])
+int	set_pipe_fd_1(int pipe_fd[2])
 {
-	close(pipe_fd[0]);
-	dup2(pipe_fd[1], 1);
-	close(pipe_fd[1]);
+	if (close(pipe_fd[0]) == -1)
+	{
+		perror(SHELLNAME);
+		return (ERROR);
+	}
+	if (dup2(pipe_fd[1], 1) == -1)
+	{
+		perror(SHELLNAME);
+		return (ERROR);
+	}
+	if (close(pipe_fd[1]) == -1)
+	{
+		perror(SHELLNAME);
+		return (ERROR);
+	}
+	return (SUCCESS);
 }
 
-void	set_pipe_fd_0(int pipe_fd[2])
+int	set_pipe_fd_0(int pipe_fd[2])
 {
-	close(pipe_fd[1]);
-	dup2(pipe_fd[0], 0);
-	close(pipe_fd[0]);
+	if (close(pipe_fd[1]) == -1)
+	{
+		perror(SHELLNAME);
+		return (ERROR);
+	}
+	if (dup2(pipe_fd[0], 0) == -1)
+	{
+		perror(SHELLNAME);
+		return (ERROR);
+	}
+	if (close(pipe_fd[0]) == -1)
+	{
+		perror(SHELLNAME);
+		return (ERROR);
+	}
+	return (SUCCESS);
 }

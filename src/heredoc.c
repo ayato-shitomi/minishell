@@ -28,20 +28,23 @@ int	heredoc(t_info *info)
 		return (ERROR);
 	else if (heredoc_pid == 0)
 	{
-		if (heredoc_parent_process(info, heredoc_pipe_fd, \
+		if (heredoc_child_process(info, heredoc_pipe_fd, \
 			continue_flag) == ERROR)
-			return (ERROR);
-		exit(SUCCESS);
+			exit(ERROR);
+		exit(ERROR);
 	}
 	else
 	{
 		w_pid = waitpid(heredoc_pid, &status, WUNTRACED);
 		if (!info->red_left_after_right_flag)
 		{
-			init_and_set_fd_for_restore(info, 0);
-			set_pipe_fd_0(heredoc_pipe_fd);
+			if (init_and_set_fd_for_restore(info, 0) == ERROR)
+				return (ERROR);
+			if (set_pipe_fd_0(heredoc_pipe_fd) == ERROR)
+				return (ERROR);
 			if (continue_flag == 1)
-				init_and_set_fd_for_restore(info, 2);
+				if (init_and_set_fd_for_restore(info, 2) == ERROR)
+					return (ERROR);
 		}
 		else
 			info->red_left_after_right_flag = 0;

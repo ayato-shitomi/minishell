@@ -83,12 +83,12 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
 	if (pid > 0)
 	{
-		w_pid = waitpid(pid, &status, WUNTRACED);
+		w_pid = waitpid(pid, &status, WUNTRACED); //
 		// if (WEXITSTATUS(status) != 0)
 		// 	exit(WEXITSTATUS(status));
 	}
 	if (set_fd_by_redirect_lst(info) == ERROR)
-		return (ERROR);
+		exit(ERROR);
 	if (check_builtin(cmd))
 	{
 		status = exec_builtin(info, cmd);
@@ -96,7 +96,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	}
 	envp = get_envp_in_array(info);
 	execve(cmd_path, cmd, envp);
-	return (ERROR);
+	exit(ERROR);
 }
 
 void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
@@ -104,15 +104,14 @@ void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
 	pid_t		pid;
 	int			pipe_fd[2];
 
-	if (check_first_sentence(info, i, cmd_cnt) == ERROR)
-		exit(ERROR);
-	else
+	if (check_first_sentence(info, i, cmd_cnt) == SUCCESS)
 	{
 		if (set_pipe_and_fork(pipe_fd, &pid) == ERROR)
 			exit(ERROR);
 		else if (pid == 0)
 		{
-			set_pipe_fd_1(pipe_fd);
+			if (set_pipe_fd_1(pipe_fd) == ERROR)
+				exit(ERROR);
 			do_pipes(info, i + 1, cmd_cnt);
 		}
 		else
