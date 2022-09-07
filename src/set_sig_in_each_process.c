@@ -4,10 +4,11 @@ static void	sig_int_handler_in_child_process(int signum)
 {
 	if (signum == SIGINT)
 	{
+		write(2, "check_2\n", 8);
 		write(STDOUT_FILENO, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		exit(SUCCESS);
+		exit(signum);
 	}
 }
 
@@ -23,6 +24,12 @@ void	set_sig_in_child_process(t_info *info)
 		exit(ERROR);
 }
 
+// static void	bb(int signum)
+// {
+// 	if (signum == SIGINT)
+// 		g_exit_status = 130;
+// }
+
 void	set_sig_in_parent_process(t_info *info)
 {
 	if (sigemptyset(&info->sa_int.sa_mask) == -1)
@@ -30,6 +37,7 @@ void	set_sig_in_parent_process(t_info *info)
 	info->sa_int.sa_flags = 0;
 	if (sigaddset(&info->sa_int.sa_mask, SIGINT) == -1)
 		exit(ERROR);
+	// info->sa_int.sa_handler = bb;
 	info->sa_int.sa_handler = SIG_IGN;
 	if (sigaction(SIGINT, &info->sa_int, NULL) == -1)
 		exit(ERROR);
@@ -39,6 +47,7 @@ static void	sig_int_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
+		write(2, "check_1\n", 8);
 		write(STDOUT_FILENO, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();

@@ -19,7 +19,7 @@ static void	set_p_2_in_cmd_lst(t_info *info, char **str_front_p, \
 	i = 0;
 	while (i++ < rest_front_len)
 		(*str_front_p)[i - 1] = info->sentence_lst->cmd_lst->str[i - 1];
-	(*str_front_p)[i] = '\0';
+	(*str_front_p)[i - 1] = '\0';
 	i = 0;
 	while (i < rest_back_len)
 	{

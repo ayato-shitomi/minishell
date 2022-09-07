@@ -45,7 +45,7 @@ static void	set_exit_status_at_syn(t_info *info, size_t *i)
 {
 	t_lst	*env_var_lst;
 
-	*i += 2;
+	*i += 1;
 	env_var_lst = ft_lstnew(NULL);
 	set_lst_info(info, env_var_lst, ENV_VAR_LST);
 	env_var_lst->key = (char *)ft_calloc(2, sizeof(char));

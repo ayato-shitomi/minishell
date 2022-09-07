@@ -23,6 +23,7 @@ void	put_exitstatus(t_info *info, int n)
 	else
 		printf("\x1b[32m[%d]\x1b[0m ", n);
 	info->exit_status = n;
+	// g_exit_status = n; // ②
 }
 
 static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
@@ -58,6 +59,7 @@ int	execute_command(t_info *info)
 		status = set_fd_and_exec_builtin_without_pipe(info);
 		return (SUCCESS);
 	}
+	// set_sig_in_child_process(info);
 	if (fork_and_error_check(&pid) == ERROR)
 		return (set_exit_status(info, ERROR));
 	else if (pid == 0)
@@ -67,11 +69,18 @@ int	execute_command(t_info *info)
 	}
 	else
 	{
+		// int status_tmp = g_exit_status;
 		set_sig_in_parent_process(info);
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		set_exit_status(info, WEXITSTATUS(status));
+		// if (status_tmp != g_exit_status)
+		// 	g_exit_status = 130;
+		// printf("status = %d\n", g_exit_status);
+		// printf("e_status = %d\n", WEXITSTATUS(g_exit_status));
+		// set_exit_status(info, status);
+		// set_exit_status(info, WEXITSTATUS(status));
+		put_exitstatus(info, status);
 	}
-	put_exitstatus(info, WEXITSTATUS(status));
+	// put_exitstatus(info, WEXITSTATUS(status));
 	info->sentence_lst = sentence_lst_tmp;
 	return (SUCCESS);
 }

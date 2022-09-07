@@ -33,6 +33,7 @@ int	main(void)
 
 	header();
 	info.exit_status = 0;
+	// g_exit_status = 0; // ①
 	init_env_var_lst(&info);
 	while (1)
 	{

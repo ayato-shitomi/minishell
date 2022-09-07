@@ -45,7 +45,7 @@ t_lst	*ft_lstnew(void *content)
 	new_elem = (t_lst *)ft_calloc(1, sizeof(t_lst));
 	if (!new_elem)
 		exit (ERROR);
-	new_elem->str = content;
+	new_elem->str = ft_strdup(content);
 	new_elem->key = NULL;
 	new_elem->value = NULL;
 	new_elem->next = NULL;

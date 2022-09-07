@@ -47,10 +47,13 @@
 # define BUFFER_SIZE 1
 # define CMD_NOT_FOUND "command not found"
 # define E_STATUS_CNF 127
+# define E_STATUS_CTRL_C 130
 # define E_STATUS_SYN_ERR 258
 # define PERM_DENIED "Permission denied"
 # define NO_FILE "No such file or directory"
 # define NOT_VI "not a valid identifier"
+
+// int	g_exit_status;
 
 typedef struct s_env_var_lst
 {
