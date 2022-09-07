@@ -12,34 +12,39 @@ static int	make_status(char *str)
 	return (n % 256);
 }
 
-// void	ft_exit(int argc, char *argv[])
+static int	check_arg(char *str)
+{
+	int	n;
+
+	n = 0;
+	while (str[n])
+	{
+		if (!('0' <= str[n] && str[n] <= '9'))
+			return (1);
+		n++;
+	}
+	return (0);
+}
+
 int	ft_exit(size_t ac, char **cmd, t_lst *cmd_lst)
 {
-	int	status;
+	char	*s;
 
-	status = SUCCESS;
-	if (cmd)
+	s = "numeric argument required";
+	printf("exit\n");
+	(void)cmd;
+	if (ac == 1)
+		exit (0);
+	if (check_arg(cmd_lst->next->str))
 	{
-		printf("exit\n");
-		if (ac >= 3)
-			printf("fresh: exit: too many arguments\n");
-		if (!cmd[1])
-			exit(0);
-		status = make_status(cmd[1]);
+		printf("fresh: exit: %s: %s\n", cmd_lst->next->str, s);
+		exit(255);
 	}
-	else if (cmd_lst)
+	if (3 <= ac)
 	{
-		printf("exit\n");
-		if (ac >= 3)
-		{
-			printf("fresh: exit: too many arguments\n");
-			exit(ERROR);
-		}
-		else if (cmd_lst->next)
-		{
-			status = make_status(cmd_lst->next->str);
-			exit(status);
-		}
+		printf("fresh: exit: too many arguments\n");
+		return (1);
 	}
-	exit(status);
+	exit(make_status(cmd_lst->next->str));
+	return (1);
 }

@@ -19,9 +19,9 @@ static char	ft_put_esc(char c)
 	return (0);
 }
 
-static void echo(char *str)
+static void	echo(char *str)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	while (str[n])
@@ -81,12 +81,14 @@ int	ft_echo(t_info *info)
 {
 	t_lst	*p;
 	int		flag_not_backn;
-	//int		quote_num;
 
-	//dbg(info);
+	if (!info->sentence_lst->cmd_lst->next)
+	{
+		printf("\n");
+		return (0);
+	}
 	flag_not_backn = 0;
 	p = info->sentence_lst->cmd_lst->next;
-	// quote_num = check_quoted(info);
 	if (ft_strncmp(p->str, "-n", ft_strlen(p->str)) == 0)
 	{
 		flag_not_backn = 1;
@@ -94,7 +96,6 @@ int	ft_echo(t_info *info)
 	}
 	while (p)
 	{
-		//printf("\nTOKEN > %d\n", p->token_type);
 		echo(p->str);
 		p = p->next;
 		if (p)
