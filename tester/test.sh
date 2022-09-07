@@ -5,7 +5,7 @@
 TEST_DIR=`pwd`
 clear
 cd ..
-make
+make re
 DIR=`pwd`
 
 RS=$TEST_DIR/result_log.md
@@ -55,6 +55,14 @@ runtest 'echo $?'
 runtest 'echo "$?"'
 runtest 'echo '$?''
 runtest 'echo "hello"world hello'
+
+runtest 'exit'
+runtest 'exit 1'
+runtest 'exit 1 2 3'
+runtest 'exit hello'
+runtest 'exit 1 test'
+runtest 'exit "hello world"'
+
 
 runtest 'pwd'
 

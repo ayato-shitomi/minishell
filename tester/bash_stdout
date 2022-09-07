@@ -1,12 +1,15 @@
-total 168
-drwxr-xr-x   11 user  staff    352  9  6 12:12 .
-drwxr-xr-x   10 user  staff    320  8 18 00:33 ..
-drwxr-xr-x   15 user  staff    480  9  6 10:29 .git
-drwxr-xr-x    6 user  staff    192  9  6 06:21 .vscode
--rwxr-xr-x    1 user  staff   1956  9  6 06:21 Makefile
--rwxr-xr-x    1 user  staff  11101  9  6 06:21 README.md
-drwxr-xr-x    3 user  staff     96  9  6 10:29 includes
--rwxr-xr-x    1 user  staff  93808  9  6 12:12 minishell
-drwxr-xr-x  120 user  staff   3840  9  6 12:12 src
-drwxr-xr-x    4 user  staff    128  8 15 17:30 subject
-drwxr-xr-x    7 user  staff    224  9  6 12:16 tester
+total 184
+drwxr-xr-x   14 ashitomi  2020    448 Sep  7 15:45 .
+drwx------   17 ashitomi  2020    544 Sep  7 15:44 ..
+drwxr-xr-x   15 ashitomi  2020    480 Sep  7 15:07 .git
+drwxr-xr-x    6 ashitomi  2020    192 Sep  7 15:07 .vscode
+-rwxr-xr-x    1 ashitomi  2020   1956 Sep  7 15:21 Makefile
+-rwxr-xr-x    1 ashitomi  2020  11101 Sep  7 15:07 README.md
+-rw-r--r--    1 ashitomi  2020      2 Sep  7 15:16 bash_stdout
+drwxr-xr-x    3 ashitomi  2020     96 Sep  7 15:07 includes
+-rwxr-xr-x    1 ashitomi  2020  65168 Sep  7 15:45 minishell
+-rw-r--r--    1 ashitomi  2020    287 Sep  7 15:16 result_log.md
+drwxr-xr-x  120 ashitomi  2020   3840 Sep  7 15:45 src
+drwxr-xr-x    4 ashitomi  2020    128 Aug 15 16:06 subject
+-rw-r--r--    1 ashitomi  2020      6 Sep  7 15:07 test
+drwxr-xr-x    9 ashitomi  2020    288 Sep  7 15:45 tester

@@ -1,5 +1,14 @@
 #include "../includes/minishell.h"
 
+static void	put_std_err(char *str)
+{
+	int	n;
+
+	n = ft_strlen(str);
+	write(2, str, n);
+	return ;
+}
+
 static int	make_status(char *str)
 {
 	int	n;
@@ -31,18 +40,22 @@ int	ft_exit(size_t ac, char **cmd, t_lst *cmd_lst)
 	char	*s;
 
 	s = "numeric argument required";
-	printf("exit\n");
+	put_std_err("exit\n");
 	(void)cmd;
 	if (ac == 1)
 		exit (0);
 	if (check_arg(cmd_lst->next->str))
 	{
-		printf("fresh: exit: %s: %s\n", cmd_lst->next->str, s);
+		put_std_err("fresh: exit: ");
+		put_std_err(cmd_lst->next->str);
+		put_std_err(": ");
+		put_std_err(s);
+		put_std_err("\n");
 		exit(255);
 	}
 	if (3 <= ac)
 	{
-		printf("fresh: exit: too many arguments\n");
+		put_std_err("fresh: exit: too many arguments\n");
 		return (1);
 	}
 	exit(make_status(cmd_lst->next->str));
