@@ -53,7 +53,7 @@
 # define NO_FILE "No such file or directory"
 # define NOT_VI "not a valid identifier"
 
-// int	g_exit_status;
+int	g_exit_status;
 
 typedef struct s_env_var_lst
 {
@@ -112,7 +112,6 @@ typedef struct s_info
 	int					fd_in_restore_flag;
 	int					fd_out_restore_flag;
 	int					red_left_after_right_flag;
-	int					exit_status;
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -221,7 +220,8 @@ int				pipe_and_error_check(int pipe_fd[2]);
 int				fork_and_error_check(pid_t *pid);
 
 // minishell_utils_2.c
-int				set_exit_status(t_info *info, int exit_status);
+int				set_exit_status(int exit_status);
+// int				set_exit_status(t_info *info, int exit_status);
 
 // set_token_type_dl.c
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
@@ -285,8 +285,10 @@ char			**get_envp_in_array(t_info *info);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);
-void			set_sig_in_child_process(t_info *info);
-void			set_sig_in_parent_process(t_info *info);
+// void			set_sig_in_child_process(t_info *info);
+// void			set_sig_in_parent_process(void);
+void			set_sig_in_exec_cmd(void);
+// void			set_sig_in_parent_process(t_info *info);
 
 // set_fd_by_redirect_lst.c
 int				set_fd_by_redirect_lst(t_info *info);

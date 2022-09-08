@@ -16,32 +16,28 @@
 // 	}
 // }
 
-void	put_exitstatus(t_info *info, int n)
+void	put_exitstatus(int n)
 {
 	if (n != 0)
 		printf("\x1b[31m[%d]\x1b[0m ", n);
 	else
 		printf("\x1b[32m[%d]\x1b[0m ", n);
-	info->exit_status = n;
-	// g_exit_status = n; // ②
+	g_exit_status = n;
 }
 
 static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 {
 	int	status;
 
-	set_sig_in_child_process(info);
+	set_sig_in_exec_cmd();
 	if (set_fd_by_redirect_lst(info) == ERROR)
 	{
-		set_exit_status(info, ERROR);
-		put_exitstatus(info, ERROR);
+		put_exitstatus(ERROR);
 		return (ERROR);
 	}
 	status = exec_builtin_without_pipe(info);
 	init_and_set_fd_for_restore(info, 2);
-	set_exit_status(info, status);
-	// init_and_close_fd_for_restore(info);
-	put_exitstatus(info, status);
+	put_exitstatus(status);
 	return (status);
 }
 
@@ -59,26 +55,26 @@ int	execute_command(t_info *info)
 		status = set_fd_and_exec_builtin_without_pipe(info);
 		return (SUCCESS);
 	}
-	// set_sig_in_child_process(info);
+	set_sig_in_exec_cmd();
 	if (fork_and_error_check(&pid) == ERROR)
-		return (set_exit_status(info, ERROR));
+		return (set_exit_status(ERROR));
 	else if (pid == 0)
 	{
-		set_sig_in_child_process(info);
+		// set_sig_in_child_process(info);
 		do_pipes(info, 0, ft_sentence_lstsize(info->sentence_lst));
 	}
 	else
 	{
-		// int status_tmp = g_exit_status;
-		set_sig_in_parent_process(info);
+		// set_sig_in_parent_process();
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		// if (status_tmp != g_exit_status)
-		// 	g_exit_status = 130;
-		// printf("status = %d\n", g_exit_status);
-		// printf("e_status = %d\n", WEXITSTATUS(g_exit_status));
-		// set_exit_status(info, status);
-		// set_exit_status(info, WEXITSTATUS(status));
-		put_exitstatus(info, status);
+		if (g_exit_status == SIGINT)
+			status = 130;
+		else if (g_exit_status == SIGQUIT)
+		{
+			status = 131;
+			printf("Quit: 3\n");
+		}
+		put_exitstatus(status);
 	}
 	// put_exitstatus(info, WEXITSTATUS(status));
 	info->sentence_lst = sentence_lst_tmp;

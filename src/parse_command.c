@@ -29,7 +29,8 @@ int	parse_command(char *command, t_info *info)
 	// ここまでデバッグ用
 	syntax_analysis(info);
 	if (check_syntax_error(info) == ERROR)
-		return (set_exit_status(info, E_STATUS_SYN_ERR));
+		return (set_exit_status(E_STATUS_SYN_ERR));
+		// return (set_exit_status(info, E_STATUS_SYN_ERR));
 	// ここからデバッグ用
 	// sentence_lst_tmp = info->sentence_lst;
 	// while (info->sentence_lst)

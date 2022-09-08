@@ -2,7 +2,7 @@
 
 static void	exit_ctrl_d(void)
 {
-	printf("exit\n");
+	ft_putendl_fd("exit", STDERR_FILENO);
 	exit(SUCCESS);
 }
 
@@ -32,12 +32,10 @@ int	main(void)
 	t_info	info;
 
 	header();
-	info.exit_status = 0;
-	// g_exit_status = 0; // ①
+	g_exit_status = 0;
 	init_env_var_lst(&info);
 	while (1)
 	{
-		//printf("e_status = %d\n", info.exit_status);
 		init_info(&info);
 		init_sig(&info);
 		command = readline(PROMPT);
@@ -46,7 +44,6 @@ int	main(void)
 		else if (ft_strlen(command) > 0)
 		{
 			parse_command(command, &info);
-				// exit(ERROR);
 			add_history(command);
 		}
 		remove_file();

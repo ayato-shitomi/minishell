@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `src/minishell.o', needed by `minishell'.  Stop.
 
-# Make data base, printed on Wed Sep  7 11:25:34 2022
+
+# Make data base, printed on Wed Sep  7 22:41:09 2022
 
 # Variables
 
@@ -30,7 +33,7 @@ VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePac
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 33)
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(shell brew --prefix readline)/include
+CFLAGS = -Wall -Wextra -Werror -I$(shell brew --prefix readline)/include
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
@@ -172,12 +175,9 @@ src/ft_env_var_lst.o:
 
 # Not a target:
 src/ft_free.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/do_pipes_2.o:
@@ -187,12 +187,9 @@ src/do_pipes_2.o:
 
 # Not a target:
 src/utils_4.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:27
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/ft_split_lex.o:
@@ -202,12 +199,9 @@ src/ft_split_lex.o:
 
 # Not a target:
 src/ft_dl_lst.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:31
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 all: minishell
 #  Phony target (prerequisite of .PHONY).
@@ -226,12 +220,9 @@ src/get_next_line.o:
 
 # Not a target:
 src/lexical_analysis_2.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 .PHONY: all clean fclean re
 #  Implicit rule search has not been done.
@@ -248,9 +239,6 @@ src/expand_the_expandable_in_redirect_lst.o:
 src/builtin_cd.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
-make: *** No rule to make target `src/expand_the_expandable_in_cmd_lst.o', needed by `minishell'.  Stop.
-
 #  File has not been updated.
 
 # Not a target:
@@ -261,12 +249,9 @@ src/builtin_export_3.o:
 
 # Not a target:
 src/syntax_analysis.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/set_pipe_fd.o:
@@ -282,27 +267,22 @@ src/heredoc_2.o:
 
 # Not a target:
 src/check_builtin.o:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
 src/parse_command.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/ft_sentence_lst.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:33
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -313,7 +293,7 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:25
+#  Last modified 2022-09-07 22:38:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -321,30 +301,21 @@ Makefile:
 
 # Not a target:
 src/check_syntax_error.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/utils_3.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:27
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/split_token_for_dquote.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:31
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/set_fd_by_redirect_lst.o:
@@ -366,12 +337,9 @@ src/builtin_echo.o:
 
 # Not a target:
 src/set_token_type_dl.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:32
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/ft_free_2.o:
@@ -381,16 +349,13 @@ src/ft_free_2.o:
 
 # Not a target:
 src/minishell_utils.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/utils_4.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o src/ft_error.o src/set_sig_in_each_process.o src/check_builtin.o src/builtin_cd.o src/builtin_pwd.o src/builtin_exit.o src/ft_free_2.o src/builtin_cd_2.o src/ft_env_var_lst.o src/ft_env_var_lst_2.o src/builtin_cd_3.o src/builtin_export.o src/builtin_export_2.o src/validate.o src/builtin_export_3.o src/builtin_env.o src/builtin_echo.o src/builtin_unset.o src/ft_split_lex.o src/minishell_utils_2.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-09-07 12:32:31
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -413,30 +378,21 @@ src/ft_error.o:
 
 # Not a target:
 src/split_token_for_pipe.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:32
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/ft_split.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/ft_dl_lst_2.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:31
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
@@ -455,30 +411,21 @@ src/builtin_cd_2.o:
 
 # Not a target:
 src/check_env_var_and_set_env_var_info.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:33
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/split_token_for_redirect.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:32
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/utils.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:27
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/validate.o:
@@ -494,31 +441,21 @@ src/validate.o:
 
 # Not a target:
 src/expand_env_var.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:34
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/ft_lst.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:33
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/split_token_for_squote.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:32
-#  File has been updated.
- 
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -543,12 +480,9 @@ clean:
 
 # Not a target:
 src/header.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/set_sig_in_each_process.o:
@@ -576,21 +510,15 @@ src/builtin_exit.o:
 
 # Not a target:
 src/remove_space.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/lexical_analysis.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/get_next_line_utils.o:
@@ -600,6 +528,12 @@ src/get_next_line_utils.o:
 
 # Not a target:
 src/expand_the_expandable_in_cmd_lst.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/minishell.o:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
@@ -607,17 +541,9 @@ src/expand_the_expandable_in_cmd_lst.o:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-src/minishell.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:26
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 src/minishell_utils_2.o:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -635,12 +561,9 @@ src/builtin_pwd.o:
 
 # Not a target:
 src/set_lst_of_sentence_lst.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:33
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/heredoc.o:
@@ -662,21 +585,15 @@ src/builtin_cd_3.o:
 
 # Not a target:
 src/execute_command.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/utils_2.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:25:27
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
 # Load=68/1024=7%, Rehash=0, Collisions=2/148=1%
@@ -691,6 +608,6 @@ src/utils_2.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Sep  7 11:25:34 2022
+# Finished Make data base on Wed Sep  7 22:41:09 2022
 
  

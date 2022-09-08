@@ -1,10 +1,10 @@
 #include "../includes/minishell.h"
 
-static void	set_key_value_str_for_exit_status(t_info *info, t_lst *env_var_lst)
+static void	set_key_value_str_for_exit_status(t_lst *env_var_lst)
 {
 	env_var_lst->key[0] = '?';
 	env_var_lst->key[1] = '\0';
-	env_var_lst->value = ft_strdup(ft_itoa(info->exit_status));
+	env_var_lst->value = ft_strdup(ft_itoa(g_exit_status));
 	env_var_lst->str = (char *)ft_calloc(3, sizeof(char));
 	if (!(env_var_lst->str))
 		exit(ERROR);
@@ -51,7 +51,7 @@ static void	set_exit_status_at_syn(t_info *info, size_t *i)
 	env_var_lst->key = (char *)ft_calloc(2, sizeof(char));
 	if (!(env_var_lst->key))
 		exit(ERROR);
-	set_key_value_str_for_exit_status(info, env_var_lst);
+	set_key_value_str_for_exit_status(env_var_lst);
 	ft_lstadd_back(&(info->sentence_lst->env_var_lst), env_var_lst);
 }
 
