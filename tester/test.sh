@@ -24,7 +24,8 @@ function write_back_qote()
 function runtest()
 {
 	clear
-	
+	rm $F1 $F2
+
 	echo "$@ > $F1" | ./minishell 2>&-
 	echo "$@ > $F2" | bash 2>&-
 
@@ -44,6 +45,7 @@ function runtest()
 		echo "## $@ : OK" >> $RS
 	fi
 	sleep 0.1
+	rm $F1 $F2
 	clear
 }
 
@@ -63,14 +65,24 @@ runtest 'exit hello'
 runtest 'exit 1 test'
 runtest 'exit "hello world"'
 
+#runtest 'env'
+
+#runtest 'export'
+
+#runtest 'unset'
+
+runtest 'cd /UnkoAziNoKare/Oisiku/Nai'
+runtest 'cd ..'
+runtest 'cd ~'
+runtest 'cd .'
 
 runtest 'pwd'
 
-runtest 'cd ..'
-runtest 'cd ~'
-
 runtest 'ls'
-runtest 'ls -la'
+runtest 'ls -1'
+
+#runtest 'unko'
+#runtest 'do_unko'
 
 #=============================================================#
 
