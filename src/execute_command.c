@@ -67,18 +67,26 @@ int	execute_command(t_info *info)
 	{
 		// set_sig_in_parent_process();
 		w_pid = waitpid(pid, &status, WUNTRACED);
+		printf("status = %d\n", status);
+		printf("w_status = %d\n", WEXITSTATUS(status));
 		if (g_exit_status == SIGINT)
 		{
 			if (status == SIGINT)
 				status = 128 + SIGINT;
+			else
+				status = WEXITSTATUS(status);
 			printf("\n");
 		}
 		else if (g_exit_status == SIGQUIT)
 		{
 			if (status == SIGQUIT)
 				status = 128 + SIGQUIT;
+			else
+				status = WEXITSTATUS(status);
 			printf("Quit: 3\n");
 		}
+		else
+			status = WEXITSTATUS(status);
 		put_exitstatus(status);
 	}
 	// put_exitstatus(info, WEXITSTATUS(status));
