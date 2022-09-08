@@ -69,12 +69,14 @@ int	execute_command(t_info *info)
 		w_pid = waitpid(pid, &status, WUNTRACED);
 		if (g_exit_status == SIGINT)
 		{
-			status = 130;
+			if (status == SIGINT)
+				status = 128 + SIGINT;
 			printf("\n");
 		}
 		else if (g_exit_status == SIGQUIT)
 		{
-			status = 131;
+			if (status == SIGQUIT)
+				status = 128 + SIGQUIT;
 			printf("Quit: 3\n");
 		}
 		put_exitstatus(status);

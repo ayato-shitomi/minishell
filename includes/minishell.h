@@ -355,7 +355,8 @@ t_lst			*ft_lstlast(t_lst *lst);
 size_t			ft_lstsize(t_lst *lst);
 
 // ft_env_var_lst.c
-void			init_env_var_lst(t_info *info);
+// void			init_env_var_lst(t_info *info);
+void			init_env_var_lst(t_info *info, char **envp);
 t_env_var_lst	*ft_env_var_lstnew(char *key, char *value);
 void			ft_env_var_lstadd_back(t_env_var_lst **env_var_lst, \
 	t_env_var_lst *new);

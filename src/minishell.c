@@ -26,14 +26,16 @@ static void	init_info(t_info *info)
 	info->red_left_after_right_flag = 0;
 }
 
-int	main(void)
+int	main(int ac, char **argv, char **envp)
 {
 	char	*command;
 	t_info	info;
 
+	(void)ac;
+	(void)argv;
 	header();
 	g_exit_status = 0;
-	init_env_var_lst(&info);
+	init_env_var_lst(&info, envp);
 	while (1)
 	{
 		init_info(&info);

@@ -43,38 +43,37 @@ t_env_var_lst	*ft_env_var_lstnew(char *key, char *value)
 	return (new_elem);
 }
 
-static t_env_var_lst	*get_env_var_lst(char **environ, size_t i)
+static t_env_var_lst	*get_env_var_lst(char **envp, size_t i)
 {
-	char			*environ_tmp;
+	char			*envp_tmp;
 	char			*key_end_p;
 	size_t			key_len;
 	t_env_var_lst	*env_var_lst_tmp;
 
-	environ_tmp = ft_strdup(environ[i]);
-	key_end_p = ft_strchr(environ_tmp, '=');
-	key_len = ft_strlen(environ_tmp) - ft_strlen(key_end_p);
-	environ_tmp[key_len] = '\0';
-	env_var_lst_tmp = ft_env_var_lstnew(environ_tmp, &environ[i][key_len + 1]);
-	free(environ_tmp);
+	envp_tmp = ft_strdup(envp[i]);
+	key_end_p = ft_strchr(envp_tmp, '=');
+	key_len = ft_strlen(envp_tmp) - ft_strlen(key_end_p);
+	envp_tmp[key_len] = '\0';
+	env_var_lst_tmp = ft_env_var_lstnew(envp_tmp, &envp[i][key_len + 1]);
+	free(envp_tmp);
 	return (env_var_lst_tmp);
 }
 
-void	init_env_var_lst(t_info *info)
+void	init_env_var_lst(t_info *info, char **envp)
 {
-	extern char		**environ;
 	size_t			i;
 	t_env_var_lst	*env_var_lst_tmp;
 
 	info->env_var_lst = NULL;
-	if (!environ)
+	if (!envp)
 		return ;
-	if (!environ[0])
+	if (!envp[0])
 		return ;
-	info->env_var_lst = get_env_var_lst(environ, 0);
+	info->env_var_lst = get_env_var_lst(envp, 0);
 	i = 1;
-	while (environ[i])
+	while (envp[i])
 	{
-		env_var_lst_tmp = get_env_var_lst(environ, i);
+		env_var_lst_tmp = get_env_var_lst(envp, i);
 		ft_env_var_lstadd_back(&(info->env_var_lst), env_var_lst_tmp);
 		i++;
 	}
