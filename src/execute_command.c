@@ -68,7 +68,10 @@ int	execute_command(t_info *info)
 		// set_sig_in_parent_process();
 		w_pid = waitpid(pid, &status, WUNTRACED);
 		if (g_exit_status == SIGINT)
+		{
 			status = 130;
+			printf("\n");
+		}
 		else if (g_exit_status == SIGQUIT)
 		{
 			status = 131;
