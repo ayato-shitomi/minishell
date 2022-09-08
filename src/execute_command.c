@@ -1,21 +1,5 @@
 #include "../includes/minishell.h"
 
-// static void	init_and_close_fd_for_restore(t_info *info)
-// {
-// 	if (info->fd_in_restore_flag)
-// 	{
-// 		dup2(info->fd_for_restore, 0);
-// 		close(info->fd_for_restore);
-// 		info->fd_in_restore_flag = 0;
-// 	}
-// 	else if (info->fd_out_restore_flag)
-// 	{
-// 		dup2(info->fd_for_restore, 1);
-// 		close(info->fd_for_restore);
-// 		info->fd_out_restore_flag = 0;
-// 	}
-// }
-
 void	put_exitstatus(int n)
 {
 	if (n != 0)
@@ -36,6 +20,22 @@ static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 		return (ERROR);
 	}
 	status = exec_builtin_without_pipe(info);
+	if (g_exit_status == SIGINT)
+	{
+		if (status == SIGINT)
+			status = 128 + SIGINT;
+		else
+			status = WEXITSTATUS(status);
+		printf("\n");
+	}
+	else if (g_exit_status == SIGQUIT)
+	{
+		if (status == SIGQUIT)
+			status = 128 + SIGQUIT;
+		else
+			status = WEXITSTATUS(status);
+		printf("Quit: 3\n");
+	}
 	init_and_set_fd_for_restore(info, 2);
 	put_exitstatus(status);
 	return (status);
