@@ -70,7 +70,8 @@ int	exec_builtin(t_info *info, char **cmd)
 		// 	status = ft_echo(cmd[0], );
 		// status = ft_echo(cmd[1], false); //
 		// tatus = ft_echo(cmd[1]);
-		printf(" >> DO NOTHING << \n");
+		//printf(" >> DO NOTHING << \n");
+		status = ft_echo(info);
 	}
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		status = ft_exit(ac, cmd, NULL);
