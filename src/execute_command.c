@@ -65,9 +65,9 @@ int	execute_command(t_info *info)
 	{
 		// set_sig_in_parent_process();
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		printf("status = %d\n", status);
-		printf("w_status = %d\n", WEXITSTATUS(status));
-		printf("g_status = %d\n", g_exit_status);
+		// printf("status = %d\n", status);
+		// printf("w_status = %d\n", WEXITSTATUS(status));
+		// printf("g_status = %d\n", g_exit_status);
 		if (g_exit_status == SIGINT)
 		{
 			if (status == SIGINT)
