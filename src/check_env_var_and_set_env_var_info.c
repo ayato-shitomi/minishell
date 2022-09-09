@@ -95,10 +95,12 @@ void	check_env_var_and_set_env_var_info(t_info *info, t_lst *lst)
 			{
 				if (lst->str[i + 1])
 				{
-					if (lst->str[i + 1] != '?')
+					if (lst->str[i + 1] != '?' && lst->str[i + 1] != '$')
 						set_env_var_info(info, lst, &i);
-					else
+					else if (lst->str[i + 1] != '$')
 						set_exit_status_at_syn(info, &i);
+					// else
+					// 	set_exit_status_at_syn(info, &i);
 				}
 			}
 			i++;
