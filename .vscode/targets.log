@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Fri Sep  9 13:49:42 2022
+# Make data base, printed on Sat Sep 10 02:08:30 2022
 
 # Variables
 
@@ -53,6 +53,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ChCOEdeWpd/Listeners
 # environment
 DISPLAY = /private/tmp/com.apple.launchd.xZiyYnjORK/org.xquartz:0
 # makefile (from `Makefile', line 26)
+ 
 OBJS = $(SRCS:.c=.o)
 # environment
 PWD = /Users/user/42/lv3/minishell_pra
@@ -164,7 +165,7 @@ VSCODE_PID = 1928
 # Not a target:
 src/ft_env_var_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:05
+#  Last modified 2022-09-10 02:08:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -173,7 +174,7 @@ src/ft_env_var_lst.o:
 # Not a target:
 src/ft_free.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:57
+#  Last modified 2022-09-10 02:08:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -182,7 +183,7 @@ src/ft_free.o:
 # Not a target:
 src/do_pipes_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:00
+#  Last modified 2022-09-10 02:08:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -191,7 +192,7 @@ src/do_pipes_2.o:
 # Not a target:
 src/utils_4.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:54
+#  Last modified 2022-09-10 02:08:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -200,7 +201,7 @@ src/utils_4.o:
 # Not a target:
 src/ft_split_lex.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:10
+#  Last modified 2022-09-10 02:08:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -209,7 +210,7 @@ src/ft_split_lex.o:
 # Not a target:
 src/ft_dl_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:57
+#  Last modified 2022-09-10 02:08:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -228,16 +229,17 @@ all: minishell
 # Not a target:
 src/get_next_line.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:00
+#  Last modified 2022-09-10 02:08:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+ 
 src/lexical_analysis_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:56
+#  Last modified 2022-09-10 02:08:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -251,17 +253,16 @@ src/lexical_analysis_2.o:
 # Not a target:
 src/expand_the_expandable_in_redirect_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:59
+#  Last modified 2022-09-10 02:08:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
- 
 src/builtin_cd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:04
+#  Last modified 2022-09-10 02:08:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -270,7 +271,7 @@ src/builtin_cd.o:
 # Not a target:
 src/builtin_export_3.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:08
+#  Last modified 2022-09-10 02:08:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -279,7 +280,7 @@ src/builtin_export_3.o:
 # Not a target:
 src/syntax_analysis.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:56
+#  Last modified 2022-09-10 02:08:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -288,7 +289,7 @@ src/syntax_analysis.o:
 # Not a target:
 src/set_pipe_fd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:01
+#  Last modified 2022-09-10 02:08:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -297,7 +298,7 @@ src/set_pipe_fd.o:
 # Not a target:
 src/heredoc_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:02
+#  Last modified 2022-09-10 02:08:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -306,7 +307,7 @@ src/heredoc_2.o:
 # Not a target:
 src/check_builtin.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:04
+#  Last modified 2022-09-10 02:08:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -315,7 +316,7 @@ src/check_builtin.o:
 # Not a target:
 src/parse_command.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:54
+#  Last modified 2022-09-10 02:08:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -324,7 +325,7 @@ src/parse_command.o:
 # Not a target:
 src/ft_sentence_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:58
+#  Last modified 2022-09-10 02:08:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -339,7 +340,7 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-07 22:38:06
+#  Last modified 2022-09-10 02:08:28
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -348,7 +349,7 @@ Makefile:
 # Not a target:
 src/check_syntax_error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:56
+#  Last modified 2022-09-10 02:08:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -357,7 +358,7 @@ src/check_syntax_error.o:
 # Not a target:
 src/utils_3.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:53
+#  Last modified 2022-09-10 02:08:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -366,7 +367,7 @@ src/utils_3.o:
 # Not a target:
 src/split_token_for_dquote.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:57
+#  Last modified 2022-09-10 02:08:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -375,7 +376,7 @@ src/split_token_for_dquote.o:
 # Not a target:
 src/set_fd_by_redirect_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:00
+#  Last modified 2022-09-10 02:08:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -384,7 +385,7 @@ src/set_fd_by_redirect_lst.o:
 # Not a target:
 src/ft_env_var_lst_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:06
+#  Last modified 2022-09-10 02:08:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -393,7 +394,7 @@ src/ft_env_var_lst_2.o:
 # Not a target:
 src/builtin_echo.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:09
+#  Last modified 2022-09-10 02:08:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -402,7 +403,7 @@ src/builtin_echo.o:
 # Not a target:
 src/set_token_type_dl.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:58
+#  Last modified 2022-09-10 02:08:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -411,7 +412,7 @@ src/set_token_type_dl.o:
 # Not a target:
 src/ft_free_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:05
+#  Last modified 2022-09-10 02:08:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -420,7 +421,7 @@ src/ft_free_2.o:
 # Not a target:
 src/minishell_utils.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:54
+#  Last modified 2022-09-10 02:08:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -428,7 +429,7 @@ src/minishell_utils.o:
 
 minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/utils_4.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o src/ft_error.o src/set_sig_in_each_process.o src/check_builtin.o src/builtin_cd.o src/builtin_pwd.o src/builtin_exit.o src/ft_free_2.o src/builtin_cd_2.o src/ft_env_var_lst.o src/ft_env_var_lst_2.o src/builtin_cd_3.o src/builtin_export.o src/builtin_export_2.o src/validate.o src/builtin_export_3.o src/builtin_env.o src/builtin_echo.o src/builtin_unset.o src/ft_split_lex.o src/minishell_utils_2.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-09-09 12:54:10
+#  Last modified 2022-09-10 02:08:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -441,7 +442,7 @@ minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/utils_4.o
 # Not a target:
 src/builtin_export.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:07
+#  Last modified 2022-09-10 02:08:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -450,7 +451,7 @@ src/builtin_export.o:
 # Not a target:
 src/ft_error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:03
+#  Last modified 2022-09-10 02:08:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -459,7 +460,7 @@ src/ft_error.o:
 # Not a target:
 src/split_token_for_pipe.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:58
+#  Last modified 2022-09-10 02:08:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -468,7 +469,7 @@ src/split_token_for_pipe.o:
 # Not a target:
 src/ft_split.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:55
+#  Last modified 2022-09-10 02:08:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -477,7 +478,7 @@ src/ft_split.o:
 # Not a target:
 src/ft_dl_lst_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:57
+#  Last modified 2022-09-10 02:08:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -489,13 +490,14 @@ fclean: clean
 #  File does not exist.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 47):
+ 
 	rm -rf $(NAME)
 	
 
 # Not a target:
 src/builtin_cd_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:05
+#  Last modified 2022-09-10 02:08:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -504,7 +506,7 @@ src/builtin_cd_2.o:
 # Not a target:
 src/check_env_var_and_set_env_var_info.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:59
+#  Last modified 2022-09-10 02:08:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -513,8 +515,7 @@ src/check_env_var_and_set_env_var_info.o:
 # Not a target:
 src/split_token_for_redirect.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:58
- 
+#  Last modified 2022-09-10 02:08:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -523,7 +524,7 @@ src/split_token_for_redirect.o:
 # Not a target:
 src/utils.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:53
+#  Last modified 2022-09-10 02:08:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -532,7 +533,7 @@ src/utils.o:
 # Not a target:
 src/validate.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:08
+#  Last modified 2022-09-10 02:08:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -547,7 +548,7 @@ src/validate.o:
 # Not a target:
 src/expand_env_var.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:59
+#  Last modified 2022-09-10 02:08:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -556,7 +557,7 @@ src/expand_env_var.o:
 # Not a target:
 src/ft_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:58
+#  Last modified 2022-09-10 02:08:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -565,7 +566,7 @@ src/ft_lst.o:
 # Not a target:
 src/split_token_for_squote.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:57
+#  Last modified 2022-09-10 02:08:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -580,7 +581,7 @@ re: fclean all
 # Not a target:
 src/do_pipes.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:00
+#  Last modified 2022-09-10 02:08:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -598,7 +599,7 @@ clean:
 # Not a target:
 src/header.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:54
+#  Last modified 2022-09-10 02:08:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -607,7 +608,7 @@ src/header.o:
 # Not a target:
 src/set_sig_in_each_process.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:03
+#  Last modified 2022-09-10 02:08:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -616,7 +617,7 @@ src/set_sig_in_each_process.o:
 # Not a target:
 src/set_fd_by_redirect_lst_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:02
+#  Last modified 2022-09-10 02:08:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -625,7 +626,7 @@ src/set_fd_by_redirect_lst_2.o:
 # Not a target:
 src/builtin_env.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:08
+#  Last modified 2022-09-10 02:08:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -634,7 +635,7 @@ src/builtin_env.o:
 # Not a target:
 src/builtin_exit.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:05
+#  Last modified 2022-09-10 02:08:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -643,7 +644,7 @@ src/builtin_exit.o:
 # Not a target:
 src/remove_space.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:55
+#  Last modified 2022-09-10 02:08:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -652,16 +653,17 @@ src/remove_space.o:
 # Not a target:
 src/lexical_analysis.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:55
+#  Last modified 2022-09-10 02:08:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
+ 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/get_next_line_utils.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:01
+#  Last modified 2022-09-10 02:08:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -670,7 +672,7 @@ src/get_next_line_utils.o:
 # Not a target:
 src/expand_the_expandable_in_cmd_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:59
+#  Last modified 2022-09-10 02:08:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -679,7 +681,7 @@ src/expand_the_expandable_in_cmd_lst.o:
 # Not a target:
 src/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:52
+#  Last modified 2022-09-10 02:08:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -688,7 +690,7 @@ src/minishell.o:
 # Not a target:
 src/minishell_utils_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:10
+#  Last modified 2022-09-10 02:08:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -697,7 +699,7 @@ src/minishell_utils_2.o:
 # Not a target:
 src/builtin_export_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:07
+#  Last modified 2022-09-10 02:08:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -706,7 +708,7 @@ src/builtin_export_2.o:
 # Not a target:
 src/builtin_pwd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:04
+#  Last modified 2022-09-10 02:08:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -715,7 +717,7 @@ src/builtin_pwd.o:
 # Not a target:
 src/set_lst_of_sentence_lst.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:59
+#  Last modified 2022-09-10 02:08:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -724,7 +726,7 @@ src/set_lst_of_sentence_lst.o:
 # Not a target:
 src/heredoc.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:01
+#  Last modified 2022-09-10 02:08:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -733,7 +735,7 @@ src/heredoc.o:
 # Not a target:
 src/builtin_unset.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:09
+#  Last modified 2022-09-10 02:08:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -742,7 +744,7 @@ src/builtin_unset.o:
 # Not a target:
 src/builtin_cd_3.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:54:06
+#  Last modified 2022-09-10 02:08:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -751,7 +753,7 @@ src/builtin_cd_3.o:
 # Not a target:
 src/execute_command.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:54
+#  Last modified 2022-09-10 02:08:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -760,7 +762,7 @@ src/execute_command.o:
 # Not a target:
 src/utils_2.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-09 12:53:53
+#  Last modified 2022-09-10 02:08:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -779,6 +781,6 @@ src/utils_2.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Sep  9 13:49:42 2022
+# Finished Make data base on Sat Sep 10 02:08:30 2022
 
  

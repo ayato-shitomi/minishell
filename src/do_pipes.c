@@ -14,11 +14,19 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	while (env_path[i])
 	{
 		if (cmd[0][0] == '/' || cmd[0][0] == '.')
-			cmd_path = cmd[0];
+		{
+			cmd_path = ft_strdup(cmd[0]);
+			if (access(cmd_path, F_OK) != 0)
+				return (NULL);
+		}
 		else
 			cmd_path = ft_strjoin_three(env_path[i++], "/", cmd[0]);
 		if (access(cmd_path, F_OK) == 0 && cmd[0][0] != '\0')
+		{
+			if (access(cmd_path, X_OK) != 0)
+				error_and_exit(cmd_path, PERM_DENIED, E_STATUS_PERM_D);
 			return (cmd_path);
+		}
 		free(cmd_path);
 	}
 	return (NULL);

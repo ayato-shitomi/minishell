@@ -46,6 +46,7 @@
 # define ENV_VAR_LST 12
 # define BUFFER_SIZE 1
 # define CMD_NOT_FOUND "command not found"
+# define E_STATUS_PERM_D 126
 # define E_STATUS_CNF 127
 # define E_STATUS_CTRL_C 130
 # define E_STATUS_SYN_ERR 258
