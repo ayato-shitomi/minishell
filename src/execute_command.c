@@ -20,20 +20,18 @@ static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 		return (ERROR);
 	}
 	status = exec_builtin_without_pipe(info);
+	// printf("status = %d\n", status);
+	// printf("w_status = %d\n", WEXITSTATUS(status));
 	if (g_exit_status == SIGINT)
 	{
 		if (status == SIGINT)
 			status = 128 + SIGINT;
-		else
-			status = WEXITSTATUS(status);
 		printf("\n");
 	}
 	else if (g_exit_status == SIGQUIT)
 	{
 		if (status == SIGQUIT)
 			status = 128 + SIGQUIT;
-		else
-			status = WEXITSTATUS(status);
 		printf("Quit: 3\n");
 	}
 	init_and_set_fd_for_restore(info, 2);
@@ -69,6 +67,7 @@ int	execute_command(t_info *info)
 		w_pid = waitpid(pid, &status, WUNTRACED);
 		printf("status = %d\n", status);
 		printf("w_status = %d\n", WEXITSTATUS(status));
+		printf("g_status = %d\n", g_exit_status);
 		if (g_exit_status == SIGINT)
 		{
 			if (status == SIGINT)

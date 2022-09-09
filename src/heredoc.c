@@ -28,6 +28,7 @@ int	heredoc(t_info *info)
 		return (ERROR);
 	else if (heredoc_pid == 0)
 	{
+		set_sig_in_heredoc(); // ①
 		if (heredoc_child_process(info, heredoc_pipe_fd, \
 			continue_flag) == ERROR)
 			exit(ERROR);
@@ -36,6 +37,8 @@ int	heredoc(t_info *info)
 	else
 	{
 		w_pid = waitpid(heredoc_pid, &status, WUNTRACED);
+		if (g_exit_status == SIGINT) // ②
+			exit(ERROR);
 		if (!info->red_left_after_right_flag)
 		{
 			if (init_and_set_fd_for_restore(info, 0) == ERROR)

@@ -288,6 +288,7 @@ void			init_sig(t_info *info);
 // void			set_sig_in_child_process(t_info *info);
 // void			set_sig_in_parent_process(void);
 void			set_sig_in_exec_cmd(void);
+void			set_sig_in_heredoc(void);
 // void			set_sig_in_parent_process(t_info *info);
 
 // set_fd_by_redirect_lst.c

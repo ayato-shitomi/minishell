@@ -83,9 +83,9 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
 	if (pid > 0)
 	{
-		w_pid = waitpid(pid, &status, WUNTRACED); //
-		// if (WEXITSTATUS(status) != 0)
-		// 	exit(WEXITSTATUS(status));
+		w_pid = waitpid(pid, &status, WUNTRACED);
+		if (WEXITSTATUS(status) != SUCCESS) //
+			exit(WEXITSTATUS(status));
 	}
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		exit(ERROR);

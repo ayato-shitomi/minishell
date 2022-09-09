@@ -24,6 +24,22 @@
 // 		exit(ERROR);
 // }
 
+static void	sig_int_handler_in_heredoc(int signum)
+{
+	if (signum == SIGINT)
+	{
+		write(2, "check\n", 6);
+		g_exit_status = SIGINT;
+		exit(ERROR);
+	}
+}
+
+void	set_sig_in_heredoc(void)
+{
+	signal(SIGINT, sig_int_handler_in_heredoc);
+	signal(SIGQUIT, SIG_IGN);
+}
+
 static void	sig_int_handler_in_exec_cmd(int signum)
 {
 	if (signum == SIGINT)
