@@ -35,7 +35,7 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 	{
 		if (ft_is_same(nxt->key, key) == 0)
 		{
-			printf(" %s \t %s\n", nxt->key, nxt->value);
+			//printf(" %s \t %s\n", nxt->key, nxt->value);
 			if (nxt->next != NULL)
 			{
 				nxt->key = nxt->next->key;

@@ -1,4 +1,4 @@
-2022年 9月 9日 金曜日 09時46分33秒 JST
+Fri Sep  9 17:44:04 JST 2022
 ## echo hello : OK
 ## echo "hello world" : OK
 ## echo $? : OK
@@ -18,3 +18,48 @@
 ## pwd : OK
 ## ls : OK
 ## ls -1 : OK
+## ls > test | cat test : OK
+## ls >> test | cat test && rm -rf test : >> KO << 
+
+minishell
+```
+Makefile
+README.md
+includes
+minishell
+src
+subject
+tes
+test
+tester
+Makefile
+README.md
+includes
+minishell
+src
+subject
+tes
+test
+tester
+Makefile
+README.md
+includes
+minishell
+src
+subject
+tes
+test
+tester
+Makefile
+README.md
+includes
+minishell
+src
+subject
+tes
+test
+tester
+```
+bash
+```
+```
