@@ -20,23 +20,41 @@ int	heredoc(t_info *info)
 	int		heredoc_pid;
 	pid_t	w_pid;
 	int		status;
+	int		n;
+	char	*tmp_file;
 
 	set_continue_flag(info->sentence_lst, &continue_flag);
 	if (pipe_and_error_check(heredoc_pipe_fd) == ERROR)
 		return (ERROR);
+	n = 0;
+	while (1)
+	{
+		tmp_file = ft_itoa(n);
+		if (access(tmp_file, F_OK) != 0)
+			break ;
+		free(tmp_file);
+		if (n == INT_MAX)
+			exit(ERROR);
+		n++;
+	}
 	if (fork_and_error_check(&heredoc_pid) == ERROR)
 		return (ERROR);
 	else if (heredoc_pid == 0)
 	{
 		set_sig_in_heredoc(); // ①
 		if (heredoc_child_process(info, heredoc_pipe_fd, \
-			continue_flag) == ERROR)
+			continue_flag, tmp_file) == ERROR)
 			exit(ERROR);
 		exit(ERROR);
 	}
 	else
 	{
 		w_pid = waitpid(heredoc_pid, &status, WUNTRACED);
+		if (access(tmp_file, F_OK) == 0)
+		{
+			unlink(tmp_file);
+			free(tmp_file);
+		}
 		if (g_exit_status == SIGINT) // ②
 			exit(ERROR);
 		if (!info->red_left_after_right_flag)
@@ -54,7 +72,7 @@ int	heredoc(t_info *info)
 		// if (continue_flag == 1)
 		// 	exit(SUCCESS);
 	}
-	return (SUCCESS);
+	return (WEXITSTATUS(status));
 }
 
 // int	heredoc(t_info *info) // 変更前

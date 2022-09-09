@@ -1,4 +1,4 @@
-Thu Sep  8 23:21:44 JST 2022
+2022年 9月 9日 金曜日 09時46分33秒 JST
 ## echo hello : OK
 ## echo "hello world" : OK
 ## echo $? : OK
@@ -18,19 +18,3 @@ Thu Sep  8 23:21:44 JST 2022
 ## pwd : OK
 ## ls : OK
 ## ls -1 : OK
-## unko : >> KO << 
-
-minishell
-```
-```
-bash
-```
-```
-## do_unko : >> KO << 
-
-minishell
-```
-```
-bash
-```
-```

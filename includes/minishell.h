@@ -307,7 +307,9 @@ void			set_continue_flag(t_sentence_lst *sentence_lst, \
 
 // heredoc_2.c
 int				heredoc_child_process(t_info *info, \
-	int heredoc_pipe_fd[2], int continue_flag);
+	int heredoc_pipe_fd[2], int continue_flag, char *tmp_file);
+// int				heredoc_child_process(t_info *info, \
+// 	int heredoc_pipe_fd[2], int continue_flag);
 
 // set_pipe_fd.c
 int				set_pipe_fd_0(int pipe_fd[2]);

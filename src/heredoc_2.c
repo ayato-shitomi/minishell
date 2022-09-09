@@ -1,7 +1,7 @@
 #include "../includes/minishell.h"
 
 static int	set_pipe_fd_and_write(int heredoc_pipe_fd[2], int tmp_fd, \
-	char *cat_line, char *line)
+	char *cat_line, char *line, char *tmp_file)
 {
 	if (close(heredoc_pipe_fd[0]) == -1)
 	{
@@ -24,11 +24,20 @@ static int	set_pipe_fd_and_write(int heredoc_pipe_fd[2], int tmp_fd, \
 		perror(SHELLNAME);
 		return (ERROR);
 	}
-	if (unlink("tmp.txt") == -1)
+	if (tmp_file)
 	{
-		perror(SHELLNAME);
-		return (ERROR);
+		if (unlink(tmp_file) == -1)
+		{
+			perror(SHELLNAME);
+			return (ERROR);
+		}
+		free(tmp_file);
 	}
+	// if (unlink("tmp.txt") == -1)
+	// {
+	// 	perror(SHELLNAME);
+	// 	return (ERROR);
+	// }
 	free(line);
 	free(cat_line);
 	exit(SUCCESS);
@@ -58,9 +67,10 @@ static int	flag_check(int flag)
 	return (SUCCESS);
 }
 
-static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag)
+// static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag)
+static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag, char *tmp_file)
 {
-	*tmp_fd = open("tmp.txt", O_RDWR | O_CREAT, \
+	*tmp_fd = open(tmp_file, O_RDWR | O_CREAT, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (*tmp_fd == -1)
 	{
@@ -74,33 +84,35 @@ static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag)
 	return (SUCCESS);
 }
 
+// int	heredoc_child_process(t_info *info, int heredoc_pipe_fd[2], \
+// 	int continue_flag)
 int	heredoc_child_process(t_info *info, int heredoc_pipe_fd[2], \
-	int continue_flag)
+	int continue_flag, char *tmp_file)
 {
 	int		flag;
 	int		tmp_fd;
 	char	*line;
 	char	*cat_line;
 
-	if (open_fd_and_calloc(&tmp_fd, &cat_line, &flag) == ERROR)
-		return (ERROR);
+	if (open_fd_and_calloc(&tmp_fd, &cat_line, &flag, tmp_file) == ERROR)
+		exit(ERROR);
 	while (flag == 1)
 	{
 		flag = get_next_line(0, &line);
 		if (flag_check(flag) == ERROR)
-			return (ERROR);
+			exit(ERROR);
 		cat_line = set_cat_line(info->sentence_lst, cat_line, line);
 		if (ft_strcmp(line, info->sentence_lst->redirect_lst->str) == 0)
 		{
 			if (continue_flag == 0)
 			{
 				if (set_pipe_fd_and_write(heredoc_pipe_fd, tmp_fd, \
-					cat_line, line) == ERROR)
-					return (ERROR);
+					cat_line, line, tmp_file) == ERROR)
+					exit(ERROR);
 			}
-			return (SUCCESS);
+			exit(SUCCESS);
 		}
 		free(line);
 	}
-	return (SUCCESS);
+	exit(SUCCESS);
 }
