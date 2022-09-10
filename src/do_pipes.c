@@ -82,6 +82,12 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	int			status;
 	char		**envp;
 
+	if (pid > 0)
+	{
+		w_pid = waitpid(pid, &status, WUNTRACED);
+		// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
+		// 	exit(WEXITSTATUS(status));
+	}
 	env_path = get_env_path();
 	if (!env_path)
 		exit(ERROR);
@@ -89,12 +95,12 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	cmd_path = get_cmd_path(env_path, cmd);
 	if (!cmd_path)
 		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
-	if (pid > 0)
-	{
-		w_pid = waitpid(pid, &status, WUNTRACED);
-		if (WEXITSTATUS(status) != SUCCESS) //
-			exit(WEXITSTATUS(status));
-	}
+	// if (pid > 0)
+	// {
+	// 	w_pid = waitpid(pid, &status, WUNTRACED);
+	// 	// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
+	// 	// 	exit(WEXITSTATUS(status));
+	// }
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		exit(ERROR);
 	if (check_builtin(cmd))

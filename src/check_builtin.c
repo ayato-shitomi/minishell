@@ -50,7 +50,7 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 	return (status);
 }
 
-// パイプありのビルドイン関数実行
+// パイプありのビルトイン関数実行
 int	exec_builtin(t_info *info, char **cmd)
 {
 	int		status;
