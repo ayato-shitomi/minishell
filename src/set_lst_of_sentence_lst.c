@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-static int	set_lst_case_branch(t_info *info, int flag)
+static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence) // ⑦
 {
 	t_lst			*lst;
 	int				continue_flag;
@@ -39,7 +39,7 @@ static int	set_lst_case_branch(t_info *info, int flag)
 		lst = ft_lstnew(info->token_dl_lst->token);
 		set_lst_info(info, lst, flag);
 		if (env_set_flag)
-			check_env_var_and_set_env_var_info(info, lst);
+			check_env_var_and_set_env_var_info(info, lst, is_first_sentence); // ⑧
 	}
 	if (flag == REDIRECT_LST)
 		ft_lstadd_back(&(info->sentence_lst->redirect_lst), lst);
@@ -48,7 +48,7 @@ static int	set_lst_case_branch(t_info *info, int flag)
 	return (flag);
 }
 
-static int	check_token_type_and_case_branch(t_info *info, int *flag)
+static int	check_token_type_and_case_branch(t_info *info, int *flag, int is_first_sentence) // ④
 {
 	if (info->token_dl_lst->type == PIPE)
 	{
@@ -58,24 +58,26 @@ static int	check_token_type_and_case_branch(t_info *info, int *flag)
 	else if ((info->token_dl_lst->type >= REDIRECT_LEFT_ONE && \
 		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO) || \
 		*flag == REDIRECT_LST)
-		*flag = set_lst_case_branch(info, REDIRECT_LST);
+		*flag = set_lst_case_branch(info, REDIRECT_LST, is_first_sentence);
 	else
-		*flag = set_lst_case_branch(info, CMD_LST);
+		*flag = set_lst_case_branch(info, CMD_LST, is_first_sentence);
 	return (0);
 }
 
 void	set_lst_of_sentence_lst(t_info *info)
 {
 	int				flag;
+	int				is_first_sentence; // ①
 	t_sentence_lst	*sentence_lst_tmp;
 
 	sentence_lst_tmp = info->sentence_lst;
+	is_first_sentence = 1;
 	while (info->sentence_lst)
 	{
 		flag = CMD_LST;
 		while (1)
 		{
-			if (check_token_type_and_case_branch(info, &flag) == 1)
+			if (check_token_type_and_case_branch(info, &flag, is_first_sentence) == 1) // ③
 				break ;
 			info->token_dl_lst = info->token_dl_lst->next;
 			if (info->token_dl_lst->dl_lst_first_flag == 1)
@@ -83,6 +85,8 @@ void	set_lst_of_sentence_lst(t_info *info)
 		}
 		if (info->token_dl_lst->dl_lst_first_flag == 1)
 			break ;
+		if (is_first_sentence) // ②
+			is_first_sentence = 0;
 		info->sentence_lst = info->sentence_lst->next;
 	}
 	info->sentence_lst = sentence_lst_tmp;

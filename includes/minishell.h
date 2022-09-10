@@ -255,7 +255,8 @@ void			syntax_analysis(t_info *info);
 void			set_lst_of_sentence_lst(t_info *info);
 
 // check_env_var_and_set_env_var_info.c
-void			check_env_var_and_set_env_var_info(t_info *info, t_lst *lst);
+void			check_env_var_and_set_env_var_info(t_info *info, t_lst *lst, \
+	int is_first_sentence);
 
 // check_syntax_error.c
 int				check_syntax_error(t_info *info);

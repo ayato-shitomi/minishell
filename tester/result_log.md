@@ -1,4 +1,4 @@
-Fri Sep  9 17:44:04 JST 2022
+2022年 9月10日 土曜日 15時45分53秒 JST
 ## echo hello : OK
 ## echo "hello world" : OK
 ## echo $? : OK
@@ -18,48 +18,3 @@ Fri Sep  9 17:44:04 JST 2022
 ## pwd : OK
 ## ls : OK
 ## ls -1 : OK
-## ls > test | cat test : OK
-## ls >> test | cat test && rm -rf test : >> KO << 
-
-minishell
-```
-Makefile
-README.md
-includes
-minishell
-src
-subject
-tes
-test
-tester
-Makefile
-README.md
-includes
-minishell
-src
-subject
-tes
-test
-tester
-Makefile
-README.md
-includes
-minishell
-src
-subject
-tes
-test
-tester
-Makefile
-README.md
-includes
-minishell
-src
-subject
-tes
-test
-tester
-```
-bash
-```
-```

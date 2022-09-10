@@ -5,6 +5,8 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	size_t	i;
 	char	*cmd_path;
 
+	if (!cmd[0])
+		return (NULL);
 	if (check_builtin(cmd))
 	{
 		cmd_path = ft_strdup(cmd[0]);
@@ -17,7 +19,8 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 		{
 			cmd_path = ft_strdup(cmd[0]);
 			if (access(cmd_path, F_OK) != 0)
-				return (NULL);
+				error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
+				// return (NULL);
 		}
 		else
 			cmd_path = ft_strjoin_three(env_path[i++], "/", cmd[0]);
@@ -61,14 +64,30 @@ static char	**set_cmd_in_cmd_lst(t_info *info)
 	return (cmd);
 }
 
-static char	**get_env_path(void)
+// static char	**get_env_path(void)
+static char	**get_env_path(t_info *info, char **cmd)
 {
-	char		*env_path_value_tmp;
-	char		*env_path_value;
-	char		**env_path;
+	// char			*env_path_value_tmp;
+	char			*env_path_value;
+	char			**env_path;
+	t_env_var_lst	*env_var_lst_tmp;
 
-	env_path_value_tmp = getenv("PATH");
-	env_path_value = ft_strdup(env_path_value_tmp);
+	env_path_value = NULL;
+	env_var_lst_tmp = info->env_var_lst;
+	while (info->env_var_lst)
+	{
+		if (ft_strcmp(info->env_var_lst->key, "PATH") == 0)
+			env_path_value = ft_strdup(info->env_var_lst->value);
+		info->env_var_lst = info->env_var_lst->next;
+	}
+	info->env_var_lst = env_var_lst_tmp;
+	if (!env_path_value)
+	{
+		if (info->sentence_lst->cmd_lst && !check_builtin(cmd))
+			error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
+	}
+	// env_path_value_tmp = getenv("PATH");
+	// env_path_value = ft_strdup(env_path_value_tmp);
 	env_path = ft_split(env_path_value, ':');
 	return (env_path);
 }
@@ -88,19 +107,10 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
 		// 	exit(WEXITSTATUS(status));
 	}
-	env_path = get_env_path();
-	if (!env_path)
-		exit(ERROR);
+	// env_path = get_env_path();
 	cmd = set_cmd_in_cmd_lst(info);
+	env_path = get_env_path(info, cmd);
 	cmd_path = get_cmd_path(env_path, cmd);
-	if (!cmd_path)
-		error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
-	// if (pid > 0)
-	// {
-	// 	w_pid = waitpid(pid, &status, WUNTRACED);
-	// 	// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
-	// 	// 	exit(WEXITSTATUS(status));
-	// }
 	if (set_fd_by_redirect_lst(info) == ERROR)
 		exit(ERROR);
 	if (check_builtin(cmd))
@@ -109,8 +119,15 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		exit(status);
 	}
 	envp = get_envp_in_array(info);
-	execve(cmd_path, cmd, envp);
-	exit(ERROR);
+	//
+	// int	i = 0;
+	// while (envp[i])
+	// 	printf("envp[i] = %s\n", envp[i++]);
+	// printf("cmd_path = %s\n", cmd_path);
+	//
+	if (cmd[0])
+		execve(cmd_path, cmd, envp);
+	exit(SUCCESS);
 }
 
 void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
