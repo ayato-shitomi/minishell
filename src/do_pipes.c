@@ -20,7 +20,6 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 			cmd_path = ft_strdup(cmd[0]);
 			if (access(cmd_path, F_OK) != 0)
 				error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
-				// return (NULL);
 		}
 		else
 			cmd_path = ft_strjoin_three(env_path[i++], "/", cmd[0]);
@@ -32,6 +31,7 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 		}
 		free(cmd_path);
 	}
+	error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
 	return (NULL);
 }
 
@@ -107,11 +107,13 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
 		// 	exit(WEXITSTATUS(status));
 	}
+	if (set_fd_by_redirect_lst(info) == ERROR)
+		exit(ERROR);
 	cmd = set_cmd_in_cmd_lst(info);
 	env_path = get_env_path(info, cmd);
 	cmd_path = get_cmd_path(env_path, cmd);
-	if (set_fd_by_redirect_lst(info) == ERROR)
-		exit(ERROR);
+	// if (set_fd_by_redirect_lst(info) == ERROR)
+	// 	exit(ERROR);
 	if (check_builtin(cmd))
 	{
 		status = exec_builtin(info, cmd);
