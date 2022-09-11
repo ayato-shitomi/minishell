@@ -109,7 +109,8 @@ typedef struct s_info
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
 	t_env_var_lst		*env_var_lst;
-	int					fd_for_restore;
+	int					fd_for_restore_in;
+	int					fd_for_restore_out;
 	int					fd_in_restore_flag;
 	int					fd_out_restore_flag;
 	int					red_left_after_right_flag;

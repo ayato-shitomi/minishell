@@ -2,33 +2,49 @@
 
 int	init_and_set_fd_for_restore(t_info *info, int n)
 {
-	if (info->fd_in_restore_flag)
+	// if (info->fd_in_restore_flag) // 修正前
+	// {
+	// 	if (dup2(info->fd_for_restore, 0) == -1)
+	// 		return (ERROR);
+	// 	if (close(info->fd_for_restore) == -1)
+	// 		return (ERROR);
+	// 	info->fd_in_restore_flag = 0;
+	// }
+	// else if (info->fd_out_restore_flag)
+	// {
+	// 	if (dup2(info->fd_for_restore, 1) == -1)
+	// 		return (ERROR);
+	// 	if (close(info->fd_for_restore) == -1)
+	// 		return (ERROR);
+	// 	info->fd_out_restore_flag = 0;
+	// }
+	if (info->fd_in_restore_flag && n == 2) // ①
 	{
-		if (dup2(info->fd_for_restore, 0) == -1)
+		if (dup2(info->fd_for_restore_in, 0) == -1)
 			return (ERROR);
-		if (close(info->fd_for_restore) == -1)
+		if (close(info->fd_for_restore_in) == -1)
 			return (ERROR);
 		info->fd_in_restore_flag = 0;
 	}
-	else if (info->fd_out_restore_flag)
+	if (info->fd_out_restore_flag && n == 2) // ②
 	{
-		if (dup2(info->fd_for_restore, 1) == -1)
+		if (dup2(info->fd_for_restore_out, 1) == -1)
 			return (ERROR);
-		if (close(info->fd_for_restore) == -1)
+		if (close(info->fd_for_restore_out) == -1)
 			return (ERROR);
 		info->fd_out_restore_flag = 0;
 	}
 	if (n == 0)
 	{
-		info->fd_for_restore = dup(n);
-		if (info->fd_for_restore == -1)
+		info->fd_for_restore_in = dup(n);
+		if (info->fd_for_restore_in == -1)
 			return (ERROR);
 		info->fd_in_restore_flag = 1;
 	}
 	else if (n == 1)
 	{
-		info->fd_for_restore = dup(n);
-		if (info->fd_for_restore == -1)
+		info->fd_for_restore_out = dup(n);
+		if (info->fd_for_restore_out == -1)
 			return (ERROR);
 		info->fd_out_restore_flag = 1;
 	}

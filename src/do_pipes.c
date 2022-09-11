@@ -107,7 +107,6 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
 		// 	exit(WEXITSTATUS(status));
 	}
-	// env_path = get_env_path();
 	cmd = set_cmd_in_cmd_lst(info);
 	env_path = get_env_path(info, cmd);
 	cmd_path = get_cmd_path(env_path, cmd);
@@ -119,12 +118,6 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		exit(status);
 	}
 	envp = get_envp_in_array(info);
-	//
-	// int	i = 0;
-	// while (envp[i])
-	// 	printf("envp[i] = %s\n", envp[i++]);
-	// printf("cmd_path = %s\n", cmd_path);
-	//
 	if (cmd[0])
 		execve(cmd_path, cmd, envp);
 	exit(SUCCESS);
