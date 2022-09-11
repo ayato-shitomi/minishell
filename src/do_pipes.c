@@ -107,7 +107,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 		// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
 		// 	exit(WEXITSTATUS(status));
 	}
-	if (set_fd_by_redirect_lst(info) == ERROR)
+	if (set_fd_by_redirect_lst(info, 0) == ERROR)
 		exit(ERROR);
 	cmd = set_cmd_in_cmd_lst(info);
 	env_path = get_env_path(info, cmd);

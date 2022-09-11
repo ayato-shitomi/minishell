@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-static int	set_fd_case_file(t_info *info, int prev_token_type)
+static int	set_fd_case_file(t_info *info, int prev_token_type, int is_builtin_without_pipe)
 {
 	if (prev_token_type == REDIRECT_LEFT_ONE)
 	{
@@ -14,7 +14,7 @@ static int	set_fd_case_file(t_info *info, int prev_token_type)
 	}
 	else if (prev_token_type == REDIRECT_LEFT_TWO)
 	{
-		if (heredoc(info) == ERROR)
+		if (heredoc(info, is_builtin_without_pipe) == ERROR)
 			return (ERROR);
 		return (SUCCESS);
 	}
@@ -39,18 +39,18 @@ static int	set_fd_case_redirect(t_info *info, int prev_token_type)
 	return (prev_token_type);
 }
 
-static int	case_branch_by_redirect_lst(t_info *info, int prev_token_type)
+static int	case_branch_by_redirect_lst(t_info *info, int prev_token_type, int is_builtin_without_pipe)
 {
 	if (info->sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
 		info->sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO)
 		prev_token_type = set_fd_case_redirect(info, prev_token_type);
 	else
-		if (set_fd_case_file(info, prev_token_type) == ERROR)
+		if (set_fd_case_file(info, prev_token_type, is_builtin_without_pipe) == ERROR)
 			return (ERROR);
 	return (prev_token_type);
 }
 
-int	set_fd_by_redirect_lst(t_info *info)
+int	set_fd_by_redirect_lst(t_info *info, int is_builtin_without_pipe)
 {
 	int		prev_token_type;
 	t_lst	*redirect_lst_tmp;
@@ -59,7 +59,7 @@ int	set_fd_by_redirect_lst(t_info *info)
 	redirect_lst_tmp = info->sentence_lst->redirect_lst;
 	while (info->sentence_lst->redirect_lst)
 	{
-		prev_token_type = case_branch_by_redirect_lst(info, prev_token_type);
+		prev_token_type = case_branch_by_redirect_lst(info, prev_token_type, is_builtin_without_pipe);
 		if (prev_token_type == ERROR)
 			return (ERROR);
 		info->sentence_lst->redirect_lst = \

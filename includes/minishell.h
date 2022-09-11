@@ -295,7 +295,7 @@ void			set_sig_in_heredoc(void);
 // void			set_sig_in_parent_process(t_info *info);
 
 // set_fd_by_redirect_lst.c
-int				set_fd_by_redirect_lst(t_info *info);
+int				set_fd_by_redirect_lst(t_info *info, int is_builtin_without_pipe); //
 
 // set_fd_by_redirect_lst_2.c
 int				init_and_set_fd_for_restore(t_info *info, int n);
@@ -304,7 +304,7 @@ int				set_fd_case_red_right_one(t_info *info);
 int				set_fd_case_red_right_two(t_info *info);
 
 // heredoc.c
-int				heredoc(t_info *info);
+int				heredoc(t_info *info, int is_builtin_without_pipe); //
 void			set_continue_flag(t_sentence_lst *sentence_lst, \
 	int *continue_flag);
 

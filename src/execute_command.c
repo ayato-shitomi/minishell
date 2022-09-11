@@ -13,8 +13,8 @@ static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 {
 	int	status;
 
-	set_sig_in_exec_cmd();
-	if (set_fd_by_redirect_lst(info) == ERROR)
+	// set_sig_in_exec_cmd();
+	if (set_fd_by_redirect_lst(info, 1) == ERROR)
 	{
 		put_exitstatus(ERROR);
 		return (ERROR);
@@ -60,17 +60,10 @@ int	execute_command(t_info *info)
 	if (fork_and_error_check(&pid) == ERROR)
 		return (set_exit_status(ERROR));
 	else if (pid == 0)
-	{
-		// set_sig_in_child_process(info);
 		do_pipes(info, 0, ft_sentence_lstsize(info->sentence_lst));
-	}
 	else
 	{
-		// set_sig_in_parent_process();
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		// printf("status = %d\n", status);
-		// printf("w_status = %d\n", WEXITSTATUS(status));
-		// printf("g_status = %d\n", g_exit_status);
 		if (g_exit_status == SIGINT)
 		{
 			if (status == SIGINT)
@@ -91,7 +84,6 @@ int	execute_command(t_info *info)
 			status = WEXITSTATUS(status);
 		put_exitstatus(status);
 	}
-	// put_exitstatus(info, WEXITSTATUS(status));
 	info->sentence_lst = sentence_lst_tmp;
 	return (SUCCESS);
 }
