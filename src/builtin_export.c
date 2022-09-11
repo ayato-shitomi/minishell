@@ -56,6 +56,7 @@ static char	*get_smallest_key(t_info *info)
 	return (smallest_key);
 }
 
+
 static int	ft_export_case_no_arg(t_info *info)
 {
 	char			*smallest_key;
@@ -67,7 +68,6 @@ static int	ft_export_case_no_arg(t_info *info)
 	env_var_len = ft_env_var_lstsize(info->env_var_lst);
 	if (env_var_len == 0)
 		return (ERROR);
-	printf("len = %zu\n", env_var_len); // デバッグ用
 	smallest_key = get_smallest_key(info);
 	smallest_value = get_env_value(info, smallest_key);
 	ft_print_env(smallest_key, smallest_value, 1);
@@ -87,6 +87,40 @@ static int	ft_export_case_no_arg(t_info *info)
 	}
 	return (SUCCESS);
 }
+
+/*
+static int	ft_export_case_no_arg(t_info *info)
+{
+	char			*smallest_key;
+	char			*smallest_value;
+	char			*base_key_in_the_rest;
+	size_t			env_var_len;
+
+	set_oldpwd(info);
+	env_var_len = ft_env_var_lstsize(info->env_var_lst);
+	if (env_var_len == 0)
+		return (ERROR);
+	printf("len = %zu\n", env_var_len); // For Debug
+	smallest_key = get_smallest_key(info);
+	smallest_value = get_env_value(info, smallest_key);
+	ft_print_env(smallest_key, smallest_value, 1);
+	env_var_len--;
+	while (env_var_len)
+	{
+		if (env_var_len == 0)
+			break ;
+		base_key_in_the_rest = \
+			get_base_key_in_the_rest_first(info, smallest_key);
+		base_key_in_the_rest = get_base_key_in_the_rest(info, smallest_key, \
+			base_key_in_the_rest);
+		smallest_key = base_key_in_the_rest;
+		smallest_value = get_env_value(info, smallest_key);
+		ft_print_env(smallest_key, smallest_value, 1);
+		env_var_len--;
+	}
+	return (SUCCESS);
+}
+*/
 
 int	ft_export(t_info *info)
 {

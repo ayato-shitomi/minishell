@@ -30,7 +30,36 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 {
 	t_env_var_lst	*nxt;
 
-	nxt = lst->next;
+	nxt = lst;
+	while (nxt)
+	{
+		if (ft_is_same(nxt->key, key) == 0)
+		{
+			if (nxt->next != NULL)
+			{
+				nxt->key = nxt->next->key;
+				nxt->value = nxt->next->value;
+				nxt->next = nxt->next->next;
+			}
+			else
+			{
+				nxt->key = NULL;
+				nxt->value = NULL;
+				nxt->next = NULL;
+			}
+		}
+		else
+			nxt = nxt->next;
+	}
+	return ;
+}
+
+/*
+static void	delete_env(t_env_var_lst *lst, char *key)
+{
+	t_env_var_lst	*nxt;
+
+	nxt = lst;
 	while (nxt)
 	{
 		if (ft_is_same(nxt->key, key) == 0)
@@ -43,14 +72,31 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 				nxt->next = nxt->next->next;
 			}
 			else
-				nxt = NULL;
+			{
+				nxt->key = NULL;
+				nxt->value = NULL;
+				nxt->next = NULL;
+			}
 		}
 		else
 			nxt = nxt->next;
 	}
 	return ;
 }
+*/
 
+int	ft_unset(t_info *info)
+{
+	char	*key;
+
+	if (!info->sentence_lst->cmd_lst->next)
+		return (0);
+	key = info->sentence_lst->cmd_lst->next->str;
+	delete_env(info->env_var_lst, key);
+	return (0);
+}
+
+/*
 int	ft_unset(t_info *info)
 {
 
@@ -65,3 +111,4 @@ int	ft_unset(t_info *info)
 	//show_env(info->env_var_lst);
 	return (0);
 }
+*/
