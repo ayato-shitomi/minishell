@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashitomi </var/mail/ashitomi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/11 13:20:14 by ashitomi          #+#    #+#             */
+/*   Updated: 2022/09/11 13:20:23 by ashitomi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static char	ft_put_esc(char c)
@@ -89,10 +101,10 @@ int	ft_echo(t_info *info)
 	}
 	flag_not_backn = 0;
 	p = info->sentence_lst->cmd_lst->next;
-	if (ft_strncmp(p->str, "-n", ft_strlen(p->str)) == 0)
+	while (ft_strncmp(p->str, "-n", ft_strlen(p->str)) == 0)
 	{
 		flag_not_backn = 1;
-		p = p->next;
+		p = p ->next;
 	}
 	while (p)
 	{

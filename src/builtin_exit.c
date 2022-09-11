@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashitomi </var/mail/ashitomi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/11 13:17:50 by ashitomi          #+#    #+#             */
+/*   Updated: 2022/09/11 13:18:47 by ashitomi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static void	put_std_err(char *str)
@@ -35,29 +47,41 @@ static int	check_arg(char *str)
 	return (0);
 }
 
-int	ft_exit(size_t ac, char **cmd, t_lst *cmd_lst)
+void	case_in_numeric_arg(char *arg)
 {
 	char	*s;
 
 	s = "numeric argument required";
+	put_std_err(SHELLNAME);
+	put_std_err(": exit: ");
+	put_std_err(arg);
+	put_std_err(": ");
+	put_std_err(s);
+	put_std_err("\n");
+}
+
+int	ft_exit(size_t ac, char **cmd, t_lst *cmd_lst)
+{
+	char	*arg;
+
 	put_std_err("exit\n");
-	(void)cmd;
 	if (ac == 1)
 		exit (0);
-	if (check_arg(cmd_lst->next->str))
+	if (cmd_lst == NULL)
+		arg = cmd[1];
+	else
+		arg = cmd_lst->next->str;
+	if (check_arg(arg))
 	{
-		put_std_err("fresh: exit: ");
-		put_std_err(cmd_lst->next->str);
-		put_std_err(": ");
-		put_std_err(s);
-		put_std_err("\n");
+		case_in_numeric_arg(arg);
 		exit(255);
 	}
 	if (3 <= ac)
 	{
-		put_std_err("fresh: exit: too many arguments\n");
+		put_std_err(SHELLNAME);
+		put_std_err(": exit: too many arguments\n");
 		return (1);
 	}
-	exit(make_status(cmd_lst->next->str));
+	exit(make_status(arg));
 	return (1);
 }
