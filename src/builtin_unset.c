@@ -30,7 +30,7 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 {
 	t_env_var_lst	*nxt;
 
-	nxt = lst->next;
+	nxt = lst;
 	while (nxt)
 	{
 		if (ft_is_same(nxt->key, key) == 0)
@@ -43,7 +43,11 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 				nxt->next = nxt->next->next;
 			}
 			else
-				nxt = NULL;
+			{
+				nxt->key = NULL;
+				nxt->value = NULL;
+				nxt->next = NULL;
+			}
 		}
 		else
 			nxt = nxt->next;
