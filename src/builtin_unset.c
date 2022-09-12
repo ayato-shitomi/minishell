@@ -9,7 +9,7 @@ static void	show_env(t_env_var_lst *a)
 	nxt = a->next;
 	while (nxt)
 	{
-		printf(" %s \t %s\n", nxt->key, nxt->value);
+		printf(" nxt: %p next: %p prev: %p \n \t %s \t %s\n", nxt, nxt->next, nxt->prev, nxt->key, nxt->value);
 		nxt = nxt->next;
 	}
 	printf("============================================\n");
@@ -43,10 +43,11 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 			}
 			else
 			{
-				nxt->key = NULL;
-				nxt->value = NULL;
-				nxt->next = NULL;
+				free(nxt->prev->next->value);
+				free(nxt->prev->next->key);
+				nxt->prev->next = nxt->next;
 			}
+			break ;
 		}
 		else
 			nxt = nxt->next;
