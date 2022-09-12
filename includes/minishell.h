@@ -45,12 +45,12 @@
 # define REDIRECT_LST 11
 # define ENV_VAR_LST 12
 # define BUFFER_SIZE 1
-# define CMD_NOT_FOUND "command not found"
 # define E_STATUS_PERM_D 126
 # define E_STATUS_CNF 127
 # define E_STATUS_CTRL_C 130
 # define E_STATUS_SYN_ERR 258
 # define PERM_DENIED "Permission denied"
+# define CMD_NOT_FOUND "command not found"
 # define NO_FILE "No such file or directory"
 # define NOT_VI "not a valid identifier"
 
@@ -62,19 +62,17 @@ typedef struct s_env_var_lst
 	struct s_env_var_lst	*next;
 	char					*key;
 	char					*value;
-}	t_env_var_lst; // 双方向線形リスト 環境変数用
-
-// ここから構文解析用
+}	t_env_var_lst;
 
 typedef struct s_lst
 {
 	char			*str;
-	char			*key; // 「lst_type == ENV_LST」の場合セット、環境変数のkey値
-	char			*value; // 「lst_type == ENV_LST」の場合セット、環境変数のvalue値
-	int				token_type; // ← 「EXPANDABLE 0」「ENVIRONMENT_VAR 8」etc...
-	int				lst_type; // ← 「CMD_LST 10」「ENV_LST 12」etc...
+	char			*key;
+	char			*value;
+	int				token_type;
+	int				lst_type;
 	struct s_lst	*next;
-}	t_lst; // 片方向線形リスト
+}	t_lst;
 
 typedef struct s_sentence_lst
 {
@@ -82,9 +80,7 @@ typedef struct s_sentence_lst
 	t_lst					*redirect_lst;
 	t_lst					*env_var_lst;
 	struct s_sentence_lst	*next;
-}	t_sentence_lst; // 片方向線形リスト (通常通り「lst」と名付け)
-
-// ここまで構文解析用
+}	t_sentence_lst;
 
 typedef struct s_token_dl_lst
 {
@@ -95,7 +91,7 @@ typedef struct s_token_dl_lst
 	int						dl_lst_first_flag;
 	int						dl_lst_last_flag;
 	int						is_cat_with_next;
-}	t_token_dl_lst; // 双方向循環リスト (双方向リストの英訳「doubly-linked list」より、「dl_lst」と定義)
+}	t_token_dl_lst;
 
 typedef struct s_info
 {
@@ -148,7 +144,6 @@ void			ft_cd_case_each_relative_path(t_info *info, char *dest_dir);
 int				ft_pwd(t_info *info);
 
 // builtin_unset.c
-
 int				ft_unset(t_info *info);
 
 // builtin_export.c
@@ -165,12 +160,10 @@ int				set_i_for_insert(t_info *info, char *key, char *value, \
 void			set_oldpwd(t_info *info);
 
 // builtin_echo.c
-//int			ft_echo(char *str, bool flag_n);
 int				ft_echo(t_info *info);
 
 // builtin_exit.c
 int				ft_exit(size_t ac, char **cmd, t_lst *cmd_lst);
-// void			ft_exit(int argc, char *argv[]);
 
 // builtin_env.c
 int				ft_env(t_info *info);
@@ -223,7 +216,6 @@ int				fork_and_error_check(pid_t *pid);
 
 // minishell_utils_2.c
 int				set_exit_status(int exit_status);
-// int				set_exit_status(t_info *info, int exit_status);
 
 // set_token_type_dl.c
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
@@ -288,14 +280,16 @@ char			**get_envp_in_array(t_info *info);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);
-// void			set_sig_in_child_process(t_info *info);
-// void			set_sig_in_parent_process(void);
-void			set_sig_in_exec_cmd(void);
-void			set_sig_in_heredoc(void);
-// void			set_sig_in_parent_process(t_info *info);
+// void			set_sig_in_exec_cmd(void);
+void			set_sig_in_exec_cmd_child(t_info *info);
+void			set_sig_in_exec_cmd_parent(t_info *info);
+void			set_sig_in_exec_builtin_without_pipe(void);
+void			set_sig_in_heredoc_child(void);
+void			set_sig_in_heredoc_parent(t_info *info);
 
 // set_fd_by_redirect_lst.c
-int				set_fd_by_redirect_lst(t_info *info, int is_builtin_without_pipe); //
+int				set_fd_by_redirect_lst(t_info *info, \
+	int is_builtin_without_pipe);
 
 // set_fd_by_redirect_lst_2.c
 int				init_and_set_fd_for_restore(t_info *info, int n);
@@ -311,8 +305,6 @@ void			set_continue_flag(t_sentence_lst *sentence_lst, \
 // heredoc_2.c
 int				heredoc_child_process(t_info *info, \
 	int heredoc_pipe_fd[2], int continue_flag, char *tmp_file);
-// int				heredoc_child_process(t_info *info, \
-// 	int heredoc_pipe_fd[2], int continue_flag);
 
 // set_pipe_fd.c
 int				set_pipe_fd_0(int pipe_fd[2]);
@@ -361,7 +353,6 @@ t_lst			*ft_lstlast(t_lst *lst);
 size_t			ft_lstsize(t_lst *lst);
 
 // ft_env_var_lst.c
-// void			init_env_var_lst(t_info *info);
 void			init_env_var_lst(t_info *info, char **envp);
 t_env_var_lst	*ft_env_var_lstnew(char *key, char *value);
 void			ft_env_var_lstadd_back(t_env_var_lst **env_var_lst, \

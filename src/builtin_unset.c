@@ -48,7 +48,7 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 				nxt->next = NULL;
 			}
 		}
-		else
+		// else
 			nxt = nxt->next;
 	}
 	return ;

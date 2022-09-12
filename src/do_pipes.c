@@ -104,16 +104,17 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	if (pid > 0)
 	{
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
-		// 	exit(WEXITSTATUS(status));
+		printf("status_w = %d\n", status);
+		printf("w_status_w = %d\n", WEXITSTATUS(status));
+		printf("g_status_w = %d\n", g_exit_status);
+		if ((WEXITSTATUS(status) != SUCCESS) && (g_exit_status == SIGINT))
+			exit(ERROR);
 	}
 	if (set_fd_by_redirect_lst(info, 0) == ERROR)
 		exit(ERROR);
 	cmd = set_cmd_in_cmd_lst(info);
 	env_path = get_env_path(info, cmd);
 	cmd_path = get_cmd_path(env_path, cmd);
-	// if (set_fd_by_redirect_lst(info) == ERROR)
-	// 	exit(ERROR);
 	if (check_builtin(cmd))
 	{
 		status = exec_builtin(info, cmd);

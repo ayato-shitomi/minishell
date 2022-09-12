@@ -3,6 +3,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # Copyright (C) 2006  Free Software Foundation, Inc.
 # This is free software; see the source for copying conditions.
 # There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+ 
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
@@ -10,7 +11,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `src/minishell.o', needed by `minishell'.  Stop.
 
 
-# Make data base, printed on Sun Sep 11 18:13:13 2022
+# Make data base, printed on Mon Sep 12 03:56:25 2022
 
 # Variables
 
@@ -33,7 +34,7 @@ VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePac
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 33)
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -I$(shell brew --prefix readline)/include
+CFLAGS = -Wall -Wextra -Werror -I$(shell brew --prefix readline)/include
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
@@ -157,9 +158,9 @@ VSCODE_PID = 340
 
 # Directories
 
-# . (device 16777220, inode 12184808): 15 files, no impossibilities.
+# . (device 16777220, inode 12184808): 13 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -293,7 +294,7 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-11 15:38:15
+#  Last modified 2022-09-12 03:54:18
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -355,7 +356,7 @@ src/minishell_utils.o:
 
 minishell: src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/utils_4.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o src/ft_error.o src/set_sig_in_each_process.o src/check_builtin.o src/builtin_cd.o src/builtin_pwd.o src/builtin_exit.o src/ft_free_2.o src/builtin_cd_2.o src/ft_env_var_lst.o src/ft_env_var_lst_2.o src/builtin_cd_3.o src/builtin_export.o src/builtin_export_2.o src/validate.o src/builtin_export_3.o src/builtin_env.o src/builtin_echo.o src/builtin_unset.o src/ft_split_lex.o src/minishell_utils_2.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-09-11 15:40:33
+#  Last modified 2022-09-12 03:54:30
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -472,6 +473,7 @@ src/do_pipes.o:
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
+ 
 #  File does not exist.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 44):
@@ -543,7 +545,6 @@ src/minishell.o:
 # Not a target:
 src/minishell_utils_2.o:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -608,6 +609,6 @@ src/utils_2.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Sep 11 18:13:13 2022
+# Finished Make data base on Mon Sep 12 03:56:25 2022
 
  

@@ -13,9 +13,11 @@ static int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 {
 	int	status;
 
+	set_sig_in_exec_builtin_without_pipe();
 	// set_sig_in_exec_cmd();
 	if (set_fd_by_redirect_lst(info, 1) == ERROR)
 	{
+		init_and_set_fd_for_restore(info, 2); // trial
 		put_exitstatus(ERROR);
 		return (ERROR);
 	}
@@ -56,20 +58,28 @@ int	execute_command(t_info *info)
 			return (SUCCESS);
 		}
 	}
-	set_sig_in_exec_cmd();
+	// set_sig_in_exec_cmd_child(info);
 	if (fork_and_error_check(&pid) == ERROR)
 		return (set_exit_status(ERROR));
 	else if (pid == 0)
+	{
+		// set_sig_in_exec_cmd_child();
 		do_pipes(info, 0, ft_sentence_lstsize(info->sentence_lst));
+	}
 	else
 	{
-		w_pid = waitpid(pid, &status, WUNTRACED);
+		set_sig_in_exec_cmd_parent(info);
+		w_pid = waitpid(pid, &status, WUNTRACED | WCONTINUED);
+		// w_pid = waitpid(pid, &status, 0);
+		printf("status = %d\n", status);
+		printf("w_status = %d\n", WEXITSTATUS(status));
+		printf("g_status = %d\n", g_exit_status);
 		if (g_exit_status == SIGINT)
 		{
-			if (status == SIGINT)
+			// if (status == SIGINT)
 				status = 128 + SIGINT;
-			else
-				status = WEXITSTATUS(status);
+			// else
+			// 	status = WEXITSTATUS(status);
 			printf("\n");
 		}
 		else if (g_exit_status == SIGQUIT)

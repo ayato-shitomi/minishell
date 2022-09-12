@@ -41,7 +41,7 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 		return (ERROR);
 	else if (heredoc_pid == 0)
 	{
-		set_sig_in_heredoc(); // ①
+		set_sig_in_heredoc_child();
 		if (heredoc_child_process(info, heredoc_pipe_fd, \
 			continue_flag, tmp_file) == ERROR)
 			exit(ERROR);
@@ -49,15 +49,18 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 	}
 	else
 	{
-		set_sig_in_heredoc_parent();
+		set_sig_in_heredoc_parent(info);
 		w_pid = waitpid(heredoc_pid, &status, WUNTRACED);
 		if (access(tmp_file, F_OK) == 0)
 		{
 			unlink(tmp_file);
 			free(tmp_file);
 		}
-		if (g_exit_status == SIGINT && !is_builtin_without_pipe) // ②
+		if (g_exit_status == SIGINT && !is_builtin_without_pipe)
+		{
+			write(2, "ttt\n", 4);
 			exit(ERROR);
+		}
 		if (!info->red_left_after_right_flag)
 		{
 			if (init_and_set_fd_for_restore(info, 0) == ERROR)
@@ -70,11 +73,7 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 		}
 		else
 			info->red_left_after_right_flag = 0;
-		// if (continue_flag == 1)
-		// 	exit(SUCCESS);
 	}
-	printf("sta = %d\n", status);
-	printf("w_sta = %d\n", WEXITSTATUS(status));
 	return (WEXITSTATUS(status));
 }
 
