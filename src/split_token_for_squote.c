@@ -63,7 +63,7 @@ static void	case_squote_first(t_info *info, size_t *i)
 	{
 		if (*i != 0 && info->token_dl_lst->token[*i] == '\'')
 		{
-			if (!(info->token_dl_lst->token[*i + 1])) // tokenの最後の文字が「'」のケース
+			if (!(info->token_dl_lst->token[*i + 1]))
 			{
 				while (j < (*i - 1))
 				{
@@ -74,7 +74,7 @@ static void	case_squote_first(t_info *info, size_t *i)
 				info->token_dl_lst->token[j] = '\0';
 				return ;
 			}
-			insert_split_token_for_squote(info, i); // tokenの最後の文字が「'」ではないケース
+			insert_split_token_for_squote(info, i);
 			return ;
 		}
 		*i += 1;
@@ -83,9 +83,53 @@ static void	case_squote_first(t_info *info, size_t *i)
 
 int	split_token_for_squote(t_info *info, size_t *i)
 {
-	if (info->token_dl_lst->type == NOT_EXPANDABLE) // tokenの1文字目が「'」のケース
+	if (info->token_dl_lst->type == NOT_EXPANDABLE)
 		case_squote_first(info, i);
-	else // tokenの2文字目以降が「'」のケース
+	else
 		insert_split_token_for_squote(info, i);
 	return (1);
 }
+
+/*
+int	split_token_for_squote(t_info *info, size_t *i)
+{
+	// case in token's first letter is `'`
+	if (info->token_dl_lst->type == NOT_EXPANDABLE)
+		case_squote_first(info, i);
+	// case in token's second letter is `'`
+	else
+		insert_split_token_for_squote(info, i);
+	return (1);
+}
+*/
+
+/*
+static void	case_squote_first(t_info *info, size_t *i)
+{
+	size_t	j;
+
+	j = 0;
+	while (info->token_dl_lst->token[*i])
+	{
+		if (*i != 0 && info->token_dl_lst->token[*i] == '\'')
+		{
+			// case in final letter in token is `'`.
+			if (!(info->token_dl_lst->token[*i + 1]))
+			{
+				while (j < (*i - 1))
+				{
+					info->token_dl_lst->token[j] = \
+						info->token_dl_lst->token[j + 1];
+					j++;
+				}
+				info->token_dl_lst->token[j] = '\0';
+				return ;
+			}
+			// case in final letter in token is not `'`.
+			insert_split_token_for_squote(info, i);
+			return ;
+		}
+		*i += 1;
+	}
+}
+*/

@@ -55,6 +55,20 @@ static void	insert_split_token_for_pipe(t_info *info, size_t *i)
 
 int	split_token_for_pipe(t_info *info, size_t *i)
 {
+	if (info->token_dl_lst->type == PIPE)
+	{
+		if (ft_strlen(info->token_dl_lst->token) == 1)
+			return (1);
+		insert_split_token_for_pipe(info, i);
+	}
+	else
+		insert_split_token_for_pipe(info, i);
+	return (1);
+}
+
+/*
+int	split_token_for_pipe(t_info *info, size_t *i)
+{
 	if (info->token_dl_lst->type == PIPE) // tokenの1文字目が「|」のケース
 	{
 		if (ft_strlen(info->token_dl_lst->token) == 1)
@@ -65,3 +79,4 @@ int	split_token_for_pipe(t_info *info, size_t *i)
 		insert_split_token_for_pipe(info, i);
 	return (1);
 }
+*/

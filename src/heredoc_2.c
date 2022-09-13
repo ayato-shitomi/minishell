@@ -12,37 +12,28 @@
 
 #include "../includes/minishell.h"
 
+static int rtn_error(void)
+{
+	perror(SHELLNAME);
+	return (ERROR);
+}
+
 static int	set_pipe_fd_and_write(int heredoc_pipe_fd[2], int tmp_fd, \
 	char *cat_line, char *line, char *tmp_file)
 {
 	if (close(heredoc_pipe_fd[0]) == -1)
-	{
-		perror(SHELLNAME);
-		return (ERROR);
-	}
+		return (rtn_error());
 	if (dup2(heredoc_pipe_fd[1], tmp_fd) == -1)
-	{
-		perror(SHELLNAME);
-		return (ERROR);
-	}
+		return (rtn_error());
 	if (close(heredoc_pipe_fd[1]) == -1)
-	{
-		perror(SHELLNAME);
-		return (ERROR);
-	}
+		return (rtn_error());
 	write(tmp_fd, cat_line, ft_strlen(cat_line));
 	if (close(tmp_fd) == -1)
-	{
-		perror(SHELLNAME);
-		return (ERROR);
-	}
+		return (rtn_error());
 	if (tmp_file)
 	{
 		if (unlink(tmp_file) == -1)
-		{
-			perror(SHELLNAME);
-			return (ERROR);
-		}
+			return (rtn_error());
 		free(tmp_file);
 	}
 	free(line);
@@ -75,7 +66,8 @@ static int	flag_check(int flag)
 }
 
 // static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag)
-static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag, char *tmp_file)
+static int	open_fd_and_calloc(int *tmp_fd, \
+	char **cat_line, int *flag, char *tmp_file)
 {
 	*tmp_fd = open(tmp_file, O_RDWR | O_CREAT, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
@@ -91,10 +83,8 @@ static int	open_fd_and_calloc(int *tmp_fd, char **cat_line, int *flag, char *tmp
 	return (SUCCESS);
 }
 
-// int	heredoc_child_process(t_info *info, int heredoc_pipe_fd[2], \
-// 	int continue_flag)
-int	heredoc_child_process(t_info *info, int heredoc_pipe_fd[2], \
-	int continue_flag, char *tmp_file)
+int	heredoc_child_process(t_info *info, \
+	int heredoc_pipe_fd[2], int continue_flag, char *tmp_file)
 {
 	int		flag;
 	int		tmp_fd;

@@ -100,6 +100,67 @@ static char	**get_env_path(t_info *info, char **cmd)
 	return (env_path);
 }
 
+int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
+{
+	char		**env_path;
+	char		**cmd;
+	char		*cmd_path;
+	pid_t		w_pid;
+	int			status;
+	char		**envp;
+
+	if (pid > 0)
+	{
+		w_pid = waitpid(pid, &status, WUNTRACED);
+		if ((status != SUCCESS) && (g_exit_status == SIGINT))
+		{
+			init_and_set_fd_for_restore(info, 2);
+			if (status % 256 == 0)
+				exit(1);
+			else
+				exit(status);
+		}
+	}
+	if (set_fd_by_redirect_lst(info, 0) == ERROR)
+		exit(ERROR);
+	cmd = set_cmd_in_cmd_lst(info);
+	env_path = get_env_path(info, cmd);
+	cmd_path = get_cmd_path(env_path, cmd);
+	if (check_builtin(cmd))
+	{
+		status = exec_builtin(info, cmd);
+		exit(status);
+	}
+	envp = get_envp_in_array(info);
+	if (cmd[0])
+		execve(cmd_path, cmd, envp);
+	exit(SUCCESS);
+}
+
+void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
+{
+	pid_t		pid;
+	int			pipe_fd[2];
+
+	if (check_first_sentence(info, i, cmd_cnt) == SUCCESS)
+	{
+		if (set_pipe_and_fork(pipe_fd, &pid) == ERROR)
+			exit(ERROR);
+		else if (pid == 0)
+		{
+			if (set_pipe_fd_1(pipe_fd) == ERROR)
+				exit(ERROR);
+			do_pipes(info, i + 1, cmd_cnt);
+		}
+		else
+		{
+			set_sentence_lst_and_pipe_fd(info, cmd_cnt, pipe_fd, i);
+			if (set_cmd_fd_and_exec(info, pid) == ERROR)
+				exit(ERROR);
+		}
+	}
+}
+
 /*
 static char	**get_env_path(t_info *info, char **cmd)
 {
@@ -169,66 +230,3 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	exit(SUCCESS);
 }
 */
-
-int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
-{
-	char		**env_path;
-	char		**cmd;
-	char		*cmd_path;
-	pid_t		w_pid;
-	int			status;
-	char		**envp;
-
-	// テスト用
-	status = 0;
-	if (pid > 0)
-	{
-		w_pid = waitpid(pid, &status, WUNTRACED);
-		if ((status != SUCCESS) && (g_exit_status == SIGINT))
-		{
-			init_and_set_fd_for_restore(info, 2);
-			if (status % 256 == 0)
-				exit(1);
-			else
-				exit(status);
-		}
-	}
-	if (set_fd_by_redirect_lst(info, 0) == ERROR)
-		exit(ERROR);
-	cmd = set_cmd_in_cmd_lst(info);
-	env_path = get_env_path(info, cmd);
-	cmd_path = get_cmd_path(env_path, cmd);
-	if (check_builtin(cmd))
-	{
-		status = exec_builtin(info, cmd);
-		exit(status);
-	}
-	envp = get_envp_in_array(info);
-	if (cmd[0])
-		execve(cmd_path, cmd, envp);
-	exit(SUCCESS);
-}
-
-void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
-{
-	pid_t		pid;
-	int			pipe_fd[2];
-
-	if (check_first_sentence(info, i, cmd_cnt) == SUCCESS)
-	{
-		if (set_pipe_and_fork(pipe_fd, &pid) == ERROR)
-			exit(ERROR);
-		else if (pid == 0)
-		{
-			if (set_pipe_fd_1(pipe_fd) == ERROR)
-				exit(ERROR);
-			do_pipes(info, i + 1, cmd_cnt);
-		}
-		else
-		{
-			set_sentence_lst_and_pipe_fd(info, cmd_cnt, pipe_fd, i);
-			if (set_cmd_fd_and_exec(info, pid) == ERROR)
-				exit(ERROR);
-		}
-	}
-}

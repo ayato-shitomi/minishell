@@ -5,13 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< Updated upstream
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
 /*   Updated: 2022/09/14 01:46:28 by ashitomi         ###   ########.fr       */
-=======
-/*   Created: 2022/09/13 21:29:33 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/13 21:29:33 by ashitomi         ###   ########.fr       */
->>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 

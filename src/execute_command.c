@@ -91,8 +91,6 @@ int	execute_command(t_info *info)
 	pid_t			pid;
 	pid_t			w_pid;
 
-	// テスト用で追加
-	//status = 0;
 	sentence_lst_tmp = info->sentence_lst;
 	if (info->sentence_lst->cmd_lst)
 	{

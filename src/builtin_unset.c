@@ -12,24 +12,6 @@
 
 #include "../includes/minishell.h"
 
-/*
-static void	show_env(t_env_var_lst *a)
-{
-	t_env_var_lst	*nxt;
-
-	printf("============================================\n");
-	nxt = a->next;
-	while (nxt)
-	{
-		printf(" nxt: %p next: %p prev: %p \n \t %s \t %s\n", 
-			nxt, nxt->next, nxt->prev, nxt->key, nxt->value);
-		nxt = nxt->next;
-	}
-	printf("============================================\n");
-	return ;
-}
-*/
-
 static int	ft_is_same(char *s1, char *s2)
 {
 	if (ft_strlen(s1) != ft_strlen(s2))
@@ -71,6 +53,35 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 	}
 	return ;
 }
+
+int	ft_unset(t_info *info)
+{
+	char	*key;
+
+	if (!info->sentence_lst->cmd_lst->next)
+		return (0);
+	key = info->sentence_lst->cmd_lst->next->str;
+	delete_env(info->env_var_lst, key);
+	return (0);
+}
+
+/*
+static void	show_env(t_env_var_lst *a)
+{
+	t_env_var_lst	*nxt;
+
+	printf("============================================\n");
+	nxt = a->next;
+	while (nxt)
+	{
+		printf(" nxt: %p next: %p prev: %p \n \t %s \t %s\n", 
+			nxt, nxt->next, nxt->prev, nxt->key, nxt->value);
+		nxt = nxt->next;
+	}
+	printf("============================================\n");
+	return ;
+}
+*/
 
 /*
 static void	delete_env(t_env_var_lst *lst, char *key)
@@ -134,17 +145,6 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 	return ;
 }
 */
-
-int	ft_unset(t_info *info)
-{
-	char	*key;
-
-	if (!info->sentence_lst->cmd_lst->next)
-		return (0);
-	key = info->sentence_lst->cmd_lst->next->str;
-	delete_env(info->env_var_lst, key);
-	return (0);
-}
 
 /*
 int	ft_unset(t_info *info)

@@ -14,7 +14,7 @@
 
 int	init_and_set_fd_for_restore(t_info *info, int n)
 {
-	if (info->fd_in_restore_flag && n == 2) //
+	if (info->fd_in_restore_flag && n == 2)
 	{
 		if (dup2(info->fd_for_restore_in, 0) == -1)
 			return (ERROR);
@@ -22,7 +22,7 @@ int	init_and_set_fd_for_restore(t_info *info, int n)
 			return (ERROR);
 		info->fd_in_restore_flag = 0;
 	}
-	if (info->fd_out_restore_flag && n == 2) //
+	if (info->fd_out_restore_flag && n == 2)
 	{
 		if (dup2(info->fd_for_restore_out, 1) == -1)
 			return (ERROR);

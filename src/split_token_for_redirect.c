@@ -82,6 +82,29 @@ int	split_token_for_redirect(t_info *info, size_t *i)
 
 	len = ft_strlen(info->token_dl_lst->token);
 	if (info->token_dl_lst->type >= REDIRECT_LEFT_ONE && \
+		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO)
+	{
+		if (len == 1)
+			return (1);
+		else if (len == 2 && \
+			(ft_strncmp(info->token_dl_lst->token, ">>", 2) == 0 || \
+			ft_strncmp(info->token_dl_lst->token, "<<", 2) == 0))
+			return (1);
+		else
+			insert_split_token_for_redirect(info, i);
+	}
+	else
+		insert_split_token_for_redirect(info, i);
+	return (1);
+}
+
+/*
+int	split_token_for_redirect(t_info *info, size_t *i)
+{
+	size_t	len;
+
+	len = ft_strlen(info->token_dl_lst->token);
+	if (info->token_dl_lst->type >= REDIRECT_LEFT_ONE && \
 		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO) // tokenの1文字目が「REDIRECT」のケース
 	{
 		if (len == 1)
@@ -97,3 +120,4 @@ int	split_token_for_redirect(t_info *info, size_t *i)
 		insert_split_token_for_redirect(info, i);
 	return (1);
 }
+*/
