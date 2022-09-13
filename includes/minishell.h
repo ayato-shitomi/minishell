@@ -280,12 +280,11 @@ char			**get_envp_in_array(t_info *info);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);
-// void			set_sig_in_exec_cmd(void);
-void			set_sig_in_exec_cmd_child(t_info *info);
-void			set_sig_in_exec_cmd_parent(t_info *info);
+void			set_sig_in_exec_cmd_child(void);
+void			set_sig_in_exec_cmd_parent(void);
 void			set_sig_in_exec_builtin_without_pipe(void);
 void			set_sig_in_heredoc_child(void);
-void			set_sig_in_heredoc_parent(t_info *info);
+void			set_sig_in_heredoc_parent(void);
 
 // set_fd_by_redirect_lst.c
 int				set_fd_by_redirect_lst(t_info *info, \
@@ -309,7 +308,8 @@ int				heredoc_child_process(t_info *info, \
 // set_pipe_fd.c
 int				set_pipe_fd_0(int pipe_fd[2]);
 int				set_pipe_fd_1(int pipe_fd[2]);
-int				set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]);
+// int				set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]); // before modification
+int				set_pipe_fd_2(t_info *info, int pipe_fd[2]);
 
 // header.c
 void			header(void);

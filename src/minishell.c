@@ -2,7 +2,6 @@
 
 static void	exit_ctrl_d(void)
 {
-	// write(2, "bb\n", 3);
 	ft_putendl_fd("exit", STDERR_FILENO);
 	exit(SUCCESS);
 }

@@ -37,7 +37,6 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 		{
 			if (nxt->next != NULL)
 			{
-
 				nxt->key = nxt->next->key;
 				nxt->value = nxt->next->value;
 				nxt->next = nxt->next->next;

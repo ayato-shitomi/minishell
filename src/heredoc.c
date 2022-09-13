@@ -13,7 +13,7 @@ void	set_continue_flag(t_sentence_lst *sentence_lst, int *continue_flag)
 	}
 }
 
-int	heredoc(t_info *info, int is_builtin_without_pipe) //
+int	heredoc(t_info *info, int is_builtin_without_pipe)
 {
 	int		continue_flag;
 	int		heredoc_pipe_fd[2];
@@ -49,7 +49,7 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 	}
 	else
 	{
-		set_sig_in_heredoc_parent(info);
+		set_sig_in_heredoc_parent();
 		w_pid = waitpid(heredoc_pid, &status, WUNTRACED);
 		if (access(tmp_file, F_OK) == 0)
 		{
@@ -58,9 +58,11 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 		}
 		if (g_exit_status == SIGINT && !is_builtin_without_pipe)
 		{
-			write(2, "ttt\n", 4);
+			init_and_set_fd_for_restore(info, 2);
 			exit(ERROR);
 		}
+		else if (g_exit_status == SIGINT)
+			return (42);
 		if (!info->red_left_after_right_flag)
 		{
 			if (init_and_set_fd_for_restore(info, 0) == ERROR)
