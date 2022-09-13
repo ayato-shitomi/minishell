@@ -175,7 +175,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	char		**env_path;
 	char		**cmd;
 	char		*cmd_path;
-	//pid_t		w_pid;
+	pid_t		w_pid;
 	int			status;
 	char		**envp;
 
@@ -183,7 +183,7 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	status = 0;
 	if (pid > 0)
 	{
-		// = waitpid(pid, &status, WUNTRACED);
+		w_pid = waitpid(pid, &status, WUNTRACED);
 		if ((status != SUCCESS) && (g_exit_status == SIGINT))
 		{
 			init_and_set_fd_for_restore(info, 2);

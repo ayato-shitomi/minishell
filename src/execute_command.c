@@ -89,10 +89,10 @@ int	execute_command(t_info *info)
 	int				status;
 	t_sentence_lst	*sentence_lst_tmp;
 	pid_t			pid;
-	// pid_t			w_pid;
+	pid_t			w_pid;
 
 	// テスト用で追加
-	status = 0;
+	//status = 0;
 	sentence_lst_tmp = info->sentence_lst;
 	if (info->sentence_lst->cmd_lst)
 	{
@@ -111,7 +111,7 @@ int	execute_command(t_info *info)
 	else
 	{
 		set_sig_in_exec_cmd_parent();
-		//w_pid = waitpid(pid, &status, WUNTRACED);
+		w_pid = waitpid(pid, &status, WUNTRACED);
 		if (g_exit_status == SIGINT)
 		{
 			if (check_heredoc(info) == 1)
