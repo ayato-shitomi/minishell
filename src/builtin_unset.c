@@ -21,7 +21,7 @@ static int	ft_is_same(char *s1, char *s2)
 	return (0);
 }
 
-static void make_null(t_env_var_lst *nxt)
+static void	make_null(t_env_var_lst *nxt)
 {
 	free(nxt->prev->next->value);
 	free(nxt->prev->next->key);
