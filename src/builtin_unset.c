@@ -21,7 +21,8 @@ static void	show_env(t_env_var_lst *a)
 	nxt = a->next;
 	while (nxt)
 	{
-		printf(" nxt: %p next: %p prev: %p \n \t %s \t %s\n", nxt, nxt->next, nxt->prev, nxt->key, nxt->value);
+		printf(" nxt: %p next: %p prev: %p \n \t %s \t %s\n", 
+			nxt, nxt->next, nxt->prev, nxt->key, nxt->value);
 		nxt = nxt->next;
 	}
 	printf("============================================\n");
@@ -38,6 +39,40 @@ static int	ft_is_same(char *s1, char *s2)
 	return (0);
 }
 
+static void make_null(t_env_var_lst *nxt)
+{
+	free(nxt->prev->next->value);
+	free(nxt->prev->next->key);
+	nxt->prev->next = nxt->next;
+}
+
+static void	delete_env(t_env_var_lst *lst, char *key)
+{
+	t_env_var_lst	*nxt;
+
+	nxt = lst;
+	while (nxt)
+	{
+		if (ft_is_same(nxt->key, key) == 0)
+		{
+			if (nxt->next != NULL)
+			{
+				nxt->key = nxt->next->key;
+				nxt->value = nxt->next->value;
+				nxt->next = nxt->next->next;
+				if (nxt->next->next != NULL)
+					nxt->next->next->prev = nxt;
+			}
+			else
+				make_null(nxt);
+			break ;
+		}
+		nxt = nxt->next;
+	}
+	return ;
+}
+
+/*
 static void	delete_env(t_env_var_lst *lst, char *key)
 {
 	t_env_var_lst	*nxt;
@@ -63,11 +98,11 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 			}
 			break ;
 		}
-		// else
-			nxt = nxt->next;
+		nxt = nxt->next;
 	}
 	return ;
 }
+*/
 
 /*
 static void	delete_env(t_env_var_lst *lst, char *key)

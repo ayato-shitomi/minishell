@@ -45,11 +45,6 @@ static int	set_pipe_fd_and_write(int heredoc_pipe_fd[2], int tmp_fd, \
 		}
 		free(tmp_file);
 	}
-	// if (unlink("tmp.txt") == -1)
-	// {
-	// 	perror(SHELLNAME);
-	// 	return (ERROR);
-	// }
 	free(line);
 	free(cat_line);
 	exit(SUCCESS);

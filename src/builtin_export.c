@@ -68,7 +68,6 @@ static char	*get_smallest_key(t_info *info)
 	return (smallest_key);
 }
 
-
 static int	ft_export_case_no_arg(t_info *info)
 {
 	char			*smallest_key;

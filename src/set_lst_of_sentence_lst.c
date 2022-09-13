@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence) // ⑦
+static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence)
 {
 	t_lst			*lst;
 	int				continue_flag;
@@ -28,8 +28,7 @@ static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence) //
 		env_set_flag = 1;
 		while (info->token_dl_lst->is_cat_with_next)
 		{
-			if ((info->token_dl_lst->next->type == EXPANDABLE_QUOTED || info->token_dl_lst->next->type == NOT_EXPANDABLE) \
-				&& (ft_strchr(info->token_dl_lst->token, '$') && info->token_dl_lst->type != NOT_EXPANDABLE) && flag_quote_after_env == 0)
+			if ((info->token_dl_lst->next->type == EXPANDABLE_QUOTED || info->token_dl_lst->next->type == NOT_EXPANDABLE) && (ft_strchr(info->token_dl_lst->token, '$') && info->token_dl_lst->type != NOT_EXPANDABLE) && flag_quote_after_env == 0)
 			{
 				continue_flag = 1;
 				flag_quote_after_env = 1;
@@ -51,7 +50,7 @@ static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence) //
 		lst = ft_lstnew(info->token_dl_lst->token);
 		set_lst_info(info, lst, flag);
 		if (env_set_flag)
-			check_env_var_and_set_env_var_info(info, lst, is_first_sentence); // ⑧
+			check_env_var_and_set_env_var_info(info, lst, is_first_sentence);
 	}
 	if (flag == REDIRECT_LST)
 		ft_lstadd_back(&(info->sentence_lst->redirect_lst), lst);
@@ -60,7 +59,7 @@ static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence) //
 	return (flag);
 }
 
-static int	check_token_type_and_case_branch(t_info *info, int *flag, int is_first_sentence) // ④
+static int	chk_tkntype_case_branch(t_info *info, int *flag, int is_first_stc)
 {
 	if (info->token_dl_lst->type == PIPE)
 	{
@@ -70,16 +69,16 @@ static int	check_token_type_and_case_branch(t_info *info, int *flag, int is_firs
 	else if ((info->token_dl_lst->type >= REDIRECT_LEFT_ONE && \
 		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO) || \
 		*flag == REDIRECT_LST)
-		*flag = set_lst_case_branch(info, REDIRECT_LST, is_first_sentence);
+		*flag = set_lst_case_branch(info, REDIRECT_LST, is_first_stc);
 	else
-		*flag = set_lst_case_branch(info, CMD_LST, is_first_sentence);
+		*flag = set_lst_case_branch(info, CMD_LST, is_first_stc);
 	return (0);
 }
 
 void	set_lst_of_sentence_lst(t_info *info)
 {
 	int				flag;
-	int				is_first_sentence; // ①
+	int				is_first_sentence;
 	t_sentence_lst	*sentence_lst_tmp;
 
 	sentence_lst_tmp = info->sentence_lst;
@@ -89,7 +88,7 @@ void	set_lst_of_sentence_lst(t_info *info)
 		flag = CMD_LST;
 		while (1)
 		{
-			if (check_token_type_and_case_branch(info, &flag, is_first_sentence) == 1) // ③
+			if (chk_tkntype_case_branch(info, &flag, is_first_sentence) == 1)
 				break ;
 			info->token_dl_lst = info->token_dl_lst->next;
 			if (info->token_dl_lst->dl_lst_first_flag == 1)
@@ -97,7 +96,7 @@ void	set_lst_of_sentence_lst(t_info *info)
 		}
 		if (info->token_dl_lst->dl_lst_first_flag == 1)
 			break ;
-		if (is_first_sentence) // ②
+		if (is_first_sentence)
 			is_first_sentence = 0;
 		info->sentence_lst = info->sentence_lst->next;
 	}

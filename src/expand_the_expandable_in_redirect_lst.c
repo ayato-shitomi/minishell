@@ -47,6 +47,31 @@ static void	set_p_1_in_redirect_lst(t_info *info, char **str_env_value_p)
 	size_t	j;
 	size_t	env_var_value_len;
 
+	if (info->sentence_lst->env_var_lst->value)
+		env_var_value_len = ft_strlen(info->sentence_lst->env_var_lst->value);
+	else
+		env_var_value_len = 0;
+	*str_env_value_p = (char *)ft_calloc(env_var_value_len + 1, sizeof(char));
+	if (!(*str_env_value_p))
+		exit(ERROR);
+	i = 0;
+	j = 0;
+	while (i < env_var_value_len)
+	{
+		(*str_env_value_p)[i] = info->sentence_lst->env_var_lst->value[j];
+		i++;
+		j++;
+	}
+	(*str_env_value_p)[i] = '\0';
+}
+
+/*
+static void	set_p_1_in_redirect_lst(t_info *info, char **str_env_value_p)
+{
+	size_t	i;
+	size_t	j;
+	size_t	env_var_value_len;
+
 	// info->sentence_lst->env_var_lst->value = \
 	// 		getenv(info->sentence_lst->env_var_lst->key);
 	if (info->sentence_lst->env_var_lst->value)
@@ -66,6 +91,7 @@ static void	set_p_1_in_redirect_lst(t_info *info, char **str_env_value_p)
 	}
 	(*str_env_value_p)[i] = '\0';
 }
+*/
 
 static char	*get_str_p_in_redirect_lst(t_info *info, char *str_p, int flag)
 {

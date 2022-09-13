@@ -40,9 +40,7 @@ static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
 			if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
 			sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO) && \
 			(!(sentence_lst->redirect_lst->next) && sentence_lst->next))
-			{
 				err_str = ft_strjoin_three("`", "|", "\'");
-			}
 		}
 		if (err_str)
 		{

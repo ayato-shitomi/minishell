@@ -14,7 +14,6 @@
 
 static void	sig_handler_in_heredoc_parent(int signum)
 {
-	// write(2, "check_9\n", 8);
 	if (signum == SIGINT)
 		g_exit_status = SIGINT;
 	else if (signum == SIGQUIT)
@@ -29,48 +28,8 @@ void	set_sig_in_heredoc_parent(void)
 
 void	set_sig_in_heredoc_child(void)
 {
-	// signal(SIGINT, sig_int_handler_in_heredoc_child);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_IGN);
-}
-
-static void	sig_handler_in_exec_builtin_without_pipe(int signum)
-{
-	// write(2, "check_5\n", 8);
-	if (signum == SIGINT)
-		g_exit_status = SIGINT;
-	// else if (signum == SIGQUIT)
-	// 	g_exit_status = SIGQUIT;
-}
-
-void	set_sig_in_exec_builtin_without_pipe(void)
-{
-	signal(SIGINT, sig_handler_in_exec_builtin_without_pipe);
-	signal(SIGQUIT, SIG_IGN);
-	// signal(SIGQUIT, sig_handler_in_exec_builtin_without_pipe);
-}
-
-static void	sig_handler_in_exec_cmd_parent(int signum)
-{
-	// write(2, "par_par\n", 8);
-	if (signum == SIGINT)
-		g_exit_status = SIGINT;
-	else if (signum == SIGQUIT)
-		g_exit_status = SIGQUIT;
-}
-
-void	set_sig_in_exec_cmd_parent(void)
-{
-	signal(SIGINT, sig_handler_in_exec_cmd_parent);
-	signal(SIGQUIT, sig_handler_in_exec_cmd_parent);
-}
-
-void	set_sig_in_exec_cmd_child(void)
-{
-	// signal(SIGINT, sig_handler_in_exec_cmd_parent);
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
-	// signal(SIGQUIT, SIG_IGN);
 }
 
 static void	sig_int_handler(int signum)

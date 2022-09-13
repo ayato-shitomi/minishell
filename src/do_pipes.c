@@ -78,6 +78,31 @@ static char	**set_cmd_in_cmd_lst(t_info *info)
 
 static char	**get_env_path(t_info *info, char **cmd)
 {
+	char			*env_path_value;
+	char			**env_path;
+	t_env_var_lst	*env_var_lst_tmp;
+
+	env_path_value = NULL;
+	env_var_lst_tmp = info->env_var_lst;
+	while (info->env_var_lst)
+	{
+		if (ft_strcmp(info->env_var_lst->key, "PATH") == 0)
+			env_path_value = ft_strdup(info->env_var_lst->value);
+		info->env_var_lst = info->env_var_lst->next;
+	}
+	info->env_var_lst = env_var_lst_tmp;
+	if (!env_path_value)
+	{
+		if (info->sentence_lst->cmd_lst && !check_builtin(cmd))
+			error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
+	}
+	env_path = ft_split(env_path_value, ':');
+	return (env_path);
+}
+
+/*
+static char	**get_env_path(t_info *info, char **cmd)
+{
 	// char			*env_path_value_tmp;
 	char			*env_path_value;
 	char			**env_path;
@@ -102,7 +127,9 @@ static char	**get_env_path(t_info *info, char **cmd)
 	env_path = ft_split(env_path_value, ':');
 	return (env_path);
 }
+*/
 
+/*
 int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 {
 	char		**env_path;
@@ -120,6 +147,46 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 			init_and_set_fd_for_restore(info, 2); //
 			// if (status && 256 == 0 && WEXITSTATUS(status) == 2)
 			// 	exit(2);
+			if (status % 256 == 0)
+				exit(1);
+			else
+				exit(status);
+		}
+	}
+	if (set_fd_by_redirect_lst(info, 0) == ERROR)
+		exit(ERROR);
+	cmd = set_cmd_in_cmd_lst(info);
+	env_path = get_env_path(info, cmd);
+	cmd_path = get_cmd_path(env_path, cmd);
+	if (check_builtin(cmd))
+	{
+		status = exec_builtin(info, cmd);
+		exit(status);
+	}
+	envp = get_envp_in_array(info);
+	if (cmd[0])
+		execve(cmd_path, cmd, envp);
+	exit(SUCCESS);
+}
+*/
+
+int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
+{
+	char		**env_path;
+	char		**cmd;
+	char		*cmd_path;
+	//pid_t		w_pid;
+	int			status;
+	char		**envp;
+
+	// テスト用
+	status = 0;
+	if (pid > 0)
+	{
+		// = waitpid(pid, &status, WUNTRACED);
+		if ((status != SUCCESS) && (g_exit_status == SIGINT))
+		{
+			init_and_set_fd_for_restore(info, 2);
 			if (status % 256 == 0)
 				exit(1);
 			else

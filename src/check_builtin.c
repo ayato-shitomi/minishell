@@ -38,7 +38,8 @@ static size_t	get_ac(char **cmd)
 	return (i);
 }
 
-int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実行
+// run built-in without pipes
+int	exec_builtin_without_pipe(t_info *info)
 {
 	int		status;
 	size_t	ac;
@@ -62,7 +63,7 @@ int	exec_builtin_without_pipe(t_info *info) //パイプなしビルトイン実�
 	return (status);
 }
 
-// パイプありのビルトイン関数実行
+// run built-in woth pipes
 int	exec_builtin(t_info *info, char **cmd)
 {
 	int		status;
@@ -77,14 +78,7 @@ int	exec_builtin(t_info *info, char **cmd)
 	else if (ft_strcmp(cmd[0], "env") == 0)
 		status = ft_env(info);
 	else if (ft_strcmp(cmd[0], "echo") == 0)
-	{
-		// if (ft_strncmp(cmd[1], "-n", ft_strlen(cmd[1])) == 0)
-		// 	status = ft_echo(cmd[0], );
-		// status = ft_echo(cmd[1], false); //
-		// tatus = ft_echo(cmd[1]);
-		//printf(" >> DO NOTHING << \n");
 		status = ft_echo(info);
-	}
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		status = ft_exit(ac, cmd, NULL);
 	else if (ft_strcmp(cmd[0], "unset") == 0)

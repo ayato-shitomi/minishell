@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
+/*   Updated: 2022/09/13 21:35:23 by ashitomi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -308,8 +320,9 @@ int				heredoc_child_process(t_info *info, \
 // set_pipe_fd.c
 int				set_pipe_fd_0(int pipe_fd[2]);
 int				set_pipe_fd_1(int pipe_fd[2]);
-// int				set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]); // before modification
 int				set_pipe_fd_2(t_info *info, int pipe_fd[2]);
+// int			set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]);
+// before modification
 
 // header.c
 void			header(void);
