@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_env_var_and_set_env_var_info.c               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
+/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static void	set_key_value_str_for_exit_status(t_lst *env_var_lst, int is_first_sentence) // ⑬
