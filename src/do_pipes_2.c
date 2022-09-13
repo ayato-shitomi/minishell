@@ -38,8 +38,10 @@ void	set_sentence_lst_and_pipe_fd(t_info *info, \
 {
 	while (i++ < cmd_cnt - 1)
 		info->sentence_lst = info->sentence_lst->next;
-	if (set_pipe_fd_2(info->sentence_lst, pipe_fd) == ERROR)
+	if (set_pipe_fd_2(info, pipe_fd) == ERROR) //
 		exit(ERROR);
+	// if (set_pipe_fd_2(info->sentence_lst, pipe_fd) == ERROR)
+	// 	exit(ERROR);
 }
 
 int	check_first_sentence(t_info *info, size_t i, \

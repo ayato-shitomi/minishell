@@ -64,7 +64,6 @@ static char	**set_cmd_in_cmd_lst(t_info *info)
 	return (cmd);
 }
 
-// static char	**get_env_path(void)
 static char	**get_env_path(t_info *info, char **cmd)
 {
 	// char			*env_path_value_tmp;
@@ -104,16 +103,22 @@ int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
 	if (pid > 0)
 	{
 		w_pid = waitpid(pid, &status, WUNTRACED);
-		// if (WEXITSTATUS(status) != SUCCESS) // ← 要らない？
-		// 	exit(WEXITSTATUS(status));
+		if ((status != SUCCESS) && (g_exit_status == SIGINT)) // should be deleted?
+		{
+			init_and_set_fd_for_restore(info, 2); //
+			// if (status && 256 == 0 && WEXITSTATUS(status) == 2)
+			// 	exit(2);
+			if (status % 256 == 0)
+				exit(1);
+			else
+				exit(status);
+		}
 	}
 	if (set_fd_by_redirect_lst(info, 0) == ERROR)
 		exit(ERROR);
 	cmd = set_cmd_in_cmd_lst(info);
 	env_path = get_env_path(info, cmd);
 	cmd_path = get_cmd_path(env_path, cmd);
-	// if (set_fd_by_redirect_lst(info) == ERROR)
-	// 	exit(ERROR);
 	if (check_builtin(cmd))
 	{
 		status = exec_builtin(info, cmd);

@@ -13,7 +13,7 @@ void	set_continue_flag(t_sentence_lst *sentence_lst, int *continue_flag)
 	}
 }
 
-int	heredoc(t_info *info, int is_builtin_without_pipe) //
+int	heredoc(t_info *info, int is_builtin_without_pipe)
 {
 	int		continue_flag;
 	int		heredoc_pipe_fd[2];
@@ -41,7 +41,7 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 		return (ERROR);
 	else if (heredoc_pid == 0)
 	{
-		set_sig_in_heredoc(); // ①
+		set_sig_in_heredoc_child();
 		if (heredoc_child_process(info, heredoc_pipe_fd, \
 			continue_flag, tmp_file) == ERROR)
 			exit(ERROR);
@@ -56,8 +56,13 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 			unlink(tmp_file);
 			free(tmp_file);
 		}
-		if (g_exit_status == SIGINT && !is_builtin_without_pipe) // ②
+		if (g_exit_status == SIGINT && !is_builtin_without_pipe)
+		{
+			init_and_set_fd_for_restore(info, 2);
 			exit(ERROR);
+		}
+		else if (g_exit_status == SIGINT)
+			return (42);
 		if (!info->red_left_after_right_flag)
 		{
 			if (init_and_set_fd_for_restore(info, 0) == ERROR)
@@ -70,11 +75,7 @@ int	heredoc(t_info *info, int is_builtin_without_pipe) //
 		}
 		else
 			info->red_left_after_right_flag = 0;
-		// if (continue_flag == 1)
-		// 	exit(SUCCESS);
 	}
-	printf("sta = %d\n", status);
-	printf("w_sta = %d\n", WEXITSTATUS(status));
 	return (WEXITSTATUS(status));
 }
 
