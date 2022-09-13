@@ -26,8 +26,8 @@ SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/utils_4.c \
 OBJS	=	$(SRCS:.c=.o)
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
-# CFLAGS	=	-Wall -Wextra -Werror
+#CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 LDFLAGS	=	-lreadline -lhistory -L $(shell brew --prefix readline)/lib -I .brew/opt/readline/include
 
 CFLAGS +=  -I$(shell brew --prefix readline)/include
