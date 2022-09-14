@@ -23,13 +23,14 @@ SRCS	=	src/minishell.c src/utils.c src/utils_2.c src/utils_3.c src/utils_4.c \
 			src/builtin_export_3.c src/builtin_env.c src/builtin_echo.c \
 			src/builtin_unset.c src/ft_split_lex.c src/minishell_utils_2.c \
 			src/set_sig_in_each_process2.c src/do_pipes_3.c src/execute_command_2.c \
-			src/heredoc_3.c src/set_fd_by_redirect_lst_3.c
+			src/heredoc_3.c src/set_fd_by_redirect_lst_3.c \
+			src/check_env_var_and_set_env_var_info_2.c
 
 OBJS	=	$(SRCS:.c=.o)
 
-CC		=	gcc
-# CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
-CFLAGS	=	-Wall -Wextra -Werror
+CC		=	gcc -g
+CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
+# CFLAGS	=	-Wall -Wextra -Werror
 LDFLAGS	=	-lreadline -lhistory -L $(shell brew --prefix readline)/lib -I .brew/opt/readline/include
 
 CFLAGS +=  -I$(shell brew --prefix readline)/include

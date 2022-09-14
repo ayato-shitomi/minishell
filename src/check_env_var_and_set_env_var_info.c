@@ -3,47 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   check_env_var_and_set_env_var_info.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:51:19 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	set_key_value_str_for_exit_status(
-	t_lst *env_var_lst, int is_first_sentence)
-{
-	env_var_lst->key[0] = '?';
-	env_var_lst->key[1] = '\0';
-	if (is_first_sentence)
-		env_var_lst->value = ft_strdup(ft_itoa(g_exit_status));
-	else
-		env_var_lst->value = ft_strdup("0");
-	env_var_lst->str = (char *)ft_calloc(3, sizeof(char));
-	if (!(env_var_lst->str))
-		exit(ERROR);
-	env_var_lst->str[0] = '$';
-	env_var_lst->str[1] = '?';
-	env_var_lst->str[2] = '\0';
-}
-
-static void	set_key_value_str(t_lst *lst, t_lst *env_var_lst, size_t len, \
-	size_t *i)
+static void	set_key_value_str_2(t_lst *env_var_lst, size_t len)
 {
 	size_t	j;
 
-	j = 0;
-	while (j < len)
-	{
-		env_var_lst->key[j] = lst->str[*i];
-		*i += 1;
-		j++;
-	}
-	*i -= 1;
-	env_var_lst->key[j] = '\0';
-	env_var_lst->value = getenv(env_var_lst->key);
 	env_var_lst->str = (char *)ft_calloc(len + 2, sizeof(char));
 	if (!(env_var_lst->str))
 		exit(ERROR);
@@ -57,19 +29,20 @@ static void	set_key_value_str(t_lst *lst, t_lst *env_var_lst, size_t len, \
 	env_var_lst->str[j] = '\0';
 }
 
-static void	set_exit_status_first(
-	t_info *info, size_t *i, int is_first_sentence)
+static void	set_key_value_str_1(t_lst *lst, t_lst *env_var_lst, size_t len, \
+	size_t *i)
 {
-	t_lst	*env_var_lst;
+	size_t	j;
 
-	*i += 1;
-	env_var_lst = ft_lstnew(NULL);
-	set_lst_info(info, env_var_lst, ENV_VAR_LST);
-	env_var_lst->key = (char *)ft_calloc(2, sizeof(char));
-	if (!(env_var_lst->key))
-		exit(ERROR);
-	set_key_value_str_for_exit_status(env_var_lst, is_first_sentence);
-	ft_lstadd_back(&(info->sentence_lst->env_var_lst), env_var_lst);
+	j = 0;
+	while (j < len)
+	{
+		env_var_lst->key[j] = lst->str[*i];
+		*i += 1;
+		j++;
+	}
+	*i -= 1;
+	env_var_lst->key[j] = '\0';
 }
 
 static void	set_env_var_info(t_info *info, t_lst *lst, size_t *i)
@@ -93,7 +66,9 @@ static void	set_env_var_info(t_info *info, t_lst *lst, size_t *i)
 	env_var_lst->key = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!(env_var_lst->key))
 		exit(ERROR);
-	set_key_value_str(lst, env_var_lst, len, i);
+	set_key_value_str_1(lst, env_var_lst, len, i);
+	env_var_lst->value = get_env_value(info, env_var_lst->key);
+	set_key_value_str_2(env_var_lst, len);
 	ft_lstadd_back(&(info->sentence_lst->env_var_lst), env_var_lst);
 }
 

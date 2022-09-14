@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 19:55:05 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/15 08:21:22 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	parse_command(char *command, t_info *info)
 // 	// 	printf("first_flag = %d\n",
 // 	//  info->token_dl_lst->dl_lst_first_flag);
 // 	// 	printf("last_flag = %d\n",
-// 	info->token_dl_lst->dl_lst_last_flag);
+// 	// info->token_dl_lst->dl_lst_last_flag);
 // 	// 	printf("is_cat_with_next = %d\n",
-// 	info->token_dl_lst->is_cat_with_next);
+// 	// info->token_dl_lst->is_cat_with_next);
 // 	// 	info->token_dl_lst = info->token_dl_lst->next;
 // 	// 	if (info->token_dl_lst->dl_lst_first_flag == 1)
 // 	// 		break ;
@@ -70,14 +70,14 @@ int	parse_command(char *command, t_info *info)
 // 	// 	while (info->sentence_lst->cmd_lst)
 // 	// 	{
 // 	// 		printf("cmd_lst->str = %s\n",
-// 	info->sentence_lst->cmd_lst->str);
+// 	// info->sentence_lst->cmd_lst->str);
 // 	// 		printf("cmd_lst->key = %s\n", info->sentence_lst->cmd_lst->key);
 // 	// 		printf("cmd_lst->value = %s\n",
-// 	info->sentence_lst->cmd_lst->value);
+// 	// info->sentence_lst->cmd_lst->value);
 // 	// 		printf("cmd_lst->token_type = %d\n",
-// 	info->sentence_lst->cmd_lst->token_type);
+// 	// info->sentence_lst->cmd_lst->token_type);
 // 	// 		printf("cmd_lst->lst_type = %d\n",
-//	info->sentence_lst->cmd_lst->lst_type);
+// 	// info->sentence_lst->cmd_lst->lst_type);
 // 	// 		info->sentence_lst->cmd_lst = info->sentence_lst->cmd_lst->next;
 // 	// 	}
 // 	// 	info->sentence_lst->cmd_lst = cmd_lst_tmp;
@@ -85,34 +85,34 @@ int	parse_command(char *command, t_info *info)
 // 	// 	while (info->sentence_lst->redirect_lst)
 // 	// 	{
 // 	// 		printf("redirect_lst->str = %s\n",
-// 	info->sentence_lst->redirect_lst->str);
+// 	// info->sentence_lst->redirect_lst->str);
 // 	// 		printf("redirect_lst->key = %s\n",
-// 	info->sentence_lst->redirect_lst->key);
+// 	// info->sentence_lst->redirect_lst->key);
 // 	// 		printf("redirect_lst->value = %s\n",
-// 	info->sentence_lst->redirect_lst->value);
+// 	// info->sentence_lst->redirect_lst->value);
 // 	// 		printf("redirect_lst->token_type = %d\n",
-// 	info->sentence_lst->redirect_lst->token_type);
+// 	// info->sentence_lst->redirect_lst->token_type);
 // 	// 		printf("redirect_lst->lst_type = %d\n",
-// 	info->sentence_lst->redirect_lst->lst_type);
+// 	// info->sentence_lst->redirect_lst->lst_type);
 // 	// 		info->sentence_lst->redirect_lst =
-//	info->sentence_lst->redirect_lst->next;
+// 	// info->sentence_lst->redirect_lst->next;
 // 	// 	}
 // 	// 	info->sentence_lst->redirect_lst = redirect_lst_tmp;
 // 	// 	env_var_lst_tmp = info->sentence_lst->env_var_lst;
 // 	// 	while (info->sentence_lst->env_var_lst)
 // 	// 	{
 // 	// 		printf("env_var_lst->str = %s\n",
-// 	info->sentence_lst->env_var_lst->str);
+// 	// info->sentence_lst->env_var_lst->str);
 // 	// 		printf("env_var_lst->key = %s\n",
-// 	info->sentence_lst->env_var_lst->key);
+// 	// info->sentence_lst->env_var_lst->key);
 // 	// 		printf("env_var_lst->value = %s\n",
-// 	info->sentence_lst->env_var_lst->value);
+// 	// info->sentence_lst->env_var_lst->value);
 // 	// 		printf("env_var_lst->token_type = %d\n",
-// 	info->sentence_lst->env_var_lst->token_type);
+// 	// info->sentence_lst->env_var_lst->token_type);
 // 	// 		printf("env_var_lst->lst_type = %d\n",
-// 	info->sentence_lst->env_var_lst->lst_type);
+// 	// info->sentence_lst->env_var_lst->lst_type);
 // 	// 		info->sentence_lst->env_var_lst =
-//	info->sentence_lst->env_var_lst->next;
+// 	// info->sentence_lst->env_var_lst->next;
 // 	// 	}
 // 	// 	info->sentence_lst->env_var_lst = env_var_lst_tmp;
 // 	// 	info->sentence_lst = info->sentence_lst->next;
@@ -128,15 +128,15 @@ int	parse_command(char *command, t_info *info)
 // 	// 	while (info->sentence_lst->cmd_lst)
 // 	// 	{
 // 	// 		printf("cmd_lst->str = %s\n",
-// 	info->sentence_lst->cmd_lst->str);
+// 	// info->sentence_lst->cmd_lst->str);
 // 	// 		printf("cmd_lst->key = %s\n",
-// 	info->sentence_lst->cmd_lst->key);
+// 	// info->sentence_lst->cmd_lst->key);
 // 	// 		printf("cmd_lst->value = %s\n",
-// 	info->sentence_lst->cmd_lst->value);
+// 	// info->sentence_lst->cmd_lst->value);
 // 	// 		printf("cmd_lst->token_type = %d\n",
-// 	info->sentence_lst->cmd_lst->token_type);
+// 	// info->sentence_lst->cmd_lst->token_type);
 // 	// 		printf("cmd_lst->lst_type = %d\n",
-// 	info->sentence_lst->cmd_lst->lst_type);
+// 	// info->sentence_lst->cmd_lst->lst_type);
 // 	// 		info->sentence_lst->cmd_lst = info->sentence_lst->cmd_lst->next;
 // 	// 	}
 // 	// 	info->sentence_lst->cmd_lst = cmd_lst_tmp;
@@ -144,34 +144,34 @@ int	parse_command(char *command, t_info *info)
 // 	// 	while (info->sentence_lst->redirect_lst)
 // 	// 	{
 // 	// 		printf("redirect_lst->str = %s\n",
-// 	info->sentence_lst->redirect_lst->str);
+// 	// info->sentence_lst->redirect_lst->str);
 // 	// 		printf("redirect_lst->key = %s\n",
-// 	info->sentence_lst->redirect_lst->key);
+// 	// info->sentence_lst->redirect_lst->key);
 // 	// 		printf("redirect_lst->value = %s\n",
-// 	info->sentence_lst->redirect_lst->value);
+// 	// info->sentence_lst->redirect_lst->value);
 // 	// 		printf("redirect_lst->token_type = %d\n",
-// 	info->sentence_lst->redirect_lst->token_type);
+// 	// info->sentence_lst->redirect_lst->token_type);
 // 	// 		printf("redirect_lst->lst_type = %d\n",
-// 	info->sentence_lst->redirect_lst->lst_type);
+// 	// info->sentence_lst->redirect_lst->lst_type);
 // 	// 		info->sentence_lst->redirect_lst =
-// 	info->sentence_lst->redirect_lst->next;
+// 	// info->sentence_lst->redirect_lst->next;
 // 	// 	}
 // 	// 	info->sentence_lst->redirect_lst = redirect_lst_tmp;
 // 	// 	env_var_lst_tmp = info->sentence_lst->env_var_lst;
 // 	// 	while (info->sentence_lst->env_var_lst)
 // 	// 	{
 // 	// 		printf("env_var_lst->str = %s\n",
-// 	info->sentence_lst->env_var_lst->str);
+// 	// info->sentence_lst->env_var_lst->str);
 // 	// 		printf("env_var_lst->key = %s\n",
-// 	info->sentence_lst->env_var_lst->key);
+// 	// info->sentence_lst->env_var_lst->key);
 // 	// 		printf("env_var_lst->value = %s\n",
-// 	info->sentence_lst->env_var_lst->value);
+// 	// info->sentence_lst->env_var_lst->value);
 // 	// 		printf("env_var_lst->token_type = %d\n",
-// 	info->sentence_lst->env_var_lst->token_type);
+// 	// info->sentence_lst->env_var_lst->token_type);
 // 	// 		printf("env_var_lst->lst_type = %d\n",
-// 	info->sentence_lst->env_var_lst->lst_type);
+// 	// info->sentence_lst->env_var_lst->lst_type);
 // 	// 		info->sentence_lst->env_var_lst =
-// 	info->sentence_lst->env_var_lst->next;
+// 	// info->sentence_lst->env_var_lst->next;
 // 	// 	}
 // 	// 	info->sentence_lst->env_var_lst = env_var_lst_tmp;
 // 	// 	info->sentence_lst = info->sentence_lst->next;

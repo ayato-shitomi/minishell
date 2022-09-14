@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 13:54:13 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/15 05:50:00 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,10 @@ void			set_lst_of_sentence_lst(t_info *info);
 
 // check_env_var_and_set_env_var_info.c
 void			check_env_var_and_set_env_var_info(t_info *info, t_lst *lst, \
+	int is_first_sentence);
+
+// check_env_var_and_set_env_var_info_2.c
+void			set_exit_status_first(t_info *info, size_t *i, \
 	int is_first_sentence);
 
 // check_syntax_error.c
