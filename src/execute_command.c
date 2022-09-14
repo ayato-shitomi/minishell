@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 11:20:06 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/14 15:11:56 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ int	set_fd_and_exec_builtin_without_pipe(t_info *info)
 			status = ERROR;
 		else if (status == SIGINT)
 			status = 128 + SIGINT;
-		printf("\n");
+		ft_putstr_fd("\n", STDERR_FILENO);
 	}
 	else if (g_exit_status == SIGQUIT)
 	{
 		if (status == SIGQUIT)
 			status = 128 + SIGQUIT;
-		printf("Quit: 3\n");
+		ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
 	}
 	init_and_set_fd_for_restore(info, 2);
 	put_exitstatus(status);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi </var/mail/ashitomi>              +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 13:20:14 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:26 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 19:34:16 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	echo(char *str)
 /*
 static void	dbg(t_info *info)
 {
-	printf("parsed_command\t>> %s\n", info->parsed_command); 
+	printf("parsed_command\t>> %s\n", info->parsed_command);
 	printf("is_in_dquote\t>> %zu\n", info->is_in_dquote);
 	printf("is_in_squote\t>> %zu\n", info->is_in_squote);
 	//printf("check_quoted\t>> %d\n", check_quoted(info));
@@ -101,7 +101,7 @@ int	ft_echo(t_info *info)
 	}
 	flag_not_backn = 0;
 	p = info->sentence_lst->cmd_lst->next;
-	while (ft_strncmp(p->str, "-n", ft_strlen(p->str)) == 0)
+	while (ft_strcmp(p->str, "-n") == 0)
 	{
 		flag_not_backn = 1;
 		p = p ->next;
