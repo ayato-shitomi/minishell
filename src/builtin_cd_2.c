@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:26 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:44:15 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*get_env_value(t_info *info, char *env_key)
 	while (info->env_var_lst)
 	{
 		if (ft_strcmp(info->env_var_lst->key, env_key) == 0)
-			env_value = info->env_var_lst->value;
+			env_value = ft_strdup(info->env_var_lst->value);
 		info->env_var_lst = info->env_var_lst->next;
 	}
 	info->env_var_lst = env_var_lst_tmp;
