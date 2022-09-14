@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_pipe_fd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:28 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:40:30 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static int	rtn_error(void)
-{
-	perror(SHELLNAME);
-	return (ERROR);
-}
 
 int	set_pipe_fd_2(t_info *info, int pipe_fd[2])
 {

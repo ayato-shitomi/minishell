@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_the_expandable_in_cmd_lst.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:08:58 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ int	expand_the_expandable_in_cmd_lst(t_info *info)
 	}
 	return (0);
 }
-
 
 /*
 static void	set_p_1_in_cmd_lst(t_info *info, char **str_env_value_p)

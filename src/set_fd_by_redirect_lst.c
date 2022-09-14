@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   set_fd_by_redirect_lst.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:28 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:33:05 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static int	get_rtn(int n)
+{
+	if (n == ERROR)
+		return (ERROR);
+	if (n == 42)
+		return (42);
+	return (SUCCESS);
+}
 
 static int	set_fd_case_file(t_info *info, \
 	int prev_token_type, int is_builtin_without_pipe)
@@ -30,11 +39,7 @@ static int	set_fd_case_file(t_info *info, \
 	else if (prev_token_type == REDIRECT_LEFT_TWO)
 	{
 		n = heredoc(info, is_builtin_without_pipe);
-		if (n == ERROR)
-			return (ERROR);
-		if (n == 42)
-			return (42);
-		return (SUCCESS);
+		return (get_rtn(n));
 	}
 	else if (prev_token_type == REDIRECT_RIGHT_TWO)
 	{
@@ -99,62 +104,3 @@ int	set_fd_by_redirect_lst(t_info *info, int is_builtin_without_pipe)
 		return (42);
 	return (SUCCESS);
 }
-
-/*
-static int	set_fd_case_file(t_info *info, int prev_token_type, int is_builtin_without_pipe)
-{
-	int	n;
-
-	if (prev_token_type == REDIRECT_LEFT_ONE)
-	{
-		if (set_fd_case_red_left_one(info) == ERROR)
-			return (ERROR);
-	}
-	else if (prev_token_type == REDIRECT_RIGHT_ONE)
-	{
-		if (set_fd_case_red_right_one(info) == ERROR)
-			return (ERROR);
-	}
-	else if (prev_token_type == REDIRECT_LEFT_TWO)
-	{
-		n = heredoc(info, is_builtin_without_pipe);
-		// if (heredoc(info, is_builtin_without_pipe) == ERROR)
-		// 	return (ERROR);
-		if (n == ERROR)
-			return (ERROR);
-		if (n == 42)
-			return (42);
-		return (SUCCESS);
-	}
-	else if (prev_token_type == REDIRECT_RIGHT_TWO)
-	{
-		if (set_fd_case_red_right_two(info) == ERROR)
-			return (ERROR);
-	}
-	return (SUCCESS);
-}
-*/
-
-/*
-static int	case_branch_by_redirect_lst(t_info *info, \
-	int prev_token_type, int is_builtin_without_pipe)
-{
-	int	n;
-
-	if (info->sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
-		info->sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO)
-		prev_token_type = set_fd_case_redirect(info, prev_token_type);
-	else
-	{
-		n = set_fd_case_file(info, prev_token_type, is_builtin_without_pipe);
-		if (n == ERROR)
-			return (ERROR);
-		if (n == 42)
-			return (42);
-	}
-		// if (set_fd_case_file(info, \
-			prev_token_type, is_builtin_without_pipe) == ERROR)
-		// 	return (ERROR);
-	return (prev_token_type);
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 05:56:24 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	parse_command(char *command, t_info *info)
 	// {
 	// 	printf("token = %s\n", info->token_dl_lst->token);
 	// 	printf("type = %d\n", info->token_dl_lst->type);
-	// 	printf("first_flag = %d\n", 
+	// 	printf("first_flag = %d\n",
 	info->token_dl_lst->dl_lst_first_flag);
-	// 	printf("last_flag = %d\n", 
+	// 	printf("last_flag = %d\n",
 	info->token_dl_lst->dl_lst_last_flag);
-	// 	printf("is_cat_with_next = %d\n", 
+	// 	printf("is_cat_with_next = %d\n",
 	info->token_dl_lst->is_cat_with_next);
 	// 	info->token_dl_lst = info->token_dl_lst->next;
 	// 	if (info->token_dl_lst->dl_lst_first_flag == 1)
@@ -70,12 +70,12 @@ int	parse_command(char *command, t_info *info)
 	// 	cmd_lst_tmp = info->sentence_lst->cmd_lst;
 	// 	while (info->sentence_lst->cmd_lst)
 	// 	{
-	// 		printf("cmd_lst->str = %s\n", 
+	// 		printf("cmd_lst->str = %s\n",
 	info->sentence_lst->cmd_lst->str);
 	// 		printf("cmd_lst->key = %s\n", info->sentence_lst->cmd_lst->key);
-	// 		printf("cmd_lst->value = %s\n", 
+	// 		printf("cmd_lst->value = %s\n",
 	info->sentence_lst->cmd_lst->value);
-	// 		printf("cmd_lst->token_type = %d\n", 
+	// 		printf("cmd_lst->token_type = %d\n",
 	info->sentence_lst->cmd_lst->token_type);
 	// 		printf("cmd_lst->lst_type = %d\n", info->sentence_lst->cmd_lst->lst_type);
 	// 		info->sentence_lst->cmd_lst = info->sentence_lst->cmd_lst->next;
@@ -84,15 +84,15 @@ int	parse_command(char *command, t_info *info)
 	// 	redirect_lst_tmp = info->sentence_lst->redirect_lst;
 	// 	while (info->sentence_lst->redirect_lst)
 	// 	{
-	// 		printf("redirect_lst->str = %s\n", 
+	// 		printf("redirect_lst->str = %s\n",
 	info->sentence_lst->redirect_lst->str);
-	// 		printf("redirect_lst->key = %s\n", 
+	// 		printf("redirect_lst->key = %s\n",
 	info->sentence_lst->redirect_lst->key);
-	// 		printf("redirect_lst->value = %s\n", 
+	// 		printf("redirect_lst->value = %s\n",
 	info->sentence_lst->redirect_lst->value);
-	// 		printf("redirect_lst->token_type = %d\n", 
+	// 		printf("redirect_lst->token_type = %d\n",
 	info->sentence_lst->redirect_lst->token_type);
-	// 		printf("redirect_lst->lst_type = %d\n", 
+	// 		printf("redirect_lst->lst_type = %d\n",
 	info->sentence_lst->redirect_lst->lst_type);
 	// 		info->sentence_lst->redirect_lst = info->sentence_lst->redirect_lst->next;
 	// 	}
@@ -100,15 +100,15 @@ int	parse_command(char *command, t_info *info)
 	// 	env_var_lst_tmp = info->sentence_lst->env_var_lst;
 	// 	while (info->sentence_lst->env_var_lst)
 	// 	{
-	// 		printf("env_var_lst->str = %s\n", 
+	// 		printf("env_var_lst->str = %s\n",
 	info->sentence_lst->env_var_lst->str);
-	// 		printf("env_var_lst->key = %s\n", 
+	// 		printf("env_var_lst->key = %s\n",
 	info->sentence_lst->env_var_lst->key);
-	// 		printf("env_var_lst->value = %s\n", 
+	// 		printf("env_var_lst->value = %s\n",
 	info->sentence_lst->env_var_lst->value);
-	// 		printf("env_var_lst->token_type = %d\n", 
+	// 		printf("env_var_lst->token_type = %d\n",
 	info->sentence_lst->env_var_lst->token_type);
-	// 		printf("env_var_lst->lst_type = %d\n", 
+	// 		printf("env_var_lst->lst_type = %d\n",
 	info->sentence_lst->env_var_lst->lst_type);
 	// 		info->sentence_lst->env_var_lst = info->sentence_lst->env_var_lst->next;
 	// 	}
@@ -125,15 +125,15 @@ int	parse_command(char *command, t_info *info)
 	// 	cmd_lst_tmp = info->sentence_lst->cmd_lst;
 	// 	while (info->sentence_lst->cmd_lst)
 	// 	{
-	// 		printf("cmd_lst->str = %s\n", 
+	// 		printf("cmd_lst->str = %s\n",
 	info->sentence_lst->cmd_lst->str);
-	// 		printf("cmd_lst->key = %s\n", 
+	// 		printf("cmd_lst->key = %s\n",
 	info->sentence_lst->cmd_lst->key);
-	// 		printf("cmd_lst->value = %s\n", 
+	// 		printf("cmd_lst->value = %s\n",
 	info->sentence_lst->cmd_lst->value);
-	// 		printf("cmd_lst->token_type = %d\n", 
+	// 		printf("cmd_lst->token_type = %d\n",
 	info->sentence_lst->cmd_lst->token_type);
-	// 		printf("cmd_lst->lst_type = %d\n", 
+	// 		printf("cmd_lst->lst_type = %d\n",
 	info->sentence_lst->cmd_lst->lst_type);
 	// 		info->sentence_lst->cmd_lst = info->sentence_lst->cmd_lst->next;
 	// 	}
@@ -141,34 +141,34 @@ int	parse_command(char *command, t_info *info)
 	// 	redirect_lst_tmp = info->sentence_lst->redirect_lst;
 	// 	while (info->sentence_lst->redirect_lst)
 	// 	{
-	// 		printf("redirect_lst->str = %s\n", 
+	// 		printf("redirect_lst->str = %s\n",
 	info->sentence_lst->redirect_lst->str);
-	// 		printf("redirect_lst->key = %s\n", 
+	// 		printf("redirect_lst->key = %s\n",
 	info->sentence_lst->redirect_lst->key);
-	// 		printf("redirect_lst->value = %s\n", 
+	// 		printf("redirect_lst->value = %s\n",
 	info->sentence_lst->redirect_lst->value);
-	// 		printf("redirect_lst->token_type = %d\n", 
+	// 		printf("redirect_lst->token_type = %d\n",
 	info->sentence_lst->redirect_lst->token_type);
-	// 		printf("redirect_lst->lst_type = %d\n", 
+	// 		printf("redirect_lst->lst_type = %d\n",
 	info->sentence_lst->redirect_lst->lst_type);
-	// 		info->sentence_lst->redirect_lst = 
+	// 		info->sentence_lst->redirect_lst =
 	info->sentence_lst->redirect_lst->next;
 	// 	}
 	// 	info->sentence_lst->redirect_lst = redirect_lst_tmp;
 	// 	env_var_lst_tmp = info->sentence_lst->env_var_lst;
 	// 	while (info->sentence_lst->env_var_lst)
 	// 	{
-	// 		printf("env_var_lst->str = %s\n", 
+	// 		printf("env_var_lst->str = %s\n",
 	info->sentence_lst->env_var_lst->str);
-	// 		printf("env_var_lst->key = %s\n", 
+	// 		printf("env_var_lst->key = %s\n",
 	info->sentence_lst->env_var_lst->key);
-	// 		printf("env_var_lst->value = %s\n", 
+	// 		printf("env_var_lst->value = %s\n",
 	info->sentence_lst->env_var_lst->value);
-	// 		printf("env_var_lst->token_type = %d\n", 
+	// 		printf("env_var_lst->token_type = %d\n",
 	info->sentence_lst->env_var_lst->token_type);
-	// 		printf("env_var_lst->lst_type = %d\n", 
+	// 		printf("env_var_lst->lst_type = %d\n",
 	info->sentence_lst->env_var_lst->lst_type);
-	// 		info->sentence_lst->env_var_lst = 
+	// 		info->sentence_lst->env_var_lst =
 	info->sentence_lst->env_var_lst->next;
 	// 	}
 	// 	info->sentence_lst->env_var_lst = env_var_lst_tmp;

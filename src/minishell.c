@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 05:22:54 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ int	main(int ac, char **argv, char **envp)
 			parse_command(command, &info);
 			add_history(command);
 		}
-		free(command);
-		ft_free_token_dl_lst(&info);
-		ft_free_sentence_lst(&info);
+		free_cmd_and_lsts(&info, command);
 	}
 	free_env_var_lst(&info);
 	return (SUCCESS);

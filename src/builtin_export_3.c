@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:26 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:32:00 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,22 @@ void	set_oldpwd(t_info *info)
 	}
 	info->env_var_lst = env_var_lst_tmp;
 	return ;
+}
+
+char	*get_smallest_key(t_info *info)
+{
+	t_env_var_lst	*env_var_lst_tmp;
+	char			*smallest_key;
+
+	env_var_lst_tmp = info->env_var_lst;
+	smallest_key = info->env_var_lst->key;
+	info->env_var_lst = info->env_var_lst->next;
+	while (info->env_var_lst)
+	{
+		if (ft_strcmp(info->env_var_lst->key, smallest_key) < 0)
+			smallest_key = info->env_var_lst->key;
+		info->env_var_lst = info->env_var_lst->next;
+	}
+	info->env_var_lst = env_var_lst_tmp;
+	return (smallest_key);
 }

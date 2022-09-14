@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:40:36 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	rtn_error(void)
+{
+	perror(SHELLNAME);
+	return (ERROR);
+}
 
 int	error_and_return(char *cmd, char *arg, char *err_msg)
 {

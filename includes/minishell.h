@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/13 21:35:23 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:54:13 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ int				set_i_for_insert(t_info *info, char *key, char *value, \
 	size_t *i);
 
 // builtin_export_3.c
+char			*get_smallest_key(t_info *info);
 void			set_oldpwd(t_info *info);
 
 // builtin_echo.c
@@ -209,6 +210,7 @@ int				ft_strcmp(const char *dst, const char *src);
 void			error_and_exit(char *error_str_1, char *error_str_2, \
 	int exit_status);
 int				error_and_return(char *cmd, char *arg, char *err_msg);
+int				rtn_error(void);
 
 // parse_command.c
 int				parse_command(char *command, t_info *info);
@@ -277,10 +279,22 @@ int				expand_the_expandable_in_redirect_lst(t_info *info);
 
 // execute_command.c
 int				execute_command(t_info *info);
+int				set_fd_and_exec_builtin_without_pipe(t_info *info);
+void			put_exitstatus(int n);
+int				check_heredoc(t_info *info);
+
+// execute_command_2.c
+int				check_builtin_without_pipe(t_info *info);
+int				set_exit_status_after_waitpid_in_exec_cmd(t_info *info, \
+	int status);
+int				check_builtin_without_pipe_after_set_redirect(t_info *info, \
+	int n);
 
 // do_pipes.c
 void			do_pipes(t_info *info, size_t i, size_t cmd_cnt);
-int				set_cmd_fd_and_exec(t_info *info, pid_t pid);
+char			**get_env_path(t_info *info, char **cmd);
+char			**set_cmd_in_cmd_lst(t_info *info);
+char			*get_cmd_path(char **env_path, char **cmd);
 
 // do_pipes_2.c
 void			set_sentence_lst_and_pipe_fd(t_info *info, \
@@ -289,6 +303,9 @@ int				set_pipe_and_fork(int pipe_fd[2], pid_t *pid);
 int				check_first_sentence(t_info *info, size_t i, \
 	size_t cmd_cnt);
 char			**get_envp_in_array(t_info *info);
+
+// do_pipes_3.c
+int				set_cmd_fd_and_exec(t_info *info, pid_t pid);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);
@@ -308,14 +325,23 @@ int				set_fd_case_red_left_one(t_info *info);
 int				set_fd_case_red_right_one(t_info *info);
 int				set_fd_case_red_right_two(t_info *info);
 
+// set_fd_by_redirect_lst_3.c
+int				init_and_set_fd_for_restore(t_info *info, int n);
+
 // heredoc.c
-int				heredoc(t_info *info, int is_builtin_without_pipe); //
-void			set_continue_flag(t_sentence_lst *sentence_lst, \
-	int *continue_flag);
+int				heredoc(t_info *info, int is_builtin_without_pipe);
 
 // heredoc_2.c
 int				heredoc_child_process(t_info *info, \
 	int heredoc_pipe_fd[2], int continue_flag, char *tmp_file);
+
+// heredoc_3.c
+int				open_fd_and_calloc(int *tmp_fd, \
+	char **cat_line, int *flag, char *tmp_file);
+void			do_gnl(int flag, char **line);
+void			set_continue_flag(t_sentence_lst *sentence_lst, \
+	int *continue_flag);
+void			make_tmp_file(char **tmp_file);
 
 // set_pipe_fd.c
 int				set_pipe_fd_0(int pipe_fd[2]);
@@ -336,6 +362,7 @@ void			ft_free_cmd(char **cmd);
 
 // ft_free_2.c
 void			free_env_var_lst(t_info *info);
+void			free_cmd_and_lsts(t_info *info, char *command);
 
 // validate.c
 int				validate_arg_at_ft_export(t_info *info);

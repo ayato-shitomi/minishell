@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 05:23:06 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	free_cmd_and_lsts(t_info *info, char *command)
+{
+	free(command);
+	ft_free_token_dl_lst(info);
+	ft_free_sentence_lst(info);
+}
 
 void	free_env_var_lst(t_info *info)
 {

@@ -3,18 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax_error.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 05:56:48 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
+static void	check_syntax_error_5(char *err_str)
 {
 	char	*err_message;
+
+	err_message = ft_strjoin("Fresh: syntax error near unexpected token ", \
+		err_str);
+	free(err_str);
+	ft_putendl_fd(err_message, STDERR_FILENO);
+	free(err_message);
+}
+
+static void	check_syntax_error_4(t_sentence_lst *sentence_lst, char *err_str)
+{
+	if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
+	sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO) && \
+	((sentence_lst->redirect_lst->next->token_type >= \
+	REDIRECT_LEFT_ONE && \
+	sentence_lst->redirect_lst->next->token_type <= \
+	REDIRECT_LEFT_TWO)))
+	{
+		err_str = ft_strjoin_three("`", \
+			sentence_lst->redirect_lst->next->str, "\'");
+	}
+}
+
+static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
+{
 	char	*err_str;
 	t_lst	*redirect_lst_tmp;
 
@@ -23,18 +47,7 @@ static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
 	{
 		err_str = NULL;
 		if (sentence_lst->redirect_lst->next)
-		{
-			if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
-			sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO) && \
-			((sentence_lst->redirect_lst->next->token_type >= \
-			REDIRECT_LEFT_ONE && \
-			sentence_lst->redirect_lst->next->token_type <= \
-			REDIRECT_LEFT_TWO)))
-			{
-				err_str = ft_strjoin_three("`", \
-					sentence_lst->redirect_lst->next->str, "\'");
-			}
-		}
+			check_syntax_error_4(sentence_lst, err_str);
 		else
 		{
 			if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
@@ -44,12 +57,7 @@ static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
 		}
 		if (err_str)
 		{
-			err_message = \
-			ft_strjoin("bash: syntax error near unexpected token ", \
-			err_str);
-			free(err_str);
-			ft_putendl_fd(err_message, STDERR_FILENO);
-			free(err_message);
+			check_syntax_error_5(err_str);
 			return (ERROR);
 		}
 		sentence_lst->redirect_lst = sentence_lst->redirect_lst->next;
@@ -68,8 +76,8 @@ static int	check_syntax_error_2(t_sentence_lst *sentence_lst)
 	{
 		err_str = ft_strjoin_three("`", "|", "\'");
 		err_message = \
-		ft_strjoin("bash: syntax error near unexpected token ", \
-		err_str);
+		ft_strjoin("Fresh: syntax error near unexpected token ", \
+			err_str);
 		free(err_str);
 		ft_putendl_fd(err_message, STDERR_FILENO);
 		free(err_message);

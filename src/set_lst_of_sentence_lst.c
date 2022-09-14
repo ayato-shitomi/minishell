@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   set_lst_of_sentence_lst.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:28 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:25:49 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static void	loop_to_cat(t_info *info, int *flag_quote_after_env, \
+	int *continue_flag, int *env_set_flag)
+{
+	while (info->token_dl_lst->is_cat_with_next)
+	{
+		if ((info->token_dl_lst->next->type == EXPANDABLE_QUOTED \
+			|| info->token_dl_lst->next->type == NOT_EXPANDABLE) \
+			&& (ft_strchr(info->token_dl_lst->token, '$') \
+			&& info->token_dl_lst->type != NOT_EXPANDABLE) \
+			&& *flag_quote_after_env == 0)
+		{
+			*continue_flag = 1;
+			*flag_quote_after_env = 1;
+			break ;
+		}
+		else
+		{
+			ft_dl_lstcat(info);
+			if (*flag_quote_after_env)
+			{
+				*flag_quote_after_env = 0;
+				*env_set_flag = 0;
+				break ;
+			}
+		}
+	}
+}
 
 static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence)
 {
@@ -26,25 +54,7 @@ static int	set_lst_case_branch(t_info *info, int flag, int is_first_sentence)
 	{
 		continue_flag = 0;
 		env_set_flag = 1;
-		while (info->token_dl_lst->is_cat_with_next)
-		{
-			if ((info->token_dl_lst->next->type == EXPANDABLE_QUOTED || info->token_dl_lst->next->type == NOT_EXPANDABLE) && (ft_strchr(info->token_dl_lst->token, '$') && info->token_dl_lst->type != NOT_EXPANDABLE) && flag_quote_after_env == 0)
-			{
-				continue_flag = 1;
-				flag_quote_after_env = 1;
-				break ;
-			}
-			else
-			{
-				ft_dl_lstcat(info);
-				if (flag_quote_after_env)
-				{
-					flag_quote_after_env = 0;
-					env_set_flag = 0;
-					break ;
-				}
-			}
-		}
+		loop_to_cat(info, &flag_quote_after_env, &continue_flag, &env_set_flag);
 		if (lst)
 			free(lst);
 		lst = ft_lstnew(info->token_dl_lst->token);

@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   do_pipes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/14 07:43:54 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static char	*get_cmd_path(char **env_path, char **cmd)
+static void	get_cmd_path_2(size_t *i, char **cmd_path, char **cmd, \
+	char **env_path)
+{
+	if (cmd[0][0] == '/' || cmd[0][0] == '.')
+	{
+		*cmd_path = ft_strdup(cmd[0]);
+		if (access(*cmd_path, F_OK) != 0)
+			error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
+	}
+	else
+	{
+		*cmd_path = ft_strjoin_three(env_path[*i], "/", cmd[0]);
+		*i += 1;
+	}
+}
+
+char	*get_cmd_path(char **env_path, char **cmd)
 {
 	size_t	i;
 	char	*cmd_path;
@@ -27,14 +43,7 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	i = 0;
 	while (env_path[i])
 	{
-		if (cmd[0][0] == '/' || cmd[0][0] == '.')
-		{
-			cmd_path = ft_strdup(cmd[0]);
-			if (access(cmd_path, F_OK) != 0)
-				error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
-		}
-		else
-			cmd_path = ft_strjoin_three(env_path[i++], "/", cmd[0]);
+		get_cmd_path_2(&i, &cmd_path, cmd, env_path);
 		if (access(cmd_path, F_OK) == 0 && cmd[0][0] != '\0')
 		{
 			if (access(cmd_path, X_OK) != 0)
@@ -47,7 +56,7 @@ static char	*get_cmd_path(char **env_path, char **cmd)
 	return (NULL);
 }
 
-static char	**set_cmd_in_cmd_lst(t_info *info)
+char	**set_cmd_in_cmd_lst(t_info *info)
 {
 	size_t	i;
 	size_t	cmd_lst_cnt;
@@ -76,7 +85,7 @@ static char	**set_cmd_in_cmd_lst(t_info *info)
 	return (cmd);
 }
 
-static char	**get_env_path(t_info *info, char **cmd)
+char	**get_env_path(t_info *info, char **cmd)
 {
 	char			*env_path_value;
 	char			**env_path;
@@ -98,43 +107,6 @@ static char	**get_env_path(t_info *info, char **cmd)
 	}
 	env_path = ft_split(env_path_value, ':');
 	return (env_path);
-}
-
-int	set_cmd_fd_and_exec(t_info *info, pid_t pid)
-{
-	char		**env_path;
-	char		**cmd;
-	char		*cmd_path;
-	pid_t		w_pid;
-	int			status;
-	char		**envp;
-
-	if (pid > 0)
-	{
-		w_pid = waitpid(pid, &status, WUNTRACED);
-		if ((status != SUCCESS) && (g_exit_status == SIGINT))
-		{
-			init_and_set_fd_for_restore(info, 2);
-			if (status % 256 == 0)
-				exit(1);
-			else
-				exit(status);
-		}
-	}
-	if (set_fd_by_redirect_lst(info, 0) == ERROR)
-		exit(ERROR);
-	cmd = set_cmd_in_cmd_lst(info);
-	env_path = get_env_path(info, cmd);
-	cmd_path = get_cmd_path(env_path, cmd);
-	if (check_builtin(cmd))
-	{
-		status = exec_builtin(info, cmd);
-		exit(status);
-	}
-	envp = get_envp_in_array(info);
-	if (cmd[0])
-		execve(cmd_path, cmd, envp);
-	exit(SUCCESS);
 }
 
 void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)

@@ -1,4 +1,4 @@
-2022年 9月10日 土曜日 15時45分53秒 JST
+2022年 9月14日 水曜日 14時26分40秒 JST
 ## echo hello : OK
 ## echo "hello world" : OK
 ## echo $? : OK
