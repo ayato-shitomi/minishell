@@ -4,6 +4,8 @@
 
 このプロジェクトでは、２人チームでShellの再実装を行います。この課題はすべてC言語で書かれます。Unixのシグナルやプロセスの扱い方、Cのメモリ管理等の技術を身につけました。
 
+メンバー：[mhida](https://github.com/mhidaa)、[ashitomi](http://github.com/ayato-shitomi)
+
 ## 使い方
 
 このアプリケーションを利用するためには`readline`がインストールされている必要があります。
