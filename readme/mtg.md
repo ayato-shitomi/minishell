@@ -18,6 +18,58 @@ Shell名は`Fresh`とする。
 ブランチは使わず、PushPullする際に連絡することにする。
 作業前にPullして、Push前に別ディレクトリへPullした後、作業内容を移動させてPushする。
 
+
+### 入力の扱い方
+
+入力された文字列は最初にスペース区切りで配列に格納されます。
+その後、配列の1つの要素を見た際に`"`,`'`,`>`,`<`,`$`が来たら分ける。
+分ける際には以下のように解析する。
+> - クォーテーションが来たら、クォーテーションが来るまで読み込む。それのタイプを`EXPANDABLE_QUOTED`に設定する
+> - リダイレクトが来たら、それのタイプを`REDIRECT`に設定する
+> - `$`が来たら`"`もしくは` `が来るまでを配列に入れる。それのタイプを`ENVIRONMENT_VAL`に設定する
+('$'は字句解析時にはチェックせず、変数展開時にチェックする方針に変更)
+これらを配列に格納する。
+
+タイプ分けに関しては以下がヘッダーファイル（`includes/minishell.h`）に定義されています。
+
+|数値|タイプ|意味|
+|----|----|----|
+|0|EXPANDABLE|展開可能、もしくは文字列|
+|1|EXPANDABLE_QUOTED|ダブルクオートに囲われている展開可能|
+|2|NOT_EXPANDABLE|展開不可能、シングルクオートに囲われてる|
+|3|PIPE|パイプ|
+|4|REDIRECT_LEFT_ONE|リダイレクト「<」|
+|5|REDIRECT_RIGHT_ONE|リダイレクト「>」|
+|6|REDIRECT_LEFT_TWO|リダイレクト「<<」|
+|7|REDIRECT_RIGHT_TWO|リダイレクト「>>」|
+|8|ENVIRONMENT_VAL|環境変数|
+
+例えば以下のように扱います。
+
+与えられる文字列。
+```
+echo USERNAME:"Mr $USER".>test
+```
+
+スペース区切りの配列を作成する。
+
+|配列番号|文字列|
+|----|----|
+|0|echo|
+|1|USERNAME:"Mr $USER".>test|
+
+スペース区切りの配列を解析して、タイプ付きで解析する。
+
+|配列番号|文字列|タイプ|
+|----|----|----|
+|0|echo|EXPANDABLE|
+|1|USERNAME:|EXPANDABLE|
+|2|Mr $USER|EXPANDABLE_QUOTED|
+|3|.|EXPANDABLE|
+|4|>|REDIRECT_RIGHT_ONE|
+|5|test|EXPANDABLE|
+
+
 ### 入力されたコマンドのあつかい方
 
 `echo Hello I am "JUN" 'san' | cat`
