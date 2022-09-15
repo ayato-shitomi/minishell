@@ -1,11 +1,8 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/user/42/lv3/minishell_pra'
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/minishell.o src/minishell.c
- 
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/utils.o src/utils.c
- 
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/utils_2.o src/utils_2.c
- 
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/utils_3.o src/utils_3.c
  
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/utils_4.o src/utils_4.c
@@ -17,7 +14,6 @@ gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/includ
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/execute_command.o src/execute_command.c
  
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/header.o src/header.c
- 
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/ft_split.o src/ft_split.c
  
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/remove_space.o src/remove_space.c
@@ -29,7 +25,6 @@ gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/includ
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/syntax_analysis.o src/syntax_analysis.c
  
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/check_syntax_error.o src/check_syntax_error.c
- 
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/ft_free.o src/ft_free.c
  
 gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include   -c -o src/ft_dl_lst.o src/ft_dl_lst.c
@@ -132,5 +127,6 @@ gcc -g -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/includ
  
 gcc -g src/minishell.o src/utils.o src/utils_2.o src/utils_3.o src/utils_4.o src/parse_command.o src/minishell_utils.o src/execute_command.o src/header.o src/ft_split.o src/remove_space.o src/lexical_analysis.o src/lexical_analysis_2.o src/syntax_analysis.o src/check_syntax_error.o src/ft_free.o src/ft_dl_lst.o src/ft_dl_lst_2.o src/split_token_for_dquote.o src/split_token_for_squote.o src/split_token_for_pipe.o src/split_token_for_redirect.o src/set_token_type_dl.o src/ft_sentence_lst.o src/ft_lst.o src/set_lst_of_sentence_lst.o src/check_env_var_and_set_env_var_info.o src/expand_env_var.o src/expand_the_expandable_in_cmd_lst.o src/expand_the_expandable_in_redirect_lst.o src/do_pipes.o src/do_pipes_2.o src/set_fd_by_redirect_lst.o src/get_next_line.o src/get_next_line_utils.o src/heredoc.o src/set_pipe_fd.o src/set_fd_by_redirect_lst_2.o src/heredoc_2.o src/ft_error.o src/set_sig_in_each_process.o src/check_builtin.o src/builtin_cd.o src/builtin_pwd.o src/builtin_exit.o src/ft_free_2.o src/builtin_cd_2.o src/ft_env_var_lst.o src/ft_env_var_lst_2.o src/builtin_cd_3.o src/builtin_export.o src/builtin_export_2.o src/validate.o src/builtin_export_3.o src/builtin_env.o src/builtin_echo.o src/builtin_unset.o src/ft_split_lex.o src/minishell_utils_2.o src/set_sig_in_each_process2.o src/do_pipes_3.o src/execute_command_2.o src/heredoc_3.o src/set_fd_by_redirect_lst_3.o src/check_env_var_and_set_env_var_info_2.o -Wall -Wextra -Werror -fsanitize=address -I/usr/local/opt/readline/include -lreadline -lhistory -L /usr/local/opt/readline/lib -I .brew/opt/readline/include -L/usr/local/opt/readline/lib -lreadline -o minishell
 echo "set echo-control-characters off" > ~/.inputrc
+ 
 make: Leaving directory `/Users/user/42/lv3/minishell_pra'
  

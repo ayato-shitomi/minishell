@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 21:44:15 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/15 09:57:41 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	set_env_value(t_info *info, char *env_key, char *env_value_for_set)
 			if (info->env_var_lst->value)
 				free(info->env_var_lst->value);
 			info->env_var_lst->value = ft_strdup(env_value_for_set);
+			if (env_value_for_set)
+				free(env_value_for_set);
 			break ;
 		}
 		info->env_var_lst = info->env_var_lst->next;

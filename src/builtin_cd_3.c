@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:26 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:05:15 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_cd_case_each_relative_path(t_info *info, char *dest_dir)
 
 	pwd_value_tmp = get_env_value(info, "PWD");
 	env_value = ft_strjoin_three(pwd_value_tmp, "/", dest_dir);
+	if (pwd_value_tmp)
+		free(pwd_value_tmp);
 	set_env_value(info, "PWD", env_value);
 }
 
@@ -49,7 +51,7 @@ void	ft_cd_case_tilde(t_info *info)
 
 	home_value = get_env_value(info, "HOME");
 	if (!home_value)
-		home_value = getenv("HOME");
+		home_value = ft_strdup(getenv("HOME"));
 	if (!home_value[5])
 		return ;
 	set_env_value(info, "PWD", home_value);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:26 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/15 10:16:08 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ static char	*check_start_with_tilde(t_info *info, char *dest_dir, \
 	if (ft_strcmp(split_dest_dir[0], "~") == 0)
 	{
 		home_value = get_env_value(info, "HOME");
+		if (!home_value)
+			home_value = ft_strdup(getenv("HOME"));
 		i = 0;
 		while (home_value[i])
-		{
-			if (home_value[i] == '/')
+			if (home_value[i++] == '/')
 				*delimiter_cnt_for_tilde += 1;
-			i++;
-		}
 		dest_dir_tmp = ft_strjoin(home_value, &dest_dir[1]);
-		free(home_value);
+		if (home_value)
+			free(home_value);
 	}
 	ft_free_cmd(split_dest_dir);
 	return (dest_dir_tmp);
@@ -68,7 +68,7 @@ static char	*check_start_with_tilde(t_info *info, char *dest_dir, \
 static char	*get_dest_dir(t_info *info)
 {
 	if (info->sentence_lst->cmd_lst->next)
-		return (info->sentence_lst->cmd_lst->next->str);
+		return (ft_strdup(info->sentence_lst->cmd_lst->next->str));
 	else
 		return (NULL);
 }
