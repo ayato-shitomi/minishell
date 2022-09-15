@@ -6,6 +6,31 @@
 
 ## 使い方
 
+このアプリケーションを利用するためには`readline`がインストールされている必要があります。
+
+### Readline
+
+#### Mac
+
+```
+> brew install readline
+```
+
+### Linux 
+
+```
+> sudo apt install readline
+```
+
+### コンパイルと起動
+
+```shell
+> make
+> ./minishell
+```
+
+素晴らしいSHELL「Fresh」へようこそ！
+
 ## 技術的解説
 
 ### 仕様可能な関数
@@ -16,16 +41,17 @@
 
 ### 組み込み関数
 
-|関数|ステータス|メモ|
-|---|---|---|
-|echo|Making||
-|exit|Done|複数の引数はエラーメッセージを出し何もしない<br>マイナス値などにも対応<br>|
-|env|Done||
-|export|Done||
-|unset|||
-|cd|Done|`cd`のみ呼ばれた場合は`cd ~`と同じ挙動<br>パスがなければ`1`を返す|
-|pwd|Done||
+以下の組み込み関数をサポートしています。
 
+|関数|説明|例|
+|---|---|---|
+|echo|文字列を出力する|`echo "hello world"`|
+|exit|Shellを終了する|`exit`<br>`exit 3`|
+|env|環境変数を表示する|`env`|
+|export|環境変数を表示する、セットする|`export`<br>`export PRICE=100`|
+|unset|環境変数をクリアする|`unset PRICE`|
+|cd|ディレクトリを移動する|`cd HogeHoge`<br>`cd ~`|
+|pwd|カレントディレクトリを表示する|`pwd`|
 
 ### 入力の扱い方
 
