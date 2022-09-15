@@ -6,7 +6,7 @@
 /*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:26 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:20:18 by ashitomi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,23 @@ static void	delete_env(t_env_var_lst *lst, char *key)
 	return ;
 }
 
+static void	put_stderr(char *str)
+{
+	int	n;
+
+	n = ft_strlen(str);
+	write(2, str, n);
+	return ;
+}
+
+/*
+if (info->sentence_lst->env_var_lst != NULL)
+{
+	printf("key      > %s\n", key);
+	printf("env_val  > %s\n", info->sentence_lst->env_var_lst->key);	
+}
+*/
+
 int	ft_unset(t_info *info)
 {
 	char	*key;
@@ -61,6 +78,13 @@ int	ft_unset(t_info *info)
 	if (!info->sentence_lst->cmd_lst->next)
 		return (0);
 	key = info->sentence_lst->cmd_lst->next->str;
+	if (info->sentence_lst->env_var_lst != NULL)
+	{
+		put_stderr(SHELLNAME);
+		put_stderr(": unset: `");
+		put_stderr(info->sentence_lst->env_var_lst->value);
+		put_stderr("': not a valid identifier\n");
+	}
 	delete_env(info->env_var_lst, key);
 	return (0);
 }
