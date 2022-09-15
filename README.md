@@ -43,14 +43,10 @@
 |cd|ディレクトリを移動する|`cd HogeHoge`<br>`cd ~`|
 |pwd|カレントディレクトリを表示する|`pwd`|
 
-## 参考資料
-
-<a src="./subject/subject.pdf">サブジェクトはこちら</a>
-https://github.com/ayato-shitomi/minishell/blob/master/subject/subject.pdf
-<a src="./subject/scale.md">レビュースケールはこちら</a>
-https://github.com/ayato-shitomi/minishell/blob/master/subject/scale.md
-
 ## その他
+
+チェック、テストしたケースはこちら
+[チェック項目](./readme/scale.md)
 
 ミーティングの議事録を載せています。
 [MTG議事録](./readme/mtg.md)
