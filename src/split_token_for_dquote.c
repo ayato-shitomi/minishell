@@ -100,7 +100,7 @@ static void	case_dquote_first(t_info *info, size_t *i)
 	{
 		if (*i != 0 && info->token_dl_lst->token[*i] == '\"')
 		{
-			if (!(info->token_dl_lst->token[*i + 1])) // tokenの最後の文字が「"」のケース
+			if (!(info->token_dl_lst->token[*i + 1])) // case in the end of token is `"`
 			{
 				while (j < (*i - 1))
 				{
@@ -111,7 +111,7 @@ static void	case_dquote_first(t_info *info, size_t *i)
 				info->token_dl_lst->token[j] = '\0';
 				return ;
 			}
-			insert_split_token_for_dquote(info, i); // tokenの最後の文字が「"」ではないケース case①
+			insert_split_token_for_dquote(info, i); // case in the end of token is NOT `"`
 			return ;
 		}
 		*i += 1;
@@ -122,9 +122,9 @@ static void	case_dquote_first(t_info *info, size_t *i)
 /*
 int	split_token_for_dquote(t_info *info, size_t *i)
 {
-	if (info->token_dl_lst->type == EXPANDABLE_QUOTED) // tokenの1文字目が「"」のケース
+	if (info->token_dl_lst->type == EXPANDABLE_QUOTED) // case in token's 1st char is `"`
 		case_dquote_first(info, i);
-	else // tokenの2文字目以降が「"」のケース case②、③
+	else // case in else is `"`
 		insert_split_token_for_dquote(info, i);
 	return (1);
 }

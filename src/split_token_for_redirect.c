@@ -105,7 +105,7 @@ int	split_token_for_redirect(t_info *info, size_t *i)
 
 	len = ft_strlen(info->token_dl_lst->token);
 	if (info->token_dl_lst->type >= REDIRECT_LEFT_ONE && \
-		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO) // tokenの1文字目が「REDIRECT」のケース
+		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO) // case in token's 1st is redirect
 	{
 		if (len == 1)
 			return (1);
@@ -116,7 +116,7 @@ int	split_token_for_redirect(t_info *info, size_t *i)
 		else
 			insert_split_token_for_redirect(info, i);
 	}
-	else // tokenの2文字目以降が「REDIRECT」のケース
+	else // case in token's else is redirect
 		insert_split_token_for_redirect(info, i);
 	return (1);
 }

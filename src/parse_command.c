@@ -32,19 +32,19 @@ int	parse_command(char *command, t_info *info)
 
 // int	parse_command(char *command, t_info *info)
 // {
-// 	// ここからデバッグ用変数
+// 	// debug val start
 // 	// t_sentence_lst	*sentence_lst_tmp;
 // 	// t_lst	*cmd_lst_tmp;
 // 	// t_lst	*redirect_lst_tmp;
 // 	// t_lst	*env_var_lst_tmp;
-// 	// ここまでデバッグ用変数
+// 	// debug val end
 // 	if (!command)
 // 		return (SUCCESS);
 // 	remove_space(command, info);
 // 	if (ft_strlen(info->parsed_command) == 0)
 // 		return (SUCCESS);
 // 	lexical_analysis(info);
-// 	// ここからデバッグ用
+// 	// debug start
 // 	// while (1)
 // 	// {
 // 	// 	printf("token = %s\n", info->token_dl_lst->token);
@@ -59,11 +59,11 @@ int	parse_command(char *command, t_info *info)
 // 	// 	if (info->token_dl_lst->dl_lst_first_flag == 1)
 // 	// 		break ;
 // 	// }
-// 	// ここまでデバッグ用
+// 	// debug end
 // 	syntax_analysis(info);
 // 	if (check_syntax_error(info) == ERROR)
 // 		return (set_exit_status(E_STATUS_SYN_ERR));
-// 	// ここからデバッグ用
+// 	// debug start
 // 	// sentence_lst_tmp = info->sentence_lst;
 // 	// while (info->sentence_lst)
 // 	// {
@@ -119,9 +119,9 @@ int	parse_command(char *command, t_info *info)
 // 	// 	info->sentence_lst = info->sentence_lst->next;
 // 	// }
 // 	// info->sentence_lst = sentence_lst_tmp;
-// 	// ここまでデバッグ用
+// 	// debug end
 // 	expand_env_var(info);
-// 	// ここからデバッグ用
+// 	// debug start
 // 	// sentence_lst_tmp = info->sentence_lst;
 // 	// while (info->sentence_lst)
 // 	// {
@@ -178,7 +178,7 @@ int	parse_command(char *command, t_info *info)
 // 	// 	info->sentence_lst = info->sentence_lst->next;
 // 	// }
 // 	// info->sentence_lst = sentence_lst_tmp;
-// 	// ここまでデバッグ用
+// 	// debug end
 // 	if (execute_command(info) == ERROR)
 // 		return (ERROR);
 // 	return (SUCCESS);
