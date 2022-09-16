@@ -8,7 +8,7 @@
 
 ## 使い方
 
-![runShell](./readme/runShell.gif)
+![Fresh](./readme/runFresh.gif)
 
 このアプリケーションを利用するためには`readline`がインストールされている必要があります。
 
