@@ -8,7 +8,7 @@
 
 ## 使い方
 
-[runShell]("./src/runShell.gif")
+[runShell]("./readme/runShell.gif")
 
 このアプリケーションを利用するためには`readline`がインストールされている必要があります。
 
