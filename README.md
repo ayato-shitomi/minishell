@@ -8,7 +8,7 @@
 
 ## 使い方
 
-<img href="src/runShell.gif">
+[runShell]("./src/runShell.gif")
 
 このアプリケーションを利用するためには`readline`がインストールされている必要があります。
 
