@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/15 05:50:00 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/16 13:40:41 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ int				set_exit_status(int exit_status);
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
 
 // remove_space.c
-void			remove_space(char *command, t_info *info);
+int				remove_space(char *command, t_info *info);
 
 // lexical_analysis.c
 void			lexical_analysis(t_info *info);
@@ -262,12 +262,12 @@ void			syntax_analysis(t_info *info);
 void			set_lst_of_sentence_lst(t_info *info);
 
 // check_env_var_and_set_env_var_info.c
-void			check_env_var_and_set_env_var_info(t_info *info, t_lst *lst, \
-	int is_first_sentence);
+void			check_env_var_and_set_env_var_info(t_info *info);
 
 // check_env_var_and_set_env_var_info_2.c
 void			set_exit_status_first(t_info *info, size_t *i, \
 	int is_first_sentence);
+size_t			get_env_var_len(t_info *info, size_t *i);
 
 // check_syntax_error.c
 int				check_syntax_error(t_info *info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:50:58 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	set_lst_info(t_info *info, t_lst *lst, int flag)
 	if (flag == REDIRECT_LST || flag == CMD_LST)
 		lst->token_type = info->token_dl_lst->type;
 	else if (flag == ENV_VAR_LST)
-		lst->token_type = ENVIRONMENT_VAR;
+		lst->token_type = info->token_dl_lst->type;
 }
 
 void	init_quote_flag(t_info *info)

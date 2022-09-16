@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 14:08:58 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/16 12:07:53 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	set_p_2_in_cmd_lst(t_info *info, char **str_front_p, \
 static void	set_p_1_in_cmd_lst(t_info *info, char **str_env_value_p)
 {
 	size_t	i;
-	size_t	j;
 	size_t	env_var_value_len;
 
 	if (info->sentence_lst->env_var_lst->value)
@@ -55,12 +54,10 @@ static void	set_p_1_in_cmd_lst(t_info *info, char **str_env_value_p)
 	if (!(*str_env_value_p))
 		exit(ERROR);
 	i = 0;
-	j = 0;
 	while (i < env_var_value_len)
 	{
-		(*str_env_value_p)[i] = info->sentence_lst->env_var_lst->value[j];
+		(*str_env_value_p)[i] = info->sentence_lst->env_var_lst->value[i];
 		i++;
-		j++;
 	}
 	(*str_env_value_p)[i] = '\0';
 }

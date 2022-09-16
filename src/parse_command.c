@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/15 08:21:22 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/16 13:00:19 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	parse_command(char *command, t_info *info)
 {
 	if (!command)
 		return (SUCCESS);
-	remove_space(command, info);
+	if (remove_space(command, info) == ERROR)
+		return (set_exit_status(E_STATUS_SYN_ERR));
 	if (ft_strlen(info->parsed_command) == 0)
 		return (SUCCESS);
 	lexical_analysis(info);

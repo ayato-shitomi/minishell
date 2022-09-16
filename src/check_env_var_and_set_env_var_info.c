@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/15 05:51:19 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/16 13:39:44 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_key_value_str_2(t_lst *env_var_lst, size_t len)
 	env_var_lst->str[j] = '\0';
 }
 
-static void	set_key_value_str_1(t_lst *lst, t_lst *env_var_lst, size_t len, \
+static void	set_key_value_str_1(t_info *info, t_lst *env_var_lst, size_t len, \
 	size_t *i)
 {
 	size_t	j;
@@ -37,7 +37,7 @@ static void	set_key_value_str_1(t_lst *lst, t_lst *env_var_lst, size_t len, \
 	j = 0;
 	while (j < len)
 	{
-		env_var_lst->key[j] = lst->str[*i];
+		env_var_lst->key[j] = info->token_dl_lst->token[*i];
 		*i += 1;
 		j++;
 	}
@@ -45,56 +45,68 @@ static void	set_key_value_str_1(t_lst *lst, t_lst *env_var_lst, size_t len, \
 	env_var_lst->key[j] = '\0';
 }
 
-static void	set_env_var_info(t_info *info, t_lst *lst, size_t *i)
+static void	set_env_var_info(t_info *info, size_t *i)
 {
 	size_t	i_tmp;
 	size_t	len;
 	t_lst	*env_var_lst;
 
-	len = 0;
 	*i += 1;
 	i_tmp = *i;
-	while (lst->str[*i] != '\"' && lst->str[*i] != '\'' && \
-		lst->str[*i] != ' ' && lst->str[*i] != '\0' && lst->str[*i] != '$')
-	{
-		len++;
-		*i += 1;
-	}
+	len = get_env_var_len(info, i);
 	*i = i_tmp;
 	env_var_lst = ft_lstnew(NULL);
 	set_lst_info(info, env_var_lst, ENV_VAR_LST);
 	env_var_lst->key = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!(env_var_lst->key))
 		exit(ERROR);
-	set_key_value_str_1(lst, env_var_lst, len, i);
-	env_var_lst->value = get_env_value(info, env_var_lst->key);
+	set_key_value_str_1(info, env_var_lst, len, i);
 	set_key_value_str_2(env_var_lst, len);
+	if (env_var_lst->token_type == NOT_EXPANDABLE)
+		env_var_lst->value = ft_strdup(env_var_lst->str);
+	else
+		env_var_lst->value = get_env_value(info, env_var_lst->key);
 	ft_lstadd_back(&(info->sentence_lst->env_var_lst), env_var_lst);
 }
 
-void	check_env_var_and_set_env_var_info(
-	t_info *info, t_lst *lst, int is_first_sentence)
+static int	set_flag_and_p(t_info *info, int *is_first_sentence)
+{
+	info->token_dl_lst = info->token_dl_lst->next;
+	if (info->token_dl_lst->dl_lst_first_flag)
+		return (1);
+	if (info->token_dl_lst->type == PIPE)
+	{
+		info->sentence_lst = info->sentence_lst->next;
+		*is_first_sentence = 0;
+	}
+	return (0);
+}
+
+void	check_env_var_and_set_env_var_info(t_info *info)
 {
 	size_t	i;
+	int		is_first_sentence;
 
-	i = 0;
-	if (lst->token_type == NOT_EXPANDABLE)
-		return ;
-	else
+	is_first_sentence = 1;
+	while (info->sentence_lst)
 	{
-		while (lst->str[i])
+		i = 0;
+		while (info->token_dl_lst->token[i])
 		{
-			if (lst->str[i] == '$')
+			if (info->token_dl_lst->token[i] == '$')
 			{
-				if (lst->str[i + 1])
+				if (info->token_dl_lst->token[i + 1])
 				{
-					if (lst->str[i + 1] != '?' && lst->str[i + 1] != '$')
-						set_env_var_info(info, lst, &i);
-					else if (lst->str[i + 1] != '$')
+					if (info->token_dl_lst->token[i + 1] != '?' \
+						&& info->token_dl_lst->token[i + 1] != '$')
+						set_env_var_info(info, &i);
+					else if (info->token_dl_lst->token[i + 1] != '$')
 						set_exit_status_first(info, &i, is_first_sentence);
 				}
 			}
 			i++;
 		}
+		if (set_flag_and_p(info, &is_first_sentence) == 1)
+			return ;
 	}
 }

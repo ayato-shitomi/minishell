@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env_var.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:27 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:19:48 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ static void	expand_env_var_in_redirect_lst(t_info *info)
 {
 	while (info->sentence_lst->redirect_lst)
 	{
-		if (info->sentence_lst->redirect_lst->token_type != NOT_EXPANDABLE)
-		{
-			if (expand_the_expandable_in_redirect_lst(info) == 1)
-				return ;
-		}
+		if (expand_the_expandable_in_redirect_lst(info) == 1)
+			return ;
 		info->sentence_lst->redirect_lst = \
 			info->sentence_lst->redirect_lst->next;
 	}
@@ -30,11 +27,8 @@ static void	expand_env_var_in_cmd_lst(t_info *info)
 {
 	while (info->sentence_lst->cmd_lst)
 	{
-		if (info->sentence_lst->cmd_lst->token_type != NOT_EXPANDABLE)
-		{
-			if (expand_the_expandable_in_cmd_lst(info) == 1)
-				return ;
-		}
+		if (expand_the_expandable_in_cmd_lst(info) == 1)
+			return ;
 		info->sentence_lst->cmd_lst = info->sentence_lst->cmd_lst->next;
 	}
 }
