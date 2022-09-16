@@ -6,7 +6,7 @@
 /*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:28 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/16 20:43:03 by ashitomi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int	split_token_for_redirect(t_info *info, size_t *i)
 
 	len = ft_strlen(info->token_dl_lst->token);
 	if (info->token_dl_lst->type >= REDIRECT_LEFT_ONE && \
-		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO) // case in token's 1st is redirect
+		info->token_dl_lst->type <= REDIRECT_RIGHT_TWO) 
+	// case in token's 1st is redirect
 	{
 		if (len == 1)
 			return (1);
