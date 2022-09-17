@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `src/minishell.o', needed by `minishell'.  Stop.
 
 
-# Make data base, printed on Fri Sep 16 13:46:08 2022
+# Make data base, printed on Sat Sep 17 14:12:55 2022
 
 # Variables
 
@@ -39,6 +39,7 @@ MAKEFILE_LIST :=  Makefile
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
+ 
 VSCODE_CWD = /
 # environment
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/usr/bin
@@ -234,6 +235,7 @@ src/lexical_analysis_2.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 
 # Not a target:
 src/expand_the_expandable_in_redirect_lst.o:
@@ -260,7 +262,6 @@ src/builtin_export_3.o:
 #  File has not been updated.
 
 # Not a target:
- 
 src/syntax_analysis.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -305,9 +306,8 @@ src/ft_sentence_lst.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-16 13:46:00
+#  Last modified 2022-09-16 13:47:08
 #  File has been updated.
- 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -369,6 +369,7 @@ src/ft_free_2.o:
 # Not a target:
 src/minishell_utils.o:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -500,7 +501,6 @@ clean:
 #  File does not exist.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 47):
- 
 	rm -rf $(OBJS)
 	
 
@@ -617,7 +617,6 @@ src/builtin_cd_3.o:
 # Not a target:
 src/execute_command.o:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -642,10 +641,11 @@ src/utils_2.o:
 # No general (`VPATH' variable) search path.
 
 # # of strings in strcache: 1
+ 
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Sep 16 13:46:08 2022
+# Finished Make data base on Sat Sep 17 14:12:55 2022
 
  
