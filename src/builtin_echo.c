@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 13:20:14 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 19:34:16 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 01:50:26 by ashitomi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ int	ft_echo(t_info *info)
 	while (ft_strcmp(p->str, "-n") == 0)
 	{
 		flag_not_backn = 1;
-		p = p ->next;
+		p = p->next;
+		if (p == NULL)
+			return (0);
 	}
 	while (p)
 	{
