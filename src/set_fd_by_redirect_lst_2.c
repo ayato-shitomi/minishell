@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 14:01:16 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/17 21:35:38 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	set_fd_case_red_right_two(t_info *info)
 	int	fd_out;
 	int	continue_flag;
 
+	init_and_set_fd_for_restore(info, 2);
 	set_continue_flag(info->sentence_lst, &continue_flag);
 	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 	{
@@ -51,6 +52,7 @@ int	set_fd_case_red_right_one(t_info *info)
 	int	fd_out;
 	int	continue_flag;
 
+	init_and_set_fd_for_restore(info, 2);
 	set_continue_flag(info->sentence_lst, &continue_flag);
 	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 		if (access(info->sentence_lst->redirect_lst->str, W_OK) == -1)

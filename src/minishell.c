@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/17 23:34:45 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/17 23:56:05 by ashitomi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int	main(int ac, char **argv, char **envp)
 		//free(command);
 	}
 	free_env_var_lst(&info);
+	exit(ERROR);
 	return (SUCCESS);
 }

@@ -6,11 +6,21 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 07:19:45 by mhida             #+#    #+#             */
-/*   Updated: 2022/09/14 07:35:57 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/17 20:06:34 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	check_absolute_cmd(char **cmd)
+{
+	if (access(cmd[0], F_OK) == 0)
+	{
+		if (access(cmd[0], X_OK) == -1)
+			error_and_exit(cmd[0], PERM_DENIED, E_STATUS_PERM_D);
+		execve(cmd[0], cmd, NULL);
+	}
+}
 
 static int	set_cmd_fd_and_exec_2(t_info *info, pid_t pid)
 {

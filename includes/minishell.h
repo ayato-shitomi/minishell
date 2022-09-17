@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/16 13:40:41 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/17 20:07:23 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ void			ft_putendl_fd(char *s, int fd);
 int				ft_atoi(const char *str);
 
 // utils_4.c
+int				ft_isnum(int n);
 int				ft_isalnum(int n);
 char			*ft_itoa(int n);
 int				ft_strcmp(const char *dst, const char *src);
@@ -310,6 +311,7 @@ char			**get_envp_in_array(t_info *info);
 
 // do_pipes_3.c
 int				set_cmd_fd_and_exec(t_info *info, pid_t pid);
+void			check_absolute_cmd(char **cmd);
 
 // set_sig_in_each_process.c
 void			init_sig(t_info *info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
+/*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 01:46:28 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:24:31 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ char	*ft_itoa(int n)
 	}
 	heap[n_len_tmp] = '\0';
 	return (heap);
+}
+
+int	ft_isnum(int n)
+{
+	if (n >= '0' && n <= '9')
+		return (1);
+	return (0);
 }
 
 int	ft_isalnum(int n)
