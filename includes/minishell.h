@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/17 20:07:23 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 00:51:53 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ int				fork_and_error_check(pid_t *pid);
 
 // minishell_utils_2.c
 int				set_exit_status(int exit_status);
+void			exit_ctrl_d(void);
 
 // set_token_type_dl.c
 void			set_token_type_dl(char *token, t_token_dl_lst *token_dl_lst);
@@ -343,8 +344,11 @@ int				heredoc_child_process(t_info *info, \
 
 // heredoc_3.c
 int				open_fd_and_calloc(int *tmp_fd, \
-	char **cat_line, int *flag, char *tmp_file);
-void			do_gnl(int flag, char **line);
+	char **cat_line, char *tmp_file);
+// int				open_fd_and_calloc(int *tmp_fd,
+// 	char **cat_line, int *flag, char *tmp_file);
+// void			do_gnl(int flag, char **line);
+void			do_readline(char **command);
 void			set_continue_flag(t_sentence_lst *sentence_lst, \
 	int *continue_flag);
 void			make_tmp_file(char **tmp_file);

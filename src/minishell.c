@@ -6,17 +6,11 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/17 23:56:05 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/18 00:28:17 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static void	exit_ctrl_d(void)
-{
-	ft_putendl_fd("exit", STDERR_FILENO);
-	exit(SUCCESS);
-}
 
 static void	init_info(t_info *info)
 {
