@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 07:43:54 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/17 20:04:48 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char	**get_env_path(t_info *info, char **cmd)
 	info->env_var_lst = env_var_lst_tmp;
 	if (!env_path_value)
 	{
+		check_absolute_cmd(cmd);
 		if (info->sentence_lst->cmd_lst && !check_builtin(cmd))
 			error_and_exit(cmd[0], CMD_NOT_FOUND, E_STATUS_CNF);
 	}

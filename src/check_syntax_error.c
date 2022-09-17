@@ -6,13 +6,13 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/14 05:56:48 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/17 22:30:54 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	check_syntax_error_5(char *err_str)
+static int	check_syntax_error_5(char *err_str)
 {
 	char	*err_message;
 
@@ -21,18 +21,19 @@ static void	check_syntax_error_5(char *err_str)
 	free(err_str);
 	ft_putendl_fd(err_message, STDERR_FILENO);
 	free(err_message);
+	return (ERROR);
 }
 
-static void	check_syntax_error_4(t_sentence_lst *sentence_lst, char *err_str)
+static void	check_syntax_error_4(t_sentence_lst *sentence_lst, char **err_str)
 {
 	if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
 	sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO) && \
 	((sentence_lst->redirect_lst->next->token_type >= \
 	REDIRECT_LEFT_ONE && \
 	sentence_lst->redirect_lst->next->token_type <= \
-	REDIRECT_LEFT_TWO)))
+	REDIRECT_RIGHT_TWO)))
 	{
-		err_str = ft_strjoin_three("`", \
+		*err_str = ft_strjoin_three("`", \
 			sentence_lst->redirect_lst->next->str, "\'");
 	}
 }
@@ -47,19 +48,17 @@ static int	check_syntax_error_3(t_sentence_lst *sentence_lst)
 	{
 		err_str = NULL;
 		if (sentence_lst->redirect_lst->next)
-			check_syntax_error_4(sentence_lst, err_str);
-		else
-		{
-			if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE && \
-			sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO) && \
-			(!(sentence_lst->redirect_lst->next) && sentence_lst->next))
+			check_syntax_error_4(sentence_lst, &err_str);
+		else if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE \
+			&& sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO) \
+			&& (!(sentence_lst->redirect_lst->next) && sentence_lst->next))
 				err_str = ft_strjoin_three("`", "|", "\'");
-		}
+		else if ((sentence_lst->redirect_lst->token_type >= REDIRECT_LEFT_ONE \
+			&& sentence_lst->redirect_lst->token_type <= REDIRECT_RIGHT_TWO) \
+			&& (!(sentence_lst->redirect_lst->next) && !(sentence_lst->next)))
+			err_str = ft_strjoin_three("`", "newline", "\'");
 		if (err_str)
-		{
-			check_syntax_error_5(err_str);
-			return (ERROR);
-		}
+			return (check_syntax_error_5(err_str));
 		sentence_lst->redirect_lst = sentence_lst->redirect_lst->next;
 	}
 	sentence_lst->redirect_lst = redirect_lst_tmp;

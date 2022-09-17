@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/15 08:17:45 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/17 19:26:06 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	validate_arg_at_ft_export(t_info *info)
 	while (info->sentence_lst->cmd_lst)
 	{
 		if (info->sentence_lst->cmd_lst->str)
-			if (info->sentence_lst->cmd_lst->str[0] == '=')
+			if (info->sentence_lst->cmd_lst->str[0] == '=' \
+				|| ft_isnum(info->sentence_lst->cmd_lst->str[0]))
 				return (validate_arg_at_ft_export_2(info, cmd_lst_tmp));
 		split_str = ft_split(info->sentence_lst->cmd_lst->str, '=');
 		i = 0;
