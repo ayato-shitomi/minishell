@@ -6,11 +6,46 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:52:55 by mhida             #+#    #+#             */
-/*   Updated: 2022/09/14 14:07:43 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:02:12 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	check_fd_out_flag_and_restore_fd_in_and_out(t_info *info)
+{
+	if (info->fd_out_restore_flag == 1)
+	{
+		info->fd_out_restore_flag = 0;
+		if (init_and_set_fd_for_restore(info, 2) == ERROR)
+			return (rtn_error());
+		info->fd_out_restore_flag = 1;
+	}
+	else
+	{
+		info->fd_out_restore_flag = 0;
+		if (init_and_set_fd_for_restore(info, 2) == ERROR)
+			return (rtn_error());
+	}
+}
+
+int	check_fd_in_flag_and_restore_fd_in_and_out(t_info *info)
+{
+	if (info->fd_in_restore_flag == 1)
+	{
+		info->fd_in_restore_flag = 0;
+		if (init_and_set_fd_for_restore(info, 2) == ERROR)
+			return (rtn_error());
+		info->fd_in_restore_flag = 1;
+	}
+	else
+	{
+		info->fd_in_restore_flag = 0;
+		if (init_and_set_fd_for_restore(info, 2) == ERROR)
+			return (rtn_error());
+	}
+	return (SUCCESS);
+}
 
 static int	restore_fd_out(t_info *info)
 {

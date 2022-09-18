@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/18 00:51:53 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 21:59:40 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ typedef struct s_info
 	int					fd_for_restore_out;
 	int					fd_in_restore_flag;
 	int					fd_out_restore_flag;
-	int					red_left_after_right_flag;
 }	t_info;
 
 /////////////////////////////////////////////////////
@@ -334,21 +333,20 @@ int				set_fd_case_red_right_two(t_info *info);
 
 // set_fd_by_redirect_lst_3.c
 int				init_and_set_fd_for_restore(t_info *info, int n);
+int				check_fd_in_flag_and_restore_fd_in_and_out(t_info *info);
+int				check_fd_out_flag_and_restore_fd_in_and_out(t_info *info);
 
 // heredoc.c
 int				heredoc(t_info *info, int is_builtin_without_pipe);
 
 // heredoc_2.c
 int				heredoc_child_process(t_info *info, \
-	int heredoc_pipe_fd[2], int continue_flag, char *tmp_file);
+	int heredoc_pipe_fd[2], char *tmp_file);
 
 // heredoc_3.c
 int				open_fd_and_calloc(int *tmp_fd, \
 	char **cat_line, char *tmp_file);
-// int				open_fd_and_calloc(int *tmp_fd,
-// 	char **cat_line, int *flag, char *tmp_file);
-// void			do_gnl(int flag, char **line);
-void			do_readline(char **command);
+int				do_readline(t_info *info, char **command);
 void			set_continue_flag(t_sentence_lst *sentence_lst, \
 	int *continue_flag);
 void			make_tmp_file(char **tmp_file);
@@ -357,8 +355,6 @@ void			make_tmp_file(char **tmp_file);
 int				set_pipe_fd_0(int pipe_fd[2]);
 int				set_pipe_fd_1(int pipe_fd[2]);
 int				set_pipe_fd_2(t_info *info, int pipe_fd[2]);
-// int			set_pipe_fd_2(t_sentence_lst *sentence_lst, int pipe_fd[2]);
-// before modification
 
 // header.c
 void			header(void);

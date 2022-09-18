@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:22:07 by mhida             #+#    #+#             */
-/*   Updated: 2022/09/18 01:01:58 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 21:25:30 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,40 +34,21 @@ void	set_continue_flag(t_sentence_lst *sentence_lst, int *continue_flag)
 	*continue_flag = 0;
 	if (sentence_lst->redirect_lst->next)
 	{
-		if (sentence_lst->redirect_lst->next->token_type == \
-				REDIRECT_LEFT_TWO || \
-			sentence_lst->redirect_lst->next->token_type == \
-				REDIRECT_LEFT_ONE)
+		if (sentence_lst->redirect_lst->next->token_type >= REDIRECT_LEFT_ONE \
+		&& sentence_lst->redirect_lst->next->token_type <= REDIRECT_RIGHT_TWO)
 			*continue_flag = 1;
 	}
 }
 
-// static int	flag_check(int flag)
-// {
-// 	if (flag == -1)
-// 	{
-// 		perror(SHELLNAME);
-// 		return (ERROR);
-// 	}
-// 	return (SUCCESS);
-// }
-
-void	do_readline(char **command)
+int	do_readline(t_info *info, char **command)
 {
+	init_and_set_fd_for_restore(info, 2);
 	*command = readline("> ");
 	if (!(*command))
-		exit(SUCCESS);
+		return (ERROR);
+	return (SUCCESS);
 }
 
-// void	do_gnl(int flag, char **line)
-// {
-// 	flag = get_next_line(0, line);
-// 	if (flag_check(flag) == ERROR)
-// 		exit(ERROR);
-// }
-
-// int	open_fd_and_calloc(int *tmp_fd,
-// 	char **cat_line, int *flag, char *tmp_file)
 int	open_fd_and_calloc(int *tmp_fd, \
 	char **cat_line, char *tmp_file)
 {

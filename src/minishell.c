@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/18 00:28:17 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 21:19:42 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	init_info(t_info *info)
 	info->sentence_lst = NULL;
 	info->fd_in_restore_flag = 0;
 	info->fd_out_restore_flag = 0;
-	info->red_left_after_right_flag = 0;
 }
 
 int	main(int ac, char **argv, char **envp)
@@ -49,7 +48,6 @@ int	main(int ac, char **argv, char **envp)
 			add_history(command);
 		}
 		free_cmd_and_lsts(&info, command);
-		//free(command);
 	}
 	free_env_var_lst(&info);
 	exit(ERROR);

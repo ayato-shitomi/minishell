@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/18 01:04:23 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 21:23:12 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static char	*set_cat_line(t_sentence_lst *sentence_lst, \
 	return (cat_line);
 }
 
-int	heredoc_child_process(t_info *info, \
-	int heredoc_pipe_fd[2], int continue_flag, char *tmp_file)
+int	heredoc_child_process(t_info *info, int heredoc_pipe_fd[2], char *tmp_file)
 {
 	int		tmp_fd;
 	char	*command;
@@ -63,20 +62,20 @@ int	heredoc_child_process(t_info *info, \
 
 	if (open_fd_and_calloc(&tmp_fd, &cat_line, tmp_file) == ERROR)
 		exit(ERROR);
+	init_and_set_fd_for_restore(info, 0);
 	while (1)
 	{
-		do_readline(&command);
+		if (do_readline(info, &command) == ERROR)
+		{
+			n = set_pipe_fd_and_write(heredoc_pipe_fd, tmp_fd, cat_line);
+			exit(rm_tmp_file(tmp_file, n));
+		}
 		cat_line = set_cat_line(info->sentence_lst, cat_line, command);
 		if (ft_strcmp(command, info->sentence_lst->redirect_lst->str) == 0)
 		{
-			if (continue_flag == 0)
-			{
-				n = set_pipe_fd_and_write(heredoc_pipe_fd, tmp_fd, cat_line);
-				free(command);
-				exit(rm_tmp_file(tmp_file, n));
-			}
+			n = set_pipe_fd_and_write(heredoc_pipe_fd, tmp_fd, cat_line);
 			free(command);
-			exit(SUCCESS);
+			exit(rm_tmp_file(tmp_file, n));
 		}
 		free(command);
 	}

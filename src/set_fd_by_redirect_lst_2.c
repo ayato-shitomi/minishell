@@ -6,18 +6,39 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:28 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/17 21:35:38 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:00:05 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	set_red_left_after_right_flag(t_info *info, int continue_flag)
+static int	set_fd_case_red_right(t_info *info, int fd_out, \
+	int continue_flag)
 {
-	if (continue_flag == 1)
-		info->red_left_after_right_flag = 1;
-	else
-		info->red_left_after_right_flag = 0;
+	if (init_and_set_fd_for_restore(info, 1) == ERROR)
+		return (rtn_error());
+	if (dup2(fd_out, 1) == -1)
+		return (rtn_error());
+	if (close(fd_out) == -1)
+		return (rtn_error());
+	if (continue_flag == 1 && \
+	(info->sentence_lst->redirect_lst->next->token_type == REDIRECT_RIGHT_ONE \
+	|| info->sentence_lst->redirect_lst->next->token_type \
+	== REDIRECT_RIGHT_TWO))
+	{
+		if (check_fd_in_flag_and_restore_fd_in_and_out(info) == ERROR)
+			return (ERROR);
+	}
+	else if (continue_flag == 1 && \
+	(info->sentence_lst->redirect_lst->next->token_type == REDIRECT_LEFT_ONE \
+	|| info->sentence_lst->redirect_lst->next->token_type == REDIRECT_LEFT_TWO))
+	{
+		info->fd_out_restore_flag = 0;
+		if (init_and_set_fd_for_restore(info, 2) == ERROR)
+			return (rtn_error());
+		info->fd_out_restore_flag = 1;
+	}
+	return (SUCCESS);
 }
 
 int	set_fd_case_red_right_two(t_info *info)
@@ -25,7 +46,6 @@ int	set_fd_case_red_right_two(t_info *info)
 	int	fd_out;
 	int	continue_flag;
 
-	init_and_set_fd_for_restore(info, 2);
 	set_continue_flag(info->sentence_lst, &continue_flag);
 	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 	{
@@ -37,13 +57,8 @@ int	set_fd_case_red_right_two(t_info *info)
 		O_WRONLY | O_APPEND | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out == -1)
 		return (rtn_error());
-	if (init_and_set_fd_for_restore(info, 1) == ERROR)
-		return (rtn_error());
-	if (dup2(fd_out, 1) == -1)
-		return (rtn_error());
-	if (close(fd_out) == -1)
-		return (rtn_error());
-	set_red_left_after_right_flag(info, continue_flag);
+	if (set_fd_case_red_right(info, fd_out, continue_flag) == ERROR)
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -52,7 +67,6 @@ int	set_fd_case_red_right_one(t_info *info)
 	int	fd_out;
 	int	continue_flag;
 
-	init_and_set_fd_for_restore(info, 2);
 	set_continue_flag(info->sentence_lst, &continue_flag);
 	if (access(info->sentence_lst->redirect_lst->str, F_OK) == 0)
 		if (access(info->sentence_lst->redirect_lst->str, W_OK) == -1)
@@ -65,13 +79,8 @@ int	set_fd_case_red_right_one(t_info *info)
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out == -1)
 		return (rtn_error());
-	if (init_and_set_fd_for_restore(info, 1) == ERROR)
-		return (rtn_error());
-	if (dup2(fd_out, 1) == -1)
-		return (rtn_error());
-	if (close(fd_out) == -1)
-		return (rtn_error());
-	set_red_left_after_right_flag(info, continue_flag);
+	if (set_fd_case_red_right(info, fd_out, continue_flag) == ERROR)
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -84,9 +93,23 @@ static int	set_fd_case_red_left_one_2(t_info *info, int fd_in, \
 		return (rtn_error());
 	if (close(fd_in) == -1)
 		return (rtn_error());
-	if (continue_flag == 1)
+	if (continue_flag == 1 && \
+	(info->sentence_lst->redirect_lst->next->token_type == REDIRECT_LEFT_ONE \
+	|| info->sentence_lst->redirect_lst->next->token_type == REDIRECT_LEFT_TWO))
+	{
+		if (check_fd_out_flag_and_restore_fd_in_and_out(info) == ERROR)
+			return (ERROR);
+	}
+	else if (continue_flag == 1 && \
+	(info->sentence_lst->redirect_lst->next->token_type == REDIRECT_RIGHT_ONE \
+	|| info->sentence_lst->redirect_lst->next->token_type \
+	== REDIRECT_RIGHT_TWO))
+	{
+		info->fd_in_restore_flag = 0;
 		if (init_and_set_fd_for_restore(info, 2) == ERROR)
 			return (rtn_error());
+		info->fd_in_restore_flag = 1;
+	}
 	return (SUCCESS);
 }
 
@@ -108,12 +131,7 @@ int	set_fd_case_red_left_one(t_info *info)
 	fd_in = open(info->sentence_lst->redirect_lst->str, O_RDONLY);
 	if (fd_in == -1)
 		return (rtn_error());
-	if (!info->red_left_after_right_flag)
-	{
-		if (set_fd_case_red_left_one_2(info, fd_in, continue_flag) == ERROR)
-			return (ERROR);
-	}
-	else
-		info->red_left_after_right_flag = 0;
+	if (set_fd_case_red_left_one_2(info, fd_in, continue_flag) == ERROR)
+		return (ERROR);
 	return (SUCCESS);
 }
