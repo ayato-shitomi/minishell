@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:52:55 by mhida             #+#    #+#             */
-/*   Updated: 2022/09/18 22:02:12 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/18 22:07:24 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	check_fd_out_flag_and_restore_fd_in_and_out(t_info *info)
 		if (init_and_set_fd_for_restore(info, 2) == ERROR)
 			return (rtn_error());
 	}
+	return (SUCCESS);
 }
 
 int	check_fd_in_flag_and_restore_fd_in_and_out(t_info *info)
