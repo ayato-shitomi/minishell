@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/15 09:57:41 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/19 16:32:34 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,20 @@ int	ft_cd_case_absolute_path(t_info *info, char *dest_dir)
 	t_env_var_lst	*env_var_lst_tmp;
 	int				n;
 	size_t			i;
+	char			*dest_dir_arranged;
 
 	env_var_lst_tmp = info->env_var_lst;
 	i = 0;
 	while (dest_dir[i] == '/')
-	{
-		if (dest_dir[i + 1] == '\0')
+		if (dest_dir[i++ + 1] == '\0')
 			dest_dir[1] = '\0';
-		i++;
-	}
 	n = chdir(dest_dir);
 	if (n == 0)
 	{
+		dest_dir_arranged = get_dest_dir_arranged(dest_dir);
 		pwd_value_tmp = get_env_value(info, "PWD");
 		set_env_value(info, "OLDPWD", pwd_value_tmp);
-		set_env_value(info, "PWD", dest_dir);
+		set_env_value(info, "PWD", dest_dir_arranged);
 	}
 	else
 		n = error_and_return("cd", dest_dir, strerror(errno));

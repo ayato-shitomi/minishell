@@ -6,11 +6,34 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/15 10:16:08 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/19 16:28:51 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+char	*get_dest_dir_arranged(char *dest_dir)
+{
+	char	*dest_dir_arranged;
+	char	*dest_dir_arranged_tmp;
+	char	**split_dest_dir;
+	size_t	i;
+
+	split_dest_dir = ft_split(dest_dir, '/');
+	free(dest_dir);
+	i = 0;
+	dest_dir_arranged = ft_strjoin("/", split_dest_dir[i]);
+	i++;
+	while (split_dest_dir[i])
+	{
+		dest_dir_arranged_tmp = dest_dir_arranged;
+		dest_dir_arranged = \
+			ft_strjoin_three(dest_dir_arranged, "/", split_dest_dir[i]);
+		free(dest_dir_arranged_tmp);
+		i++;
+	}
+	return (dest_dir_arranged);
+}
 
 static int	ft_cd_case_null(t_info *info)
 {

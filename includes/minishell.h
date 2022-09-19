@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/19 15:23:08 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/19 16:10:39 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int				exec_builtin_without_pipe(t_info *info);
 
 // builtin_cd.c
 int				ft_cd(t_info *info);
+char			*get_dest_dir_arranged(char *dest_dir);
 
 // builtin_cd_2.c
 char			*get_env_value(t_info *info, char *key);
