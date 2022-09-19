@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:35:21 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/18 21:59:40 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/19 15:23:08 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,7 +353,7 @@ void			make_tmp_file(char **tmp_file);
 
 // set_pipe_fd.c
 int				set_pipe_fd_0(int pipe_fd[2]);
-int				set_pipe_fd_1(int pipe_fd[2]);
+int				set_pipe_fd_1(t_info *info, int pipe_fd[2]);
 int				set_pipe_fd_2(t_info *info, int pipe_fd[2]);
 
 // header.c

@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:27 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/17 20:04:48 by mhida            ###   ########.fr       */
+/*   Updated: 2022/09/19 15:21:48 by mhida            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	do_pipes(t_info *info, size_t i, size_t cmd_cnt)
 			exit(ERROR);
 		else if (pid == 0)
 		{
-			if (set_pipe_fd_1(pipe_fd) == ERROR)
+			if (set_pipe_fd_1(info, pipe_fd) == ERROR)
 				exit(ERROR);
 			do_pipes(info, i + 1, cmd_cnt);
 		}
