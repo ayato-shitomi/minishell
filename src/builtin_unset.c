@@ -6,7 +6,7 @@
 /*   By: ashitomi <ashitomi@student.42tokyo.jp >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:46:26 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/18 01:40:19 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:59:43 by ashitomi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	ft_unset(t_info *info)
 
 	if (!info->sentence_lst->cmd_lst->next)
 		return (0);
-
 	p = info->sentence_lst->cmd_lst->next;
 	while (p)
 	{

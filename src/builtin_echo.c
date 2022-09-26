@@ -6,7 +6,7 @@
 /*   By: mhida <mhida@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 13:20:14 by ashitomi          #+#    #+#             */
-/*   Updated: 2022/09/18 01:50:26 by ashitomi         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:59:20 by ashitomi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,19 @@ static int check_quoted(t_info *info)
 }
 */
 
+static int	pbarz(void)
+{
+	printf("\n");
+	return (0);
+}
+
 int	ft_echo(t_info *info)
 {
 	t_lst	*p;
 	int		flag_not_backn;
 
 	if (!info->sentence_lst->cmd_lst->next)
-	{
-		printf("\n");
-		return (0);
-	}
+		return (pbarz());
 	flag_not_backn = 0;
 	p = info->sentence_lst->cmd_lst->next;
 	while (ft_strcmp(p->str, "-n") == 0)
